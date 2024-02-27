@@ -9,17 +9,30 @@
 }
 
 :root{
-    --body-color: #E4E9F7;
-    --nav-color: #4070F4;
-    --side-nav: #010718;
-    --text-color: #FFF; /* Letras en blanco */
+    --body-color: #FFF;
+    --nav-color: #FF595A;
+    --side-nav: #FFF;
+    /*--text-color: #FFF;  Letras en blanco */
     --search-bar: #F2F2F2;
     --search-text: #010718;
+    --sidebar-color: #FFF;
+    --primary-color: #231F20;
+    --primary-color-light: #5C5C5C;
+    --toggle-color: #DDD;
+    --text-color-up: #FFF;
+    --text-color: #707070;
+
+    /* Transition */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
 }
 
 body{
     height: 100vh;
     background-color: var(--body-color);
+    transition: var(--tran-02);
     color: var(--nav-color); /* Letras en blanco */
     font-family: 'Poppins', sans-serif;
 }
@@ -28,12 +41,167 @@ body.dark{
     color: var(--text-color);
     --body-color: #18191A;
     --nav-color: #242526;
-    --side-nav: #242526;
+    /*--side-nav: #242526;*/
     --text-color: #CCC; /* Letras en blanco */
     --search-bar: #242526;
+    --sidebar-color: #242526; 
+    --primary-color: #3A3B3C;
+    --primary-color-light: #3A3B3C;
+
+}
+.side_bar.close{
+    width: 107px;
 }
 
-nav{
+/* CSS reusable */
+.side_bar .text{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: var(--tran-34);
+    white-space: nowrap;
+    opacity: 1;
+}
+
+
+.side_bar.close .text{
+    opacity: 0;
+}
+
+.side_bar .image{
+    min-width:60px;
+    display: flex;
+    align-items: center;
+}
+/* Sidebar */
+
+.side_bar{
+    position: fixed;
+    top: 0;
+    left: -10;
+    height: 100%;
+    width: 230px;
+    padding: 2px 2px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+
+}
+
+.side_bar li{
+    height: 80px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.side_bar li .icon{
+    display:flex ;
+    align-items:first center;
+    justify-content: center;
+    min-width: 32px;
+    font-size: 30px;
+}
+
+.side_bar li .icon,
+.side_bar li .text{
+    color: var(--text-color);
+    transition: var(--tran-02);
+}
+
+.side_bar header {
+    position:relative;
+}
+
+.side_bar .image-text img{
+    width:50px;
+    border-radius: 6px;
+    ;
+}
+
+.side_bar header .image-text{
+    display: flex;
+    align-items: center;
+}
+
+header .image-text .header-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text .name{
+    font-weight: 600;
+}
+
+.side_bar header .toggle{
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 30px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--sidebar-color);
+    font-size: 22px;
+}
+.side_bar li a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: var(--tran-04);
+}
+
+.side_bar li a:hover{
+    background: var(--primary-color);
+}
+
+.side_bar li a:hover .icon,
+.side_bar li a:hover .text{
+    color: var(--sidebar-color)
+}
+
+.side_bar .menu-bar{
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-bar .darkLight-profile{
+    background: var(--primary-color-light);
+    border-radius: 6px;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.side_bar.close .logo{
+    opacity: 0;
+}
+
+
+nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -52,6 +220,7 @@ nav .nav-bar{
     position: relative;
     height: 100%;
     max-width: 1350px;
+    right: auto;
     width: 100%;
     background-color: var(--nav-color);
     margin: 0 auto;
@@ -62,7 +231,7 @@ nav .nav-bar{
 }
 
 nav .nav-bar .sidebarOpen{
-    color: var(--text-color);
+    color: var(--text-color-up);
     font-size: 25px;
     padding: 5px;
     cursor: pointer;
@@ -72,8 +241,10 @@ nav .nav-bar .sidebarOpen{
 nav .nav-bar .logo a{
     font-size: 25px;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-color-up);
     text-decoration: none;
+    padding-left: 590px;
+
 }
 
 .menu .logo-toggle{
@@ -135,7 +306,7 @@ nav .nav-bar .logo a{
 .dark-light i,
 .userProfile i{
     position: absolute;
-    color: var(--text-color);
+    color: var(--text-color-up);
     font-size: 22px;
     cursor: pointer;
 }
@@ -211,9 +382,9 @@ nav .nav-bar .logo a{
 .user-sub-menu ul {
     height: 100%;
     width: 100%;
-    padding: 5px; /* Ajusta el relleno según sea necesario */
-    margin: 0; /* Ajusta los márgenes si es necesario */
-    list-style: none; /* Elimina los estilos de lista predeterminados */
+    padding: 5px; 
+    margin: 0; 
+    list-style: none; 
     font-size: 10px;
     font-weight: 500;
     text-align: center;
@@ -237,54 +408,6 @@ body.dark .user-sub-menu i{
     color: var(--text-color);
 }
 
-@media (max-width: 1790px) {
-    nav .nav-bar .sidebarOpen{
-        display: block;
-    }
-
-    .menu{
-        position: fixed;
-        height: 100%;
-        width: 320px;
-        left: -100%;
-        top: 0;
-        padding: 20px;
-        background-color: var(--side-nav);
-        z-index: 100;
-    }
-
-    nav.active .menu{
-        left: -0%;
-    }
-
-    nav.active .nav-bar .navLogo a{
-        opacity: 0;
-    }
-
-    .menu .logo-toggle{
-        display: block;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .logo-toggle .siderbarClose{
-        color: var(--text-color);
-        font-size: 24px;
-        cursor: pointer;
-    }
-
-    .nav-bar .nav-links{
-        flex-direction: column;
-        padding-top: 30px;
-    }
-
-    .nav-links li a{
-        display: block;
-        margin-top: 20px;
-    }
-}
 #seccion {
         padding: 15px 55px;
         text-align: center;
@@ -305,27 +428,28 @@ body {
     
 a:link {
         font-size: 20px;
-        text-decoration: none; /* Elimina la decoración de los enlaces visitados */
+        text-decoration: none;
         color: #003ce0; 
 }
 a:visited {
-    text-decoration: none; /* Elimina la decoración de los enlaces visitados */
-    color: #003ce0; /* Define el color de los enlaces visitados en modo oscuro */
+    text-decoration: none; 
+    color: #003ce0; 
 }
 a:hover{
     color:#a13cff
 }
 
 body.dark a:link {
-    text-decoration: none; /* Elimina la decoración de los enlaces visitados */
-    color: #fff; /* Hereda el color del texto del elemento padre */
+    text-decoration: none; 
+    color: #fff; 
 }
 
 body.dark a:visited {
-    text-decoration: none; /* Elimina la decoración de los enlaces visitados */
-    color: #fff; /* Define el color de los enlaces visitados en modo oscuro */
+    text-decoration: none; 
+    color: #fff; 
 }
 
 body.dark a:hover{
     color:#a13cff
 }
+
