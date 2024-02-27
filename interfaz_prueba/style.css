@@ -1,0 +1,331 @@
+/* ===== Google Font Import - Poppins ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+*{
+    margin: 0;
+    padding: 7px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.15s ease;;
+}
+
+:root{
+    --body-color: #E4E9F7;
+    --nav-color: #4070F4;
+    --side-nav: #010718;
+    --text-color: #FFF; /* Letras en blanco */
+    --search-bar: #F2F2F2;
+    --search-text: #010718;
+}
+
+body{
+    height: 100vh;
+    background-color: var(--body-color);
+    color: var(--nav-color); /* Letras en blanco */
+    font-family: 'Poppins', sans-serif;
+}
+
+body.dark{
+    color: var(--text-color);
+    --body-color: #18191A;
+    --nav-color: #242526;
+    --side-nav: #242526;
+    --text-color: #CCC; /* Letras en blanco */
+    --search-bar: #242526;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 75px;
+    width: 100%;
+    background-color: var(--nav-color);
+    z-index: 100;
+}
+
+body.dark nav{
+    border: 1px solid #393838;
+
+}
+
+nav .nav-bar{
+    position: relative;
+    height: 100%;
+    max-width: 1350px;
+    width: 100%;
+    background-color: var(--nav-color);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav .nav-bar .sidebarOpen{
+    color: var(--text-color);
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+nav .nav-bar .logo a{
+    font-size: 25px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.menu .logo-toggle{
+    display: none;
+}
+
+.nav-bar .nav-links{
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar .nav-links li{
+    margin: 0 5px;
+    list-style: none;
+}
+
+.nav-links li a{
+    position: relative;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-links li a::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-links li:hover a::before{
+    opacity: 1;
+}
+
+.nav-bar .darkLight-profile{
+    display: flex;
+    align-items: center;
+}
+
+.darkLight-profile .dark-light,
+.darkLight-profile .userProfile{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+}
+
+.dark-light i,
+.userProfile i{
+    position: absolute;
+    color: var(--text-color);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.dark-light i.sun{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dark-light.active i.sun{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.dark-light.active i.moon{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.userProfile i.cancel{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.userProfile.active i.cancel{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.userProfile.active i.user{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.profile{
+    position: relative;
+}
+
+.profile .user-sub-menu{
+    position: absolute;
+    top: 80px;
+    right: 5px;
+    height: 168px;
+    width: 220px;
+    background-color: var(--nav-color);
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.userProfile.active ~ .user-sub-menu{
+    bottom: -74px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.user-sub-menu::before{
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: -4px;
+    height: 12px;
+    width: 12px;
+    background-color: var(--nav-color);
+    transform: rotate(-45deg);
+    z-index: -1;
+}
+
+
+.user-sub-menu ul {
+    height: 100%;
+    width: 100%;
+    padding: 5px; /* Ajusta el relleno según sea necesario */
+    margin: 0; /* Ajusta los márgenes si es necesario */
+    list-style: none; /* Elimina los estilos de lista predeterminados */
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--search-text);
+    background-color: var(--body-color);
+    border-radius: 4px;
+}
+
+
+
+.user-sub-menu i{
+    position: absolute;
+    color: var(--nav-color);
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+
+body.dark .user-sub-menu i{
+    color: var(--text-color);
+}
+
+@media (max-width: 1790px) {
+    nav .nav-bar .sidebarOpen{
+        display: block;
+    }
+
+    .menu{
+        position: fixed;
+        height: 100%;
+        width: 320px;
+        left: -100%;
+        top: 0;
+        padding: 20px;
+        background-color: var(--side-nav);
+        z-index: 100;
+    }
+
+    nav.active .menu{
+        left: -0%;
+    }
+
+    nav.active .nav-bar .navLogo a{
+        opacity: 0;
+    }
+
+    .menu .logo-toggle{
+        display: block;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo-toggle .siderbarClose{
+        color: var(--text-color);
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .nav-bar .nav-links{
+        flex-direction: column;
+        padding-top: 30px;
+    }
+
+    .nav-links li a{
+        display: block;
+        margin-top: 20px;
+    }
+}
+#seccion {
+        padding: 15px 55px;
+        text-align: center;
+        font-size: 35px;
+    }
+
+#cprt {
+        text-align: center;
+}
+
+
+body {
+        margin: 0 auto;
+        max-width: 55em;
+        line-height: 1.5;
+        padding: 4em 1em;
+}
+    
+a:link {
+        font-size: 20px;
+        text-decoration: none; /* Elimina la decoración de los enlaces visitados */
+        color: #003ce0; 
+}
+a:visited {
+    text-decoration: none; /* Elimina la decoración de los enlaces visitados */
+    color: #003ce0; /* Define el color de los enlaces visitados en modo oscuro */
+}
+a:hover{
+    color:#a13cff
+}
+
+body.dark a:link {
+    text-decoration: none; /* Elimina la decoración de los enlaces visitados */
+    color: #fff; /* Hereda el color del texto del elemento padre */
+}
+
+body.dark a:visited {
+    text-decoration: none; /* Elimina la decoración de los enlaces visitados */
+    color: #fff; /* Define el color de los enlaces visitados en modo oscuro */
+}
+
+body.dark a:hover{
+    color:#a13cff
+}
