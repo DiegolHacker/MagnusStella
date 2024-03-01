@@ -2,8 +2,13 @@ const body = document.querySelector("body"),
       nav = document.querySelector("nav"),
       modeToggle = document.querySelector(".dark-light"),
       userProfile = document.querySelector(".userProfile"),
-      sidebarOpen = document.querySelector(".sidebarOpen"),
+      sidebar = body.querySelector(".side_bar"),
+      toggle = body.querySelector(".toggle"),
       siderbarClose = document.querySelector(".siderbarClose");
+
+      toggle.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+      });
 
       let getMode = localStorage.getItem("mode");
           if(getMode && getMode === "dark-mode"){
@@ -23,13 +28,13 @@ const body = document.querySelector("body"),
         }
       });
 
-// js code to toggle search box
+
 userProfile.addEventListener("click" , () =>{
    userProfile.classList.toggle("active");
 });
  
-//   js code to toggle sidebar
-sidebarOpen.addEventListener("click" , () =>{
+
+toggle.addEventListener("click" , () =>{
     nav.classList.add("active");
 });
 
@@ -40,5 +45,3 @@ body.addEventListener("click" , e =>{
         nav.classList.remove("active");
     }
 });
-
-
