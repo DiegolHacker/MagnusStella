@@ -45,5 +45,3 @@ body.addEventListener("click" , e =>{
         nav.classList.remove("active");
     }
 });
-
-
