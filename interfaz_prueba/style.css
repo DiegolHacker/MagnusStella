@@ -10,17 +10,17 @@
 
 :root{
     --body-color: #FFF;
-    --nav-color: #FF595A;
+    --nav-color: #005CB9;
     --side-nav: #FFF;
     /*--text-color: #FFF;  Letras en blanco */
     --search-bar: #F2F2F2;
     --search-text: #010718;
-    --sidebar-color: #FFF;
-    --primary-color: #231F20;
+    --sidebar-color: #005CB9;
+    --primary-color: #FFF;
     --primary-color-light: #5C5C5C;
     --toggle-color: #DDD;
     --text-color-up: #FFF;
-    --text-color: #707070;
+    --text-color: #FFF;
 
     /* Transition */
     --tran-02: all 0.2s ease;
@@ -45,12 +45,14 @@ body.dark{
     --text-color: #CCC; /* Letras en blanco */
     --search-bar: #242526;
     --sidebar-color: #242526; 
-    --primary-color: #3A3B3C;
+    --primary-color: #CCC;
+    --side-nav: #CCC;
     --primary-color-light: #3A3B3C;
 
 }
 .side_bar.close{
     width: 107px;
+    
 }
 
 /* CSS reusable */
@@ -140,7 +142,7 @@ header .image-text .header-text{
     transform: translateY(-50%);
     height: 30px;
     width: 30px;
-    background: var(--primary-color);
+    background: var(--side-nav);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -436,12 +438,12 @@ a:visited {
     color: #003ce0; 
 }
 a:hover{
-    color:#a13cff
+    color:#D7E2FB;
 }
 
 body.dark a:link {
     text-decoration: none; 
-    color: #fff; 
+    color: #D7E2FB; 
 }
 
 body.dark a:visited {
@@ -450,6 +452,6 @@ body.dark a:visited {
 }
 
 body.dark a:hover{
-    color:#a13cff
+    color: #005CB9;
 }
 
