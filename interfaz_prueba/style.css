@@ -79,10 +79,10 @@ body.dark{
 
 .side_bar{
     position: fixed;
-    top: 0;
+    top: 75px;
     left: -10;
     height: 100%;
-    width: 230px;
+    width: 200px;
     padding: 2px 2px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
@@ -137,6 +137,7 @@ header .image-text .header-text{
 
 .side_bar header .toggle{
     position: absolute;
+    margin-top: 30px;
     top: 50%;
     right: -18px;
     transform: translateY(-50%);
@@ -182,6 +183,11 @@ header .image-text .header-text{
     position: relative;
 }
 
+.logo-zebrands img{
+    width: 196px;
+    height: 75px;
+}
+
 
 
 
@@ -221,14 +227,15 @@ body.dark nav{
 nav .nav-bar{
     position: relative;
     height: 100%;
-    max-width: 1350px;
+    /* max-width: 1350px; */
     right: auto;
     width: 100%;
     background-color: var(--nav-color);
-    margin: 0 auto;
+    margin: 0 ;
     padding: 0 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
     justify-content: space-between;
 }
 
@@ -245,7 +252,10 @@ nav .nav-bar .logo a{
     font-weight: 500;
     color: var(--text-color-up);
     text-decoration: none;
-    padding-left: 590px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-left: 590px; */
 
 }
 
@@ -292,7 +302,7 @@ nav .nav-bar .logo a{
 
 .nav-bar .darkLight-profile{
     display: flex;
-    align-items: center;
+    align-items:center;
 }
 
 .darkLight-profile .dark-light,
@@ -423,7 +433,7 @@ body.dark .user-sub-menu i{
 
 body {
         margin: 0 auto;
-        max-width: 55em;
+        /* max-width: 55em; */
         line-height: 1.5;
         padding: 4em 1em;
 }
@@ -455,3 +465,8 @@ body.dark a:hover{
     color: #005CB9;
 }
 
+.main-content{
+    display: flex;
+    margin: 20px 0 0 105px;
+    height: 100%;
+}
