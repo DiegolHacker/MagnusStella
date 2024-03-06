@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 98vh;
+    background-color: #D7E2FB;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-box{
+    display: flex;
+    flex-direction: column;
+    width: 370px;
+    height: 450px;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    box-shadow: 0 0 10px #525252 ;
+}
+
+.login-title{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #2d73b9;
+    
+}
+
+.credential-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    color: #2d73b9;
+    font-weight: 500;
+}
+
+.credential-input input{
+    margin-top: 10px;
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    outline-color: #2d73b9;
+}
+
+.login-title h4{
+    font-weight: 600;
+}
+
+.google-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

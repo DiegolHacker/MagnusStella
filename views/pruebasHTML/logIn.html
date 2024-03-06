@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="510682302712-ojvujken48si0igbopheo84gfbqno6ib.apps.googleusercontent.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/login_syles.css">
+    <title>LogIn</title>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-title">
+            <h4>Log-In</h4>
+        </div>
+        <div class="credential-input">
+            <label for="credential-input">Nombre de usuario:</label>
+            <input type="email" name="email-input" id="username" placeholder="Ingresa tu correo electronico">
+        </div>
+        <div class="credential-input">
+            <label for="credential-input">Contrasena:</label>
+            <input type="password" name="password-input" id="password" placeholder="Ingresa tu contrasena">
+        </div>
+
+        <div class="google-login">
+            <p>Log-In con google:</p>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+</html>
