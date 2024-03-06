@@ -454,4 +454,7 @@ body.dark a:visited {
 body.dark a:hover{
     color: #005CB9;
 }
-
+.top_graficas{
+    height: 100%;
+    width: 100%;
+}
