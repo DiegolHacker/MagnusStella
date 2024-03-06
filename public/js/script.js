@@ -4,16 +4,24 @@ const body = document.querySelector("body"),
       userProfile = document.querySelector(".userProfile"),
       sidebar = body.querySelector(".side_bar"),
       toggle = body.querySelector(".toggle"),
-      siderbarClose = document.querySelector(".siderbarClose");
+      siderbarClose = document.querySelector(".siderbarClose"),
+      main_content = document.querySelector(".main-content"),
+      footer = document.querySelector(".footer-1");
 
-      toggle.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-      });
+//este pedazo de codigo hace que el toggle funcione y habra el menu
+toggle.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+    main_content.classList.toggle("main-content-increase", !sidebar.classList.contains("close"))
+    footer.classList.toggle("footer-margin-increase", !sidebar.classList.contains("close"))
 
-      let getMode = localStorage.getItem("mode");
-          if(getMode && getMode === "dark-mode"){
-            body.classList.add("dark");
-          }
+});
+
+
+let getMode = localStorage.getItem("mode");
+
+if(getMode && getMode === "dark-mode"){
+    body.classList.add("dark");
+}
 
 // js code to toggle dark and light mode
       modeToggle.addEventListener("click" , () =>{
