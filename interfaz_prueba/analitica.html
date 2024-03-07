@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zėbrands_dev</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="top_graficas.css" />
 
     <!-- ===== Boxicons CSS ===== -->
     <link
@@ -17,18 +18,64 @@
     <title>Responsive Navigation Menu Bar</title>
   </head>
   <body>
-    <section>
-      <article>
-        <br />
-        <h2 id="seccion">Analítica</h2>
-      </article>
-    </section>
+    <h2 id="seccion">Analítica</h2>
     <div class="top_graficas">
       <div class="grafiaca_pequenia">
-        
+        <title>Estrellas</title>
+        <p>Reseñas <br>
+          < 3 = 22%<br>
+          3 & 4 = 14%<br>
+          5 = 64%</p>
+        <div class="grafica_pastel"></div>
+      </div>
+      <div class="grafiaca_pequenia">
+        <p>Reseñas <br>
+          < 3 = 22%<br>
+        3 & 4 = 14%<br>
+        5 = 64%</p>
+        <div class="grafica_pastel"></div>
+      </div>
+      <div class="grafiaca_pequenia">
+        <p>Reseñas <br>
+          < 3 = 22%<br>
+        3 & 4 = 14%<br>
+        5 = 64%</p>
+        <div class="grafica_pastel"></div>
       </div>
     </div>
+
+    <div class="medio_graficas">
+      <div class="grafica_linea">
+        <canvas id="myChart" width="200" height="90"></canvas>
+      </div>
+      <div class="productos_mas_resenias">
+        <p>Productos con mas Resenias</title>
+        <ol>
+          <li>Colchon Original Luna - 894</li>
+          <li>Almohada Frime Luna - 740</li>
+          <li>Colchon One Luna - 725</li>
+          <li>Base Jalisco Luna - 698</li>
+          <li>Protecto Tencel Luna - 589</li>
+          <li>Almohada ajustable Down Luna - 498</li>
+        </ol>
+      </div>
     </div>
+
+    <div class="bottom_graficas">
+      <h2>Top 5 Productos del Dia</h2>
+      <div>
+        <ol class="lista_productos">
+          <li>Colchon Original Luna - 894</li>
+          <li>Almohada Frime Luna - 740</li>
+          <li>Colchon One Luna - 725</li>
+          <li>Base Jalisco Luna - 698</li>
+          <li>Protecto Tencel Luna - 589</li>
+        </ol>
+      </div>
+    </div>
+    
+    
+
     <nav>
       <div class="nav-bar">
         <i class="bx bx-menu sidebarOpen"></i>
@@ -113,6 +160,36 @@
       <a href="mailto:A01705651@tec.mx">Contáctanos</a>
       <p id="cprt">Copyright © 2024 Zebrands</p>
     </footer>
+    <script>
+      var ctx= document.getElementById("myChart").getContext("2d");
+      var myChart= new Chart(ctx,{
+          type:"line",
+          data: {
+              labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre'],
+              datasets: [{
+                  label: 'Numero de Reviews',
+                  data: [500, 400,700, 332, 235, 743, 647, 567, 893],
+                  backgroundColor: [
+                      'rgb(50, 133, 168)',
+                      'rgb(50, 91, 168)',
+                      'rgb(50, 66, 168)'
+                  ],
+                  borderColor: 'rgb(50, 121, 168)',
+                  fill: false,
+                  lineTension: 0.1,
+              }]
+          },
+          options:{
+              scales:{
+                  yAxes:[{
+                      ticks:{
+                          beginAtZero: true
+                      }
+                  }]
+              }
+          }
+      });
+    </script>
     <script src="script.js"></script>
   </body>
 </html>

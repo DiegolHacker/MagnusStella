@@ -423,7 +423,7 @@ body.dark .user-sub-menu i{
 
 body {
         margin: 0 auto;
-        max-width: 55em;
+        width: 1100px;
         line-height: 1.5;
         padding: 4em 1em;
 }
@@ -454,7 +454,82 @@ body.dark a:visited {
 body.dark a:hover{
     color: #005CB9;
 }
+
+
 .top_graficas{
-    height: 100%;
+    position:relative;
+    display: flex;
+    top: 0px;
     width: 100%;
+    height: 160px;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+.grafiaca_pequenia{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    height: 110px;
+    width: 400px;
+    margin: 15px 10px 10px 10px;
+    min-width: 300px;
+    background-color: #D7E2FB;
+    border-radius: 5%;
+}
+.grafica_pastel{
+    position: flexible;
+    height: 100px;
+    width: 100px;
+    right: 0%;
+    border-radius: 50%;
+    background: conic-gradient(red 22%, yellow 0 36%, green 0 100%);
+    border: 3px solid black;
+}
+
+.medio_graficas{
+    position:relative;
+    display: flex;
+    top: 0px;
+    width: 100%;
+    height: 300px;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.grafica_linea{
+    position:relative;
+    display: flex;
+    top: 0px;
+    width: 60%;
+    height: 300px;
+}
+.productos_mas_resenias{
+    position:relative;
+    background-color: #D7E2FB;
+    display: flex;
+    width: 40%;
+    height: 300px;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.bottom_graficas{
+    margin-top: 20px;
+    position:relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    top: 0px;
+    width: 100%;
+    height: 150px;
+    background-color: #D7E2FB;
+}
+
+.lista_productos{
+    position:relative;
+    display: flex;
+    flex-direction: row;
 }
