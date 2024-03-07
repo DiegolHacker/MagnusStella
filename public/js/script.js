@@ -53,3 +53,7 @@ body.addEventListener("click" , e =>{
         nav.classList.remove("active");
     }
 });
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
