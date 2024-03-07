@@ -3,7 +3,7 @@ const router = express.Router();
 const controladores = require("../controllers/renderHtml");
 
 router.get("/", controladores.get_dashboard);
-router.get('/usuarios', zebrandsController.get_usuarios);
+router.get('/usuarios', controladores.get_usuarios);
 router.get("/login", controladores.get_login)
 
 

@@ -469,6 +469,9 @@ body.dark a:hover{
 
 .main-content{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 20px 0 0 105px;
     height: 90%;
 }
@@ -485,24 +488,32 @@ body.dark a:hover{
 
 footer{
     margin-left: 105px;
+    margin-top: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
 /*Pagina usuario*/
-.table-responsive {
+/* .table-responsive {
     /* Ajustar los márgenes y el desbordamiento */
-    margin: 60px 0px;
+    /* margin: 60px 0px; */
+
+    /* margin-top: 100px; */
     
-}
+
+    .container-fluid{
+        margin-top: 80px;
+        height: 100%;
+        width: 100%;
+    }
 
 .table-title {
     padding-bottom: 15px;
     background: #005CB9;
     color: #fff;
-    padding: 16px 30px;
+    padding: 16px 15px;
     margin: -20px -25px 10px;
     border-radius: 3px 3px 0 0;
     display: flex;
@@ -517,14 +528,26 @@ footer{
     color: #566787;
     background: #fff;
     height: 50px;
-    width: 160px;
+    width: 150px;
     font-size: 12px;
     border: none;
     min-width: 5px;
     border-radius: 2px;
     border: none;
     outline: none !important;
+    display: flex;
+    align-items: center;
 }
+
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 460px;
+}
+
+
 
 .buttons .icon{
     font-size: 20px;
@@ -539,7 +562,15 @@ footer{
     position: relative;
     float: top;
     margin-top: 2px;
+    font-size: 10px;
     
+}
+
+.table-wrapper{
+    width: 100%;
+}
+table.table{
+    width: 100%;
 }
 
 table.table tr th,
