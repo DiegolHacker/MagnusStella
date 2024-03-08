@@ -21,3 +21,9 @@ exports.get_usuarios = (request, response, next) => {
 exports.get_login = (request, response,next) =>{
     response.render("login")
 }
+
+exports.get_resenas = (request, response,next) => {
+    response.render("resenas", {
+        titulo: 'Reseñas',
+    })
+};

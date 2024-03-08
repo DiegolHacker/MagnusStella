@@ -14,7 +14,7 @@
     --side-nav: #FFF;
     /*--text-color: #FFF;  Letras en blanco */
     --search-bar: #F2F2F2;
-    --search-text: #010718;
+    --search-text: #121418;
     --sidebar-color: #005CB9;
     --primary-color: #FFF;
     --primary-color-light: #5C5C5C;
@@ -22,6 +22,7 @@
     --text-color-up: #FFF;
     --text-color: #FFF;
     --edit-color: #005CB9;
+    --text-color_rev: #434141;
 
     /* Transition */
     --tran-02: all 0.2s ease;
@@ -42,15 +43,17 @@ body.dark{
     color: var(--text-color);
     --body-color: #18191A;
     --nav-color: #242526;
+    --search-text: #ffffff;
     /*--side-nav: #242526;*/
     --text-color: #CCC; /* Letras en blanco */
-    --search-bar: #242526;
+    --search-bar: #4a4c4f;
     --sidebar-color: #242526; 
     --primary-color: #CCC;
     --side-nav: #CCC;
     --primary-color-light: #3A3B3C;
     --edit-color:#CCC;
     --toggle-color:#727171c2;
+    --text-color_rev: #CCC;
 
 }
 .side_bar.close{
@@ -497,14 +500,11 @@ footer{
     justify-content: center;
     align-items: center;
 }
-
-/*Pagina usuario*/
-/* .table-responsive {
-    /* Ajustar los márgenes y el desbordamiento */
-    /* margin: 60px 0px; */
-
-    /* margin-top: 100px; */
-    
+/*Pagina reseñas*/ 
+.container{
+    margin-top: -250px;
+}
+/*Pagina usuario*/ 
 
 .container-fluid{
         margin-top: 80px;
@@ -621,6 +621,8 @@ table.table .avatar {
     vertical-align: middle;
     margin-right: 2px;
     font-size: 16px;
+    width: 80px;
+    height: 80px;
 }
 .status {
     font-size: 26px;
@@ -683,4 +685,80 @@ table.table .avatar {
     float: left;
     margin-top: 10px;
     font-size: 13px;
+}
+
+.container {
+    margin-top: 40px;
+    background-color: var(--toggle-color);
+    color:var(--text-color_rev);
+    overflow:auto; /* Puedes usar 'auto', 'scroll' o 'hidden' según tus necesidades */
+}
+
+
+.contenido{
+    padding: 10px;
+    background:var(--body-color);
+    
+}
+
+#text_resena_nrml{
+    font-size:14px;
+}
+
+#producto_img{
+    position:relative;
+    margin-left: 220px;
+}
+.container .contenido .rating-box {
+    position: relative;
+    
+}
+#question_text{
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+}
+#sub_question{
+    font-size: 13px;
+    margin-left: 9px;
+}
+.container .contenido .rating-box .estrellas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+.estrellas i {
+    color: var(--toggle-color);
+    font-size:35px;
+    cursor: pointer;
+}
+
+.estrellas i.active {
+    color: #fdd300;
+  }
+
+#title_rev{
+    width:250px;
+    margin-left: 10px;
+}
+
+#description_rev{
+    margin-left: 16px;
+}
+
+#edades{
+    margin-left: 10px;
+}
+#dormir{
+    margin-left: 10px;
+}
+
+.submit-button {
+    display: block;
+    margin: 0 auto; /* Esto centra horizontalmente el botón */
+    border-radius: 1em;
+    background:#4ab050;
+    color: #ffffff;
+    cursor: pointer;
 }

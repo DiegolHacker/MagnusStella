@@ -54,6 +54,14 @@ body.addEventListener("click" , e =>{
     }
 });
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
+//funcion de rating estrellas
+const stars = document.querySelectorAll(".estrellas i");
+stars.forEach((star, index1) => {
+  console.log(stars)
+  star.addEventListener("click", () => {
+    stars.forEach((star, index2) => {
+      index1 >= index2 ? star.classList.add("active") : star.classList.remove("active");
+    });
+  });
 });
+;
