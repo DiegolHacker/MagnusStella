@@ -703,7 +703,7 @@ table.table .avatar {
 
 
 .contenido{
-    padding: 10px;
+    padding: 10pt;
     background:var(--body-color);
     
 }
@@ -769,3 +769,91 @@ table.table .avatar {
     color: #ffffff;
     cursor: pointer;
 }
+
+/* estilos de Correos.ejs */
+.tab-button{
+    font-size: 14pt;
+    width: 50%;
+    padding: 15px 30px;
+    border: 3px solid var(--nav-color);
+    background-color: var(--nav-color);
+
+    border-bottom-color: var(--highlight);
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    
+}
+
+.tab-button-right{
+    border-top-right-radius: 11pt;
+}
+
+.tab-button-left{
+    border-top-left-radius: 11pt;
+}
+
+.tab-button:hover {
+    background-color: var(--hover-color);
+}
+
+.tab-button-container{
+    display: flex;
+    width: 75%;
+}
+
+.tab-container{
+    color: white;
+    background-color: var(--nav-color);
+    overflow: scroll;
+    width: 74%;
+    height: 100%;
+    border-bottom-left-radius: 11pt;
+    border-bottom-right-radius: 11pt;
+}
+
+.tab-content{
+    margin: 0 auto;
+    padding: 0em 10em;
+}
+
+.preview{
+    max-width: 59em;
+}
+
+.add-ques-button{
+    font-size: 12pt;
+    padding: 15px 30px;
+    border: none;
+    background-color: var(--highlight);
+    border-radius: 11pt;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.add-ques-button:hover{
+    background-color: var(--highlight2);
+}
+
+.ques-container{
+    border-radius: 15px;
+    width: 65%;
+    background-color: var(--highlight2);
+}
+
+#dias, #hora{
+    width: 5em;
+    border: none;
+    border-bottom-left-radius: 11pt;
+    border-top-left-radius: 11pt;
+}
+
+#subir{
+    width: 4em;
+    border: none;
+    border-bottom-right-radius: 11pt;
+    border-top-right-radius: 11pt;
+
+}
+    

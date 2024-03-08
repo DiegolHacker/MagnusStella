@@ -65,3 +65,13 @@ stars.forEach((star, index1) => {
   });
 });
 ;
+
+//codigo para cambiar de Tab en la sección de correos.
+function openTab(tabName) {
+  var i;
+  var x = document.getElementsByClassName("Tab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  document.getElementById(tabName).style.display = "block";  
+}
