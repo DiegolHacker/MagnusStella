@@ -1,3 +1,37 @@
 <%- include('includes/navigation.ejs') %>
-    
+
+<div id="search-autocomplete" class="form-outline" data-mdb-input-init>
+    <input type="search" id="form1" class="form-control" placeholder="Busca tu producto"/>
+    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+        <i class="fas fa-search"></i>
+      </button>
+</div>
+
+<div class="item-boxes">
+    <% resenas.forEach(function(resena, index) { %>
+        <div class="item-container">
+            <a href="#"><%= resena.itemcode %> <%= resena.title %></a>
+            <img src="<%= resena.itemcode %>.jpg" class="img_producto">
+            <div class="estrellas">
+                <% for (var i = 0; i < 5; i++) { %>
+                    <% if (i < resena.estrellas) { %>
+                        <i class='bx bxs-star' id="stars_y"></i>
+                    <% } else { %>
+                        <i class='bx bx-star' id="stars_g"></i>
+                    <% } %>
+                <% } %>
+            </div>
+            <div class="ver_pagina">
+                <input type="checkbox" id="click">
+                <label for="click" class="text"></label>
+            </div>
+        </div>
+        <% if ((index + 1) % 2 === 0) { %>
+            <div class="clearfix"></div>
+        <% } %>
+    <% }); %>
+</div>
+
+
+
 <%- include('includes/footer.ejs') %>

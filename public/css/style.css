@@ -694,14 +694,13 @@ table.table .avatar {
     font-size: 13px;
 }
 
+/* review completa */
 .container {
     margin-top: 40px;
     background-color: var(--toggle-color);
     color:var(--text-color_rev);
-    overflow:auto; /* Puedes usar 'auto', 'scroll' o 'hidden' según tus necesidades */
+    overflow:auto;
 }
-
-
 .contenido{
     padding: 10pt;
     background:var(--body-color);
@@ -763,11 +762,130 @@ table.table .avatar {
 
 .submit-button {
     display: block;
-    margin: 0 auto; /* Esto centra horizontalmente el botón */
+    margin: 0 auto; 
     border-radius: 1em;
     background:#4ab050;
     color: #ffffff;
     cursor: pointer;
+}
+
+/* review chica */
+
+#stars_y{
+    color: #fdd300;
+}
+#stars_g{
+    color: var(--toggle-color);
+}
+
+.item-boxes {
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.item-container {
+    width: 45%; /* Ajusta el ancho según tus necesidades */
+    margin: 10px;
+    padding: 10px;
+    border: 4px solid var(--edit-color);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.item-container a {
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.img_producto {
+    width: 100px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.estrellas {
+    margin-top: 10px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.img_producto{
+    width: 200px;
+    margin-top: 20px;
+}
+.ver_pagina {
+    padding: 21px ; /* Ajustado */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    align-items:end;
+    border-radius: 5px;
+    padding: auto right;
+    
+
+}
+
+.ver_pagina input {
+    outline: none;
+    height: 20px; /* Ajustado */
+    width: 50px; /* Ajustado */
+    border-radius: 50px;
+    -webkit-appearance: none;
+    position: relative;
+    background: #e6e6e6;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.2);
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.ver_pagina input:checked {
+    background: #005CB9;
+}
+
+.ver_pagina input:before {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 20px; /* Ajustado */
+    background: linear-gradient(#fff,#f2f2f2,#e6e6e6,#d9d9d9);
+    border-radius: 50px;
+    transform: scale(0.85);
+    transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+input:checked:before {
+    left: 25px; /* Ajustado */
+}
+
+.ver_pagina .text:before {
+    content: "Deshabilitado";
+    font-size: 10px; /* Ajustado */
+    font-weight: 500;
+    color: var(--primary-color-light);
+}
+
+input:checked ~ .text:before {
+    content: "Habilitado";
+    color: var(--edit-color);
+    font-size: 11px; /* Ajustado */
+}
+
+#search-autocomplete {
+    display: flex;
+    justify-content: flex-end; /* Esto alinea los elementos al extremo derecho */
+    align-items: center; /* Esto alinea verticalmente los elementos */
+    width: 90%;
 }
 
 /* estilos de Correos.ejs */
