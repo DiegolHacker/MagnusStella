@@ -827,7 +827,7 @@ table.table .avatar {
     position: relative;
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: var(--body-color);
     align-items:end;
     border-radius: 5px;
     padding: auto right;
