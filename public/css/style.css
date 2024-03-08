@@ -22,6 +22,10 @@
     --text-color-up: #FFF;
     --text-color: #FFF;
     --edit-color: #005CB9;
+    --hover-color: #277cd1;
+    --highlight: #2c8cec;
+    --highlight2: #4ea5fc;
+    
 
     /* Transition */
     --tran-02: all 0.2s ease;
@@ -51,6 +55,9 @@ body.dark{
     --primary-color-light: #3A3B3C;
     --edit-color:#CCC;
     --toggle-color:#727171c2;
+    --hover-color: #3A3B3C;
+    --highlight: #005CB9;
+    --highlight2: #2b95ff;
 
 }
 .side_bar.close{

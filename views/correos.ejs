@@ -1,0 +1,117 @@
+<%-include('includes/navigation.ejs', {
+    titulo: titulo,
+}) %>
+
+<div class="tab-button-container">
+    <button class="tab-button tab-button-left" onclick="openCity('config')">Configuración</button>
+    <button class="tab-button tab-button-right" onclick="openCity('preview')">Vista previa</button>
+</div>
+
+<section class="tab-container">
+
+    <div class="tab-content">
+        <div id="config" class="Tab">
+            <br>
+            <h2>Configuración</h2>
+            <div class="ques-container">
+                <h3>¿Con cuántas personas duermes?</h3>
+            </div>
+            <br>
+            <Button class="add-ques-button">Añadir pregunta +</Button>
+        </div>
+    </div>     
+
+    <div class="tab-content">
+        <div id="preview" class="Tab" style="display:none">
+            <br>
+            <h2>Vista previa</h2>
+            <p>Paris is the capital of France.</p> 
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Hola
+        </div>
+    </div>
+
+</section>
+
+<script>
+    function openCity(cityName) {
+      var i;
+      var x = document.getElementsByClassName("Tab");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";  
+      }
+      document.getElementById(cityName).style.display = "block";  
+    }
+</script>
+
+
+<style>
+    .tab-button{
+        font-size: 14pt;
+        width: 50%;
+        padding: 15px 30px;
+        border: 3px solid var(--nav-color);
+        background-color: var(--nav-color);
+   
+        border-bottom-color: var(--highlight);
+        color: white;
+        cursor: pointer;
+        transition-duration: 0.4s;
+        
+    }
+
+    .tab-button-right{
+        border-top-right-radius: 11pt;
+    }
+    
+    .tab-button-left{
+        border-top-left-radius: 11pt;
+    }
+
+    .tab-button:hover {
+        background-color: var(--hover-color);
+    }
+    
+    .tab-button-container{
+        display: flex;
+        width: 75%;
+    }
+
+    .tab-container{
+        color: white;
+        background-color: var(--nav-color);
+        overflow: scroll;
+        width: 74%;
+        height: 100%;
+        border-bottom-left-radius: 11pt;
+        border-bottom-right-radius: 11pt;
+    }
+
+    .tab-content{
+        margin: 0 auto;
+        padding: 0em 10em;
+    }
+
+    .add-ques-button{
+        font-size: 12pt;
+        padding: 15px 30px;
+        border: none;
+        background-color: var(--highlight);
+        border-radius: 11pt;
+        color: white;
+        cursor: pointer;
+        transition-duration: 0.4s;
+    }
+
+    .add-ques-button:hover{
+        background-color: var(--highlight2);
+    }
+
+    .ques-container{
+        border-radius: 15px;
+        width: 70%;
+        background-color: var(--highlight2);
+    }
+
+</style>
+
+<%-include('includes/footer.ejs')%>

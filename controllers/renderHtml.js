@@ -18,6 +18,12 @@ exports.get_usuarios = (request, response, next) => {
 };
 
 
-exports.get_login = (request, response,next) =>{
+exports.get_login = (request, response, next) => {
     response.render("login")
+}
+
+exports.get_correos = (request, response, next) => {
+    response.render("correos", {
+        titulo: "Correos",
+    })
 }
