@@ -61,3 +61,8 @@ exports.get_resenas = (request, response,next) => {
     ];
     response.render("resenas", { resenas: resenas, titulo:"Reseñas" });
 };
+exports.get_analitica = (request, response, next) => {
+    response.render("analitica", {
+        titulo: 'Analitica',
+    })
+}

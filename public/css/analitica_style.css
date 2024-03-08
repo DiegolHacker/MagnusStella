@@ -1,3 +1,10 @@
+:root{
+    --analitica-color: #D7E2FB;
+}
+body.dark{
+    --analitica-color: #2c3139;
+}
+
 .analitica{
     margin: 0 auto;
     width: 1100px;
@@ -25,7 +32,7 @@
     width: 400px;
     margin: 15px 10px 10px 10px;
     min-width: 300px;
-    background-color: #D7E2FB;
+    background-color: var(--analitica-color);
     border-radius: 5%;
 }
 .grafica_pastel{
@@ -57,7 +64,7 @@
 }
 .productos_mas_resenias{
     position:relative;
-    background-color: #D7E2FB;
+    background-color: var(--analitica-color);
     display: flex;
     width: 40%;
     height: 300px;
@@ -75,7 +82,7 @@
     top: 0px;
     width: 100%;
     height: 150px;
-    background-color: #D7E2FB;
+    background-color: var(--analitica-color);
 }
 
 .lista_productos{
