@@ -21,6 +21,7 @@ insert into cliente(idCliente, nombre, Correo, Direccion) values
 (91171,'Luz Andrea Vázquez Alderete', 'Lavameikup@hotmail.com', 'Los Candelabros, 78324, Candiles'),
 (90234, 'Ana Zúñiga Chávez', 'anazzzz@gmail.com,', 'Matancillas 78, 63249, Zibatá');
 
+
 insert into rol(IDRol, Nombre, Permisos) values
 (0, 'Ajeno', '{0,0,0,0,0}'),
 (1,'Admin','{1,1,1,1,1}'),
