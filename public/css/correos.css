@@ -37,5 +37,11 @@
 
 .submit-button button{
     width: 30%;
+    border:none;
 }
 
+.add-ques-button{
+    border-radius: 5px;
+    outline: none;
+    border:none;
+}

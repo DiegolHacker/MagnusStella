@@ -27,7 +27,7 @@
     --highlight: #2c8cec;
     --highlight2: #4ea5fc;
     --divBackground: #F1F2F2 ;
-    --boxShadow: rgba(24, 23, 23, 0.783);
+    --boxShadow: rgba(24, 23, 23, 0.884);
 
     /* Transition */
     --tran-02: all 0.2s ease;
@@ -63,7 +63,7 @@ body.dark{
     --highlight: #005CB9;
     --highlight2: #2b95ff;
     --divBackground: #848484;
-    --boxShadow: #fff ;
+    --boxShadow: #ffffffc0 ;
 
 }
 .side_bar.close{
@@ -928,6 +928,8 @@ h3,label{
     color: var(--search-text);
 }
 
+/* estilos para pagina de correo */
+
 .ques-container{
     display: flex;
     flex-direction: row;
@@ -937,12 +939,17 @@ h3,label{
     margin-bottom: 20px;
     margin-top: 5px;
     border-radius: 10px;
-
-    box-shadow: 0 0 5px  var(--boxShadow);
+    border: none;
+    box-shadow: 0 1px 2px 0  var(--boxShadow);
 }
 
 .subir{
     background-color: var(--divBackground);
     color: var(--search-text);
     border-radius: 5px;
+    border: none;
+}
+
+.boton:hover{
+    box-shadow: 0 2px 2px 0 var(--boxShadow)
 }
