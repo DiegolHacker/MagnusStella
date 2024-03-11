@@ -26,7 +26,8 @@
     --hover-color: #277cd1;
     --highlight: #2c8cec;
     --highlight2: #4ea5fc;
-    
+    --divBackground: #F1F2F2 ;
+    --boxShadow: rgba(24, 23, 23, 0.884);
 
     /* Transition */
     --tran-02: all 0.2s ease;
@@ -61,6 +62,8 @@ body.dark{
     --hover-color: #3A3B3C;
     --highlight: #005CB9;
     --highlight2: #2b95ff;
+    --divBackground: #848484;
+    --boxShadow: #ffffffc0 ;
 
 }
 .side_bar.close{
@@ -783,7 +786,7 @@ table.table .avatar {
 .submit-button {
     display: block;
     margin: 0 auto;
-    border-radius: 1em;
+    border-radius: 0.5em;
     background: #4ab050;
     color: #ffffff;
     cursor: pointer;
@@ -919,4 +922,34 @@ input:checked~.text:before {
     align-items: center;
     /* Esto alinea verticalmente los elementos */
     width: 90%;
+}
+
+h3,label{
+    color: var(--search-text);
+}
+
+/* estilos para pagina de correo */
+
+.ques-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: var(--divBackground);
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 1px 2px 0  var(--boxShadow);
+}
+
+.subir{
+    background-color: var(--divBackground);
+    color: var(--search-text);
+    border-radius: 5px;
+    border: none;
+}
+
+.boton:hover{
+    box-shadow: 0 2px 2px 0 var(--boxShadow)
 }

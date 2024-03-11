@@ -1,87 +1,47 @@
-/* estilos de Correos.ejs */
-.tab-button {
-    font-size: 14pt;
-    width: 50%;
-    padding: 15px 30px;
-    border: 3px solid var(--nav-color);
-    background-color: var(--nav-color);
-
-    border-bottom-color: var(--highlight);
-    color: white;
-    cursor: pointer;
-    transition-duration: 0.4s;
-
-}
-
-.tab-button-right {
-    border-top-right-radius: 11pt;
-}
-
-.tab-button-left {
-    border-top-left-radius: 11pt;
-}
-
-.tab-button:hover {
-    background-color: var(--hover-color);
-}
-
-.tab-button-container {
-    display: flex;
-    width: 75%;
-}
-
-.tab-container {
-    color: white;
-    background-color: var(--nav-color);
-    overflow: scroll;
-    width: 74%;
+.correos-container{
+    width: 100%;
     height: 100%;
-    border-bottom-left-radius: 11pt;
-    border-bottom-right-radius: 11pt;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.tab-content {
-    margin: 0 auto;
-    padding: 0em 10em;
+/* .editor-de-preguntas{
+    /* background-color: black; 
+} */
+
+
+
+.editor-de-preguntas,.preview-html{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 35%;
 }
 
-.preview {
-    max-width: 59em;
+.preview-html {
+    overflow: auto;
+    width: 45%;
 }
 
-.add-ques-button {
-    font-size: 12pt;
-    padding: 15px 30px;
-    border: none;
-    background-color: var(--highlight);
-    border-radius: 11pt;
-    color: white;
-    cursor: pointer;
-    transition-duration: 0.4s;
+.form-container{
+    display: flex;
+    justify-content: end;
 }
 
-.add-ques-button:hover {
-    background-color: var(--highlight2);
+.submit-button-container{
+    margin: 20px 0 20px 0;
+    width: 100%;
 }
 
-.ques-container {
-    border-radius: 15px;
-    width: 65%;
-    background-color: var(--highlight2);
+.submit-button button{
+    width: 30%;
+    border:none;
 }
 
-#dias,
-#hora {
-    width: 5em;
-    border: none;
-    border-bottom-left-radius: 11pt;
-    border-top-left-radius: 11pt;
-}
-
-#subir {
-    width: 4em;
-    border: none;
-    border-bottom-right-radius: 11pt;
-    border-top-right-radius: 11pt;
-
+.add-ques-button{
+    border-radius: 5px;
+    outline: none;
+    border:none;
 }
