@@ -943,13 +943,28 @@ h3,label{
     box-shadow: 0 1px 2px 0  var(--boxShadow);
 }
 
-.subir{
-    background-color: var(--divBackground);
-    color: var(--search-text);
-    border-radius: 5px;
-    border: none;
+.add-ques-button:hover{
+    background-color: var(--highlight2);
 }
 
-.boton:hover{
-    box-shadow: 0 2px 2px 0 var(--boxShadow)
+.ques-container{
+    border-radius: 15px;
+    width: 65%;
+    background-color: var(--highlight2);
 }
+
+#dias, #hora{
+    width: 5em;
+    border: none;
+    border-bottom-left-radius: 11pt;
+    border-top-left-radius: 11pt;
+}
+
+#subir{
+    width: 4em;
+    border: none;
+    border-bottom-right-radius: 11pt;
+    border-top-right-radius: 11pt;
+
+}
+    
