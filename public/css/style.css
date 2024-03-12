@@ -960,8 +960,14 @@ input:checked ~ .text:before {
     background-color: var(--highlight2);
 }
 
-#dias, #hora{
+#dias{
     width: 5em;
+    border: none;
+    border-bottom-left-radius: 11pt;
+    border-top-left-radius: 11pt;
+}
+#hora{
+    width: 8em;
     border: none;
     border-bottom-left-radius: 11pt;
     border-top-left-radius: 11pt;
