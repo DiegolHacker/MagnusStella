@@ -8,12 +8,12 @@ const body = document.querySelector("body"),
       main_content = document.querySelector(".main-content"),
       footer = document.querySelector(".footer-1");
 
+
 //este pedazo de codigo hace que el toggle funcione y habra el menu
 toggle.addEventListener("click", () => {
     sidebar.classList.toggle("close");
     main_content.classList.toggle("main-content-increase", !sidebar.classList.contains("close"))
     footer.classList.toggle("footer-margin-increase", !sidebar.classList.contains("close"))
-
 });
 
 

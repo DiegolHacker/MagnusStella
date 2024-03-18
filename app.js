@@ -17,7 +17,8 @@ app.use("/", routasAplicacionResenas);
 
 app.use((request,response,next) => {
     response.status(404);
-    response.sendFile(path.join(__dirname,"views","404.html"));
+    // response.sendFile(path.join(__dirname,"views","404.ejs"));
+    response.render("404", {titulo: 'Error 404'})
 });
 
 const PORT = process.env.PORT || 3000;
