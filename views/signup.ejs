@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/login_syles.css">
+    <title>Sign-Up</title>
+</head>
+
+<body>
+
+    <div class="signup-box box">
+        <div class="signup-title title">
+            <h4>Sign-Up</h4>
+        </div>
+
+        <% if(typeof error !=='undefined' ){ %>
+            <div class="alert">
+                <p>
+                    <%= error %>
+                </p>
+            </div>
+            <% } %>
+
+                <form action="/users/signup" method="post">
+                    <div class="credential-input">
+                        <label for="name">Ingresa tu nombre:</label>
+                        <input type="text" name="name" id="username" placeholder="Ingresa tu nombre">
+                    </div>
+
+                    <div class="credential-input">
+                        <label for="email">Ingresa tu Correo electronico:</label>
+                        <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico">
+                    </div>
+
+                    <div class="credential-input">
+                        <label for="name">Ingresa tu contrasena:</label>
+                        <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena">
+                    </div>
+
+                    <div class="ingresar-btn">
+                        <button type="submit" class="btn">Crear Usuario</button>
+                    </div>
+                </form>
+    </div>
+
+
+<%-include('includes/footer.ejs')%>
