@@ -42,22 +42,22 @@ exports.get_resenas_completas = (request, response,next) => {
 };
 exports.get_resenas = (request, response,next) => {
     const resenas = [
-        { itemcode: "LB3231", title: "Cama Condesa-INDI", estrellas: 5 },
-        { itemcode: "LB2231", title: "Cama Anzures-INDI", estrellas: 3 },
-        { itemcode: "LU1001B2", title: "Luuna Colchón Basic 2-INDI", estrellas: 4 },
-        { itemcode: "LU1002B2", title: "Luuna Colchón Basic 2-MATRI", estrellas: 4 },
-        { itemcode: "LU1003B2", title: "Luuna Colchón Basic 2-QUEEN", estrellas: 3 },
-        { itemcode: "LU1004B2", title: "Luuna Colchón Basic 2-KING", estrellas: 5 },
-        { itemcode: "LB2304", title: "Cama Nuevo León-KING", estrellas: 2 },
-        { itemcode: "LB2303", title: "Cama Nuevo León-QUEEN", estrellas: 5 },
-        { itemcode: "LB2302", title: "Cama Nuevo León-MATRI", estrellas: 1 },
-        { itemcode: "LB2301", title: "Cama Nuevo León-INDI", estrellas: 4 },
-        { itemcode: "BL1004HS", title: "Luuna Colchón Blue High Support-KING", estrellas: 5 },
-        { itemcode: "BL1003HS", title: "Luuna Colchón Blue High Support-QUEEN", estrellas: 4 },
-        { itemcode: "BL1002HS", title: "Luuna Colchón Blue High Support-MATRI", estrellas: 4 },
-        { itemcode: "BL1001HS", title: "Luuna Colchón Blue High Support-INDI", estrellas: 3 },
-        { itemcode: "LU1004B3", title: "Luuna Colchón Basic air B3-KING", estrellas: 0 },
-        { itemcode: "LU1003B3", title: "Luuna Colchón Basic air B3-QUEEN", estrellas: 5 },
+        { itemcode: "LB3231", title: "Cama Condesa-INDI", resena_descrip:"Gran compra", estrellas: 5 },
+        { itemcode: "LB2231", title: "Cama Anzures-INDI", resena_descrip:"Buen producto", estrellas: 4 },
+        { itemcode: "LU1001B2", title: "Luuna Colchón Basic 2-INDI", resena_descrip:"Tardo mucho en llegar", estrellas: 3 },
+        { itemcode: "LU1002B2", title: "Luuna Colchón Basic 2-MATRI", resena_descrip:"Cumplio las expectativas", estrellas: 4 },
+        { itemcode: "LU1003B2", title: "Luuna Colchón Basic 2-QUEEN", resena_descrip:"Producto llegó dañado", estrellas: 3 },
+        { itemcode: "LU1004B2", title: "Luuna Colchón Basic 2-KING", resena_descrip:"Excelente calidad", estrellas: 5 },
+        { itemcode: "LB2304", title: "Cama Nuevo León-KING", resena_descrip:"La entrega tardó mucho más de lo esperado", estrellas: 2 },
+        { itemcode: "LB2303", title: "Cama Nuevo León-QUEEN", resena_descrip:"Gran compra", estrellas: 5 },
+        { itemcode: "LB2302", title: "Cama Nuevo León-MATRI", resena_descrip:"Producto erroneo", estrellas: 1 },
+        { itemcode: "LB2301", title: "Cama Nuevo León-INDI", resena_descrip:"Buena compra", estrellas: 4 },
+        { itemcode: "BL1004HS", title: "Luuna Colchón Blue High Support-KING", resena_descrip:"Muy recomendado", estrellas: 5 },
+        { itemcode: "BL1003HS", title: "Luuna Colchón Blue High Support-QUEEN", resena_descrip:"Un muy buen producto", estrellas: 4 },
+        { itemcode: "BL1002HS", title: "Luuna Colchón Blue High Support-MATRI", resena_descrip:"Extremadamente cómodo", estrellas: 4 },
+        { itemcode: "BL1001HS", title: "Luuna Colchón Blue High Support-INDI", resena_descrip:"Buena compra", estrellas: 3 },
+        { itemcode: "LU1004B3", title: "Luuna Colchón Basic air B3-KING", resena_descrip:"Tardo meses en llegar", estrellas: 0 },
+        { itemcode: "LU1003B3", title: "Luuna Colchón Basic air B3-QUEEN", resena_descrip:"Me encanto", estrellas: 5 },
     ];
     response.render("resenas", { resenas: resenas, titulo:"Reseñas" });
 };
