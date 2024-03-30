@@ -19,19 +19,62 @@ module.exports = class Usuarios {
             Correo: this.email,
         }
 
-        return bcrypt.hash(userData.Contrasena, 12).then((hashedPassword) => {
-            const values = Object.values(userData);
 
-            return db.execute('INSERT INTO usuario (idUsuario,IdRol,Nombre,Constraseña,Correo) VALUES (?,?,?,?,?)',values);
-        }).then(result => {
-            console.log('Usuario Guardado: ', result);
-        }).catch(err => {
-            console.log('Error guardando usuario: ',err);
-            throw err;
-        });
+        return bcrypt.hash(userData.Contrasena, 12)
+            .then((hashedPassword) => {
+                userData.Contrasena = hashedPassword;
+                const values = Object.values(userData);
+                return db.execute('INSERT INTO usuario (idUsuario,IdRol,Nombre,Constraseña,Correo) VALUES (?,?,?,?,?)',values);
+            })
+            .then(([result]) => {
+                console.log('Usuario Guardado:', result);
+                return result; // Return the ResultSetHeader
+            })
+            .catch(err => {
+                console.log('Error guardando usuario:', err);
+                throw err;
+            });
+    } 
 
-        //cambiar la columna constrasena a contrasena cuando se tenga la ultima version de la base de datos 
-    }   
+    static findByEmail(email,password){
+        console.log(email,password)
+        return db.execute('SELECT * FROM usuario WHERE Correo = ?',[email])
+            .then(([rows]) =>{
+                if(rows.length > 0){
+                    const user = rows[0];
+
+                    //comparar la contrasena 
+                    console.log('Hashed', user.Contrasena);
+                    console.log('Mail', user.Correo);
+                    //aqui .compare recibe un undefined
+                    return bcrypt.compare(password,user.Contrasena)
+                        .then(doMatch => {
+                            return{ user: user, passwordMatch: doMatch};
+                        })
+                }
+                return{user:null,passwordMatchs:false};
+            })
+            .catch(err => {
+                console.log("Error encontrando usuario en la base de datos",err);
+                throw err;
+            })
+    }
+
+    // static findByEmail(email) {
+    //     return db.execute('SELECT * FROM usuario WHERE Correo = ?', [email])
+    //         .then(([rows]) => {
+    //             if (rows.length > 0) {
+    //                 const user = rows[0];
+    //                 return { user: user, passwordMatch: true }; // Return user data with passwordMatch true
+    //             }
+    //             return { user: null, passwordMatch: false }; // Return null user and passwordMatch false if user not found
+    //         })
+    //         .catch(err => {
+    //             console.error('Error fetching user by email from database:', err);
+    //             throw err;
+    //         });
+    // }
+
 
     static fetchAll(){
         db.execute('SELECT * FROM usuarios')
