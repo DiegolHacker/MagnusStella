@@ -1,4 +1,9 @@
-<%- include('includes/navigation.ejs') %>
+<%- include('includes/navigation.ejs', {
+    titulo: titulo,
+    username: username, 
+    permisos: permisos
+}) %>
+
     <div class="container"> 
         <div class="contenido">
             <img src="images/imagen_luna.png" height="200">
