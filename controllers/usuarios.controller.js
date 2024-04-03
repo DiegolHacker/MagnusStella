@@ -10,7 +10,7 @@ exports.get_login = (request, response, next) => {
 exports.post_login = (request, response, next) => {
     const {email, password} = request.body;
     if(!email || !password){
-        return response.render("login", {error: "Llena todos los campos"});
+        return response.render("login", {error: "Llena todos los campos",csrfToken: request.csrfToken()});
     }
 
     Usuarios.findByEmail(email)
@@ -68,7 +68,7 @@ exports.post_signup = (request,response,next) => {
     const {name, email, password} = request.body;
     
     if(!name || !password || !email){
-        return response.render("signup", {error: "Llena todos los campos"})
+        return response.render("signup", {error: "Llena todos los campos",csrfToken: request.csrfToken()})
     }
 
     const idUser = generateUserID();
