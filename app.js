@@ -20,10 +20,13 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({extended:false}));
 
-const routasAplicacionResenas = require("./routes/routes1.routes"); //cambiar el nombre de el archivo de rutas a algo mas substancial
+const routasAplicacionResenas = require("./routes/routes1.routes"); // Cambiar el nombre de el archivo de rutas a algo más substancial
 const routasLogin = require('./routes/login.routes');
+const routasReview = require('./routes/resenas.routes');
 
-app.use('/users',routasLogin);
+// Define las rutas más específicas primero
+app.use('/users', routasLogin);
+app.use('/reviews', routasReview);
 app.use("/", routasAplicacionResenas);
 
 app.use((request,response,next) => {
