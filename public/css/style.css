@@ -108,6 +108,7 @@ body.dark {
     padding: 2px 2px;
     background: var(--sidebar-color);
     transition: var(--tran-03);
+    z-index: 0;
     /* transition: left 0.5s ease; */
 
 }
@@ -208,8 +209,8 @@ header .image-text .header-text {
 }
 
 .logo-zebrands img {
-    width: 196px;
-    height: 75px;
+    width: 486 px;
+    height: 96 px;
 }
 
 .side_bar.close .logo {
@@ -986,3 +987,51 @@ label {
     border-top-right-radius: 11pt;
 
 }
+
+
+ /* Dropdown Button */
+ .dropbtn {
+    background-color: var(--nav-color);
+    color: white;
+    padding: 0px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--hover-color);
+    min-width: 204px;
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    background-color: var(--nav-color);
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    z-index: 20;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: var(--hover-color);}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: var(--hover-color);} 
+
+  .brand-logo {
+    display: none;
+  }

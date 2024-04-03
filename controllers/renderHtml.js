@@ -4,6 +4,9 @@ exports.get_dashboard = (request, response,next) => {
     })
 };
 
+exports.post_marca = (request, response, next) => {
+    request.session.marca = "caca";
+}
 
 exports.get_usuarios = (request, response, next) => {
     const usuarios = [
