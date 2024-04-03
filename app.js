@@ -38,7 +38,7 @@ app.use("/", routasAplicacionResenas);
 
 app.use((request,response,next) => {
     response.status(404);
-    response.render("404", {titulo: 'Error 404'})
+    response.render("404", {titulo: 'Error 404', modo: request.getMode })
 });
 
 const PORT = process.env.PORT || 3000;

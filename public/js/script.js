@@ -84,7 +84,7 @@ let getBrand = localStorage.getItem("brand");
 let getFirstLoad = localStorage.getItem("isFirstLoad")
 
 //Si es la primera vez que se carga la página se pone Luuna por default
-if (!getFirstLoad) {s
+if (!getFirstLoad) {
   localStorage.setItem('isFirstLoad', true);
   localStorage.setItem("brand", "LU1");
   DefaultBrand.style.display = "inline";
