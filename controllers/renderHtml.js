@@ -19,15 +19,6 @@ exports.get_usuarios = (request, response, next) => {
     response.render('usuarios', { usuarios: usuarios, titulo:"Usuarios" });
 };
 
-
-
-exports.get_login = (request, response, next) => {
-    response.render("login", {
-        username: request.session.username || '',
-        csrfToken: request.csrfToken()})
-}
-
-
 exports.get_correos = (request, response, next) => {
     response.render("correos", {
         titulo: "Correos",
