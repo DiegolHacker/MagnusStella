@@ -2,7 +2,7 @@
     <div class="container"> 
         <div class="contenido">
             <img src="images/imagen_luna.png" height="200">
-            <h4><b>Hola <%= resenas.nombre_cliente %>,</b></h4>
+            <h3><b>Hola <%= resenas.nombre_cliente %></b></h3>
             <p id="sub_question">Has comprado recientemente  <%= resenas.nombre_producto %> <br> ¿Nos cuentas tu experiencia?</p>
             <div class="rating-box">
                 <h5 id="question_text"><b>¿Cúal es su calificación general?</b></h5>
@@ -17,7 +17,10 @@
                 </div>
             </div>
             <h4><b><%= resenas.titulo_resena %></b></h4>
-            <p><%= resenas.descripcion_resena %></p>        
+            <p id="sub_question"><%= resenas.descripcion_resena %></p> 
+            <h5><br>Preguntas</h5> 
+            <h4><b><%= resenas.pregunta %></b></h4>
+            <p id="sub_question"><%= resenas.respuesta %></p>      
         </div>
     </div>
 <%- include('includes/footer.ejs') %>
