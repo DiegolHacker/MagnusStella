@@ -19,7 +19,9 @@ exports.get_usuarios = (request, response, next) => {
 
 
 exports.get_login = (request, response, next) => {
-    response.render("login")
+    response.render("login", {
+        username: request.session.username || '',
+        csrfToken: request.csrfToken()})
 }
 
 
