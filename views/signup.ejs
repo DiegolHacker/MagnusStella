@@ -1,25 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<%-include('includes/navigation.ejs')%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/login_syles.css">
-    <title>Sign-Up</title>
-</head>
-
-<body>
 
     <div class="signup-box box">
         <div class="signup-title title">
-            <h4>Sign-Up</h4>
+            <h4>Ingresa la informacion del nuevo usuario</h4>
         </div>
 
         <% if(typeof error !=='undefined' ){ %>
             <div class="alert">
-                <p>
+                <p class="error">
                     <%= error %>
                 </p>
             </div>
@@ -27,22 +16,22 @@
 
                 <form action="/users/signup" method="post">
                     <div class="credential-input">
-                        <label for="name">Ingresa tu nombre:</label>
+                        <label for="name">Nombre:</label>
                         <input type="text" name="name" id="username" placeholder="Ingresa tu nombre">
                     </div>
 
                     <div class="credential-input">
-                        <label for="email">Ingresa tu Correo electronico:</label>
+                        <label for="email">Correo electronico:</label>
                         <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico">
                     </div>
 
                     <div class="credential-input">
-                        <label for="name">Ingresa tu contrasena:</label>
+                        <label for="name">Contrasena:</label>
                         <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena">
                     </div>
 
-                    <div class="ingresar-btn">
-                        <button type="submit" class="btn">Crear Usuario</button>
+                    <div class="ingresarBtn">
+                        <button type="submit" class="ingresar-btn">Crear Usuario</button>
                     </div>
                 </form>
     </div>

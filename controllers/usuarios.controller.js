@@ -59,16 +59,15 @@ exports.get_logout = (request, response, next) => {
 /////// Sign up ////////
 
 exports.get_signup =(request, response, next) => {
-    response.render("signup")
+    response.render("signup", {titulo: 'Anadir Usuarios'})
 };
 
-let latestID = 7; //en este caso empiezo en 1 ya que ya se creo el primer usuario
-
+let latestID = 8;
 exports.post_signup = (request,response,next) => {
     const {name, email, password} = request.body;
     
     if(!name || !password || !email){
-        return response.render("signup", {error: "Llena todos los campos"})
+        return response.render("signup", {error: "Llena todos los campos!", titulo: "Anadir Usuarios"})
     }
 
     const idUser = generateUserID();

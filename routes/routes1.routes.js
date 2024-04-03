@@ -6,7 +6,7 @@ router.get("/", controladores.get_dashboard);
 router.get('/usuarios', controladores.get_usuarios);
 router.get('/resenas', controladores.get_resenas);
 router.get('/resenas_completas', controladores.get_resenas_completas);
-router.get("/login", controladores.get_login);
+// router.get("/login", controladores.get_login);s
 router.get("/correos", controladores.get_correos);
 router.get("/analitica", controladores.get_analitica)
 
