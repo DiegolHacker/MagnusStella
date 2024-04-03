@@ -6,7 +6,10 @@ const body = document.querySelector("body"),
       toggle = body.querySelector(".toggle"),
       siderbarClose = document.querySelector(".siderbarClose"),
       main_content = document.querySelector(".main-content"),
-      footer = document.querySelector(".footer-1");
+      footer = document.querySelector(".footer-1"),
+      Brand = document.querySelectorAll(".select-brand"),
+      BrandLogos = document.querySelectorAll(".brand-logo"),
+      DefaultBrand = document.querySelector(".default-brand");
 
 
 //este pedazo de codigo hace que el toggle funcione y habra el menu
@@ -30,9 +33,9 @@ if(getMode && getMode === "dark-mode"){
 
         // js code to keep user selected mode even page refresh or file reopen
         if(!body.classList.contains("dark")){
-            localStorage.setItem("mode" , "light-mode");
+            localStorage.setItem("mode", "light-mode");
         }else{
-            localStorage.setItem("mode" , "dark-mode");
+            localStorage.setItem("mode", "dark-mode");
         }
       });
 
@@ -75,3 +78,59 @@ function openTab(tabName) {
   }
   document.getElementById(tabName).style.display = "block";  
 }
+
+//Seleccionar marca
+let getBrand = localStorage.getItem("brand");
+let getFirstLoad = localStorage.getItem("isFirstLoad")
+
+//Si es la primera vez que se carga la página se pone Luuna por default
+if (!getFirstLoad) {s
+  localStorage.setItem('isFirstLoad', true);
+  localStorage.setItem("brand", "LU1");
+  DefaultBrand.style.display = "inline";
+ }
+
+Brand.forEach(function(elem) {
+  elem.addEventListener("click" , () =>{
+    //Cambiar el valor de la marca seleccionada
+    console.log("Brand Change");
+    localStorage.setItem("brand", elem.dataset.value);
+    console.log(localStorage.getItem("brand"));
+   
+    //Cambiar la visibilidad de los logos
+    var cloneBrands = [...Brand];
+    var i = cloneBrands.indexOf(elem);
+
+    //Mostrar la marca que fue seleccionada
+    var BrandLogosL = [...BrandLogos];
+    BrandLogosL[i].style.display = "inline";
+    BrandLogosL.splice(i,1);
+
+    //Esconder las marcas que no fueron seleccionadas
+    BrandLogosL.forEach(function(element) {
+      element.style.display = "none";
+    })
+  });
+
+  //Si ya se habia escogido una marca, renderizar ese logo.
+  if(getBrand){
+
+    var cloneBrands = [...Brand];
+    var i = cloneBrands.indexOf(elem);
+    var BrandLogosL = [...BrandLogos];
+
+    if(getBrand == "LU1" && elem.dataset.value == "LU1"){
+      BrandLogosL[i].style.display = "inline";
+    }
+
+    else if(getBrand == "NO1" && elem.dataset.value == "NO1"){
+      BrandLogosL[i].style.display = "inline";
+    }
+
+    else if(getBrand == "MA1" && elem.dataset.value == "MA1"){
+      BrandLogosL[i].style.display = "inline";
+    }
+  }
+  
+})
+

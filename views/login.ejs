@@ -25,6 +25,7 @@
             <% } %>
                 <form action="/users/login" method="post">
                     <div class="credential-input">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <label for="name">Nombre de usuario:</label>
                         <input type="email" name="name" id="username" placeholder="Ingresa tu correo electronico">
                     </div>
@@ -44,7 +45,6 @@
                     <div class="g-signin2" data-onsuccess="onSignIn"></div>
                     <br>
                     <!-- boton temporal -->
-                    <a href="/">Accede directamente</a>
                 </div>
 
 <%-include('includes/footer.ejs')%>

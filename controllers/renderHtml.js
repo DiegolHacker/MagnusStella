@@ -4,6 +4,9 @@ exports.get_dashboard = (request, response,next) => {
     })
 };
 
+exports.post_marca = (request, response, next) => {
+    request.session.marca = "caca";
+}
 
 exports.get_usuarios = (request, response, next) => {
     const usuarios = [
@@ -15,13 +18,6 @@ exports.get_usuarios = (request, response, next) => {
     ];
     response.render('usuarios', { usuarios: usuarios, titulo:"Usuarios" });
 };
-
-
-
-exports.get_login = (request, response, next) => {
-    response.render("login")
-}
-
 
 exports.get_correos = (request, response, next) => {
     response.render("correos", {
