@@ -886,7 +886,7 @@ table.table .avatar {
     width: 50px;
     /* Ajustado */
     border-radius: 50px;
-    -webkit-appearance: none;
+    appearance: none;
     position: relative;
     background: #e6e6e6;
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
