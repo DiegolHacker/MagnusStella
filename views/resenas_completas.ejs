@@ -2,61 +2,22 @@
     <div class="container"> 
         <div class="contenido">
             <img src="images/imagen_luna.png" height="200">
-            <h4><b>Hola user,</b></h4>
-            <p id="sub_question">Has comprado recientemente Juego de Sábanas Individual Rosa Limonada <br> ¿Nos cuentas tu experiencia?</p>    
-            <img id="producto_img" src="images/producto_sr.png" height="100">
+            <h4><b>Hola <%= resenas.nombre_cliente %>,</b></h4>
+            <p id="sub_question">Has comprado recientemente  <%= resenas.nombre_producto %> <br> ¿Nos cuentas tu experiencia?</p>
             <div class="rating-box">
                 <h5 id="question_text"><b>¿Cúal es su calificación general?</b></h5>
                 <div class="estrellas">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
+                    <% for (var i = 0; i < 5; i++) { %>
+                        <% if (i < resenas.estrellas_resena) { %>
+                            <i class='bx bxs-star' id="stars_y"></i>
+                        <% } else { %>
+                            <i class='bx bx-star' id="stars_g"></i>
+                        <% } %>
+                    <% } %>
                 </div>
             </div>
-            <h4><b>Título de tu reseña: </b></h4>
-            <form>
-                <input type="text" id="title_rev" name="titulo_review" placeholder="Título"><br>
-            </form>
-            <h4><b>Reseña: </b></h4>
-            <textarea name="descripcion_review" id="description_rev" cols="79" rows="4" placeholder="Escribe aqui tu reseña"></textarea>
-            <h4><b>¿Qué edad tienes? </b></h4>
-            <p id="sub_question">Elige una de las siguientes opciones</p>
-            <form id="edades">
-                <select id="edad" name="edad_review">
-                    <option value="1">15-24 años</option>
-                    <option value="2">25-34 años</option>
-                    <option value="3">35-44 años</option>
-                    <option value="4">44-55+ años</option>
-                </select>
-            </form>
-            <h4><b>¿Con quién duermes?</b></h4>
-            <p id="sub_question">Elige una o varias de las siguientes opciones</p>
-            <form id="dormir">
-                <input type="checkbox" id="solo" name="convivencia" value="Solo">
-                <label for="solo">Solo</label><br>
-                <input type="checkbox" id="pareja" name="convivencia" value="Con pareja">
-                <label for="pareja">Con una pareja</label><br>
-                <input type="checkbox" id="pareja_mascota" name="convivencia" value="Con pareja y una mascota">
-                <label for="pareja_mascota">Con una pareja y una mascota</label><br>
-            </form>
-            <h4><b>¿En promedio, cuántas horas duermes cada noche? </b></h4>
-            <p id="sub_question">Elige una de las siguientes opciones</p>
-            <form id="edades">
-                <select id="horas_dormir" name="horas_review">
-                    <option value="1">Menos de 4 horas</option>
-                    <option value="2">Entre 4 y 6 horas</option>
-                    <option value="3">Entre 6 y 7 horas</option>
-                    <option value="4">Entre 7 y 8 horas</option>
-                    <option value="5">Más de 8 horas</option>
-                </select>
-            </form>
-            <br>
-            <br>
-            <button type="submit" class="submit-button">¡Envía tu reseña!</button>
-            <br>
-            <br>
+            <h4><b><%= resenas.titulo_resena %></b></h4>
+            <p><%= resenas.descripcion_resena %></p>        
         </div>
     </div>
 <%- include('includes/footer.ejs') %>

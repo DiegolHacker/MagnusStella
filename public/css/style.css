@@ -89,6 +89,7 @@ body.dark {
 
 .side_bar.close .text {
     opacity: 0;
+    pointer-events: none;
 }
 
 .side_bar .image {
@@ -289,7 +290,6 @@ nav .nav-bar .logo a {
     text-decoration: none;
     padding: 10px;
 }
-
 .nav-links li a::before {
     content: '';
     position: absolute;
@@ -303,6 +303,7 @@ nav .nav-bar .logo a {
     opacity: 0;
     transition: all 0.3s ease;
 }
+
 
 .nav-links li:hover a::before {
     opacity: 1;
