@@ -2,7 +2,6 @@ const Reviews = require("../models/resenas.model");
 
 
 exports.get_resenas_completas = (request, response, next) => {
-    console.log(request.params.id);
     const idReview = request.params.id; // Obtiene el ID de la reseña de los parámetros de la solicitud
     // Llama al método fetchCompleto del modelo para obtener los datos de la reseña completa
     Reviews.fetchCompleto(idReview, (err, resenaCompleta) => {
