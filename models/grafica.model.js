@@ -71,3 +71,13 @@ ORDER BY
             throw err;
         });
 };
+
+exports.tryBrand = (brand) => {
+    let prueba = window.brand + " Prueba";
+
+    return prueba;
+}
+
+exports.pruebaCategoria = (value,callback) => {
+    
+}

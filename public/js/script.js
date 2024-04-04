@@ -1,3 +1,4 @@
+
 const body = document.querySelector("body"),
       nav = document.querySelector("nav"),
       modeToggle = document.querySelector(".dark-light"),
@@ -87,10 +88,13 @@ function openTab(tabName) {
 let getBrand = localStorage.getItem("brand");
 let getFirstLoad = localStorage.getItem("isFirstLoad")
 
+let brand;
+
 //Si es la primera vez que se carga la página se pone Luuna por default
 if (!getFirstLoad) {
   localStorage.setItem('isFirstLoad', true);
   localStorage.setItem("brand", "LU1");
+  brand = "LU1"
   DefaultBrand.style.display = "inline";
  }
 
@@ -99,7 +103,24 @@ Brand.forEach(function(elem) {
     //Cambiar el valor de la marca seleccionada
     console.log("Brand Change");
     localStorage.setItem("brand", elem.dataset.value);
+    brand = elem.dataset.value;
     console.log(localStorage.getItem("brand"));
+
+    //mandar la variable al server
+    fetch('graphics/dashboard', {
+      method: POST,
+      headers:{
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({brand: localStorage.getItem("brand")})
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Respuesta del server: ',data);
+    })
+    .catch(err => {
+      console.log('Error: ', err);
+    });
    
     //Cambiar la visibilidad de los logos
     var cloneBrands = [...Brand];
@@ -118,7 +139,6 @@ Brand.forEach(function(elem) {
 
   //Si ya se habia escogido una marca, renderizar ese logo.
   if(getBrand){
-
     var cloneBrands = [...Brand];
     var i = cloneBrands.indexOf(elem);
     var BrandLogosL = [...BrandLogos];
@@ -129,6 +149,9 @@ Brand.forEach(function(elem) {
   }
   
 })
+
+//declarar la variable brand como global
+// window.brand =brand;
 
 
 //dashboard
@@ -184,6 +207,5 @@ const enviadas = respuestasEnviadas.map(dato => dato.enviadas);
 const graph2 = document.getElementById('respuestaEnviada');
 const titulo2 = 'Encuestas enviadas por mes';
 
-console.log(enviadaMeses,enviadas)
 creaGraficaLinea(graph2,enviadaMeses,enviadas,titulo2);
 
