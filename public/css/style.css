@@ -763,6 +763,7 @@ table.table .avatar {
 #sub_question {
     font-size: 13px;
     margin-left: 9px;
+    max-width: 560px;
 }
 
 .container .contenido .rating-box .estrellas {
