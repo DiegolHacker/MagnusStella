@@ -27,9 +27,7 @@ module.exports = class Reviews {
         JOIN 
             venta v ON r.Fk_Review_Venta = v.idVenta
         JOIN 
-            producto p ON v.Fk_Venta_Producto = p.idProducto 
-
-    `;
+            producto p ON v.Fk_Venta_Producto = p.idProducto `;
         
     db.execute(query)
         .then(([rows]) => {
@@ -51,7 +49,9 @@ module.exports = class Reviews {
             r.Descripcion AS descripcion_resena,
             r.idReview AS id_review_resena,
             pre.Descripcion AS pregunta,
-            resp.Respuestas AS respuesta
+            resp.Respuestas AS respuesta,
+            p.FK_idMarca_Producto AS marca
+
         FROM 
             cliente c
         JOIN 
