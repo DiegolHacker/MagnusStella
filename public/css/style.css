@@ -1063,7 +1063,7 @@ label {
     display: none;
     position: absolute;
     background-color: var(--hover-color);
-    min-width: 204px;
+    min-width: 184px;
     z-index: 1;
   }
   
