@@ -26,6 +26,7 @@ if(getMode && getMode === "dark-mode"){
     body.classList.add("dark");
 }
 
+
 // js code to toggle dark and light mode
       modeToggle.addEventListener("click" , () =>{
         modeToggle.classList.toggle("active");
@@ -57,6 +58,7 @@ body.addEventListener("click" , e =>{
     }
 });
 
+
 //funcion de rating estrellas
 const stars = document.querySelectorAll(".estrellas i");
 stars.forEach((star, index1) => {
@@ -69,6 +71,7 @@ stars.forEach((star, index1) => {
 });
 ;
 
+
 //codigo para cambiar de Tab en la sección de correos.
 function openTab(tabName) {
   var i;
@@ -78,6 +81,7 @@ function openTab(tabName) {
   }
   document.getElementById(tabName).style.display = "block";  
 }
+
 
 //Seleccionar marca
 let getBrand = localStorage.getItem("brand");
@@ -127,6 +131,59 @@ Brand.forEach(function(elem) {
 })
 
 
+//dashboard
+const creaGraficaLinea = (grapN, x, y,titulo) => {
+  new Chart(grapN, {
+      type: 'line',
+      data: {
+          labels: x,
+          datasets: [{
+              label: titulo,
+              data: y,
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+}
 
+//grafica promedio de puntaje
+const meses = promedioMes.map(dato => dato.mes);
+const promedio = promedioMes.map(dato => dato.promedio);
+const graph1 = document.getElementById('promedioxMes');
+const titulo = 'Promedio de puntaje por mes';
 
+creaGraficaLinea(graph1,meses,promedio,titulo)
+
+// tasa de respuesta
+const ctx = document.getElementById('tasaContestada');
+const myChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+      labels: ['Tasa de Respuesta', 'Restante'],
+      datasets: [{
+          data: [tasaDeRespuesta, 100 - tasaDeRespuesta], 
+          backgroundColor: ['#005CB9', '#D9D9D9'], 
+          hoverBackgroundColor: ['#005CB9', '#D9D9D9'] 
+      }]
+  },
+  options: {
+      cutoutPercentage: 80, 
+  }
+});
+
+//respuestas enviadas
+const enviadaMeses = respuestasEnviadas.map(dato => dato.mes);
+const enviadas = respuestasEnviadas.map(dato => dato.enviadas);
+const graph2 = document.getElementById('respuestaEnviada');
+const titulo2 = 'Encuestas enviadas por mes';
+
+console.log(enviadaMeses,enviadas)
+creaGraficaLinea(graph2,enviadaMeses,enviadas,titulo2);
 

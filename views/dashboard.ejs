@@ -31,65 +31,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-
-const creaGraficaLinea = (grapN, x, y,titulo) => {
-    new Chart(grapN, {
-        type: 'line',
-        data: {
-            labels: x,
-            datasets: [{
-                label: titulo,
-                data: y,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-}
-
-let promedioMes = JSON.parse('<%- JSON.stringify(promedioPuntajes) %>');
-let tasaDeRespuesta = JSON.parse('<%- JSON.stringify(tasaDeRespuesta) %>');
-let respuestasEnviadas = JSON.parse('<%- JSON.stringify(encuestasEnviadas) %>')
-
-//grafica promedio de puntaje
-const meses = promedioMes.map(dato => dato.mes);
-const promedio = promedioMes.map(dato => dato.promedio);
-const graph1 = document.getElementById('promedioxMes');
-const titulo = 'Promedio de puntaje por mes';
-
-creaGraficaLinea(graph1,meses,promedio,titulo)
-
-// tasa de respuesta
-const ctx = document.getElementById('tasaContestada');
-const myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Tasa de Respuesta', 'Restante'],
-        datasets: [{
-            data: [tasaDeRespuesta, 100 - tasaDeRespuesta], 
-            backgroundColor: ['#005CB9', '#D9D9D9'], 
-            hoverBackgroundColor: ['#005CB9', '#D9D9D9'] 
-        }]
-    },
-    options: {
-        cutoutPercentage: 80, 
-    }
-});
-
-//respuestas enviadas
-const enviadaMeses = respuestasEnviadas.map(dato => dato.mes);
-const enviadas = respuestasEnviadas.map(dato => dato.enviadas);
-const graph2 = document.getElementById('respuestaEnviada');
-const titulo2 = 'Encuestas enviadas por mes';
-
-console.log(enviadaMeses,enviadas)
-creaGraficaLinea(graph2,enviadaMeses,enviadas,titulo2);
+    let promedioMes = JSON.parse('<%- JSON.stringify(promedioPuntajes) %>');
+    let tasaDeRespuesta = JSON.parse('<%- JSON.stringify(tasaDeRespuesta) %>');
+    let respuestasEnviadas = JSON.parse('<%- JSON.stringify(encuestasEnviadas) %>')
 
 </script>
 <%-include('includes/footer.ejs')%>
