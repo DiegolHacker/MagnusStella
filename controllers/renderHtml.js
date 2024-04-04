@@ -1,8 +1,4 @@
-exports.get_dashboard = (request, response,next) => {
-    response.render("dashboard", {
-        titulo: 'Dashboard',
-    })
-};
+
 
 exports.post_marca = (request, response, next) => {
     request.session.marca = "caca";
@@ -25,8 +21,3 @@ exports.get_correos = (request, response, next) => {
     })
 }
 
-exports.get_analitica = (request, response, next) => {
-    response.render("analitica", {
-        titulo: 'Analitica',
-    })
-}
