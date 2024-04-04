@@ -1140,3 +1140,20 @@ label {
     justify-content: center;
     align-items: center;
 }
+
+
+  .contenedor-imagen {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+}
+
+/*Primera imagen del 404*/
+.image1404{
+    display: var(--image1Display);
+}
+
+/*Segunda imagen del 404*/
+.image2404{
+    display: var(--image2Display);
+}
