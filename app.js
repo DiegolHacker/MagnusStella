@@ -30,11 +30,13 @@ app.use(csrfProtection);
 const routasAplicacionResenas = require("./routes/routes1.routes"); // Cambiar el nombre de el archivo de rutas a algo más substancial
 const routasLogin = require('./routes/login.routes');
 const routasReview = require('./routes/resenas.routes');
+const routasGraphics = require('./routes/grafica.routes');
 
 // Define las rutas más específicas primero
 app.use('/users', routasLogin);
 app.use('/reviews', routasReview);
-app.use("/", routasAplicacionResenas);
+app.use('/graphics', routasGraphics);
+// app.use("/", routasAplicacionResenas);
 
 app.use((request,response,next) => {
     response.status(404);
