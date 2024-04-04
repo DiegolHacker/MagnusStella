@@ -84,7 +84,7 @@ let getBrand = localStorage.getItem("brand");
 let getFirstLoad = localStorage.getItem("isFirstLoad")
 
 //Si es la primera vez que se carga la página se pone Luuna por default
-if (!getFirstLoad) {s
+if (!getFirstLoad) {
   localStorage.setItem('isFirstLoad', true);
   localStorage.setItem("brand", "LU1");
   DefaultBrand.style.display = "inline";
@@ -119,15 +119,7 @@ Brand.forEach(function(elem) {
     var i = cloneBrands.indexOf(elem);
     var BrandLogosL = [...BrandLogos];
 
-    if(getBrand == "LU1" && elem.dataset.value == "LU1"){
-      BrandLogosL[i].style.display = "inline";
-    }
-
-    else if(getBrand == "NO1" && elem.dataset.value == "NO1"){
-      BrandLogosL[i].style.display = "inline";
-    }
-
-    else if(getBrand == "MA1" && elem.dataset.value == "MA1"){
+    if(getBrand ==  elem.dataset.value){
       BrandLogosL[i].style.display = "inline";
     }
   }

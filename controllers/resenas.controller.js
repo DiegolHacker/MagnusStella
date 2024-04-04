@@ -23,13 +23,13 @@ exports.get_resenas = (request, response, next) => {
         if (err) {
             return response.status(500);
         }
-
         const resenas = resenasList.map(resena => ({
-            id:resena.idReview,
-            title: resena.Titulo, 
-            resena_descrip: resena.Descripcion,
-            estrellas: resena.Puntaje,
-            itemcode: resena.idProducto
+            id:resena.idreview,
+            title: resena.titulo, 
+            resena_descrip: resena.descripcion,
+            estrellas: resena.puntaje,
+            itemcode: resena.idProducto,
+            marca: resena.marca
 
         }));
         response.render("resenas", { resenas: resenas, titulo: "Reseñas" });
