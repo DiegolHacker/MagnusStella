@@ -1,7 +1,7 @@
 const Model = require('../models/grafica.model'); // Reemplaza './model' con la ruta correcta a tu modelo
 
 exports.get_dashboard = (request, response, next) => {
-    const marca = request.params.marca//localStorage.getItem("brand")
+    const marca = request.params.marca
     console.log(marca)
     Promise.all([Model.StarAvg(marca), Model.tasaDeRespuesta(),Model.ReviewsSentxMonth()])
         .then(([averageScores, responseRates,reviewsSent]) => {
@@ -25,8 +25,10 @@ exports.get_dashboard = (request, response, next) => {
 
 
 exports.get_analitica = (request, response, next) => {
+    const marca = request.params.marca;
     response.render("analitica", {
         titulo: 'Analitica',
+        marca:marca
         // csrfToken: request.csrfToken()
     })
 }

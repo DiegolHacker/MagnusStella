@@ -8,12 +8,15 @@
 
 
 <div class="graficas">
+    <div class="dropdown-categoria">
         <label for="dropdown">Categorias<label>
         <select id="dropdown" name="dropdown" onchange="handleOptionChange(this)">
             <option value="cama">Camas</option>
             <option value="almohada">Almohadas</option>
             <option value="sabana">Sabanas</option>
         </select>
+    </div>
+
     <div class="top-graficas">
         <div id="promedio-mes-div">
             <canvas id="promedioxMes"></canvas>
