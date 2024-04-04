@@ -36,7 +36,7 @@ const routasGraphics = require('./routes/grafica.routes');
 app.use('/users', routasLogin);
 app.use('/reviews', routasReview);
 app.use('/graphics', routasGraphics);
-// app.use("/", routasAplicacionResenas);
+app.use("/", routasAplicacionResenas);
 
 app.use((request,response,next) => {
     response.status(404);
