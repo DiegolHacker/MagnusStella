@@ -8,29 +8,41 @@
 
 
 <div class="graficas">
-    <div class="dropdown-categoria">
+
+    <!-- <div class="dropdown-categoria">
         <label for="dropdown">Categorias<label>
         <select id="dropdown" name="dropdown" onchange="handleOptionChange(this)">
             <option value="cama">Camas</option>
             <option value="almohada">Almohadas</option>
             <option value="sabana">Sabanas</option>
         </select>
+    </div> -->
+
+    <div class="dropdown">
+        <button class="dropbtn">Categoria</button>
+        <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
     </div>
 
     <div class="top-graficas">
-        <div id="promedio-mes-div">
+        <div id="promedio-mes-div" class="graphContainer">
             <canvas id="promedioxMes"></canvas>
         </div>
-        
-        <div>
-            <canvas id="tasaContestada"></canvas>
+
+        <div id="respuesta-enviada-div" class="graphContainer">
+            <canvas id="respuestaEnviada"></canvas>
         </div>
+
     </div>
 
     <div class="bottom-graficas">
-        <div id="respuesta-enviada-div">
-            <canvas id="respuestaEnviada"></canvas>
+        <div id="tasaContestacion" class="graphContainer">
+            <canvas id="tasaContestada"></canvas>
         </div>
+
     </div>
 
 
@@ -54,7 +66,7 @@
 
             console.log("Selected option:", selectedValue);
             return selectedValue;
-        }
+    }
 
 
 
