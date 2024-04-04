@@ -17,7 +17,7 @@ exports.get_resenas_completas = (request, response, next) => {
     });
 };
 
- 
+//GET
 exports.get_resenas = (request, response, next) => {
     Reviews.fetchAll((err, resenasList) => {
         if (err) {
