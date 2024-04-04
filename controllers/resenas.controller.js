@@ -1,6 +1,5 @@
 const Reviews = require("../models/resenas.model"); 
 
-
 exports.get_resenas_completas = (request, response, next) => {
     const marca = request.params.marca
     console.log(request.params.id);
@@ -20,14 +19,13 @@ exports.get_resenas_completas = (request, response, next) => {
     });
 };
 
- 
+//GET
 exports.get_resenas = (request, response, next) => {
     const marca = request.params.marca
     Reviews.fetchAll((err, resenasList) => {
         if (err) {
             return response.status(500);
         }
-
         const resenas = resenasList.map(resena => ({
             id:resena.idReview,
             title: resena.Titulo, 

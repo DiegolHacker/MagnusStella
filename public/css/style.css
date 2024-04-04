@@ -763,6 +763,7 @@ table.table .avatar {
 #sub_question {
     font-size: 13px;
     margin-left: 9px;
+    max-width: 560px;
 }
 
 .container .contenido .rating-box .estrellas {
@@ -1063,7 +1064,7 @@ label {
     display: none;
     position: absolute;
     background-color: var(--hover-color);
-    min-width: 204px;
+    min-width: 184px;
     z-index: 1;
   }
   
@@ -1140,4 +1141,21 @@ label {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+
+  .contenedor-imagen {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+}
+
+/*Primera imagen del 404*/
+.image1404{
+    display: var(--image1Display);
+}
+
+/*Segunda imagen del 404*/
+.image2404{
+    display: var(--image2Display);
 }

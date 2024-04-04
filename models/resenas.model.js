@@ -2,20 +2,33 @@ const db = require('../util/database.js');
 
 
 module.exports = class Reviews {
-    constructor(id, idventa, description, title, date, punctuation){
+    constructor(id, idventa, description, title, date, punctuation, marc){
         this.idReview = id;
         this.review_Venta = idventa;
         this.descripcion = description;
         this.titulo = title;
         this.fecha = date;
         this.puntuacion = punctuation;
+        this.marca = marc;
     }
 
     static fetchAll(callback){
         const query = `
-        SELECT r.idReview, r.Descripcion, r.Titulo, r.Fecha, r.Puntaje, v.Fk_Venta_Producto AS idProducto
-        FROM review r
-        INNER JOIN venta v ON r.Fk_Review_Venta = v.idVenta`;
+        SELECT 
+            r.idReview AS idreview, 
+            r.Descripcion AS descripcion, 
+            r.Titulo AS titulo, 
+            r.Fecha AS fecha, 
+            r.Puntaje AS puntaje, 
+            v.Fk_Venta_Producto AS idProducto, 
+            p.FK_idMarca_Producto AS marca
+        FROM 
+            review r
+        JOIN 
+            venta v ON r.Fk_Review_Venta = v.idVenta
+        JOIN 
+            producto p ON v.Fk_Venta_Producto = p.idProducto `;
+        
     db.execute(query)
         .then(([rows]) => {
             callback(null, rows);
@@ -36,7 +49,9 @@ module.exports = class Reviews {
             r.Descripcion AS descripcion_resena,
             r.idReview AS id_review_resena,
             pre.Descripcion AS pregunta,
-            resp.Respuestas AS respuesta
+            resp.Respuestas AS respuesta,
+            p.FK_idMarca_Producto AS marca
+
         FROM 
             cliente c
         JOIN 
