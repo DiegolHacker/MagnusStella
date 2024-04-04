@@ -2,23 +2,18 @@
     titulo: titulo,
     promedioPuntajes: promedioPuntajes,
     tasaDeRespuesta: tasaDeRespuesta,
-    encuestasEnviadas: encuestasEnviadas
+    encuestasEnviadas: encuestasEnviadas,
+    marca:marca
 }) %>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 <div class="graficas">
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categorias
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" onclick="sendValueToServer('cama')">Camas</a></li>
-            <li><a class="dropdown-item" href="#" onclick="sendValueToServer('almohada')">Almohadas</a></li>
-            <li><a class="dropdown-item" href="#" onclick="sendValueToServer('sabana')">Sabanas</a></li>
-        </ul>
-    </div>
+        <label for="dropdown">Categorias<label>
+        <select id="dropdown" name="dropdown" onchange="handleOptionChange(this)">
+            <option value="cama">Camas</option>
+            <option value="almohada">Almohadas</option>
+            <option value="sabana">Sabanas</option>
+        </select>
     <div class="top-graficas">
         <div id="promedio-mes-div">
             <canvas id="promedioxMes"></canvas>
@@ -49,28 +44,17 @@
     let tasaDeRespuesta = JSON.parse('<%- JSON.stringify(tasaDeRespuesta) %>');
     let respuestasEnviadas = JSON.parse('<%- JSON.stringify(encuestasEnviadas) %>')
 
-    function sendValueToServer(value) {
-        fetch('/dashboard', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ value: value })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Handle success response
-                console.log(data);
-            })
-            .catch(error => {
-                // Handle error
-                console.error('Error:', error);
-            });
-    }
+
+    function handleOptionChange(selectElement) {
+            // Get the selected value
+            var selectedValue = selectElement.value;
+
+            console.log("Selected option:", selectedValue);
+            return selectedValue;
+        }
+
+
+
+
 </script>
 <%-include('includes/footer.ejs')%>

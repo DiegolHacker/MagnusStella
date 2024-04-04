@@ -104,23 +104,10 @@ Brand.forEach(function(elem) {
     console.log("Brand Change");
     localStorage.setItem("brand", elem.dataset.value);
     brand = elem.dataset.value;
-    console.log(localStorage.getItem("brand"));
+    // console.log(brand)
+    // console.log(localStorage.getItem("brand"));
 
-    //mandar la variable al server
-    fetch('graphics/dashboard', {
-      method: POST,
-      headers:{
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({brand: localStorage.getItem("brand")})
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Respuesta del server: ',data);
-    })
-    .catch(err => {
-      console.log('Error: ', err);
-    });
+
    
     //Cambiar la visibilidad de los logos
     var cloneBrands = [...Brand];

@@ -1,7 +1,9 @@
 const Model = require('../models/grafica.model'); // Reemplaza './model' con la ruta correcta a tu modelo
 
 exports.get_dashboard = (request, response, next) => {
-    Promise.all([Model.StarAvg(), Model.tasaDeRespuesta(),Model.ReviewsSentxMonth()])
+    const marca = request.params.marca//localStorage.getItem("brand")
+    console.log(marca)
+    Promise.all([Model.StarAvg(marca), Model.tasaDeRespuesta(),Model.ReviewsSentxMonth()])
         .then(([averageScores, responseRates,reviewsSent]) => {
             // console.log(averageScores);
             // console.log(responseRates) 
@@ -12,6 +14,7 @@ exports.get_dashboard = (request, response, next) => {
                 promedioPuntajes: averageScores,
                 tasaDeRespuesta: responseRates,
                 encuestasEnviadas: reviewsSent,
+                marca: marca,
             });
         })
         .catch(error => {
@@ -20,32 +23,10 @@ exports.get_dashboard = (request, response, next) => {
         });
 };
 
-exports.postMarca = (request,response,next) => {
-    const brand = request.body.brand;
-
-    Model.tryBrand(brand)
-    .then(result => {
-        console.log(result);
-    })
-    .catch(err => {
-        console.error('Error procesando la marca: ',err);
-    });
-};
-
-exports.handleAjaxRequest = (request,response,next) => {
-    const value = req.body.value;
-    console.log(value);
-    // Model.pruebaCategoria(value,(err,res) => {
-    //     if(err) {
-    //         console.error('Error obteniendo el valor ',err);
-    //         return;
-    //     }
-    //     console.log('Valor obtenido correctamente');
-    // })
-};
 
 exports.get_analitica = (request, response, next) => {
     response.render("analitica", {
         titulo: 'Analitica',
+        // csrfToken: request.csrfToken()
     })
 }

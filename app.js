@@ -22,9 +22,11 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 
 //PROTECCION CONTRA CROSS-SITE REQUEST FORGERY
-const csrf = require('csurf');
-const csrfProtection = csrf();
-app.use(csrfProtection); 
+// const csrf = require('csurf');
+// const csrfProtection = csrf();
+// app.use(csrfProtection); 
+
+
 //FIN CSRF
 
 const routasAplicacionResenas = require("./routes/routes1.routes"); // Cambiar el nombre de el archivo de rutas a algo más substancial

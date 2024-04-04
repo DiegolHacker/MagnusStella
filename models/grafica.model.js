@@ -1,12 +1,15 @@
 const db = require('../util/database');
 
-exports.StarAvg = () => {
-    let query = `SELECT MONTH(Fecha) as Mes, AVG(Puntaje) as Promedio
-    FROM review
-    GROUP BY MONTH(Fecha)
-    ORDER BY MONTH(Fecha) ASC`;
+exports.StarAvg = (marca) => {
+    let query = `SELECT MONTH(r.Fecha) as Mes, AVG(Puntaje) as Promedio
+    FROM review r, venta v, producto p
+    WHERE r.fk_review_venta = v.idventa 
+    AND v.fk_venta_producto = p.idproducto
+    AND fk_idMarca_Producto = ?
+    GROUP BY MONTH(r.Fecha)
+    ORDER BY MONTH(r.Fecha) ASC`;
 
-    return db.execute(query)
+    return db.execute(query,[marca])
         .then(([rows]) => {
             if (rows.length > 0) {
                 return rows.map(row => {
@@ -71,13 +74,3 @@ ORDER BY
             throw err;
         });
 };
-
-exports.tryBrand = (brand) => {
-    let prueba = window.brand + " Prueba";
-
-    return prueba;
-}
-
-exports.pruebaCategoria = (value,callback) => {
-    
-}

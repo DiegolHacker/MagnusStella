@@ -1,4 +1,4 @@
-<%- include('includes/navigation.ejs') %>
+<%- include('includes/navigation.ejs'), {marca:marca} %>
 
 <div id="search-autocomplete" class="form-outline" data-mdb-input-init>
     <input type="search" id="form1" class="form-control" placeholder="Busca tu producto"/>
@@ -10,7 +10,7 @@
 <div class="item-boxes">
     <% resenas.forEach(function(resena, index) { %>
         <div class="item-container">
-            <a href="/reviews/resenas_completas/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
+            <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
             <img src="/images/<%= resena.itemcode %>.jpg" class="img_producto">
             <div class="estrellas">
                 <% for (var i = 0; i < 5; i++) { %>
