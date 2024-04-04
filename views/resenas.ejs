@@ -11,7 +11,7 @@
     <% resenas.forEach(function(resena, index) { %>
         <div class="item-container">
             <a href="/reviews/resenas_completas/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
-            <img src="images/<%= resena.itemcode %>.jpg" class="img_producto">
+            <img src="/images/<%= resena.itemcode %>.jpg" class="img_producto">
             <div class="estrellas">
                 <% for (var i = 0; i < 5; i++) { %>
                     <% if (i < resena.estrellas) { %>
