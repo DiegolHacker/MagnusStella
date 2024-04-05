@@ -147,6 +147,7 @@ let lineColor1 = getComputedStyle(document.documentElement).getPropertyValue('--
 let lineColor2 = getComputedStyle(document.documentElement).getPropertyValue('--line-value-2');
 
 const creaGraficaLinea = (grapN, x, y,titulo) => {
+  let lineColor1 = getComputedStyle(document.documentElement).getPropertyValue('--line-color-1');
   new Chart(grapN, {
       type: 'line',
       data: {
@@ -174,7 +175,7 @@ const promedio = promedioMes.map(dato => dato.promedio);
 const graph1 = document.getElementById('promedioxMes');
 const titulo = 'Promedio de puntaje por mes';
 
-creaGraficaLinea(graph1,meses,promedio,titulo,lineColor1)
+creaGraficaLinea(graph1,meses,promedio,titulo)
 
 // tasa de respuesta
 const ctx = document.getElementById('tasaContestada');

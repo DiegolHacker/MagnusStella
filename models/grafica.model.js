@@ -1,11 +1,11 @@
 const db = require('../util/database');
 
-exports.StarAvg = (marca) => {
+exports.StarAvg = (marca,categoriaS) => {
     let query = `SELECT MONTH(r.Fecha) as Mes, AVG(Puntaje) as Promedio
-    FROM review r, venta v, producto p
-    WHERE r.fk_review_venta = v.idventa 
-    AND v.fk_venta_producto = p.idproducto
-    AND fk_idMarca_Producto = ?
+    FROM review r
+    JOIN venta v ON r.fk_review_venta = v.idventa 
+    JOIN producto p ON v.fk_venta_producto = p.idproducto
+    WHERE fk_idMarca_Producto = ?
     GROUP BY MONTH(r.Fecha)
     ORDER BY MONTH(r.Fecha) ASC`;
 
