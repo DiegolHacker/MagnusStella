@@ -12,7 +12,7 @@ module.exports = class Reviews {
         this.marca = marc;
     }
 
-    static fetchAll(callback){
+    static fetchAll(marca, callback){
         const query = `
         SELECT 
             r.idReview AS idreview, 
@@ -20,16 +20,19 @@ module.exports = class Reviews {
             r.Titulo AS titulo, 
             r.Fecha AS fecha, 
             r.Puntaje AS puntaje, 
-            v.Fk_Venta_Producto AS idProducto, 
-            p.FK_idMarca_Producto AS marca
+            v.Fk_Venta_Producto AS idProducto
+  
         FROM 
             review r
         JOIN 
             venta v ON r.Fk_Review_Venta = v.idVenta
         JOIN 
-            producto p ON v.Fk_Venta_Producto = p.idProducto `;
+            producto p ON v.Fk_Venta_Producto = p.idProducto
+	
+		WHERE 
+			  p.FK_idMarca_Producto = ? `;
         
-    db.execute(query)
+        db.execute(query, [marca])
         .then(([rows]) => {
             callback(null, rows);
         })

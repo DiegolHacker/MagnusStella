@@ -2,8 +2,7 @@ const Reviews = require("../models/resenas.model");
 
 exports.get_resenas_completas = (request, response, next) => {
     const marca = request.params.marca
-    console.log(request.params.id);
-    const idReview = request.params.id; // Obtiene el ID de la reseña de los parámetros de la solicitud
+    const idReview = request.params.id // Obtiene el ID de la reseña de los parámetros de la solicitud
     // Llama al método fetchCompleto del modelo para obtener los datos de la reseña completa
     Reviews.fetchCompleto(idReview, (err, resenaCompleta) => {
         if (err) {
@@ -19,22 +18,24 @@ exports.get_resenas_completas = (request, response, next) => {
     });
 };
 
-//GET
+
 exports.get_resenas = (request, response, next) => {
     const marca = request.params.marca
-    Reviews.fetchAll((err, resenasList) => {
+    const idReview = request.params.id;
+    Reviews.fetchAll(marca, (err, resenasList) => {
         if (err) {
             return response.status(500);
         }
         const resenas = resenasList.map(resena => ({
-            id:resena.idReview,
-            title: resena.Titulo, 
-            resena_descrip: resena.Descripcion,
-            estrellas: resena.Puntaje,
-            itemcode: resena.idProducto           
+            id:resena.idreview,
+            title: resena.titulo, 
+            resena_descrip: resena.descripcion,
+            estrellas: resena.puntaje,
+            itemcode: resena.idProducto,        
 
         }));
-        response.render("resenas", { resenas: resenas, titulo: "Reseñas", marca:marca,});
+        
+        response.render("resenas", { resenas: resenas, titulo: "Reseñas", marca:marca, id:idReview});
     });
 
 };

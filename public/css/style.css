@@ -834,8 +834,9 @@ table.table .avatar {
     /* Ajusta el ancho según tus necesidades */
     margin: 10px;
     padding: 10px;
-    border: 4px solid var(--edit-color);
+    border: 6px solid var(--edit-color);
     border-radius: 5px;
+    border-style:double;
     text-align: center;
     display: flex;
     flex-direction: column; /* Cambio aquí para apilar verticalmente */
