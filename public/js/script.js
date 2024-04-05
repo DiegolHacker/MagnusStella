@@ -142,6 +142,10 @@ Brand.forEach(function(elem) {
 
 
 //dashboard
+
+let lineColor1 = getComputedStyle(document.documentElement).getPropertyValue('--line-color-1');
+let lineColor2 = getComputedStyle(document.documentElement).getPropertyValue('--line-value-2');
+
 const creaGraficaLinea = (grapN, x, y,titulo) => {
   new Chart(grapN, {
       type: 'line',
@@ -150,7 +154,8 @@ const creaGraficaLinea = (grapN, x, y,titulo) => {
           datasets: [{
               label: titulo,
               data: y,
-              borderWidth: 1
+              borderWidth: 1,
+              borderColor: lineColor1,
           }]
       },
       options: {
@@ -169,7 +174,7 @@ const promedio = promedioMes.map(dato => dato.promedio);
 const graph1 = document.getElementById('promedioxMes');
 const titulo = 'Promedio de puntaje por mes';
 
-creaGraficaLinea(graph1,meses,promedio,titulo)
+creaGraficaLinea(graph1,meses,promedio,titulo,lineColor1)
 
 // tasa de respuesta
 const ctx = document.getElementById('tasaContestada');
@@ -194,5 +199,6 @@ const enviadas = respuestasEnviadas.map(dato => dato.enviadas);
 const graph2 = document.getElementById('respuestaEnviada');
 const titulo2 = 'Encuestas enviadas por mes';
 
-creaGraficaLinea(graph2,enviadaMeses,enviadas,titulo2);
+creaGraficaLinea(graph2,enviadaMeses,enviadas,titulo2,lineColor1);
+
 

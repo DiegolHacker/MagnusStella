@@ -32,6 +32,8 @@
     --boxShadow: rgba(24, 23, 23, 0.884);
     --image1Display: none;
     --image2Display: inline;
+    --backGroundColor: #f5f6f6;
+    --line-color-1: #005CB9;
 
 
     /* Transition */
@@ -73,7 +75,8 @@ body.dark {
     --boxShadow: #ffffffc0;
     --image1Display: inline;
     --image2Display: none;
-
+    --backGroundColor: #2b2a2a;
+    --line-color-1: #B97100;
 }
 
 .side_bar.close {
@@ -1122,19 +1125,24 @@ label {
 .top-graficas,.bottom-graficas{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* flex-wrap: wrap; */
+    justify-content: center;
     /* width: 100%; */
     /* height: ; */
 }
 
+.top-graficas{
+    margin-bottom: 20px;
+}
+
 #promedioxMes,#respuestaEnviada{
-    width: 400px;
-    height: 500px;
+    width: 500px;
+    height: 600px;
 }
 
 #tasaContestada{
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
 }
 
 #promedio-mes-div,#respuesta-enviada-div{
@@ -1144,8 +1152,19 @@ label {
     flex-direction: column;
 }
 
+#promedio-mes-div{
+    margin-right: 80px;
+}
 
-  .contenedor-imagen {
+.graphContainer{
+    background-color: var(--backGroundColor);
+    border-radius: 10px;
+}
+
+
+
+/* Imagenes */
+.contenedor-imagen {
     display: flex;
     justify-content: center; /* Centrado horizontal */
     align-items: center; /* Centrado vertical */
