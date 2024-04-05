@@ -30,7 +30,7 @@
                     <% usuarios.forEach(function(usuario) { %>
                     <tr>
                         <td><%= usuario.id %></td>
-                        <td><a href="#"><img src="images/<%= usuario.id %>.jpg" class="avatar" alt="Avatar"> <%= usuario.nombre %></a></td>
+                        <td><a href="#"><img src="/images/<%= usuario.id %>.jpg" class="avatar" alt="Avatar"> <%= usuario.nombre %></a></td>
                         <td><%= usuario.correo %></td>
                         <td><%= usuario.rol %></td>
                         <% if (usuario.estado === "Inactivo") { %>
