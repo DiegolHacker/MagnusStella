@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zėbrands_dev</title>
+    <!-- ==========JS Graficas============= -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="../public/css/style.css" />
+    <link rel="stylesheet" href="../public/css/analitica_style.css" />
+
+    <!-- ===== Boxicons CSS ===== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Responsive Navigation Menu Bar</title>
+  </head>
+  <body>
+    <section class="main-content">
+      <article>
+        <h2 id="seccion">Analítica</h2>
+        <div class="top_graficas">
+          <div class="grafiaca_pequenia">
+            <title>Estrellas</title>
+            <p>Reseñas <br>
+              < 3 = 22%<br>
+              3 & 4 = 14%<br>
+              5 = 64%</p>
+            <div class="grafica_pastel"></div>
+          </div>
+          <div class="grafiaca_pequenia">
+            <p>Reseñas <br>
+              < 3 = 22%<br>
+            3 & 4 = 14%<br>
+            5 = 64%</p>
+            <div class="grafica_pastel"></div>
+          </div>
+          <div class="grafiaca_pequenia">
+            <p>Reseñas <br>
+              < 3 = 22%<br>
+            3 & 4 = 14%<br>
+            5 = 64%</p>
+            <div class="grafica_pastel"></div>
+          </div>
+        </div>
+    
+        <div class="medio_graficas">
+          <div class="grafica_linea">
+            <canvas id="myChart" width="200" height="90"></canvas>
+          </div>
+          <div class="productos_mas_resenias">
+            <p>Productos con mas Resenias</title>
+            <ol>
+              <li>Colchon Original Luna - 894</li>
+              <li>Almohada Frime Luna - 740</li>
+              <li>Colchon One Luna - 725</li>
+              <li>Base Jalisco Luna - 698</li>
+              <li>Protecto Tencel Luna - 589</li>
+              <li>Almohada ajustable Down Luna - 498</li>
+            </ol>
+          </div>
+        </div>
+    
+        <div class="bottom_graficas">
+          <h2>Top 5 Productos del Dia</h2>
+            <ol class="lista_productos">
+              <li>Colchon Original Luna</li>
+              <li>Almohada Frime Luna</li>
+              <li>Colchon One Luna</li>
+              <li>Base Jalisco Luna</li>
+              <li>Protecto Tencel Luna</li>
+            </ol>
+
+        </div>
+      </article>
+    </section>
+    <nav>
+      <div class="nav-bar">
+        <i class="bx bx-menu sidebarOpen"></i>
+        <span class="logo navLogo"><a href="#">Zėbrands</a></span>
+
+        <div class="darkLight-profile">
+          <div class="dark-light">
+            <i class="bx bx-moon moon"></i>
+            <i class="bx bx-sun sun"></i>
+          </div>
+
+          <div class="profile">
+            <div class="userProfile">
+              <i class="bx bx-x cancel"></i>
+              <i class="bx bx-user user"></i>
+            </div>
+            <div class="user-sub-menu">
+              <ul>
+                <li><a href="#">Configuración</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <li><a href="#">Cerrar sesión</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="side_bar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <img src="logo.png" alt="logo" />
+          </span>
+
+          <div class="text header-text">
+            <span class="name">Zėbrands</span>
+          </div>
+        </div>
+
+        <i class="bx bx-chevron-right toggle"> </i>
+      </header>
+
+      <div class="menu-bar">
+        <div class="menu">
+          <ul class="menu-links">
+            <li class="nav-link">
+              <a href="inicio.html">
+                <i class="bx bx-home icon"></i>
+                <span class="text nav-text">Inicio</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="correos.html">
+                <i class="bx bx-envelope icon"></i>
+                <span class="text nav-text">Correos</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="analitica.html">
+                <i class="bx bx-line-chart icon"></i>
+                <span class="text nav-text">Analítica</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="resenas.html">
+                <i class="bx bx-star icon"></i>
+                <span class="text nav-text">Reseñas</span>
+              </a>
+            </li>
+            <li class="nav-link">
+              <a href="plantilla.html">
+                <i class="bx bx-book-content icon"></i>
+                <span class="text nav-text">Plantilla</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <footer>
+      <a href="mailto:A01705651@tec.mx">Contáctanos</a>
+      <p id="cprt">Copyright © 2024 Zebrands</p>
+    </footer>
+    <!-- -------------------Scripts-------------------- -->
+    <script src="../public/js/script.js"></script>
+    <script src="../public/js/analitica_script.js"></script>
+  </body>
+</html>

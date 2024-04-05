@@ -1,0 +1,76 @@
+<%-include('includes/navigation.ejs', {
+    titulo: titulo,
+    promedioPuntajes: promedioPuntajes,
+    tasaDeRespuesta: tasaDeRespuesta,
+    encuestasEnviadas: encuestasEnviadas,
+    marca:marca
+}) %>
+
+
+<div class="graficas">
+
+    <!-- <div class="dropdown-categoria">
+        <label for="dropdown">Categorias<label>
+        <select id="dropdown" name="dropdown" onchange="handleOptionChange(this)">
+            <option value="cama">Camas</option>
+            <option value="almohada">Almohadas</option>
+            <option value="sabana">Sabanas</option>
+        </select>
+    </div> -->
+
+    <div class="dropdown category">
+        <button class="dropbtn cat-btn">Categoria</button>
+        <div class="dropdown-content cat-content">
+            <a href="todo">Todo</a>
+            <a href="cama">Camas</a>
+            <a href="almohada">Almohadas</a>
+            <a href="sabana">Sabanas</a>
+        </div>
+    </div>
+
+    <div class="top-graficas">
+        <div id="promedio-mes-div" class="graphContainer">
+            <canvas id="promedioxMes"></canvas>
+        </div>
+
+        <div id="respuesta-enviada-div" class="graphContainer">
+            <canvas id="respuestaEnviada"></canvas>
+        </div>
+
+    </div>
+
+    <div class="bottom-graficas">
+        <div id="tasaContestacion" class="graphContainer">
+            <canvas id="tasaContestada"></canvas>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    let promedioMes = JSON.parse('<%- JSON.stringify(promedioPuntajes) %>');
+    let tasaDeRespuesta = JSON.parse('<%- JSON.stringify(tasaDeRespuesta) %>');
+    let respuestasEnviadas = JSON.parse('<%- JSON.stringify(encuestasEnviadas) %>')
+
+
+    function handleOptionChange(selectElement) {
+            // Get the selected value
+            var selectedValue = selectElement.value;
+
+            console.log("Selected option:", selectedValue);
+            return selectedValue;
+    }
+
+
+
+
+</script>
+<%-include('includes/footer.ejs')%>

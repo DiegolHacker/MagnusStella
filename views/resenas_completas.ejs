@@ -1,0 +1,26 @@
+<%- include('includes/navigation.ejs') %>
+    <div class="container"> 
+        <div class="contenido">
+            <img src="/images/<%= marca %>.png" width="600">
+            <h3><b>Hola <%= resenas.nombre_cliente %></b></h3>
+            <p id="sub_question">Has comprado recientemente  <%= resenas.nombre_producto %> <br> ¿Nos cuentas tu experiencia?</p>
+            <div class="rating-box">
+                <h5 id="question_text"><b>¿Cúal es su calificación general?</b></h5>
+                <div class="estrellas">
+                    <% for (var i = 0; i < 5; i++) { %>
+                        <% if (i < resenas.estrellas_resena) { %>
+                            <i class='bx bxs-star' id="stars_y"></i>
+                        <% } else { %>
+                            <i class='bx bx-star' id="stars_g"></i>
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+            <h4><b><%= resenas.titulo_resena %></b></h4>
+            <p id="sub_question"><%= resenas.descripcion_resena %></p> 
+            <h5><br>Preguntas</h5> 
+            <h4><b><%= resenas.pregunta %></b></h4>
+            <p id="sub_question"><%= resenas.respuesta %></p>      
+        </div>
+    </div>
+<%- include('includes/footer.ejs') %>

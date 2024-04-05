@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-signin-client_id"
+        content="510682302712-ojvujken48si0igbopheo84gfbqno6ib.apps.googleusercontent.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/login_syles.css">
+    <title>LogIn</title>
+</head>
+
+<body>
+    <div class="login-box box">
+        <div class="login-title title">
+            <h4>Log-In</h4>
+        </div>
+        <% if(typeof error !=='undefined' ){ %>
+            <div class="alert">
+                <p>
+                    <%= error %>
+                </p>
+            </div>
+            <% } %>
+                <form action="/users/login" method="post">
+                    <div class="credential-input">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <label for="name">Nombre de usuario:</label>
+                        <input type="email" name="name" id="username" placeholder="Ingresa tu correo electronico">
+                    </div>
+                    <div class="credential-input">
+                        <label for="password">Contrasena:</label>
+                        <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena">
+                    </div>
+                    <div class="ingresar-btn">
+                        <button type="submit" class="btn">Ingresar</button>
+                    </div>
+                </form>
+
+
+
+                <div class="google-login">
+                    <p>Log-In con google:</p>
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <br>
+                    <!-- boton temporal -->
+                </div>
+
+<%-include('includes/footer.ejs')%>
