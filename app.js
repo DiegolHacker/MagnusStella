@@ -7,6 +7,12 @@ app.set("views", "views");
 
 const session = require('express-session');
 
+app.use(function(req, res, next) {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
+
+
 app.use(session({
     secret: 'mi string',
     resave: false,

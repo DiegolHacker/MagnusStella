@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 exports.get_login = (request, response, next) => {
     const error = request.session.error || '';
     request.session.error = '';
-    response.render("login",{csrfToken: request.csrfToken()})
+    response.render("login")
 };
 
 exports.post_login = (request, response, next) => {

@@ -202,4 +202,3 @@ const titulo2 = 'Encuestas enviadas por mes';
 
 creaGraficaLinea(graph2,enviadaMeses,enviadas,titulo2,lineColor1);
 
-

@@ -6,7 +6,7 @@ exports.get_dashboard = (request, response, next) => {
     if(categoria === 'todo'){
         categoria = "*";
     };
-    console.log(categoria)
+    // console.log(categoria)
     Promise.all([Model.StarAvg(marca,categoria), Model.tasaDeRespuesta(),Model.ReviewsSentxMonth()])
         .then(([averageScores, responseRates,reviewsSent]) => {
 

@@ -3,8 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="google-signin-client_id"
-        content="510682302712-ojvujken48si0igbopheo84gfbqno6ib.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <meta name="google-signin-client_id" content="510682302712-bvc0hgpv3knm4sglnnrkma4hn3rhmqpn.apps.googleusercontent.com">
+    <div id="g_id_onload" data-client_id="510682302712-bvc0hgpv3knm4sglnnrkma4hn3rhmqpn.apps.googleusercontent.com"
+        data-callback="handleCredentialResponse">
+    </div>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/login_syles.css">
@@ -25,7 +28,6 @@
             <% } %>
                 <form action="/users/login" method="post">
                     <div class="credential-input">
-                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <label for="name">Nombre de usuario:</label>
                         <input type="email" name="name" id="username" placeholder="Ingresa tu correo electronico">
                     </div>
@@ -42,9 +44,30 @@
 
                 <div class="google-login">
                     <p>Log-In con google:</p>
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                    <br>
-                    <!-- boton temporal -->
+                    <div class="g_id_signin" data-type="standard"></div>    
                 </div>
 
+<script>
+    // function onSignIn(googleUser) {
+    //         var profile = googleUser.getBasicProfile();
+    //         console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    //         console.log('Name: ' + profile.getName());
+    //         console.log('Image URL: ' + profile.getImageUrl());
+    //         console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    //     }
+
+    window.handleCredentialResponse = (response) => {
+        // decodeJwtResponse() is a custom function defined by you
+        // to decode the credential response.
+        responsePayload = decodeJwtResponse(response.credential);
+
+        console.log("ID: " + responsePayload.sub);
+        console.log('Full Name: ' + responsePayload.name);
+        console.log('Given Name: ' + responsePayload.given_name);
+        console.log('Family Name: ' + responsePayload.family_name);
+        console.log("Image URL: " + responsePayload.picture);
+        console.log("Email: " + responsePayload.email);
+    }
+
+</script>
 <%-include('includes/footer.ejs')%>
