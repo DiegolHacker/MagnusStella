@@ -1,0 +1,26 @@
+.help-card {
+    background-color: var(--nav-color);
+    color: var(--text-color);
+    font-size: 18pt;
+    border-radius: 0.5em;
+    text-align: center;
+}
+
+h1{
+    font-size: 34pt;
+}
+
+.help-card:hover {
+    background-color: var(--hover-color);
+}
+
+.help-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 14em);
+    grid-gap: 2em;
+    grid-auto-rows: minmax(14em, auto);
+}
+
+.help-icon{
+    font-size: 5em;
+}
