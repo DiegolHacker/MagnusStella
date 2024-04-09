@@ -59,14 +59,20 @@ module.exports = class Usuarios {
     }
 
 
-    static fetchAll(){
-        db.execute('SELECT * FROM usuarios')
-            .then(rows => {
-                callback(rows);
-            })
-            .catch(err => {
-                console.error('Error fetching users from database:', err);
-                callback([]);
-            });
+    static fetchAll() {
+        return db.execute("SELECT * FROM usuario")
     }
+
+    static fetchOne(id) {
+        return db.execute('SELECT * FROM usuario WHERE idUsuario=?', 
+            [id]);
+    }
+
+    static fetch(id) {
+        if (id) {
+            return this.fetchOne(id);
+        } else {
+            return this.fetchAll();
+        }
+    }
 }
