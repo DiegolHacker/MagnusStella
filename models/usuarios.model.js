@@ -60,19 +60,52 @@ module.exports = class Usuarios {
 
 
     static fetchAll() {
-        return db.execute("SELECT * FROM usuario")
+        return db.execute("SELECT * FROM usuario ")
     }
+
+    static fetchPag(pag) {
+        total= db.execute("SELECT COUNT(IdUsuario) AS totalUsuarios FROM usuario;")
+        total = total/5;
+        inicio = (pag - 1)*total
+        return db.execute("SELECT * FROM usuario order by Nombre LIMIT ?, ?",[inicio,total])
+    }
+
+    static async fetchPag(pag) {
+        try {
+            const [rows] = await db.execute("SELECT COUNT(IdUsuario) AS totalUsuarios FROM usuario;");
+            let totalUsers = rows[0].totalUsuarios;
+            const pageSize = 5; 
+            let totalPages = Math.ceil(totalUsers / pageSize); 
+            let inicio = (pag - 1) * pageSize;
+
+            const [users] = await db.execute(`SELECT * FROM usuario ORDER BY Nombre LIMIT ${inicio}, ${pageSize}`);
+    
+            return {
+                users: users,
+                pageSize: pageSize,
+                totalUsers: totalUsers,
+                totalPages: totalPages
+            };
+        } catch (err) {
+            console.error('Error fetching paginated users:', err);
+            throw err; 
+        }
+    }
+    
 
     static fetchOne(id) {
         return db.execute('SELECT * FROM usuario WHERE idUsuario=?', 
             [id]);
     }
 
-    static fetch(id) {
-        if (id) {
+    static fetch(pag, id) {
+        if (pag, id) {
             return this.fetchOne(id);
+        } else if (pag) {
+            return this.fetchPag(pag);
         } else {
             return this.fetchAll();
-        }
-    }
+        }
+    }
+    
 }

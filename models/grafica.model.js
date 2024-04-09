@@ -12,10 +12,6 @@ exports.StarAvg = (marca,categoriaS) => {
     AND Categoria = ?`;
     }
     
-    if(productoS !== '*'){
-        query += `
-    AND idProducto = ?`
-    }
 
     query += ` 
     GROUP BY MONTHNAME(r.Fecha)
@@ -62,8 +58,8 @@ exports.StarAvg = (marca,categoriaS) => {
 };
 
 exports.tasaDeRespuesta = () => {
-    let query1 = `SELECT ReviewsContestadas(marca,categoria);`;
-    let query2 = `SELECT Reviewsenviadas(marca categoria);`;
+    let query1 = `SELECT ReviewsContestadas();`;
+    let query2 = `SELECT Reviewsenviadas();`;
 
 
 
@@ -82,7 +78,7 @@ exports.tasaDeRespuesta = () => {
         });
 };
 
-exports.ReviewsSentxMonth = (marca,categoriaS) => {
+exports.ReviewsSentxMonth = () => {
     let query = `SELECT 
     MONTHNAME(Fecha) AS Mes,
     COUNT(*) AS Cantidad_Envios

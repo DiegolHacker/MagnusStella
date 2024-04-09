@@ -608,12 +608,12 @@ table.table tr th:last-child {
     width: 125x;
 }
 
-table.table td:nth-child(5) {
-    width: 120px;
+.table td:nth-child(2) a {
+    font-size: 15px;
 }
 
-.table td:nth-child(2) a {
-    font-size: 16px;
+.table td:nth-child(4) a {
+    width: 60px;
 }
 
 table.table th i {
@@ -660,11 +660,13 @@ table.table .avatar {
     margin: 2px 2px 0 0;
     display: inline-block;
     vertical-align: middle;
+    padding-right:41px;
     line-height: 10px;
 }
 
 .text-success {
     color: #2E7D32;
+    text-align:end;
 }
 
 .text-info {
@@ -673,6 +675,7 @@ table.table .avatar {
 
 .text-warning {
     color: #FE9339;
+    text-align: center;
 }
 
 .pagination {

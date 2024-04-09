@@ -34,9 +34,9 @@
                         <td><%= usuario.Correo %></td>
                         <td><%= usuario.IDRol %></td>
                         <% if (usuario.Estado ==="0") { %>
-                        <td><span class="status text-warning">&bull;</span> <%= usuario.Estado %></td>
+                        <td><span class="status text-warning">&bull;</span></td>
                         <% } else { %>
-                        <td><span class="status text-success">&bull;</span> <%= usuario.Estado %></td>
+                        <td><span class="status text-success">&bull;</span></td>
                         <% } %>
                         <td>
                             <a class="settings" title="Editar" data-placement="top" data-toggle="tooltip" href="/usuarios/editar/<%= usuario.idUsuario%>" ><i class='bx bxs-edit-alt'></i></a>
@@ -47,15 +47,17 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Mostrando <b>5</b> de <b>25</b> resultados</div>
+                    <div class="hint-text">Showing <b><%= pageSize * (currentPage - 1) + 1 %></b> to <b><%= Math.min(pageSize * currentPage, totalUsers) %></b> of <b><%= totalUsers %></b> results</div>
                     <ul class="pagination">
-                        <li class="page-item"><a href="#" class="page-link">Anterior</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
+                        <% if(currentPage > 1) { %>
+                            <li class="page-item"><a href="/usuarios/<%= marca %>/<%= currentPage - 1 %>" class="page-link">Previous</a></li>
+                        <% } %>
+                        <% for(let i = 1; i <= totalPages; i++) { %>
+                            <li class="page-item <%= i === currentPage ? 'active' : '' %>"><a href="/usuarios/<%= marca %>/<%= i %>" class="page-link"><%= i %></a></li>
+                        <% } %>
+                        <% if(currentPage < totalPages) { %>
+                            <li class="page-item"><a href="/usuarios/<%= marca %>/<%= currentPage + 1 %>" class="page-link">Next</a></li>
+                        <% } %>
                     </ul>
                 </div>
             </div>

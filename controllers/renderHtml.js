@@ -7,16 +7,23 @@ exports.post_marca = (request, response, next) => {
 
 exports.get_usuarios = (request, response, next) => {
     const marca = request.params.marca;
+    const pag = parseInt(request.params.pag) || 1; // Asegúrate de que 'pag' sea un número
 
-    Usuarios.fetch()
-    .then(rows => {
+    Usuarios.fetchPag(pag)
+    .then(result => {
         response.render('usuarios', { 
-            usuarios: rows[0], 
-            titulo:"Usuarios", 
+            usuarios: result.users, 
+            titulo: "Usuarios", 
             marca: marca,
+            currentPage: pag,
+            pageSize: result.pageSize,
+            totalUsers: result.totalUsers,
+            totalPages: result.totalPages,
         });
-    }).catch(error => console.log(error))
-
+    }).catch(error => {
+        console.log(error);
+        response.status(500).send('Error al recuperar los usuarios');
+    });
 };
 
 exports.get_correos = (request, response, next) => {
@@ -32,7 +39,7 @@ exports.get_editar = (request, response, next) => {
 
     const marca = request.params.marca;
 
-    Usuarios.fetch(request.params.usuario_id).then(([rows, fieldData]) => {
+    Usuarios.fetch(request.params.pag,request.params.usuario_id).then(([rows, fieldData]) => {
         response.render('editar_usuarios', {
             usuarios: rows, 
             titulo:"Usuarios", 
