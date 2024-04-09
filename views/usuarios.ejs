@@ -27,23 +27,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% usuarios.forEach(function(usuario) { %>
+                    <% for (let usuario of usuarios) { %>
                     <tr>
-                        <td><%= usuario.id %></td>
-                        <td><a href="#"><img src="/images/<%= usuario.id %>.jpg" class="avatar" alt="Avatar"> <%= usuario.nombre %></a></td>
-                        <td><%= usuario.correo %></td>
-                        <td><%= usuario.rol %></td>
-                        <% if (usuario.estado === "Inactivo") { %>
-                        <td><span class="status text-warning">&bull;</span> <%= usuario.estado %></td>
+                        <td><%= usuario.idUsuario %></td>
+                        <td><a href="#"><img src="/images/<%= usuario.id %>.jpg" class="avatar" alt="Avatar"> <%= usuario.Nombre %></a></td>
+                        <td><%= usuario.Correo %></td>
+                        <td><%= usuario.IDRol %></td>
+                        <% if (usuario.Estado ==="0") { %>
+                        <td><span class="status text-warning">&bull;</span> <%= usuario.Estado %></td>
                         <% } else { %>
-                        <td><span class="status text-success">&bull;</span> <%= usuario.estado %></td>
+                        <td><span class="status text-success">&bull;</span> <%= usuario.Estado %></td>
                         <% } %>
                         <td>
-                            <a href="#" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a>
+                            <a class="settings" title="Editar" data-placement="top" data-toggle="tooltip" href="/usuarios/editar/<%= usuario.idUsuario%>" ><i class='bx bxs-edit-alt'></i></a>
                             <a href="#" class="delete" title="Borrar" data-placement="top" data-toggle="tooltip"><i class='bx bx-trash'></i></a>
                         </td>
                     </tr>
-                    <% }); %>
+                    <% }; %>
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -61,5 +61,54 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        const editar = (id) => {
+            fetch('/construcciones/delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'csrf-token': csrf
+                    },
+                    body: JSON.stringify({id: id})
+                }).then(result => {
+                    return result.json(); //Regresa otra promesa
+                }).then(data => {
+                    console.log(data);
+                    let html = '';
+                    
+                    html += `<div id="notificacion">`;
+                    if (data.construcciones.length < 1) { 
+                        html += 
+                            `<div class="notification is-info">
+                                <button class="delete"></button>
+                                No existe la construcción. 
+                            </div>`;           
+                    }
+                    html += `</div>`;
+                    let columns = 0;
+                    for (let construccion of data.construcciones) { 
+                        columns++;
+                        html += `  
+                            <p class="title is-4">${construccion.nombre}</p>
+                            <img src="uploads/${construccion.imagen}" alt="Imagen de ${construccion.nombre}">
+                            <button class="button is-danger" onclick="eliminar(${construccion.id})">Eliminar</button>
+                        `;
+                    }
+                            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+                    document.getElementById('respuesta_ajax').innerHTML = html;
+
+                    document.getElementById('notificacion').innerHTML = 
+                    `<div class="notification is-info">
+                        <button class="delete"></button>
+                        La construcción fue eliminada. 
+                    </div>`;
+                }).catch(err => {
+                    console.log(err);
+                });
+                
+        };
+    </script>
+
 
 <%- include('includes/footer.ejs') %>
