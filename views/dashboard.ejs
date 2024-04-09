@@ -17,16 +17,11 @@
             <option value="sabana">Sabanas</option>
         </select>
     </div> -->
+    <%-include('includes/categorias.ejs', {
+        marca:marca
+    }) %>
 
-    <div class="dropdown category">
-        <button class="dropbtn cat-btn">Categoria</button>
-        <div class="dropdown-content cat-content">
-            <a href="<%=marca%>/todo">Todo</a>
-            <a href="<%=marca%>/cama">Camas</a>
-            <a href="<%=marca%>/almohada">Almohadas</a>
-            <a href="<%=marca%>/sabana">Sabanas</a>
-        </div>
-    </div>
+
 
     <div class="top-graficas">
         <div id="promedio-mes-div" class="graphContainer">
