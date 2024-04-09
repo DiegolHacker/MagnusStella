@@ -3,7 +3,6 @@ const Model = require('../models/grafica.model'); // Reemplaza './model' con la 
 exports.get_dashboard = (request, response, next) => {
     const marca = request.params.marca
     let categoria = request.params.categoria || '*';
-    console.log(categoria)
     
     Promise.all([Model.StarAvg(marca,categoria), Model.tasaDeRespuesta(),Model.ReviewsSentxMonth()])
         .then(([averageScores, responseRates,reviewsSent]) => {

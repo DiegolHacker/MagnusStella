@@ -11,6 +11,11 @@ exports.StarAvg = (marca,categoriaS) => {
         query += `
     AND Categoria = ?`;
     }
+    
+    if(productoS !== '*'){
+        query += `
+    AND idProducto = ?`
+    }
 
     query += ` 
     GROUP BY MONTHNAME(r.Fecha)
@@ -57,8 +62,10 @@ exports.StarAvg = (marca,categoriaS) => {
 };
 
 exports.tasaDeRespuesta = () => {
-    let query1 = `SELECT ReviewsContestadas();`;
-    let query2 = `SELECT Reviewsenviadas();`;
+    let query1 = `SELECT ReviewsContestadas(marca,categoria);`;
+    let query2 = `SELECT Reviewsenviadas(marca categoria);`;
+
+
 
     return Promise.all([db.execute(query1), db.execute(query2)])
         .then(([resultContestadas, resultEnviadas]) => {
@@ -75,7 +82,7 @@ exports.tasaDeRespuesta = () => {
         });
 };
 
-exports.ReviewsSentxMonth = () => {
+exports.ReviewsSentxMonth = (marca,categoriaS) => {
     let query = `SELECT 
     MONTHNAME(Fecha) AS Mes,
     COUNT(*) AS Cantidad_Envios

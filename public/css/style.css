@@ -1118,6 +1118,7 @@ label {
     display: flex;
     flex-direction: column;
     width: 100%;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     /* background-color: #121418; */
 }
