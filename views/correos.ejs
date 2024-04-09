@@ -16,19 +16,12 @@
             <input type="time" id="hora" name="hora ">
             <button type="submit" class="subir boton">Enviar</button>
         </form>
-        
-        <div class="ques-container">
-            <h3>¿Qué edad tienes?<a href="#" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a></h3>
-        </div>
 
-        <div class="ques-container">
-            <h3>¿Con quién duermes?<a href="#" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a></h3>
-        </div>
-
-        <div class="ques-container">
-            <h3>¿En promedio, cuántas horas duermes cada noche? <a href="#" class="settings" title="Editar" data-placement="top"
-                    data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a></h3>
-        </div>
+        <% for (let pregunta of preguntas) {%>
+            <div class="ques-container">
+                <h3><%= pregunta.Descripcion%><a href="/correos/editar/<%= pregunta.idPregunta%>" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a></h3>
+            </div>
+        <% } %>
 
         <Button class="add-ques-button boton">Añadir pregunta +</Button>
 
@@ -59,16 +52,25 @@
             <h4><b>Reseña: </b></h4>
             <textarea name="descripcion_review" id="description_rev" cols="35" rows="4"
                 placeholder="Escribe aqui tu reseña"></textarea>
-            <h4><b>¿Qué edad tienes? </b></h4>
-            <p id="sub_question">Elige una de las siguientes opciones</p>
-            <form id="edades">
-                <select id="edad" name="edad_review">
-                    <option value="1">15-24 años</option>
-                    <option value="2">25-34 años</option>
-                    <option value="3">35-44 años</option>
-                    <option value="4">44-55+ años</option>
-                </select>
-            </form>
+
+            <% for (let pregunta of preguntas) { %>
+                <% if(pregunta.Tipo == 1){ %>
+                    <h4><b><%= pregunta.Descripcion %> </b></h4>
+                    <p id="sub_question">Elige una de las siguientes opciones</p>
+                    <form id="edades">
+                        <select id="edad" name="edad_review">
+                            <% for (let respuesta of pregunta.Opcion) {%>
+                                <p><%= respuesta %> </p>
+                            <% } %>
+                            <option value="1">15-24 años</option>
+                            <option value="2">25-34 años</option>
+                            <option value="3">35-44 años</option>
+                            <option value="4">44-55+ años</option>
+                        </select>
+                    </form>
+                <% } %>
+            
+            
             <h4><b>¿Con quién duermes?</b></h4>
             <p id="sub_question">Elige una o varias de las siguientes opciones</p>
             <form id="dormir">
@@ -90,6 +92,8 @@
                     <option value="5">Más de 8 horas</option>
                 </select>
             </form>
+
+            <% } %>
 
             <div class="submit-button-container">
                 <button type="submit" class="submit-button">¡Envía tu reseña!</button>
