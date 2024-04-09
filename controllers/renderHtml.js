@@ -1,19 +1,22 @@
-
+const { response } = require("express");
+const Usuarios = require("../models/usuarios.model");
 
 exports.post_marca = (request, response, next) => {
     request.session.marca = "xxx";
 }
 
 exports.get_usuarios = (request, response, next) => {
-    const marca = request.params.marca
-    const usuarios = [
-        { id: 1, nombre: "Angélica Ríos Cuentas", correo: "A01705651@tec.mx", rol: "Admin", estado: "Activo" },
-        { id: 2, nombre: "Diego Fuentes Juvera", correo: "A01705506@tec.mx", rol: "CRM", estado: "Activo" },
-        { id: 3, nombre: "Juan Pablo Chávez", correo: "A01705408@tec.mx", rol: "CRM", estado: "Inactivo" },
-        { id: 4, nombre: "Diego Ricardo Alfaro", correo: "A01709971@tec.mx", rol: "Analítica", estado: "Activo" },
-        { id: 5, nombre: "Pablo Hazael Hurtado", correo: "A01710778@tec.mx", rol: "Analítica", estado: "Inactivo" }
-    ];
-    response.render('usuarios', { usuarios: usuarios, titulo:"Usuarios",marca:marca });
+    const marca = request.params.marca;
+
+    Usuarios.fetch()
+    .then(rows => {
+        response.render('usuarios', { 
+            usuarios: rows[0], 
+            titulo:"Usuarios", 
+            marca: marca,
+        });
+    }).catch(error => console.log(error))
+
 };
 
 exports.get_correos = (request, response, next) => {
@@ -22,4 +25,42 @@ exports.get_correos = (request, response, next) => {
         titulo: "Correos",marca:marca
     })
 }
+
+
+exports.get_editar = (request, response, next) => {
+    console.log("Ruta get_editar" )
+
+    const marca = request.params.marca;
+
+    Usuarios.fetch(request.params.usuario_id).then(([rows, fieldData]) => {
+        response.render('editar_usuarios', {
+            usuarios: rows, 
+            titulo:"Usuarios", 
+            marca: marca,
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+
+exports.post_editar = (request, response, next) => {
+    console.log("/editar")
+    console.log(request.body);
+
+    var correo = request.body.correo || "";
+    var password = request.body.password || "";
+    var idrol = request.body.idrol || "";
+    var idusuario = request.body.idusuario || "";
+
+    console.log(request.params.usuario_id)
+
+    Usuarios.saveUsernameChanges(correo, password, idrol, idusuario)
+        .then(() => {
+            console.log("Guardado")
+            response.redirect('/usuarios');
+        })
+        .catch((error) => {console.log(error)});
+
+};
 
