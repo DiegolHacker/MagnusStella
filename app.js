@@ -39,11 +39,13 @@ const routasAplicacionResenas = require("./routes/routes1.routes"); // Cambiar e
 const routasLogin = require('./routes/login.routes');
 const routasReview = require('./routes/resenas.routes');
 const routasGraphics = require('./routes/grafica.routes');
+const routasAyuda = require('./routes/ayuda.routes');
 
 // Define las rutas más específicas primero
 app.use('/users', routasLogin);
 app.use('/reviews', routasReview);
 app.use('/graphics', routasGraphics);
+app.use('/ayuda', routasAyuda);
 app.use("/", routasAplicacionResenas);
 
 app.use((request,response,next) => {
