@@ -68,7 +68,7 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
         .then(([resultContestadas, resultEnviadas]) => {
             let contestadas = resultContestadas[0][0][q1String];
             let enviadas = resultEnviadas[0][0][q2String];
-            console.log(contestadas,enviadas)
+   
             let resultado = (contestadas / enviadas) * 100;
 
             return resultado;
@@ -80,51 +80,52 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
 };
 
 exports.ReviewsSentxMonth = (marca,productoS,categoriaS) => {
-//     let query = `SELECT 
-//     p.idProducto,
-//     p.Categoria,
-//     p.FK_idMarca_Producto AS Marca,
-//     MONTHNAME(r.Fecha) AS Mes,
-//     COUNT(*) AS Cantidad_Envios
-// FROM 
-//     review r
-// JOIN 
-//     producto p ON r.FK_idProducto_Review = p.idProducto
-// JOIN 
-//     marca m ON p.FK_idMarca_Producto = m.idMarca
-// WHERE
-// 	m.idMarca = ?`;
+    let query = `SELECT 
+    MONTHNAME(v.fecha) AS mes,
+    COUNT(*) AS Cantidad_Enviadas
+FROM 
+    venta v
+INNER JOIN 
+    producto p ON v.fk_venta_producto = p.idProducto
+WHERE
+    p.FK_idMarca_Producto = ?`;
 
-//     let parametros = [marca]
+    let parametros = [marca]
 
-//     if(categoriaS !== '*'){
-//         query += `
-//         AND p.Categoria = ?`;
-//         parametros.push(categoriaS);
-//     }
+    if(categoriaS !== '*'){
+        query += `
+        AND p.Categoria = ?`;
+        parametros.push(categoriaS);
+    }
 
-//     if(productoS !== '*'){
-//         query += `
-//         AND p.idProducto = ?`;
-//         parametros.push(productoS)
-//     }
+    if(productoS !== '*'){
+        query += `
+        AND p.idProducto = ?`;
+        parametros.push(productoS)
+    }
 
-//     return db.execute(query,parametros)
-//         .then(([rows]) => {
-//             if (rows.length > 0) {
-//                 return rows.map(row => {
-//                     return {
-//                         mes: row.Mes,
-//                         enviadas: row.Cantidad_Envios,
-//                     };
-//                 });
-//             }
-//             return [];
-//         })
-//         .catch(err => {
-//             console.log('Error obteniendo la información', err);
-//             throw err;
-//         });
+    query += `
+GROUP BY 
+    MONTHNAME(v.fecha)
+ORDER BY 
+    mes ASC;`;
+
+
+    return db.execute(query,parametros)
+        .then(([rows]) => {
+            if (rows.length > 0) {
+                return rows.map(row => {
+                    return {
+                        mes: row.Mes,
+                        enviadas: row.Cantidad_Envios,
+                    };
+                });
+            }
+            return [];
+        })
+        .catch(err => {
+            console.log('Error obteniendo la información', err);
+        });
 };
 
 
