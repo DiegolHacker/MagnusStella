@@ -107,5 +107,12 @@ module.exports = class Usuarios {
             return this.fetchAll();
         }
     }
+
+    static saveUsernameChanges(correo, password, idrol, idusuario){
+        var algo = "algo" ;
+        console.log(algo);
+        return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
+        [idrol, password, correo, idusuario]);
+    }
     
 }
