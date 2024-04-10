@@ -54,7 +54,7 @@
 <script>
     let promedioMes = JSON.parse('<%- JSON.stringify(promedioPuntajes) %>');
     let tasaDeRespuesta = JSON.parse('<%- JSON.stringify(tasaDeRespuesta) %>');
-    let respuestasEnviadas = JSON.parse('<%- JSON.stringify(encuestasEnviadas) %>')
+    let respuestasEnviadas = JSON.parse('<%- JSON.stringify(encuestasEnviadas) %>');
 
 
     function handleOptionChange(selectElement) {
@@ -64,9 +64,6 @@
             console.log("Selected option:", selectedValue);
             return selectedValue;
     }
-
-
-
 
 </script>
 <%-include('includes/footer.ejs')%>

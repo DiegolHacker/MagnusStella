@@ -29,17 +29,17 @@ if(getMode && getMode === "dark-mode"){
 
 
 // js code to toggle dark and light mode
-      modeToggle.addEventListener("click" , () =>{
-        modeToggle.classList.toggle("active");
-        body.classList.toggle("dark");
+modeToggle.addEventListener("click" , () => {
+  modeToggle.classList.toggle("active");
+  body.classList.toggle("dark");
 
-        // js code to keep user selected mode even page refresh or file reopen
-        if(!body.classList.contains("dark")){
-            localStorage.setItem("mode", "light-mode");
-        }else{
-            localStorage.setItem("mode", "dark-mode");
-        }
-      });
+  // js code to keep user selected mode even page refresh or file reopen
+  if(!body.classList.contains("dark")){
+      localStorage.setItem("mode", "light-mode");
+  }else{
+      localStorage.setItem("mode", "dark-mode");
+  }
+});
 
 
 userProfile.addEventListener("click" , () =>{
