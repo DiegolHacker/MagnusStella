@@ -27,12 +27,7 @@ exports.get_usuarios = (request, response, next) => {
     });
 };
 
-exports.get_correos = (request, response, next) => {
-    const marca = request.params.marca
-    response.render("correos", {
-        titulo: "Correos",marca:marca
-    })
-}
+
 
 
 exports.get_editar = (request, response, next) => {
