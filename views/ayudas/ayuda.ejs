@@ -1,4 +1,7 @@
-<%-include('includes/navigation.ejs') %>
+<%-include('../includes/navigation.ejs'), {
+    titulo: titulo,
+    marca:marca
+} %>
 
 <head>
     <link rel="stylesheet" href="/css/ayuda.css">
@@ -18,10 +21,12 @@
         <i class="help-icon bx bx-star icon"></i>
         <p>Reseñas</p>
     </div>
-    <div class = "help-card" href="/correos">
+
+    <div class = "help-card" onclick="window.location.href = '/ayuda/correos/<%=marca%>';">
         <i class="help-icon bx bx-envelope icon"></i>
         <p>Correos</p>
     </div>
+   
     <div class = "help-card" href="/usuarios">
         <i class='help-icon bx bxs-user-plus icon'></i>
         <p>Usuarios</p>
@@ -33,4 +38,4 @@
 </div>
 
 
-<%-include('includes/footer.ejs')%>
+<%-include('../includes/footer.ejs')%>

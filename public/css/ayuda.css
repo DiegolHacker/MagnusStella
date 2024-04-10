@@ -12,6 +12,7 @@ h1{
 
 .help-card:hover {
     background-color: var(--hover-color);
+    cursor: pointer;
 }
 
 .help-card-container {
@@ -23,4 +24,11 @@ h1{
 
 .help-icon{
     font-size: 5em;
+}
+
+.body{
+    margin: 0 auto;
+    min-width: 120em;
+    line-height: 1.5;
+    padding: 4em 1em;
 }

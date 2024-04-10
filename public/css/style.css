@@ -451,7 +451,6 @@ body.dark .user-sub-menu i {
 
 body {
     margin: 0 auto;
-    /* max-width: 55em; */
     line-height: 1.5;
     padding: 4em 1em;
     transition: margin 0.5s ease;
