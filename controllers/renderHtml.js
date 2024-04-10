@@ -11,6 +11,7 @@ exports.get_usuarios = (request, response, next) => {
 
     Usuarios.fetchPag(pag)
     .then(result => {
+        console.log(result.users)
         response.render('usuarios', { 
             usuarios: result.users, 
             titulo: "Usuarios", 
@@ -65,7 +66,7 @@ exports.post_editar = (request, response, next) => {
     Usuarios.saveUsernameChanges(correo, password, idrol, idusuario)
         .then(() => {
             console.log("Guardado")
-            response.redirect('/usuarios');
+            response.redirect('/');
         })
         .catch((error) => {console.log(error)});
 
