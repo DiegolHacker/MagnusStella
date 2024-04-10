@@ -1157,6 +1157,10 @@ label {
     margin-right: 80px;
 }
 
+#tasaContestacion{
+    margin-right: 30px;
+}
+
 .graphContainer{
     background-color: var(--backGroundColor);
     border-radius: 10px;

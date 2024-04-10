@@ -16,10 +16,5 @@ exports.get_usuarios = (request, response, next) => {
     response.render('usuarios', { usuarios: usuarios, titulo:"Usuarios",marca:marca });
 };
 
-exports.get_correos = (request, response, next) => {
-    const marca = request.params.marca
-    response.render("correos", {
-        titulo: "Correos",marca:marca
-    })
-}
+
 

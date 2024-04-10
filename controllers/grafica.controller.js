@@ -3,8 +3,10 @@ const Model = require('../models/grafica.model'); // Reemplaza './model' con la 
 exports.get_dashboard = (request, response, next) => {
     const marca = request.params.marca
     let categoria = request.params.categoria || '*';
+    let producto = '*';//"AN1133V"
+    // let producto = request.params.producto || '*'; 
     
-    Promise.all([Model.StarAvg(marca,categoria), Model.tasaDeRespuesta(),Model.ReviewsSentxMonth()])
+    Promise.all([Model.StarAvg(marca,categoria), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto)])
         .then(([averageScores, responseRates,reviewsSent]) => {
 
             response.render("dashboard", {
@@ -13,6 +15,7 @@ exports.get_dashboard = (request, response, next) => {
                 tasaDeRespuesta: responseRates,
                 encuestasEnviadas: reviewsSent,
                 marca: marca,
+                ruta: "/graphics/dashboard"
             });
         })
         .catch(error => {
@@ -26,7 +29,8 @@ exports.get_analitica = (request, response, next) => {
     const marca = request.params.marca;
     response.render("analitica", {
         titulo: 'Analitica',
-        marca:marca
+        marca:marca,
+        ruta: "/graphics/analitica"
         // csrfToken: request.csrfToken()
     })
 }

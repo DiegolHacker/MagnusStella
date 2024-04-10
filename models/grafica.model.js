@@ -6,100 +6,27 @@ exports.StarAvg = (marca,categoriaS) => {
     JOIN venta v ON r.fk_review_venta = v.idventa 
     JOIN producto p ON v.fk_venta_producto = p.idproducto
     WHERE fk_idMarca_Producto = ?`
+    let parametros = [marca];
 
     if (categoriaS !== '*') {
         query += `
     AND Categoria = ?`;
+        parametros.push(categoriaS);
     }
     
-    if(productoS !== '*'){
-        query += `
-    AND idProducto = ?`
-    }
+  
 
     query += ` 
     GROUP BY MONTHNAME(r.Fecha)
     ORDER BY MONTHNAME(r.Fecha) ASC;`;
 
-// console.log(query)
-
-    if(categoriaS !== '*'){
-        return db.execute(query,[marca,categoriaS])
-            .then(([rows]) => {
-                if (rows.length > 0) {
-                    return rows.map(row => {
-                        return {
-                            mes: row.Mes,
-                            promedio: row.Promedio
-                        };
-                    });
-                }
-                return [];
-            })
-            .catch(err => {
-                console.log('Error obteniendo la información', err);
-                throw err;
-            });
-    }else{
-        return db.execute(query,[marca])
-            .then(([rows]) => {
-                if (rows.length > 0) {
-                    return rows.map(row => {
-                        return {
-                            mes: row.Mes,
-                            promedio: row.Promedio
-                        };
-                    });
-                }
-                return [];
-            })
-            .catch(err => {
-                console.log('Error obteniendo la información', err);
-                throw err;
-            });
-    }
-
-};
-
-exports.tasaDeRespuesta = () => {
-    let query1 = `SELECT ReviewsContestadas(marca,categoria);`;
-    let query2 = `SELECT Reviewsenviadas(marca categoria);`;
-
-
-
-    return Promise.all([db.execute(query1), db.execute(query2)])
-        .then(([resultContestadas, resultEnviadas]) => {
-            let contestadas = resultContestadas[0][0]['ReviewsContestadas()'];
-            let enviadas = resultEnviadas[0][0]['Reviewsenviadas()'];
-
-            let resultado = (contestadas / enviadas) * 100;
-
-            return resultado;
-        })
-        .catch(err => {
-            console.error('Error obteniendo la información para la tasa de respuesta:', err);
-            throw err; 
-        });
-};
-
-exports.ReviewsSentxMonth = (marca,categoriaS) => {
-    let query = `SELECT 
-    MONTHNAME(Fecha) AS Mes,
-    COUNT(*) AS Cantidad_Envios
-FROM 
-    review
-GROUP BY 
-    MONTHNAME(Fecha)
-ORDER BY 
-    MONTHNAME(Fecha);`;
-
-    return db.execute(query)
+    return db.execute(query,parametros)
         .then(([rows]) => {
             if (rows.length > 0) {
                 return rows.map(row => {
                     return {
                         mes: row.Mes,
-                        enviadas: row.Cantidad_Envios,
+                        promedio: row.Promedio
                     };
                 });
             }
@@ -109,4 +36,106 @@ ORDER BY
             console.log('Error obteniendo la información', err);
             throw err;
         });
+
+
 };
+
+exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
+    let query1 = `SELECT ReviewsContestadasM(?)`;
+    let query2 = `SELECT ReviewsEnviadasM(?)`;
+    let q1String = 'ReviewsContestadasM(?)';
+    let q2String = 'ReviewsEnviadasM(?)';
+    let parametros = [marca]
+
+    if(categoriaS !== '*'){
+        query1 = `SELECT ReviewsContestadasMC(?,?)`;
+        query2 = `SELECT ReviewsEnviadasMC(?,?)`;
+        q1String = 'ReviewsContestadasM(?,?)';
+        q2String = 'ReviewsEnviadasM(?,?)';
+        parametros.push(categoriaS);
+    }
+
+    if(productoS !== '*'){
+        query1 = `SELECT ReviewsContestadasP(?)`;
+        query2 = `SELECT ReviewsEnviadasP(?)`;
+        q1String = 'ReviewsContestadasP(?)';
+        q2String = 'ReviewsEnviadasP(?)';
+        parametros = [productoS]
+    }
+
+    // console.log(parametros)
+    return Promise.all([db.execute(query1,parametros), db.execute(query2,parametros)])
+        .then(([resultContestadas, resultEnviadas]) => {
+            let contestadas = resultContestadas[0][0][q1String];
+            let enviadas = resultEnviadas[0][0][q2String];
+            console.log(contestadas,enviadas)
+            let resultado = (contestadas / enviadas) * 100;
+
+            return resultado;
+        })
+        .catch(err => {
+            console.error('Error obteniendo la información para la tasa de respuesta:', err);
+            // throw err; 
+        });
+};
+
+exports.ReviewsSentxMonth = (marca,productoS,categoriaS) => {
+//     let query = `SELECT 
+//     p.idProducto,
+//     p.Categoria,
+//     p.FK_idMarca_Producto AS Marca,
+//     MONTHNAME(r.Fecha) AS Mes,
+//     COUNT(*) AS Cantidad_Envios
+// FROM 
+//     review r
+// JOIN 
+//     producto p ON r.FK_idProducto_Review = p.idProducto
+// JOIN 
+//     marca m ON p.FK_idMarca_Producto = m.idMarca
+// WHERE
+// 	m.idMarca = ?`;
+
+//     let parametros = [marca]
+
+//     if(categoriaS !== '*'){
+//         query += `
+//         AND p.Categoria = ?`;
+//         parametros.push(categoriaS);
+//     }
+
+//     if(productoS !== '*'){
+//         query += `
+//         AND p.idProducto = ?`;
+//         parametros.push(productoS)
+//     }
+
+//     return db.execute(query,parametros)
+//         .then(([rows]) => {
+//             if (rows.length > 0) {
+//                 return rows.map(row => {
+//                     return {
+//                         mes: row.Mes,
+//                         enviadas: row.Cantidad_Envios,
+//                     };
+//                 });
+//             }
+//             return [];
+//         })
+//         .catch(err => {
+//             console.log('Error obteniendo la información', err);
+//             throw err;
+//         });
+};
+
+
+    // if(categoriaS !== '*'){
+    //     query1 = `ReviewsContestadasMC(?,?)`;
+    //     query2 = `ReviewsEnviadasMC(?,?)`;
+    //     parametros.push(categoriaS)
+    // }
+
+    // if(productoS !== '*'){
+    //     query1 = `ReviewsContestadasP(?)`;
+    //     query2 = `ReviewsEnviadasP(?)`;
+    //     parametros = [productoS];
+    // }
