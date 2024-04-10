@@ -34,9 +34,9 @@
                         <td><%= usuario.Correo %></td>
                         <td><%= usuario.IDRol %></td>
                         <% if (usuario.Estado ==="0") { %>
-                        <td><span class="status text-warning">&bull;</span></td>
+                        <td><span class="status text-warning">&bull;</span>Inactivo</td>
                         <% } else { %>
-                        <td><span class="status text-success">&bull;</span></td>
+                        <td><span class="status text-success">&bull;</span>Activo</td>
                         <% } %>
                         <td>
                             <a class="settings" title="Editar" data-placement="top" data-toggle="tooltip" href="/usuarios/editar/<%= usuario.idUsuario%>" ><i class='bx bxs-edit-alt'></i></a>
