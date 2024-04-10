@@ -50,11 +50,4 @@ exports.get_resenas = (request, response, next) => {
 
 };
 
-exports.get_correos = (request, response, next) => {
-    const marca = request.params.marca
-    response.render("correos", {
-        titulo: "Correos",
-        marca:marca,
-        ruta: "/reviews/correos"
-    })
-}
+
