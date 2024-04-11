@@ -109,10 +109,13 @@ module.exports = class Usuarios {
     }
 
     static saveUsernameChanges(correo, password, idrol, idusuario){
-        var algo = "algo" ;
-        console.log(algo);
         return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
         [idrol, password, correo, idusuario]);
+    }
+
+    static emailConfiguration(id){
+        return db.execute('SELECT * FROM pregunta WHERE fk_pregunta_idmarca = ?',
+        [id]);
     }
     
 }

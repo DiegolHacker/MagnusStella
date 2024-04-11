@@ -3,7 +3,7 @@
 
     <div class="signup-box box">
         <div class="signup-title title">
-            <h4>Ingresa la informacion del nuevo usuario</h4>
+            <h5>Ingresa la informacion del nuevo usuario</h5>
         </div>
 
         <% if(typeof error !=='undefined' ){ %>
@@ -17,23 +17,26 @@
                 <form action="/users/signup" method="post">
                     <div class="credential-input">
                         <label for="name">Nombre:</label>
-                        <input type="text" name="name" id="username" placeholder="Ingresa tu nombre">
-                    </div>
-
-                    <div class="credential-input">
+                        <input type="text" name="name" id="username" placeholder="Ingresa tu nombre"><br>
                         <label for="email">Correo electronico:</label>
-                        <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico">
+                        <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico"><br>
+                        <label for="password">Contrasena:</label>
+                        <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena"><br>
+                        <label for="rol">Rol:</label>
+                        <input type="text" name="rol" id="rol" placeholder="Ingresa el rol">
                     </div>
 
-                    <div class="credential-input">
-                        <label for="name">Contrasena:</label>
-                        <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena">
-                    </div>
+                
+                    <form action="/archivo" method="POST" enctype="multipart/form-data">
+                        <label for="image">   Imagen:</label>
+                        <input class="credential-input" type="file" name="image" required>
+                    </form>
 
                     <div class="ingresarBtn">
                         <button type="submit" class="ingresar-btn">Crear Usuario</button>
                     </div>
                 </form>
+
     </div>
 
 
