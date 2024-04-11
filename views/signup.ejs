@@ -14,7 +14,7 @@
             </div>
             <% } %>
 
-                <form action="/users/signup" method="post">
+                <form action= "/users/signup" method="POST">
                     <div class="credential-input">
                         <label for="name">Nombre:</label>
                         <input type="text" name="name" id="username" placeholder="Ingresa tu nombre"><br>
@@ -26,15 +26,15 @@
                         <input type="text" name="rol" id="rol" placeholder="Ingresa el rol">
                     </div>
 
-                
-                    <form action="/archivo" method="POST" enctype="multipart/form-data">
-                        <label for="image">   Imagen:</label>
-                        <input class="credential-input" type="file" name="image" required>
-                    </form>
+                    <label class="label" for="image">Imgaen:</label>
+                    <input name="image" id="image" type="file" class="input"><br><br>
+
 
                     <div class="ingresarBtn">
-                        <button type="submit" class="ingresar-btn">Crear Usuario</button>
+                        <input type="submit" value=" Crear Usuario " class="ingresar-btn">
+                        <a href="/usuarios/LU1/1">Cancelar</a>
                     </div>
+
                 </form>
 
     </div>

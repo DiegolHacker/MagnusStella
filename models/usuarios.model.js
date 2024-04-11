@@ -13,21 +13,23 @@ module.exports = class Usuarios {
     }
 
     save() {
+
+        let ruta_imagen = "/public/images" + this.idUsuario;
         const userData = {
             idUsuario: this.idUsuario,
             IdRol: this.idRol,
             Nombre: this.nombre,
             Contrasena: this.contrasena,
             Correo: this.email,
-            Image: this.image,
-            Estado: this.estado,
+            image: ruta_imagen,
+            Estado: 1,
         }
 
         return bcrypt.hash(userData.Contrasena, 12)
             .then((hashedPassword) => {
                 userData.Contrasena = hashedPassword;
                 const values = Object.values(userData);
-                return db.execute('INSERT INTO usuario (idUsuario,IdRol,Nombre,Contrasena,Correo,Imagen,Estado) VALUES (?,?,?,?,?,?,?)',values);
+                return db.execute('INSERT INTO usuario (idUsuario,IDRol,Nombre,Password,Correo,Imagen,Estado) VALUES (?,?,?,?,?,?,?)',values);
             })
             .then(([result]) => {
                 console.log('Usuario Guardado:', result);

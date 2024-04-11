@@ -60,15 +60,25 @@ exports.get_logout = (request, response, next) => {
 
 exports.get_signup =(request, response, next) => {
     const marca = request.params.marca
-    response.render("signup", {titulo: 'Anadir Usuarios',marca:marca })
+    const pag = parseInt(request.params.pag) || 1;
+
+    response.render("signup", {
+        titulo: 'Anadir Usuarios',
+        marca: marca, 
+        ruta: "users/signup",
+    })
 };
 
 let latestID = 8;
 exports.post_signup = (request,response,next) => {
     const {name, email, password} = request.body;
+
+    console.log("/signup")
+    console.log(request.body);
+
     
     if(!name || !password || !email){
-        return response.render("signup", {error: "Llena todos los campos",csrfToken: request.csrfToken()})
+        return response.render("signup", {error: "Llena todos los campos"})
     }
 
     const idUser = generateUserID();
@@ -79,7 +89,7 @@ exports.post_signup = (request,response,next) => {
     console.log(usuarios)
     usuarios.save()
         .then(() =>{
-            response.redirect('/users/login')
+            response.redirect('/');
         })
         .catch(err => {
             console.log("Error al hacer el signup:",err);
