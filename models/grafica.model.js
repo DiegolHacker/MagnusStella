@@ -1,6 +1,6 @@
 const db = require('../util/database');
 
-exports.StarAvg = (marca,categoriaS) => {
+exports.StarAvgLine = (marca,categoriaS) => {
     let query = `SELECT MONTHNAME(r.Fecha) as Mes, AVG(Puntaje) as Promedio
     FROM review r
     JOIN venta v ON r.fk_review_venta = v.idventa 
@@ -63,7 +63,6 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
         parametros = [productoS]
     }
 
-    // console.log(parametros)
     return Promise.all([db.execute(query1,parametros), db.execute(query2,parametros)])
         .then(([resultContestadas, resultEnviadas]) => {
             let contestadas = resultContestadas[0][0][q1String];
@@ -79,7 +78,7 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
         });
 };
 
-exports.ReviewsSentxMonth = (marca,productoS,categoriaS) => {
+exports.ReviewsSentxMonth = (marca,categoriaS,productoS) => {
     let query = `SELECT 
     MONTHNAME(v.fecha) AS mes,
     COUNT(*) AS Cantidad_Enviadas
@@ -106,18 +105,15 @@ WHERE
 
     query += `
 GROUP BY 
-    MONTHNAME(v.fecha)
-ORDER BY 
-    mes ASC;`;
-
+    MONTHNAME(v.fecha);`;
 
     return db.execute(query,parametros)
         .then(([rows]) => {
             if (rows.length > 0) {
                 return rows.map(row => {
                     return {
-                        mes: row.Mes,
-                        enviadas: row.Cantidad_Envios,
+                        mes: row.mes,
+                        enviadas: row.Cantidad_Enviadas,
                     };
                 });
             }
@@ -126,6 +122,37 @@ ORDER BY
         .catch(err => {
             console.log('Error obteniendo la información', err);
         });
+};
+
+exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
+    let query = `SELECT PuntajeItemM(?)`;
+    let qString = `PuntajeItemM(?)`;
+    let parametros = [marca];
+    
+    // if(categoriaS !== '*'){
+    //     query = `SELECT PuntajeItemMC(?,?)`;
+    //     qString = `PuntajeItemMC(?,?)`;
+    //     parametros.push(categoriaS);
+    // };
+
+    // if(productoS !== '*'){
+    //     query = `SELECT PuntajeItemP(?)`;
+    //     qString = `PuntajeItemP(?)`;
+    //     parametros = [productoS];
+    // };
+
+    return db.execute(query,parametros)
+        .then((resultContestadas) => {
+            let resultado = resultContestadas[0][0][qString];
+
+            return resultado;
+        })
+        .catch(err => {
+            console.error('Error obteniendo la información para el promedio de estrellas:', err);
+            // throw err; 
+        });
+
+
 };
 
 

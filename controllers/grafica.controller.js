@@ -6,14 +6,17 @@ exports.get_dashboard = (request, response, next) => {
     let producto = '*';//"AN1133V"
     // let producto = request.params.producto || '*'; 
     
-    Promise.all([Model.StarAvg(marca,categoria), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto)])
-        .then(([averageScores, responseRates,reviewsSent]) => {
-            console.log(reviewsSent)
+    Promise.all([Model.StarAvgLine(marca,categoria), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto),Model.StarAvgNumber(marca,categoria,producto)])
+        .then(([averageScores, responseRates,reviewsSent,starAVGNum]) => {
+            const roundedStarAVGNum = Math.round(starAVGNum * 100) / 100
+            const roundedStarAVGNumComplementario = Math.round(100 - ((roundedStarAVGNum / 5) * 100));
             response.render("dashboard", {
                 titulo: 'Dashboard',
                 promedioPuntajes: averageScores,
                 tasaDeRespuesta: responseRates,
                 encuestasEnviadas: reviewsSent,
+                numAVGEstrella: roundedStarAVGNum,
+                porcentaje: roundedStarAVGNumComplementario,
                 marca: marca,
                 ruta: "/graphics/dashboard"
             });
