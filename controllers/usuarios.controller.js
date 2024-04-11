@@ -59,7 +59,8 @@ exports.get_logout = (request, response, next) => {
 /////// Sign up ////////
 
 exports.get_signup =(request, response, next) => {
-    response.render("signup", {titulo: 'Anadir Usuarios'})
+    const marca = request.params.marca
+    response.render("signup", {titulo: 'Anadir Usuarios',marca:marca })
 };
 
 let latestID = 8;
