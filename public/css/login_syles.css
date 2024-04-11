@@ -97,6 +97,9 @@ footer {
 .signup-box {
     width: 65%;
 }
+.signup-title{
+    font-size: 14px;
+}
 
 .alert {
     display: flex;

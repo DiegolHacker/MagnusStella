@@ -1,33 +1,34 @@
 <%- include('includes/navigation.ejs')%>
 
-<link rel="stylesheet" href="/ccs/usuarios-resenia.css">
-    <% for (let usuario of usuarios) { %>
-        <section class="section">
-            <div class="container-fluid">
-                <h2><b>Nombre de usuario: <%= usuario.Nombre%></b></h2>
-
-                <form action= "/usuarios/editar" method="POST">
-                    <input type="hidden" name="idusuario" value="<%= usuario.idUsuario %>" >
-
-
-                    <label class="label" for="correo">Correo: </label>
-                    <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.Correo%>" name="correo" id="correo" type="text"><br> <br>
-
-                    <label class="label" for="password">Password: </label>
-                    <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.Password%>" name="password" id="password" type="text"><br> <br>
-                    
-                    <label class="label" for="idrol">IDRol: </label>
-                    <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.IDRol%>" name="idrol" id="idrol" type="text"><br> <br>
-
-
-
-                    <input type="submit" value="Guardar" class="button is-success">
-                    <a href="/usuarios/LU1 /1">Cancelar</a>
-                </form>
-            </div>
-        </section>
-
-    <% } %>
+<% for (let usuario of usuarios) { %>
+<div class="signup-box box">
+    <div class="signup-title title">
+        <h4>Nombre de usuario: <%= usuario.Nombre%></h4>
+    </div>
+    
+    <form action= "/usuarios/editar" method="POST">
+        <input type="hidden" name="idusuario" value="<%= usuario.idUsuario %>" >
+        <div class="credential-input">
+            <label class="label" for="correo">Correo: </label>
+            <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.Correo%>" name="correo" id="correo" type="text">
+        </div>
+        <div class="credential-input">
+            <label class="label" for="password">Password: </label>
+            <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.Password%>" name="password" id="password" type="text">
+        </div>
+        <div class="credential-input">
+            <label class="label" for="idrol">IDRol: </label>
+            <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.IDRol%>" name="idrol" id="idrol" type="text">
+        </div>
+        
+        <div class="ingresarBtn">
+            <input type="submit" value=" Guardar " class="ingresar-btn">
+            <a href="/usuarios/LU1/1">Cancelar</a>
+        </div>
+            
+    </form>
+</div>
+<% } %>
 
     <script>
         const editar = (id) => {
