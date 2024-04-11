@@ -14,7 +14,11 @@ exports.get_resenas_completas = (request, response, next) => {
         }
 
         // Renderiza la vista de la reseña completa y pasa los datos de la reseña
-        response.render("resenas_completas", { resenas: resenaCompleta, titulo: "Reseña Completa",marca: marca});
+        response.render("resenas_completas", { resenas: resenaCompleta, 
+            titulo: "Reseña Completa",
+            marca: marca,
+            ruta: "/reviews/resenas/completas/:marca/:id" 
+        });
     });
 };
 
@@ -31,11 +35,19 @@ exports.get_resenas = (request, response, next) => {
             title: resena.titulo, 
             resena_descrip: resena.descripcion,
             estrellas: resena.puntaje,
-            itemcode: resena.idProducto,        
+            itemcode: resena.idProducto,
 
         }));
         
-        response.render("resenas", { resenas: resenas, titulo: "Reseñas", marca:marca, id:idReview});
+        response.render("resenas", { resenas: resenas, 
+            titulo: "Reseñas", 
+            marca:marca,
+             id:idReview,
+            ruta: "/reviews/resenas"      
+
+            });
     });
 
 };
+
+
