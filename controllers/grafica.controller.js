@@ -14,7 +14,7 @@ exports.get_dashboard = (request, response, next) => {
                 promedioPuntajes: averageScores,
                 tasaDeRespuesta: responseRates,
                 encuestasEnviadas: reviewsSent,
-                marca: marca,
+                marca: marca || "LU1",
                 ruta: "/graphics/dashboard"
             });
         })
@@ -29,7 +29,7 @@ exports.get_analitica = (request, response, next) => {
     const marca = request.params.marca;
     response.render("analitica", {
         titulo: 'Analitica',
-        marca:marca,
+        marca:marca || "LU1",
         ruta: "/graphics/analitica"
         // csrfToken: request.csrfToken()
     })

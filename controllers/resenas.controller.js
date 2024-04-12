@@ -16,7 +16,7 @@ exports.get_resenas_completas = (request, response, next) => {
         // Renderiza la vista de la reseña completa y pasa los datos de la reseña
         response.render("resenas_completas", { resenas: resenaCompleta, 
             titulo: "Reseña Completa",
-            marca: marca,
+            marca: marca || "LU1",
             ruta: "/reviews/resenas/completas/:marca/:id" 
         });
     });
@@ -41,7 +41,7 @@ exports.get_resenas = (request, response, next) => {
         
         response.render("resenas", { resenas: resenas, 
             titulo: "Reseñas", 
-            marca:marca,
+            marca:marca || "LU1",
              id:idReview,
             ruta: "/reviews/resenas"      
 

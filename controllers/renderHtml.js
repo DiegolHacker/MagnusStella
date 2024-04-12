@@ -15,7 +15,7 @@ exports.get_usuarios = (request, response, next) => {
         response.render('usuarios', { 
             usuarios: result.users, 
             titulo: "Usuarios", 
-            marca: marca,
+            marca: marca || "LU1",
             currentPage: pag,
             pageSize: result.pageSize,
             totalUsers: result.totalUsers,
@@ -40,7 +40,7 @@ exports.get_editar = (request, response, next) => {
         response.render('editar_usuarios', {
             usuarios: rows, 
             titulo:"Usuarios", 
-            marca: marca,
+            marca: marca || "LU1",
             ruta: "/usuarios/editar/:marca/:usuario.IDRol" 
         });
     })
@@ -81,7 +81,7 @@ exports.get_correos = (request, response, next) => {
         response.render("correos", {
             preguntas: rows[0],
             titulo: "Correos",
-            marca: marca,
+            marca: marca || "LU1",
             ruta: "/reviews/correos"
         })
     })
