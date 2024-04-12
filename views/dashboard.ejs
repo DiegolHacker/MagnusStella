@@ -9,15 +9,6 @@
 
 
 <div class="graficas">
-
-    <!-- <div class="dropdown-categoria">
-        <label for="dropdown">Categorias<label>
-        <select id="dropdown" name="dropdown" onchange="handleOptionChange(this)">
-            <option value="cama">Camas</option>
-            <option value="almohada">Almohadas</option>
-            <option value="sabana">Sabanas</option>
-        </select>
-    </div> -->
     
     <%-include('includes/categorias.ejs', {
         marca:marca
@@ -30,19 +21,30 @@
             <canvas id="promedioxMes"></canvas>
         </div>
 
-        <div id="respuesta-enviada-div" class="graphContainer">
-            <canvas id="respuestaEnviada"></canvas>
-        </div>
-
-    </div>
-
-    <div class="bottom-graficas">
         <div id="tasaContestacion" class="graphContainer">
             <canvas id="tasaContestada"></canvas>
         </div>
 
+
+
+    </div>
+
+    <div class="bottom-graficas">
+
+        <div id="respuesta-enviada-div" class="graphContainer">
+            <canvas id="respuestaEnviada"></canvas>
+        </div>
+
         <div id="promedioEstrellaNumero" class="graphContainer">
-            Hola
+            <h3>Calificacion promedio</h3>
+            <div id="estrella-numero">
+                <div id="divison">
+                    <img src="/images/Estrella vacia 11.png" class="avatar" alt="Avatar" id="estrella1">
+                    <img src="/images/Estrella reyena 11.png" class="avatar" alt="Avatar" id="estrella2" style="--cut-value: <%=porcentaje%>%;">
+                </div>
+                <h1><%= numAVGEstrella %></h1>
+            </div>
+
         </div>
 
     </div>

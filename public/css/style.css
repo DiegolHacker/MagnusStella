@@ -32,8 +32,9 @@
     --boxShadow: rgba(24, 23, 23, 0.884);
     --image1Display: none;
     --image2Display: inline;
-    --backGroundColor: #f5f6f6;
+    --backGroundColor: #fbfafa;
     --line-color-1: #005CB9;
+    --boxShadow2: rgba(0, 0, 0, 0.2);
 
 
     /* Transition */
@@ -77,6 +78,7 @@ body.dark {
     --image2Display: none;
     --backGroundColor: #2b2a2a;
     --line-color-1: #B97100;
+    --boxShadow2:rgba(255, 255, 255, 0.258);
 }
 
 .side_bar.close {
@@ -1130,9 +1132,11 @@ label {
     flex-direction: row;
     /* flex-wrap: wrap; */
     justify-content: center;
+    align-items: center;
     /* width: 100%; */
     /* height: ; */
 }
+
 
 .top-graficas{
     margin-bottom: 20px;
@@ -1156,17 +1160,70 @@ label {
 }
 
 #promedio-mes-div{
-    margin-right: 80px;
+    margin-right: 40px;
 }
 
-#tasaContestacion{
+#respuesta-enviada-div{
+    margin-right: 52px;
+}
+
+#tasaContestacion,#promedioEstrellaNumero{
     margin-right: 30px;
+}
+
+#promedioEstrellaNumero{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 260px;
+}
+
+#promedioEstrellaNumero h1{
+    margin-top: 15px;
+    color: #121418;
+    font-weight: 500;
+    font-size: 55px;
+
+}
+
+#estrella-numero{
+    display: flex;
+    align-items: center;
 }
 
 .graphContainer{
     background-color: var(--backGroundColor);
     border-radius: 10px;
+    box-shadow: 0px 1px 5px 0px var(--boxShadow2);
 }
+
+/* estrella */
+
+#estrella1 {
+    position: absolute;
+    max-width: 100%;
+}
+
+#estrella2 {
+    position: absolute;
+    max-width: 100%;
+    clip-path: inset(var(--cut-value) 0 0 0);
+    object-fit: cover;
+    overflow: hidden;
+}
+
+#divison {
+    display: flex;
+    position: relative;
+    height: 120px;
+    width: 120px;
+    justify-content: center;
+    align-items: center;
+
+}
+
 
 .cat-btn {
     background-color: var(--backGroundColor);
@@ -1176,9 +1233,11 @@ label {
     border: none;
     cursor: pointer;
     border-radius: 10px;
+    display: flex;
 }
 
 .category {
+    display: flex;
     position: relative;
     display: inline-block;
     width: 100px;
@@ -1191,6 +1250,7 @@ label {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    margin-top: 4px;
 }
 
 .cat-content a {
