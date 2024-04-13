@@ -30,7 +30,7 @@
                     <% for (let usuario of usuarios) { %>
                     <tr>
                         <td><%= usuario.idUsuario %></td>
-                        <td><a href="#"><img src="/images/<%= usuario.id %>.jpg" class="avatar" alt="Avatar"> <%= usuario.Nombre %></a></td>
+                        <td><a href="#"><img src="uploads/<%= usuario.id %>" class="avatar" alt="Avatar"> <%= usuario.Nombre %></a></td>
                         <td><%= usuario.Correo %></td>
                         <td><%= usuario.IDRol %></td>
                         <% if (usuario.Estado ==="0") { %>

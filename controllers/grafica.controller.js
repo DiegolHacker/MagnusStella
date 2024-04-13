@@ -8,7 +8,7 @@ exports.get_dashboard = (request, response, next) => {
     
     Promise.all([Model.StarAvg(marca,categoria), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto)])
         .then(([averageScores, responseRates,reviewsSent]) => {
-            // console.log(reviewsSent)
+            console.log(reviewsSent)
             response.render("dashboard", {
                 titulo: 'Dashboard',
                 promedioPuntajes: averageScores,

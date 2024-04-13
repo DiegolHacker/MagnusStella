@@ -14,15 +14,14 @@ module.exports = class Usuarios {
 
     save() {
 
-        let ruta_imagen = "/public/images" + this.idUsuario;
         const userData = {
             idUsuario: this.idUsuario,
             IdRol: this.idRol,
             Nombre: this.nombre,
             Contrasena: this.contrasena,
             Correo: this.email,
-            image: ruta_imagen,
-            Estado: 1,
+            image: this.image,
+            Estado: this.estado,
         }
 
         return bcrypt.hash(userData.Contrasena, 12)

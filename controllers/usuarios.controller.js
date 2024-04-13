@@ -74,7 +74,7 @@ exports.post_signup = (request,response,next) => {
     const {name, email, password} = request.body;
 
     console.log("/signup")
-    console.log(request.body);
+    console.log(request.file);
 
     
     if(!name || !password || !email){
@@ -82,11 +82,11 @@ exports.post_signup = (request,response,next) => {
     }
 
     const idUser = generateUserID();
+    const image = request.file.filename;
 
     const IdRol = Math.floor(Math.random() * 11);
 
-    const usuarios = new Usuarios(name,email,password,idUser,IdRol);
-    console.log(usuarios)
+    const usuarios = new Usuarios(name,email,password,idUser,IdRol, image, 1);
     usuarios.save()
         .then(() =>{
             response.redirect('/');

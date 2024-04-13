@@ -14,7 +14,7 @@
             </div>
             <% } %>
 
-                <form action= "/users/signup" method="POST">
+                <form action= "/users/signup" method="POST" enctype="multipart/form-data">
                     <div class="credential-input">
                         <label for="name">Nombre:</label>
                         <input type="text" name="name" id="username" placeholder="Ingresa tu nombre"><br>
@@ -28,6 +28,7 @@
 
                     <label class="label" for="image">Imgaen:</label>
                     <input name="image" id="image" type="file" class="input"><br><br>
+                    
 
 
                     <div class="ingresarBtn">
