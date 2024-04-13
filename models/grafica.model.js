@@ -1,3 +1,4 @@
+const { search } = require('../routes/routes1.routes');
 const db = require('../util/database');
 
 exports.StarAvgLine = (marca,categoriaS) => {
@@ -151,19 +152,8 @@ exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
             console.error('Error obteniendo la información para el promedio de estrellas:', err);
             // throw err; 
         });
-
-
 };
 
-
-    // if(categoriaS !== '*'){
-    //     query1 = `ReviewsContestadasMC(?,?)`;
-    //     query2 = `ReviewsEnviadasMC(?,?)`;
-    //     parametros.push(categoriaS)
-    // }
-
-    // if(productoS !== '*'){
-    //     query1 = `ReviewsContestadasP(?)`;
-    //     query2 = `ReviewsEnviadasP(?)`;
-    //     parametros = [productoS];
-    // }
+// exports.search = (valor_busqueda) => {
+//     return db.execute('
+// };
