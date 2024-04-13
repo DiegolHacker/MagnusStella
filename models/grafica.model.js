@@ -154,6 +154,6 @@ exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
         });
 };
 
-// exports.search = (valor_busqueda) => {
-//     return db.execute('
-// };
+exports.search = (valor_busqueda) => {
+    return db.execute('SELECT * FROM producto WHERE idProducto LIKE ?',['%' + valor_busqueda + '%']);
+};
