@@ -27,6 +27,13 @@ exports.get_dashboard = (request, response, next) => {
         });
 };
 
+exports.get_buscar = (request,response,next) => {
+    Model.search(request.params.valor_busqueda)
+        .then(([busqueda,fieldData]) => {
+            return response.status(200).json({busqueda: busqueda});
+        })
+        .catch((error) => {console.log(error)});
+};
 
 exports.get_analitica = (request, response, next) => {
     const marca = request.params.marca;

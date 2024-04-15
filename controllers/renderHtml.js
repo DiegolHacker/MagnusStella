@@ -11,7 +11,7 @@ exports.get_usuarios = (request, response, next) => {
 
     Usuarios.fetchPag(pag)
     .then(result => {
-        console.log(result.users)
+        // console.log(result.users)
         response.render('usuarios', { 
             usuarios: result.users, 
             titulo: "Usuarios", 
