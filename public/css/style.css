@@ -6,7 +6,7 @@
     padding: 7px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.15s ease;
+    transition: all 0.05s ease;
     ;
 }
 
@@ -494,6 +494,7 @@ body.dark a:hover {
     align-items: center;
     margin: 20px 0 0 105px;
     height: 100%;
+    
 }
 
 .main-content-increase {
@@ -834,10 +835,12 @@ table.table .avatar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
 }
 
 .item-container {
-    width: 22%;
+    width: 280px;
+    min-width: 250px;
     /* Ajusta el ancho según tus necesidades */
     margin: 10px;
     padding: 10px;
@@ -882,7 +885,6 @@ table.table .avatar {
 
 .ver_pagina {
     padding-top: 16px;
-    /* Ajustado */
     position: relative;
     display: flex;
     flex-direction: column;
@@ -903,13 +905,13 @@ table.table .avatar {
     border-radius: 50px;
     appearance: none;
     position: relative;
-    background: #e6e6e6;
+    background: #005CB9;
     box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
     transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .ver_pagina input:checked {
-    background: #005CB9;
+    background: #e6e6e6;
 }
 
 .ver_pagina input:before {
@@ -931,7 +933,7 @@ input:checked:before {
     /* Ajustado */
 }
 
-.ver_pagina .text:before {
+input:checked~.text:before {
     content: "Deshabilitado";
     font-size: 10px;
     /* Ajustado */
@@ -939,7 +941,7 @@ input:checked:before {
     color: var(--primary-color-light);
 }
 
-input:checked~.text:before {
+.ver_pagina .text:before {
     content: "Habilitado";
     color: var(--edit-color);
     font-size: 11px;
@@ -969,12 +971,11 @@ label {
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    background-color: var(--divBackground);
     margin-bottom: 20px;
     margin-top: 5px;
     border-radius: 10px;
     border: none;
-    box-shadow: 0 1px 2px 0 var(--boxShadow);
+    
 }
 
 .add-ques-button:hover {
@@ -983,18 +984,23 @@ label {
 
 .ques-container {
     border-radius: 15px;
-    width: 65%;
-    background-color: var(--highlight2);
+    width: 95%;
+    background-color: var(--backGroundColor);
 }
 
-#dias,
-#hora {
-    width: 5em;
+#dias {
+    width: 4em;
     border: none;
     border-bottom-left-radius: 11pt;
     border-top-left-radius: 11pt;
 }
 
+#hora {
+    width: 8em;
+    border: none;
+    border-bottom-left-radius: 11pt;
+    border-top-left-radius: 11pt;
+}
 #subir {
     width: 4em;
     border: none;

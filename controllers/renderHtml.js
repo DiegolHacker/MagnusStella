@@ -63,28 +63,48 @@ exports.post_editar = (request, response, next) => {
     Usuarios.saveUsernameChanges(correo, password, idrol, idusuario)
         .then(() => {
             console.log("Guardado")
-            response.redirect('/');
+            response.redirect('/usuarios/LU1/1');
         })
         .catch((error) => {console.log(error)});
 
 };
 
 //correos
+exports.get_correos = async (request, response, next) => {
+    const marca = request.params.marca;
 
-exports.get_correos = (request, response, next) => {
-    const marca = request.params.marca
+    try {
+        const total = await Usuarios.emailpreguntas(marca); // Espera a que se resuelva la promesa
+   
+        const { preguntas, idp } = await Usuarios.emailConfiguration(marca);
+        
+        const tipos = [];
+        const opciones = [];
+        const total_opciones=[];
+        for (let i = 0; i < total; i++) {
+            const tipo = await Usuarios.emailtipo_pre(idp[i].idPregunta);
+            const opcion  = await Usuarios.emailopciones(idp[i].idPregunta);
+            const to_opcion = await Usuarios.emailcountopcion(idp[i].idPregunta);
+            tipos.push(tipo);
+            opciones.push(opcion); 
+            total_opciones.push(to_opcion);
+        }
+    
+        
 
-    Usuarios.emailConfiguration(marca)
-    .then((rows) => {
-        console.log(rows);
-
+        // Ahora renderiza con los datos obtenidos
         response.render("correos", {
-            preguntas: rows[0],
+            preguntas: preguntas,
             titulo: "Correos",
             marca: marca || "LU1",
-            ruta: "/reviews/correos"
-        })
-    })
-    .catch((error) => {console.log(error)});
-
-}
+            ruta: "/reviews/correos",
+            total: total,
+            tipos: tipos,
+            opciones: opciones,
+            total_opciones: total_opciones
+        });
+    } catch (error) {
+        console.error('Error al cargar las preguntas:', error);
+        response.status(500).send('Error interno del servidor');
+    }
+};
