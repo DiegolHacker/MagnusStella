@@ -2,24 +2,23 @@ const db = require('../util/database');
 const bcrypt = require('bcryptjs');
 
 module.exports = class Usuarios {
-    constructor(name, email, password, idUser, IdRol,image,estado){
+    constructor(name, email, password,image,IdRol,idUser, estado){
         this.nombre = name;
         this.email = email;
         this.contrasena = password;
-        this.idUsuario = idUser;
-        this.idRol = IdRol;
         this.image = image;
+        this.idRol = IdRol;
+        this.idUsuario = idUser;
         this.estado = estado;
     }
 
     save() {
         const userData = {
-            idUsuario: this.idUsuario,
             IdRol: this.idRol,
             Nombre: this.nombre,
             Contrasena: this.contrasena,
             Correo: this.email,
-            Image: "placeholder",
+            Image: this.image,
             Estado: 1,
         }
 
@@ -28,7 +27,7 @@ module.exports = class Usuarios {
                 userData.Contrasena = hashedPassword;
                 const values = Object.values(userData);
                 // console.log(values)
-                return db.execute('INSERT INTO usuario (idUsuario,IdRol,Nombre,Password,Correo,Imagen,Estado) VALUES (?,?,?,?,?,?,?)',values);
+                return db.execute('INSERT INTO usuario (IdRol,Nombre,Password,Correo,Imagen,Estado) VALUES (?,?,?,?,?,?)',values);
             })
             .then(([result]) => {
                 console.log('Usuario Guardado:', result);

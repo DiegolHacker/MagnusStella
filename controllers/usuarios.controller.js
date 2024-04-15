@@ -64,22 +64,20 @@ exports.get_signup =(request, response, next) => {
 };
 
 
-let latestID = 9;
 exports.post_signup = (request,response,next) => {
     console.log(request.body)
     const marca = request.params.marca
     const {name, email, password} = request.body;
     const IdRol = request.body.rol;
+    const image = request.file.filename;
+    
     
     if(!name || !password || !email){
         return response.render("signup",{titulo:"Signup",error: "Llena todos los campos", marca: marca,ruta:"/usuarios/LU1/1"})
     }
 
-    const idUser = generateUserID();
-
-    console.log(IdRol)
-    const usuarios = new Usuarios(name,email,password,idUser,IdRol);
-    // console.log(usuarios)
+    const usuarios = new Usuarios(name,email,password,image,IdRol);
+    console.log(usuarios)
     usuarios.save()
         .then(() =>{
             response.redirect('/usuarios/LU1/1')
@@ -88,12 +86,5 @@ exports.post_signup = (request,response,next) => {
             console.log("Error al hacer el signup:",err);
             response.redirect('/usuarios/LU1/1')
         });
-}
-
-const generateUserID = () => {
-    latestID++;
-
-    const UserID = 'U' + String(latestID).padStart(6,'0');
-    return UserID;
 }
 
