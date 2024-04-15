@@ -11,7 +11,7 @@ exports.get_usuarios = (request, response, next) => {
 
     Usuarios.fetchPag(pag)
     .then(result => {
-        console.log(result.users)
+        // console.log(result.users)
         response.render('usuarios', { 
             usuarios: result.users, 
             titulo: "Usuarios", 
@@ -76,7 +76,6 @@ exports.get_correos = (request, response, next) => {
 
     Usuarios.emailConfiguration(marca)
     .then((rows) => {
-        console.log(rows);
 
         response.render("correos", {
             preguntas: rows[0],

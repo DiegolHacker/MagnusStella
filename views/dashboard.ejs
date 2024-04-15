@@ -10,11 +10,11 @@
 
 <div class="graficas">
     
-    <%-include('includes/categorias.ejs', {
-        marca:marca
-    }) %>
-    
-    <input id="buscar" class="input is-info" type="text" placeholder="Buscar..." /><br><br>
+    <div class="cat-search">    
+        <input id="buscar" class="input is-info" type="text" placeholder="Buscar..." />
+        <%-include('includes/categorias.ejs', { marca:marca }) %>
+
+    </div>
 
 
 

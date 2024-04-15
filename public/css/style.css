@@ -211,6 +211,7 @@ header .image-text .header-text {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-top: 100px;
 }
 
 .menu-bar .darkLight-profile {
@@ -1124,6 +1125,7 @@ label {
     width: 100%;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    /* margin-top: 95px; */
     /* background-color: #121418; */
 }
 
@@ -1141,6 +1143,7 @@ label {
 .top-graficas{
     margin-bottom: 20px;
 }
+
 
 #promedioxMes,#respuestaEnviada{
     width: 500px;
@@ -1241,6 +1244,15 @@ label {
     position: relative;
     display: inline-block;
     width: 100px;
+    z-index: 0;
+}
+
+.cat-search{
+    margin-left: 50px;
+}
+
+#buscar{
+    
 }
 
 .dropdown-content {
