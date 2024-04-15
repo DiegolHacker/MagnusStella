@@ -1,10 +1,9 @@
-<%-include('includes/navigation.ejs') %>
+<%- include('includes/navigation.ejs') %>
 
 <div class="correos-container">
     <div class="editor-de-preguntas">
         <h2>Configuración</h2>
 
-        
         <form>
             <label for="dias">Días a los que se envía la encuesta:</label>
             <input type="number" id="dias" name="dias" min="3" max="60" value="15">
@@ -12,32 +11,28 @@
         </form>
 
         <form>
-            <label for="hora">Hora a la que se envía la encuesta:</label>
-            <input type="time" id="hora" name="hora ">
+            <label for="hora">Hora de envio:</label>
+            <input type="time" id="hora" name="hora">
             <button type="submit" class="subir boton">Enviar</button>
         </form>
 
-        <% for(let pregunta of preguntas) { %>
+        <% for (var i = 0; i < total; i++) { %>
             <div class="ques-container">
-                <h3><%= pregunta.Descripcion %><a href="#" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a></h3>
+                <h3><%= preguntas[i].descripcion %><a href="#" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a></h3>
             </div>
         <% } %>
 
-
-        <Button class="add-ques-button boton">Añadir pregunta +</Button>
-
+        <button class="add-ques-button boton">Añadir pregunta +</button>
     </div>
-    
 
     <div class="preview-html">
         <div class="contenido">
             <img src="/images/<%= marca %>.png" height="200" width="100%">
             <h4><b>Hola user,</b></h4>
-            <p id="sub_question">Has comprado recientemente Juego de Sábanas Individual Rosa Limonada <br> ¿Nos
-                cuentas tu experiencia?</p>
-            <img id="producto_img" src="/images/<%=marca%>producto.png" height="130">
+            <p id="sub_question">Has comprado recientemente 'producto' <br> ¿Nos cuentas tu experiencia?</p>
+            <img id="producto_img" src="/images/<%= marca %>producto.png" height="130">
             <div class="rating-box">
-                <h5 id="question_text"><b>¿Cúal es su calificación general?</b></h5>
+                <h5 id="question_text"><b>¿Cuál es su calificación general?</b></h5>
                 <div class="estrellas">
                     <i class='bx bxs-star'></i>
                     <i class='bx bxs-star'></i>
@@ -51,46 +46,40 @@
                 <input type="text" id="title_rev" name="titulo_review" placeholder="Título"><br>
             </form>
             <h4><b>Reseña: </b></h4>
-            <textarea name="descripcion_review" id="description_rev" cols="35" rows="4"
-                placeholder="Escribe aqui tu reseña"></textarea>
-            <h4><b>¿Qué edad tienes? </b></h4>
-            <p id="sub_question">Elige una de las siguientes opciones</p>
-            <form id="edades">
-                <select id="edad" name="edad_review">
-                    <option value="1">15-24 años</option>
-                    <option value="2">25-34 años</option>
-                    <option value="3">35-44 años</option>
-                    <option value="4">44-55+ años</option>
-                </select>
-            </form>
-            <h4><b>¿Con quién duermes?</b></h4>
-            <p id="sub_question">Elige una o varias de las siguientes opciones</p>
-            <form id="dormir">
-                <input type="checkbox" id="solo" name="convivencia" value="Solo">
-                <label for="solo">Solo</label><br>
-                <input type="checkbox" id="pareja" name="convivencia" value="Con pareja">
-                <label for="pareja">Con una pareja</label><br>
-                <input type="checkbox" id="pareja_mascota" name="convivencia" value="Con pareja y una mascota">
-                <label for="pareja_mascota">Con una pareja y una mascota</label><br>
-            </form>
-            <h4><b>¿En promedio, cuántas horas duermes cada noche? </b></h4>
-            <p id="sub_question">Elige una de las siguientes opciones</p>
-            <form id="edades">
-                <select id="horas_dormir" name="horas_review">
-                    <option value="1">Menos de 4 horas</option>
-                    <option value="2">Entre 4 y 6 horas</option>
-                    <option value="3">Entre 6 y 7 horas</option>
-                    <option value="4">Entre 7 y 8 horas</option>
-                    <option value="5">Más de 8 horas</option>
-                </select>
-            </form>
+            <textarea name="descripcion_review" id="description_rev" cols="35" rows="4" placeholder="Escribe aquí tu reseña"></textarea>
+            <div id="survey-form">
+                <% for (var i = 0; i < preguntas.length; i++) { %>
+                    <br>
+                    <h4><b><%= preguntas[i].descripcion %></b></h4>
+                    <% if (tipos[i][0].tipo == 1) { %>
+                        <p id="sub_question">Elige una de las siguientes opciones</p>
+                        <select name="answer-<%= preguntas[i].idPregunta %>">
+                            <% opciones[i].forEach(opcion => { %>
+                                <option value="<%= opcion.idOpcion %>"><%= opcion.descripcion %></option>
+                            <% }); %>
+                        </select>
+                    <% } else if (tipos[i][0].tipo == 2) { %>
+                        <% opciones[i].forEach(opcion => { %>
+                            <textarea name="answer-<%= preguntas[i].idPregunta %>" id="option-<%= opcion.idOpcion %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>"></textarea>
+                            <br>
+                        <% }); %>
+                    <% } else if ( tipos[i][0].tipo == 3) { %>
+                        <p id="sub_question">Elige una o varias de las siguientes opciones</p>
+                        <% opciones[i].forEach(opcion => { %>
+                            <input type="checkbox" id="option-<%= opcion.idOpcion %>" name="answer-<%= preguntas[i].idPregunta %>" value="<%= opcion.idOpcion %>">
+                            <label for="option-<%= opcion.idOpcion %>"><%= opcion.descripcion %></label><br>
+                        <% }); %>
+                    <% } %>
+                <% } %>
+            </div>
+            
+        
 
             <div class="submit-button-container">
                 <button type="submit" class="submit-button">¡Envía tu reseña!</button>
             </div>
         </div>
     </div>
-
 </div>  
+<%- include('includes/footer.ejs') %>
 
-<%-include('includes/footer.ejs')%>

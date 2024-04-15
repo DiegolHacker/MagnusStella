@@ -52,7 +52,7 @@ module.exports = class Reviews {
             r.Descripcion AS descripcion_resena,
             r.idReview AS id_review_resena,
             pre.Descripcion AS pregunta,
-            resp.Respuestas AS respuesta,
+            resp.Descripción AS respuesta,
             p.FK_idMarca_Producto AS marca
 
         FROM 
