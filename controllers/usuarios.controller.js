@@ -84,7 +84,7 @@ exports.post_signup = (request,response,next) => {
     const idUser = generateUserID();
     const image = request.file.filename;
 
-    const IdRol = Math.floor(Math.random() * 11);
+    const IdRol = 1;
 
     const usuarios = new Usuarios(name,email,password,idUser,IdRol, image, 1);
     usuarios.save()
