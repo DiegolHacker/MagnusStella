@@ -27,6 +27,7 @@ exports.get_dashboard = (request, response, next) => {
                                 marca: marca,
                                 ruta: "/graphics/dashboard",
                                 errorProducto : errorMessage,
+                                permisos: request.session.permisos || []
                             });
                             })
                             .catch(error => {
@@ -49,6 +50,7 @@ exports.get_dashboard = (request, response, next) => {
                                 marca: marca,
                                 ruta: "/graphics/dashboard",
                                 errorProducto : errorMessage,
+                                permisos: request.session.permisos || []
                             });
                         })
                         .catch(error => {
@@ -75,6 +77,7 @@ exports.get_dashboard = (request, response, next) => {
                     marca: marca,
                     ruta: "/graphics/dashboard",
                     errorProducto: undefined,
+                    permisos: request.session.permisos || []
                 });
             })
             .catch(error => {

@@ -110,4 +110,14 @@ module.exports = class Usuarios {
         return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
         [idrol, password, correo, idusuario]);
     }
+
+    static getPermisos(correo) {
+        return db.execute(
+            `SELECT funcion 
+            FROM usuario u, rol r, posee p, permiso per
+            WHERE u.correo = ?
+            AND u.IDRol = r.IDRol AND r.IDRol = p.idrol
+            AND p.idpermiso = per.idPermiso`, 
+            [correo]);
+    }
 }

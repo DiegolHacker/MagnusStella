@@ -4,7 +4,13 @@ const bcrypt = require('bcryptjs');
 exports.get_login = (request, response, next) => {
     const error = request.session.error || '';
     request.session.error = '';
-    response.render("login")
+    response.render("login", {
+        username: request.session.username || "",
+        registrar: false,
+        error: error,
+        csrfToken: request.csrfToken(),
+        permisos: request.session.permisos || []
+    })
 };
 
 exports.post_login = (request, response, next) => {
@@ -23,11 +29,15 @@ exports.post_login = (request, response, next) => {
                 bcrypt.compare(password, user.user.contrasena)
                     .then(doMatch => {
                         if (doMatch) {
-                            request.session.isLoggedIn = true;
-                            request.session.user = user;
-                            return request.session.save(err => {
-                                response.redirect('/');
-                            });
+                            Usuarios.getPermisos(email).then(([permisos, fieldData]) => {
+                                request.session.isLoggedIn = true;
+                                request.session.permisos = permisos;
+                                console.log(request.session.permisos);
+                                request.session.user = user;
+                                return request.session.save(err => {
+                                    response.redirect('/');
+                                });
+                            }).catch((error) => {console.log(error)});
                         } else {
                             response.redirect('/users/login');
                         }
@@ -59,8 +69,15 @@ exports.get_logout = (request, response, next) => {
 /////// Sign up ////////
 
 exports.get_signup =(request, response, next) => {
-    const marca = request.params.marca
-    response.render("signup", {titulo: 'Anadir Usuarios',marca:marca || "LU1", ruta: 'users/signup'})
+    const marca = request.params.marca;
+    
+    response.render("signup", {
+        titulo: 'Anadir Usuarios',
+        marca:marca || "LU1", 
+        ruta: 'users/signup',
+        csrfToken: request.csrfToken(),
+        permisos: request.session.permisos || []
+    })
 };
 
 

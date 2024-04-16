@@ -34,7 +34,8 @@ exports.get_correos = async (request, response, next) => {
             tipos: tipos,
             opciones: opciones,
             idp:idp,
-            total_opciones: total_opciones
+            total_opciones: total_opciones,
+            permisos: request.session.permisos || []
         });
     } catch (error) {
         console.error('Error al cargar las preguntas:', error);
@@ -63,7 +64,8 @@ exports.get_correos_editar = async (request, response, next) => {
             opciones: opciones,
             pregunta:pregunta,
             idp:idp,
-            total_opciones: to_opcion
+            total_opciones: to_opcion,
+            permisos: request.session.permisos || []
         });
     } catch (error) {
         console.error('Error al cargar las preguntas:', error);

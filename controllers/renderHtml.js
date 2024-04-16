@@ -20,7 +20,8 @@ exports.get_usuarios = (request, response, next) => {
             pageSize: result.pageSize,
             totalUsers: result.totalUsers,
             totalPages: result.totalPages,
-            ruta: "/usuarios/:marca/:currentPage" 
+            ruta: "/usuarios/:marca/:currentPage" ,
+            permisos: request.session.permisos || []
         });
     }).catch(error => {
         console.log(error);
@@ -41,7 +42,8 @@ exports.get_editar = (request, response, next) => {
             usuarios: rows, 
             titulo:"Usuarios", 
             marca: marca || "LU1",
-            ruta: "/usuarios/editar/:marca/:usuario.IDRol" 
+            ruta: "/usuarios/editar/:marca/:usuario.IDRol" ,
+            permisos: request.session.permisos || []
         });
     })
     .catch(err => {
