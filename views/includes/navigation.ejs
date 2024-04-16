@@ -76,30 +76,38 @@
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="/graphics/dashboard/<%=marca%>">
-                            <i class="bx bx-line-chart icon"></i>
-                            <span class="text nav-text">DashBoard</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="/emails/correos/<%=marca%>">
-                            <i class="bx bx-envelope icon"></i>
-                            <span class="text nav-text">Correos</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="/reviews/resenas/<%=marca%>">
-                            <i class="bx bx-star icon"></i>
-                            <span class="text nav-text">Reseñas</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="/usuarios/<%= marca %>/1">
-                          <i class='bx bxs-user-plus icon'></i>
-                          <span class="text nav-text">Usuarios</span>
-                        </a>
-                    </li>
+                    <% for (let funcion of permisos) { %>
+                        <% if (funcion.funcion == "ver") { %>
+                        <li class="nav-link">
+                            <a href="/graphics/dashboard/<%=marca%>">
+                                <i class="bx bx-line-chart icon"></i>
+                                <span class="text nav-text">DashBoard</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="/reviews/resenas/<%=marca%>">
+                                <i class="bx bx-star icon"></i>
+                                <span class="text nav-text">Reseñas</span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (funcion.funcion == "editar") { %>
+                        <li class="nav-link">
+                            <a href="/emails/correos/<%=marca%>">
+                                <i class="bx bx-envelope icon"></i>
+                                <span class="text nav-text">Correos</span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% if (funcion.funcion == "administracion") { %>
+                        <li class="nav-link">
+                            <a href="/usuarios/<%= marca %>/1">
+                            <i class='bx bxs-user-plus icon'></i>
+                            <span class="text nav-text">Usuarios</span>
+                            </a>
+                        </li>
+                        <% } %>
+                    <% } %>
                 </ul>
             </div>
         </div>

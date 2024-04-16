@@ -17,7 +17,8 @@ exports.get_resenas_completas = (request, response, next) => {
         response.render("resenas_completas", { resenas: resenaCompleta, 
             titulo: "Reseña Completa",
             marca: marca || "LU1",
-            ruta: "/reviews/resenas/completas/:marca/:id" 
+            ruta: "/reviews/resenas/completas/:marca/:id" ,
+            permisos: request.session.permisos || []
         });
     });
 };
@@ -43,7 +44,8 @@ exports.get_resenas = (request, response, next) => {
             titulo: "Reseñas", 
             marca:marca || "LU1",
              id:idReview,
-            ruta: "/reviews/resenas"      
+            ruta: "/reviews/resenas",
+            permisos: request.session.permisos || []      
 
             });
     });

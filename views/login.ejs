@@ -52,6 +52,7 @@
             </div>
             <% } %>
                 <form action="/users/login" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <div class="credential-input">
                         <label for="name">Nombre de usuario:</label>
                         <input type="email" name="name" id="username" placeholder="Ingresa tu correo electronico">

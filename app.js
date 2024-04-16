@@ -44,9 +44,9 @@ app.use(multer({ storage: fileStorage }).single('image'));
 
 
 //PROTECCION CONTRA CROSS-SITE REQUEST FORGERY
-// const csrf = require('csurf');
-// const csrfProtection = csrf();
-// app.use(csrfProtection); 
+const csrf = require('csurf');
+const csrfProtection = csrf();
+app.use(csrfProtection); 
 
 
 //FIN CSRF
