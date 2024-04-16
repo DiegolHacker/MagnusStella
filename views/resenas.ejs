@@ -10,7 +10,6 @@
 </div>
 
 <div id="respuesta_ajax" class="respuesta_ajax">
-</div>
     <div class="item-boxes">
         <% resenas.forEach(function(resena, index) { %>
             <div class="item-container">
@@ -36,13 +35,13 @@
             <% } %>
         <% }); %>
     </div>
-
+</div>
 <script>
     const accion_asincrona = () => {
         console.log('Buscando...');
         const valor_busqueda = document.getElementById('buscar').value;
         //función que manda la petición asíncrona
-        fetch('/reviews/resenas/LU1/buscar/' + valor_busqueda, {
+        fetch('/reviews/resenas/<%= marca %>/buscar/' + valor_busqueda, {
             method: 'GET'
     
         }).then((result) => {
@@ -50,8 +49,6 @@
             return result.json(); //Regresa otra promesa
         }).then((data) => {
             console.log(data);
-            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
-            // Aquí va el código que te proporcioné
             document.getElementById('respuesta_ajax').innerHTML = '';
 
             if (data && data.resenas && data.resenas.length > 0) {
@@ -83,7 +80,7 @@
         }).catch(err => {
             console.log(err);
         });
-    };
+    };   
     document.getElementById('buscar').onkeyup = accion_asincrona;
 </script>
 
