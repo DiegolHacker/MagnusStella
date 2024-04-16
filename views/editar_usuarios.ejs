@@ -6,7 +6,7 @@
         <h4>Nombre de usuario: <%= usuario.Nombre%></h4>
     </div>
     
-    <form action= "/usuarios/editar" method="POST">
+    <form action= "/usuarios/editar/<%= usuario.idUsuario %>" method="POST">
         <input type="hidden" name="idusuario" value="<%= usuario.idUsuario %>" >
         <div class="credential-input">
             <label class="label" for="correo">Correo: </label>

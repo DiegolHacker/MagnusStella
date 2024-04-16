@@ -1,4 +1,3 @@
-const { response } = require("express");
 const Usuarios = require("../models/usuarios.model");
 
 exports.post_marca = (request, response, next) => {
@@ -20,7 +19,7 @@ exports.get_usuarios = (request, response, next) => {
             pageSize: result.pageSize,
             totalUsers: result.totalUsers,
             totalPages: result.totalPages,
-            ruta: "/usuarios/:marca/:currentPage" 
+            ruta: "/usuarios/" + pag 
         });
     }).catch(error => {
         console.log(error);
@@ -41,7 +40,7 @@ exports.get_editar = (request, response, next) => {
             usuarios: rows, 
             titulo:"Usuarios", 
             marca: marca || "LU1",
-            ruta: "/usuarios/editar/:marca/:usuario.IDRol" 
+            ruta: "/usuarios/editar/" +  request.params.usuario_id,
         });
     })
     .catch(err => {
@@ -50,7 +49,7 @@ exports.get_editar = (request, response, next) => {
 }
 
 exports.post_editar = (request, response, next) => {
-    console.log("/editar")
+    console.log("/editar");
     console.log(request.body);
 
     var correo = request.body.correo || "";
@@ -58,12 +57,12 @@ exports.post_editar = (request, response, next) => {
     var idrol = request.body.idrol || "";
     var idusuario = request.body.idusuario || "";
 
-    console.log(request.params.usuario_id)
+    console.log(request.params.usuario_id);
 
     Usuarios.saveUsernameChanges(correo, password, idrol, idusuario)
         .then(() => {
             console.log("Guardado")
-            response.redirect('/usuarios/LU1/1');
+            response.redirect('/usuarios/1/LU1');
         })
         .catch((error) => {console.log(error)});
 
