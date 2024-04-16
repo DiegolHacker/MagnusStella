@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const express = require("express");
 const db = require('./util/database');  
 const app = express();
@@ -13,8 +14,9 @@ app.use(function(req, res, next) {
 });
 
 
+
 app.use(session({
-    secret: 'mi string',
+    secret: 'oupilhkasdstfr67y8u93789045kjhasd781ljlasdAUUFYGUH87S9LKjsdafku',
     resave: false,
     saveUninitialized: false,
 }));
