@@ -1,30 +1,29 @@
-<%- include('includes/navigation.ejs')%>
+<%- include('includes/navigation.ejs') %>
 
 <div class="box-box box">
     <div class="signup-title title">
-        <h5>Editor de preguntas: </h5>
+        <h5>Editor de preguntas:</h5>
     </div>  
+    <form action="/emails/correos/editar" method="POST">
+        
+        <input type="hidden" name="idp" value="<%= idp %>">
+        <input type="hidden" name="marca" value="<%= marca %>">
         <div class="credential-input">
-            <label class="label" for="pregunta">Pregunta: </label>
-            <input class="input is-success" type="text" placeholder="Text input" value="<%= pregunta[0].descripcion %>" name="pregunta" id="pregunta " type="text">
+            <label class="label" for="pregunta">Pregunta:</label>
+            <input class="input is-success" type="text" placeholder="Text input" value="<%= pregunta[0].descripcion %>" name="pregunta" id="pregunta">
         </div>
         <div class="credential-input">
-            <label class="label" for="password">Opciones: </label>
-                <% for (var j = 0; j < total_opciones; j++) { %>
-                    <input class="input is-success" type="text" placeholder="Text input" value="<%= opciones[j].descripcion %>" name="<%= opciones[j] %>" id="<%= opciones[j] %>" type="text">
-                <% } %>
-
-      
-            </div>
+            <label class="label" for="password">Opciones:</label>
+            <% for (var j = 0; j < total_opciones; j++) { %>
+                <input class="input is-success" type="text" placeholder="Text input" value="<%= opciones[j].descripcion %>" name="opcion_<%= opciones[j].idopciones %>" id="<%= opciones[j].idopciones %>" type="text">
+            <% } %>
         </div>
         
         <div class="ingresarBtn">
-            <input type="submit" value=" Guardar " class="ingresar-btn">
-            <a href="/emails/correos/<%= marca%>">Cancelar</a>
+            <input type="submit" value="Guardar" class="ingresar-btn">
+            <a href="/emails/correos/<%= marca %>">Cancelar</a>
         </div>
-            
     </form>
 </div>
-  
 
 <%- include('includes/footer.ejs') %>

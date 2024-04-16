@@ -29,13 +29,30 @@ module.exports = class Correos {
     }
 
     static async emailopciones(id_p) {
-        const querye = 'SELECT o.descripcion FROM opciones o WHERE fk_opciones_pregunta = ?';
-        const [rows] = await db.execute(querye, [id_p]);
+        const query = `
+        SELECT 
+            o.descripcion,
+            o.idopciones,
+            o.fk_opciones_pregunta   
+        FROM 
+            opciones o 
+		WHERE 
+            fk_opciones_pregunta = ? `;
+
+        const [rows] = await db.execute(query, [id_p]);
         return rows;
     }
     static async emailpregunta(id_p) {
         const querye = 'SELECT p.descripcion FROM pregunta p WHERE idPregunta = ?';
         const [rows] = await db.execute(querye, [id_p]);
         return rows;
+    }
+    static saveQuestionChanges(pregunta, idPregunta){
+        return db.execute('UPDATE pregunta SET descripcion = ? WHERE (idPregunta = ?)',
+        [pregunta, idPregunta]);
+    }
+    static saveEmailChanges(opcion, idOpcion){
+        return db.execute('UPDATE opciones SET descripcion = ? WHERE (idopciones = ?)',
+        [opcion, idOpcion]);
     }
 }
