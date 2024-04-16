@@ -833,7 +833,7 @@ table.table .avatar {
     width: 35px;
 }
 .respuesta_ajax{
-    
+    overflow: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;   
