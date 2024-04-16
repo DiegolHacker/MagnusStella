@@ -1298,3 +1298,7 @@ label {
 .image2404{
     display: var(--image2Display);
 }
+
+.box-box {
+    width: 65%;
+}

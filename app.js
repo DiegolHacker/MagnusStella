@@ -38,12 +38,14 @@ app.use(bodyParser.urlencoded({extended:false}));
 const routasAplicacionResenas = require("./routes/routes1.routes"); // Cambiar el nombre de el archivo de rutas a algo más substancial
 const routasLogin = require('./routes/login.routes');
 const routasReview = require('./routes/resenas.routes');
+const routasCorreos = require('./routes/correos.routes');
 const routasGraphics = require('./routes/grafica.routes');
 const routasAyuda = require('./routes/ayuda.routes');
 
 // Define las rutas más específicas primero
 app.use('/users', routasLogin);
 app.use('/reviews', routasReview);
+app.use('/emails', routasCorreos);
 app.use('/graphics', routasGraphics);
 app.use('/ayuda', routasAyuda);
 app.use("/", routasAplicacionResenas);
