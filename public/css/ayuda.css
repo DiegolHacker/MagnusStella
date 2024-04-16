@@ -42,7 +42,7 @@ h2{
 }
 
 .img-placeholder{
-    background-color: var(--backGroundColor);
+    background-color: var(--help-card-color);
     text-align: center;
     border-radius: 5px;
 }

@@ -35,6 +35,7 @@
     --backGroundColor: #fbfafa;
     --line-color-1: #005CB9;
     --boxShadow2: rgba(0, 0, 0, 0.2);
+    --help-card-color: #d1d1d1;
 
 
     /* Transition */
@@ -79,6 +80,7 @@ body.dark {
     --backGroundColor: #2b2a2a;
     --line-color-1: #B97100;
     --boxShadow2:rgba(255, 255, 255, 0.258);
+    --help-card-color: #3A3B3C;
 }
 
 .side_bar.close {
