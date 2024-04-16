@@ -50,4 +50,18 @@ exports.get_resenas = (request, response, next) => {
 
 };
 
+exports.get_buscar = (request, response, next) => {
+    const marca = request.params.marca;
+    console.log(marca)
+    const valor_busqueda = request.params.valor_busqueda;
+    Reviews.search(valor_busqueda, marca, (err, resenas) => {
+        if (err) {
+            console.log(err);
+            return response.status(500).json({ error: "Error al buscar reseñas" });
+        }
+        console.log(resenas);
+        return response.status(200).json({ resenas: resenas });
+    });
+};
+
 

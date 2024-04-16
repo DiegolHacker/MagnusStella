@@ -84,4 +84,29 @@ module.exports = class Reviews {
             callback(err, null);
         });
     }
+    static search(valor_busqueda, marca, callback) {
+        console.log(valor_busqueda);
+        const query = `
+            SELECT * 
+            FROM review r
+            JOIN venta v ON r.Fk_Review_Venta = v.idVenta
+            JOIN producto p ON v.Fk_Venta_Producto = p.idProducto 
+            WHERE 
+                p.idProducto LIKE ?
+            AND
+                p.FK_idMarca_Producto = ? `;
+    
+        const params = ['%' + valor_busqueda + '%', marca]; // Combinar los parámetros en un solo array
+    
+        db.execute(query, params) // Pasar solo un array de parámetros
+            .then(([rows]) => {
+                callback(null, rows);
+            })
+            .catch(err => {
+                console.error('Error fetching reviews and product IDs from database:', err);
+                callback(err, []);
+            });
+    }
+    
+
 }

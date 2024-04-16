@@ -832,7 +832,12 @@ table.table .avatar {
     color: var(--toggle-color);
     width: 35px;
 }
-
+.respuesta_ajax{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   
+}
 .item-boxes {
     overflow: auto;
     display: flex;
