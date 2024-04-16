@@ -3,37 +3,89 @@
 } %>
 
 <div id="search-autocomplete" class="form-outline" data-mdb-input-init>
-    <input type="search" id="form1" class="form-control" placeholder="Busca tu producto"/>
+    <input type="search" id="buscar" class="form-control" placeholder="Busca tu producto"/>
     <button type="button" class="btn btn-primary" data-mdb-ripple-init>
         <i class="fas fa-search"></i>
-      </button>
+    </button>
 </div>
 
-<div class="item-boxes">
-    <% resenas.forEach(function(resena, index) { %>
-        <div class="item-container">
-            <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
-            <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
-            <div class="estrellas">
-                <% for (var i = 0; i < 5; i++) { %>
-                    <% if (i < resena.estrellas) { %>
-                        <i class='bx bxs-star' id="stars_y"></i>
-                    <% } else { %>
-                        <i class='bx bx-star' id="stars_g"></i>
-                    <% } %>
-                <% } %>
-            </div>
-            <p id="sub_question"><%= resena.resena_descrip %></p> 
-            <div class="ver_pagina">
-                <input type="checkbox" id="click">
-                <label for="click" class="text"></label>
-            </div>
-        </div>
-        <% if ((index + 1) % 2 === 0) { %>
-            <div class="clearfix"></div>
-        <% } %>
-    <% }); %>
+<div id="respuesta_ajax" class="respuesta_ajax">
 </div>
+    <div class="item-boxes">
+        <% resenas.forEach(function(resena, index) { %>
+            <div class="item-container">
+                <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
+                <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
+                <div class="estrellas">
+                    <% for (var i = 0; i < 5; i++) { %>
+                        <% if (i < resena.estrellas) { %>
+                            <i class='bx bxs-star' id="stars_y"></i>
+                        <% } else { %>
+                            <i class='bx bx-star' id="stars_g"></i>
+                        <% } %>
+                    <% } %>
+                </div>
+                <p id="sub_question"><%= resena.resena_descrip %></p> 
+                <div class="ver_pagina">
+                    <input type="checkbox" id="click">
+                    <label for="click" class="text"></label>
+                </div>
+            </div>
+            <% if ((index + 1) % 2 === 0) { %>
+                <div class="clearfix"></div>
+            <% } %>
+        <% }); %>
+    </div>
+
+<script>
+    const accion_asincrona = () => {
+        console.log('Buscando...');
+        const valor_busqueda = document.getElementById('buscar').value;
+        //función que manda la petición asíncrona
+        fetch('/reviews/resenas/LU1/buscar/' + valor_busqueda, {
+            method: 'GET'
+    
+        }).then((result) => {
+            console.log(result);
+            return result.json(); //Regresa otra promesa
+        }).then((data) => {
+            console.log(data);
+            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+            // Aquí va el código que te proporcioné
+            document.getElementById('respuesta_ajax').innerHTML = '';
+
+            if (data && data.resenas && data.resenas.length > 0) {
+                const resenasHTML = data.resenas.map(resena => {
+                    return `
+                        <div class="item-container">
+                            <a href="/reviews/resenas_completas/${resena.FK_idMarca_Producto}/${resena.idReview}">
+                                ${resena.idProducto} ${resena.Titulo}
+                            </a>
+                            <img src="/images/${resena.FK_idMarca_Producto}/${resena.idProducto}.jpg" class="img_producto">
+                            <div class="estrellas">
+                                ${Array.from({ length: 5 }, (_, index) => {
+                                    return index < resena.Puntaje ? '<i class="bx bxs-star" id="stars_y"></i>' : '<i class="bx bx-star" id="stars_g"></i>';
+                                }).join('')}
+                            </div>
+                            <p id="sub_question">${resena.Descripcion}</p> 
+                            <div class="ver_pagina">
+                                <input type="checkbox" id="click">
+                                <label for="click" class="text"></label>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.getElementById('respuesta_ajax').innerHTML = resenasHTML;
+            } else {
+                document.getElementById('respuesta_ajax').innerHTML = 'No se encontraron reseñas.';
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+    document.getElementById('buscar').onkeyup = accion_asincrona;
+</script>
 
 
 
