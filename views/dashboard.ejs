@@ -4,15 +4,21 @@
     tasaDeRespuesta: tasaDeRespuesta,
     encuestasEnviadas: encuestasEnviadas,
     marca:marca,
-    ruta: ruta
+    ruta: ruta,
 }) %>
 
 
 <div class="graficas">
     
     <div class="cat-search">    
-        <input id="buscar" class="input is-info" type="text" placeholder="Buscar..." />
-        <%-include('includes/categorias.ejs', { marca:marca }) %>
+        <form action="<%=ruta%>/<%=marca%>" method="POST">
+            <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
+            <button type="submit" class="ingresar-btn">Submit</button>
+        </form>
+        <%-include('includes/categorias.ejs', { marca:marca,ruta}) %>
+        <% if(errorProducto) { %>
+            <div id="error-message"> <h4> <%= errorProducto %> </h4></div>
+        <% } %>
 
     </div>
 
@@ -76,27 +82,27 @@
 
     //AJAX para busqueda de producto
 
-    const accion_asincrona = () => {
-        console.log('Buscando...');
-        const valor_busqueda = document.getElementById('buscar').value;
-        //función que manda la petición asíncrona
-        fetch('/graphics/dashboard/<%=marca%>/' + valor_busqueda, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }).then((result) => {
-            console.log(result);
-            return result.json(); //Regresa otra promesa
-        }).then((data) => {
-            console.log(data);
-            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
-            //...
-        }).catch(err => {
-            console.log(err);
-        });
-    };
-    document.getElementById('buscar').onkeyup = accion_asincrona;
+    // const accion_asincrona = () => {
+    //     console.log('Buscando...');
+    //     const valor_busqueda = document.getElementById('buscar').value;
+    //     //función que manda la petición asíncrona
+    //     fetch('/graphics/dashboard/<%=marca%>/' + valor_busqueda, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         }
+    //     }).then((result) => {
+    //         console.log(result);
+    //         return result.json(); //Regresa otra promesa
+    //     }).then((data) => {
+    //         console.log(data);
+    //         //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+    //         //...
+    //     }).catch(err => {
+    //         console.log(err);
+    //     });
+    // };
+    // document.getElementById('buscar').onkeyup = accion_asincrona;
 
 </script>
 <%-include('includes/footer.ejs')%>

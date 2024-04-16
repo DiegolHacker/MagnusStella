@@ -1203,7 +1203,8 @@ label {
 }
 
 .graphContainer{
-    background-color: var(--backGroundColor);
+    /* background-color: var(--backGroundColor); */
+    background-color: #fbfafa;
     border-radius: 10px;
     box-shadow: 0px 1px 5px 0px var(--boxShadow2);
 }
@@ -1254,12 +1255,10 @@ label {
 }
 
 .cat-search{
+    display: flex;
     margin-left: 50px;
 }
 
-#buscar{
-    
-}
 
 .dropdown-content {
     display: none;

@@ -125,22 +125,23 @@ GROUP BY
         });
 };
 
+
 exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
     let query = `SELECT PuntajeItemM(?)`;
     let qString = `PuntajeItemM(?)`;
     let parametros = [marca];
     
-    // if(categoriaS !== '*'){
-    //     query = `SELECT PuntajeItemMC(?,?)`;
-    //     qString = `PuntajeItemMC(?,?)`;
-    //     parametros.push(categoriaS);
-    // };
+    if(categoriaS !== '*'){
+        query = `SELECT PuntajeItemMC(?,?)`;
+        qString = `PuntajeItemMC(?,?)`;
+        parametros.push(categoriaS);
+    };
 
-    // if(productoS !== '*'){
-    //     query = `SELECT PuntajeItemP(?)`;
-    //     qString = `PuntajeItemP(?)`;
-    //     parametros = [productoS];
-    // };
+    if(productoS !== '*'){
+        query = `SELECT PuntajeItemP(?)`;
+        qString = `PuntajeItemP(?)`;
+        parametros = [productoS];
+    };
 
     return db.execute(query,parametros)
         .then((resultContestadas) => {
@@ -155,5 +156,13 @@ exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
 };
 
 exports.search = (valor_busqueda) => {
-    return db.execute('SELECT * FROM producto WHERE idProducto LIKE ?',['%' + valor_busqueda + '%']);
+    let query = 'SELECT * FROM producto WHERE idProducto = ?';
+    return db.execute(query,[valor_busqueda])
+        .then(([rows]) => {
+            if(rows.length === 0){
+                return {error: 'Producto no existente'};
+            }else{
+                return {error: undefined}
+            };      
+        });
 };
