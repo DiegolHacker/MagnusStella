@@ -1,0 +1,30 @@
+<%- include('includes/navigation.ejs')%>
+
+<div class="box-box box">
+    <div class="signup-title title">
+        <h5>Editor de preguntas: </h5>
+    </div>  
+        <div class="credential-input">
+            <label class="label" for="pregunta">Pregunta: </label>
+            <input class="input is-success" type="text" placeholder="Text input" value="<%= pregunta[0].descripcion %>" name="pregunta" id="pregunta " type="text">
+        </div>
+        <div class="credential-input">
+            <label class="label" for="password">Opciones: </label>
+                <% for (var j = 0; j < total_opciones; j++) { %>
+                    <input class="input is-success" type="text" placeholder="Text input" value="<%= opciones[j].descripcion %>" name="<%= opciones[j] %>" id="<%= opciones[j] %>" type="text">
+                <% } %>
+
+      
+            </div>
+        </div>
+        
+        <div class="ingresarBtn">
+            <input type="submit" value=" Guardar " class="ingresar-btn">
+            <a href="/emails/correos/<%= marca%>">Cancelar</a>
+        </div>
+            
+    </form>
+</div>
+  
+
+<%- include('includes/footer.ejs') %>
