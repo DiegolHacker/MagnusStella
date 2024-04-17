@@ -106,8 +106,32 @@ module.exports = class Usuarios {
         }
     }
 
-    static saveUsernameChanges(correo, password, idrol, idusuario){
-        return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
-        [idrol, password, correo, idusuario]);
+    saveUsernameChanges(){
+        const userData = {
+            IdRol: this.idRol,
+            Nombre: this.nombre,
+            Contrasena: this.contrasena,
+            Correo: this.email,
+            Image: this.image,
+            Estado: 1,
+            idUsuario: this.idUsuario,
+        }
+
+        return bcrypt.hash(userData.Contrasena, 12)
+        .then((hashedPassword) => {
+            userData.Contrasena = hashedPassword;
+            const values = Object.values(userData);
+            // console.log(values)
+            return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
+            [IdRol, Contrasena, Correo, idUsuario]);
+        })
+        .then(([result]) => {
+            console.log('Usuario Guardado:', result);
+            return result; // Return the ResultSetHeader
+        })
+        .catch(err => {
+            console.log('Error guardando usuario:', err);
+            throw err;
+        });
     }
 }
