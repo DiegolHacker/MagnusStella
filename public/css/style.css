@@ -1109,10 +1109,6 @@ label {
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn:hover {background-color: var(--hover-color);} 
 
-  .brand-logo {
-    display: none;
-  }
-
   .contenedor-imagen {
     display: flex;
     justify-content: center; /* Centrado horizontal */

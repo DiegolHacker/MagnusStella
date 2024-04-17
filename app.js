@@ -69,7 +69,7 @@ app.use("/", routasAplicacionResenas);
 app.use((request,response,next) => {
     response.status(404);
     const marca = request.params.marca;
-    response.render("404", {titulo: 'Error 404', modo: request.getMode, marca:marca, ruta: "/graphics/dashboard" })
+    response.render("404", {titulo: 'Error 404', modo: request.getMode, marca:marca || "LU1", ruta: "/graphics/dashboard", permisos: request.session.permisos || [] })
 });
 
 const PORT = process.env.PORT || 3000;
