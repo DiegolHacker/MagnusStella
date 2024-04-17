@@ -106,32 +106,28 @@ module.exports = class Usuarios {
         }
     }
 
-    saveUsernameChanges(){
-        const userData = {
-            IdRol: this.idRol,
-            Nombre: this.nombre,
-            Contrasena: this.contrasena,
-            Correo: this.email,
-            Image: this.image,
-            Estado: 1,
-            idUsuario: this.idUsuario,
+    static saveUsernameChanges(IdRol, Contrasena, Correo, idUsuario){
+
+            if(Contrasena != ""){
+            return bcrypt.hash(Contrasena, 12)
+            .then((hashedPassword) => {
+                Contrasena = hashedPassword;
+                return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
+                [IdRol, Contrasena, Correo, idUsuario]);
+            })
+            .then(([result]) => {
+                return result; // Return the ResultSetHeader
+            })
+            .catch(err => {
+                console.log('Error guardando usuario:', err);
+                throw err;
+            });
+        } else{
+            console.log("Sin modificar contrasenia")
+            return db.execute('UPDATE usuario SET IDRol = ?, Correo = ? WHERE (idUsuario = ?)',
+                [IdRol, Correo, idUsuario]);
         }
 
-        return bcrypt.hash(userData.Contrasena, 12)
-        .then((hashedPassword) => {
-            userData.Contrasena = hashedPassword;
-            const values = Object.values(userData);
-            // console.log(values)
-            return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
-            [IdRol, Contrasena, Correo, idUsuario]);
-        })
-        .then(([result]) => {
-            console.log('Usuario Guardado:', result);
-            return result; // Return the ResultSetHeader
-        })
-        .catch(err => {
-            console.log('Error guardando usuario:', err);
-            throw err;
-        });
+
     }
 }

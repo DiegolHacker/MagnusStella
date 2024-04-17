@@ -9,11 +9,6 @@
     <form action= "/usuarios/editar/<%= usuario.idUsuario %>" method="POST">
         <input type="hidden" name="uIdusuario" value="<%= usuario.idUsuario %>" >
         <input type="hidden" name="uPassword" value="<%= usuario.Password %>" >
-        <input type="hidden" name="uName" value="<%= usuario.Nombre %>" >
-        <input type="hidden" name="uCorreo" value="<%= usuario.Correo %>" >
-        <input type="hidden" name="uImage" value="<%= usuario.Imagen %>" >
-
-
 
         <div class="credential-input">
             <label class="label" for="correo">Correo: </label>
@@ -30,7 +25,7 @@
         
         <div class="ingresarBtn">
             <input type="submit" value=" Guardar " class="ingresar-btn">
-            <a href="/usuarios/LU1/1">Cancelar</a>
+            <a href="/usuarios/1/<%= marca %>">Cancelar</a>
         </div>
             
     </form>

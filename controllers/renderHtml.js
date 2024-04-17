@@ -50,28 +50,14 @@ exports.get_editar = (request, response, next) => {
 
 exports.post_editar = (request, response, next) => {
     console.log("/editar");
-    console.log("Esto existe en request.body");
-    console.log(request.body);
 
     var correo = request.body.correo || "";
-    var password = request.body.password || request.body.uPassword;
+    var password = request.body.password || "";
     var IdRol = request.body.idrol || "";
     var idUser = request.body.uIdusuario || "";
-    var name = request.body.uName || "";
-    var correo = request.body.uCorreo || "";
-    var image = request.body.uImage || "";
+    console.log(correo)
 
-    console.log(name);
-    console.log(correo);
-    console.log(password);
-    console.log(image);
-    console.log(IdRol);
-    console.log(idUser);
-
-    const usuarios = new Usuarios(name,correo,password,image,IdRol,idUser);
-    console.log("Esto existe en usuarios" + usuarios[1])
-
-    usuarios.saveUsernameChanges()
+    Usuarios.saveUsernameChanges(IdRol, password, correo, idUser)
         .then(() =>{
             console.log("Guardado")
             response.redirect('/usuarios/1/LU1');
