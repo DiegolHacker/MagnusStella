@@ -106,9 +106,32 @@ module.exports = class Usuarios {
         }
     }
 
-    static saveUsernameChanges(correo, password, idrol, idusuario){
-        return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
-        [idrol, password, correo, idusuario]);
+    static saveUsernameChanges(IdRol, Contrasena, Correo, idUsuario){
+
+            if(Contrasena != ""){
+            return bcrypt.hash(Contrasena, 12)
+            .then((hashedPassword) => {
+                Contrasena = hashedPassword;
+                return db.execute('UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)',
+                [IdRol, Contrasena, Correo, idUsuario]);
+            })
+            .then(([result]) => {
+                return result; // Return the ResultSetHeader
+            })
+            .catch(err => {
+                console.log('Error guardando usuario:', err);
+                throw err;
+            });
+        } else{
+            console.log("Sin modificar contrasenia")
+            return db.execute('UPDATE usuario SET IDRol = ?, Correo = ? WHERE (idUsuario = ?)',
+                [IdRol, Correo, idUsuario]);
+        }
+    }
+
+    static delete(id) {
+        return db.execute('DELETE FROM usuario WHERE idUsuario=?', 
+            [id]);
     }
 
     static getPermisos(correo) {

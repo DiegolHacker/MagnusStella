@@ -1,4 +1,3 @@
-const { response } = require("express");
 const Usuarios = require("../models/usuarios.model");
 
 exports.post_marca = (request, response, next) => {
@@ -20,7 +19,7 @@ exports.get_usuarios = (request, response, next) => {
             pageSize: result.pageSize,
             totalUsers: result.totalUsers,
             totalPages: result.totalPages,
-            ruta: "/usuarios/:marca/:currentPage" ,
+            ruta: "/usuarios/" + pag ,
             permisos: request.session.permisos || []
         });
     }).catch(error => {
@@ -42,7 +41,7 @@ exports.get_editar = (request, response, next) => {
             usuarios: rows, 
             titulo:"Usuarios", 
             marca: marca || "LU1",
-            ruta: "/usuarios/editar/:marca/:usuario.IDRol" ,
+            ruta: "/usuarios/editar/" +  request.params.usuario_id,
             permisos: request.session.permisos || []
         });
     })
@@ -52,21 +51,33 @@ exports.get_editar = (request, response, next) => {
 }
 
 exports.post_editar = (request, response, next) => {
-    console.log("/editar")
-    console.log(request.body);
+    console.log("/editar");
 
     var correo = request.body.correo || "";
     var password = request.body.password || "";
-    var idrol = request.body.idrol || "";
-    var idusuario = request.body.idusuario || "";
+    var IdRol = request.body.idrol || "";
+    var idUser = request.body.uIdusuario || "";
+    console.log(correo)
 
-    console.log(request.params.usuario_id)
-
-    Usuarios.saveUsernameChanges(correo, password, idrol, idusuario)
-        .then(() => {
+    Usuarios.saveUsernameChanges(IdRol, password, correo, idUser)
+        .then(() =>{
             console.log("Guardado")
-            response.redirect('/usuarios/LU1/1');
+            response.redirect('/usuarios/1/LU1');
         })
-        .catch((error) => {console.log(error)});
+        .catch(err => {
+            console.log("Error al hacer el guardado:",err);
+            response.redirect('/usuarios/1/LU1')
+        });
 
+};
+
+exports.post_delete = (request, response, next) => {
+    Usuarios.delete(request.body.id)
+        .then(() => {
+            return Usuarios.fetch();
+    })
+    .then(([usuarios, fieldData]) => {
+        return response.status(200).json({usuarios: usuarios})
+        })
+    .catch((error) => {console.log(error)});
 };

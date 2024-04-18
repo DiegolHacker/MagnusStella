@@ -6,6 +6,7 @@
     <div class="container-fluid">
         <div class="table-responsive">
             <div class="table-wrapper">
+
                 <div class="table-title">
                     <div class="text">
                         <h2><b>Control de usuarios</b></h2>
@@ -15,96 +16,94 @@
                         <a href="#" class="btn btn-primary"><i class='bx bx-list-plus icon'></i><span>Crear Rol</span></a>
                     </div>
                 </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                    <tr>
-                        <th>Id#</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Rol</th>
-                        <th>Estado</th>
-                        <th>Acción</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <% for (let usuario of usuarios) { %>
-                    <tr>
-                        <td><%= usuario.idUsuario %></td>
-                        <td><a href="#"><img src="/uploads/<%= usuario.Imagen %>" class="avatar" alt="Avatar"> <%= usuario.Nombre %></a></td>
-                        <td><%= usuario.Correo %></td>
-                        <td><%= usuario.IDRol %></td>
-                        <% if (usuario.Estado ==="0") { %>
-                        <td><span class="status text-warning">&bull;</span>Inactivo</td>
-                        <% } else { %>
-                        <td><span class="status text-success">&bull;</span>Activo</td>
+
+                <div id="respuesta_ajax">
+
+                    <div id="notificacion">
+
+                        <% if(usuarios.length < 1) {  %>
+                            <div class="notification is-info">
+                                No existen Usuarios.
+                            </div>
                         <% } %>
-                        <td>
-                            <a class="settings" title="Editar" data-placement="top" data-toggle="tooltip" href="/usuarios/editar/<%= usuario.idUsuario%>" ><i class='bx bxs-edit-alt'></i></a>
-                            <a href="#" class="delete" title="Borrar" data-placement="top" data-toggle="tooltip"><i class='bx bx-trash'></i></a>
-                        </td>
-                    </tr>
-                    <% }; %>
-                    </tbody>
-                </table>
-                <div class="clearfix">
-                    <div class="hint-text">Mostrando <b><%= pageSize * (currentPage - 1) + 1 %></b> a <b><%= Math.min(pageSize * currentPage, totalUsers) %></b> de <b><%= totalUsers %></b> resultados</div>
-                    <ul class="pagination">
-                        <% if(currentPage > 1) { %>
-                            <li class="page-item"><a href="/usuarios/<%= marca %>/<%= currentPage - 1 %>" class="page-link">Anterior</a></li>
-                        <% } %>
-                        <% for(let i = 1; i <= totalPages; i++) { %>
-                            <li class="page-item <%= i === currentPage ? 'active' : '' %>"><a href="/usuarios/<%= marca %>/<%= i %>" class="page-link"><%= i %></a></li>
-                        <% } %>
-                        <% if(currentPage < totalPages) { %>
-                            <li class="page-item"><a href="/usuarios/<%= marca %>/<%= currentPage + 1 %>" class="page-link">Siguiente</a></li>
-                        <% } %>
-                    </ul>
+                    </div>
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id#</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <% for (let usuario of usuarios) { %>
+                            <tr>
+                                <td><%= usuario.idUsuario %></td>
+                                <td><a href="#"><img src="/uploads/<%= usuario.Imagen %>" class="avatar" alt="Avatar"> <%= usuario.Nombre %></a></td>
+                                <td><%= usuario.Correo %></td>
+                                <td><%= usuario.IDRol %></td>
+                                <% if (usuario.Estado ==="0") { %>
+                                <td><span class="status text-warning">&bull;</span>Inactivo</td>
+                                <% } else { %>
+                                <td><span class="status text-success">&bull;</span>Activo</td>
+                                <% } %>
+                                <td>
+                                    <a class="settings" title="Editar" data-placement="top" data-toggle="tooltip" href="/usuarios/editar/<%= usuario.idUsuario%>/<%= marca %>" ><i class='bx bxs-edit-alt'></i></a>
+                                    <button onclick="eliminar(<%=usuario.idUsuario%>)" href="#" class="delete" title="Borrar" data-placement="top" data-toggle="tooltip"><i class='bx bx-trash'></i></button>
+                                </td>
+                            </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+
+                    <div class="clearfix">
+                        <div class="hint-text">Mostrando <b><%= pageSize * (currentPage - 1) + 1 %></b> a <b><%= Math.min(pageSize * currentPage, totalUsers) %></b> de <b><%= totalUsers %></b> resultados</div>
+                            <ul class="pagination">
+                                <% if(currentPage > 1) { %>
+                                <li class="page-item"><a href="/usuarios/<%= currentPage - 1 %>/<%= marca %>" class="page-link">Anterior</a></li>
+                                <% } %>
+
+                                <% for(let i = 1; i <= totalPages; i++) { %>
+                                <li class="page-item <%= i === currentPage ? 'active' : '' %>"><a href="/usuarios/<%= i %>/<%= marca %>" class="page-link"><%= i %></a></li>
+                                <% } %>
+
+                                <% if(currentPage < totalPages) { %>
+                                <li class="page-item"><a href="/usuarios/<%= currentPage + 1 %>/<%= marca %>" class="page-link">Siguiente</a></li>
+                                <% } %>
+
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
         </div>
     </div>
+
     
     <script>
-        const editar = (id) => {
-            fetch('/construcciones/delete', {
+        const eliminar = (id) => {
+            console.log("ELiminando")
+            fetch('/usuarios/delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'csrf-token': csrf
+                        // 'csrf-token': csrf
                     },
                     body: JSON.stringify({id: id})
                 }).then(result => {
+                    console.log("Algo")
                     return result.json(); //Regresa otra promesa
                 }).then(data => {
                     console.log(data);
-                    let html = '';
-                    
-                    html += `<div id="notificacion">`;
-                    if (data.construcciones.length < 1) { 
-                        html += 
-                            `<div class="notification is-info">
-                                <button class="delete"></button>
-                                No existe la construcción. 
-                            </div>`;           
-                    }
-                    html += `</div>`;
-                    let columns = 0;
-                    for (let construccion of data.construcciones) { 
-                        columns++;
-                        html += `  
-                            <p class="title is-4">${construccion.nombre}</p>
-                            <img src="uploads/${construccion.imagen}" alt="Imagen de ${construccion.nombre}">
-                            <button class="button is-danger" onclick="eliminar(${construccion.id})">Eliminar</button>
-                        `;
-                    }
-                            //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
-                    document.getElementById('respuesta_ajax').innerHTML = html;
-
-                    document.getElementById('notificacion').innerHTML = 
-                    `<div class="notification is-info">
-                        <button class="delete"></button>
-                        La construcción fue eliminada. 
-                    </div>`;
+                    console.log("Dentro de Algo")
+                    location.reload();
                 }).catch(err => {
                     console.log(err);
                 });
