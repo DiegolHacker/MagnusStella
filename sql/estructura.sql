@@ -25,12 +25,11 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
-  `idCliente` int NOT NULL,
+  `idCliente` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Correo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Direccion` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=987655 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,34 +38,8 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (7289,'Lucía Hernández','luciahrdz4567@outlook.com','Calle Hidalgo 678, 34567, Doctores'),(25498,'Sofía Rodríguez','sofirodri34@outlook.com','Avenida Insurgentes Sur 90, 23456, Polanco'),(37274,'Elena García','elenagarc@outlook.com','Calle Reforma 56, 54321, Roma'),(60764,'Andrés Martínez','andymarti@outlook.com','Boulevard Benito Juárez 78, 67890, Condesa'),(76363,'Diego Pérez','diegope324@outlook.com','Calle 20 de Septiembre 45, 87654, Del Valle'),(90234,'Ana Zúñiga Chávez','anazzzz@gmail.com,','Matancillas 78, 63249, Zibatá'),(91171,'Luz Andrea Vázquez Alderete','Lavameikup@hotmail.com','Los Candelabros, 78324, Candiles'),(92341,'Diego Isaac Fuentes Juvera','diegolin@outlook.com','Río Grande #41, 82390, San Javier'),(92971,'Lucero Vázquez Martinez','Luvama@hotmail.com','Las serpientes 74, 79721, Popocatepetl'),(93247,'Angélica Ríos Cuentas','angie83@outlook.com','Río chico #97, 82390, San Javier'),(123789,'Carlos López','carlospez@gmail.com','Boulevard Benito Juárez 79, 67890, Condesa'),(187654,'Ana García','anagara@gmail.com','Calle Reforma 56, 54321, Roma'),(321456,'Pedro Martínez','pedrote@gmail.com','Calle 20 de Noviembre 35, 87654, Del Valle'),(456123,'María Rodríguez','mariarodri@gmail.com','Avenida Insurgentes Sur 890, 23456, Polanco'),(547623,'Ricardo Ortiz Días','RicarditoOrtiz@hotmail.com','pradera verde #54, 76564, El refugio'),(562323,'Juan Pablo Chávez Leal','a01705408@tec.mx','Bugambilias #3, 76021,Centro'),(654321,'Juan Pérez','juanper@gmail.com','Avenida 5 de Mayo 24, 12345, Juárez'),(789321,'Laura Hernández','lauraherdez@gmail.com','Calle Hidalgo 678, 3467, Doctores'),(974858,'Diego Ricardo Alfaro Pinto','diegorap2003@outlook.com','Lirios #3, 63819, La Cañada'),(987412,'Pablo Hazael Hurtado Mireles','pablinqueclavounclavin@outlook.com','Bosques del lago #86, 97345, Juriquilla'),(987654,'Miguel Sánchez','miguelsnchez@outlook.com','Avenida 5 de Mayo 24, 12345, Juárez');
+INSERT INTO `cliente` VALUES (7289,'Lucía Hernández','luciahrdz4567@outlook.com'),(25498,'Sofía Rodríguez','sofirodri34@outlook.com'),(37274,'Elena García','elenagarc@outlook.com'),(60764,'Andrés Martínez','andymarti@outlook.com'),(76363,'Diego Pérez','diegope324@outlook.com'),(90234,'Ana Zúñiga Chávez','anazzzz@gmail.com,'),(91171,'Luz Andrea Vázquez Alderete','Lavameikup@hotmail.com'),(92341,'Diego Isaac Fuentes Juvera','diegolin@outlook.com'),(92971,'Lucero Vázquez Martinez','Luvama@hotmail.com'),(93247,'Angélica Ríos Cuentas','angie83@outlook.com'),(123789,'Carlos López','carlospez@gmail.com'),(187654,'Ana García','anagara@gmail.com'),(321456,'Pedro Martínez','pedrote@gmail.com'),(456123,'María Rodríguez','mariarodri@gmail.com'),(547623,'Ricardo Ortiz Días','RicarditoOrtiz@hotmail.com'),(562323,'Juan Pablo Chávez Leal','a01705408@tec.mx'),(654321,'Juan Pérez','juanper@gmail.com'),(789321,'Laura Hernández','lauraherdez@gmail.com'),(974858,'Diego Ricardo Alfaro Pinto','diegorap2003@outlook.com'),(987412,'Pablo Hazael Hurtado Mireles','pablinqueclavounclavin@outlook.com'),(987654,'Miguel Sánchez','miguelsnchez@outlook.com');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `encuesta`
---
-
-DROP TABLE IF EXISTS `encuesta`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `encuesta` (
-  `idMarca` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `idPregunta` int NOT NULL,
-  KEY `idMarca_idx` (`idMarca`),
-  KEY `fk_pregunta_encuesta_idx` (`idPregunta`),
-  CONSTRAINT `Fk_Marca_Encuesta` FOREIGN KEY (`idMarca`) REFERENCES `marca` (`idMarca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `encuesta`
---
-
-LOCK TABLES `encuesta` WRITE;
-/*!40000 ALTER TABLE `encuesta` DISABLE KEYS */;
-INSERT INTO `encuesta` VALUES ('LU1',1),('AR1',2),('NO1',3),('LU1',4),('MA1',5),('LU1',6),('Lu1',7),('NO1',8),('MA1',9),('AR1',10);
-/*!40000 ALTER TABLE `encuesta` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -107,8 +80,8 @@ CREATE TABLE `opciones` (
   `descripcion` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `fk_opciones_pregunta` int NOT NULL,
   PRIMARY KEY (`idopciones`),
-  KEY `fk_pregunta_opcion_idx` (`fk_opciones_pregunta`),
-  CONSTRAINT `fk_pregunta_opcion` FOREIGN KEY (`fk_opciones_pregunta`) REFERENCES `pregunta` (`idPregunta`)
+  KEY `Fk_Pregunta_Opciones_idx` (`fk_opciones_pregunta`),
+  CONSTRAINT `Fk_Pregunta_Opciones` FOREIGN KEY (`fk_opciones_pregunta`) REFERENCES `pregunta` (`idPregunta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -181,7 +154,7 @@ DROP TABLE IF EXISTS `pregunta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pregunta` (
-  `idPregunta` int NOT NULL,
+  `idPregunta` int NOT NULL AUTO_INCREMENT,
   `Descripcion` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Tipo` int NOT NULL,
   `Opcion` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
@@ -189,7 +162,7 @@ CREATE TABLE `pregunta` (
   PRIMARY KEY (`idPregunta`),
   KEY `fk_idmarca_pregunta_idx` (`fk_pregunta_idmarca`),
   CONSTRAINT `fk_idmarca_pregunta` FOREIGN KEY (`fk_pregunta_idmarca`) REFERENCES `marca` (`idMarca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +188,7 @@ CREATE TABLE `producto` (
   `Nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Imagen` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Descripcion` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Categoria` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Categoria` varchar(45) COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`idProducto`),
   KEY `idMarca_idx` (`FK_idMarca_Producto`),
   CONSTRAINT `fk_marca_producto` FOREIGN KEY (`FK_idMarca_Producto`) REFERENCES `marca` (`idMarca`)
@@ -228,7 +201,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES ('AN1133V','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!',''),('AN1133VCH','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!',''),('AR9043','AR1','20L Pintura Roja','','La mejor pintura para el mejor pintor','pintura'),('AR9044','AR1','20L Pintura Azul','','La mejor pintura para el mejor pintor','pintura'),('LB2231','LU1','Cama Anzures Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-anzures-indi/base-anzures8b4bc3.jpg','Cama individual de madera sustentable de abedul y nogal negro, con cabecera capitonada gris grafito. Un complemento de lujo y comodidad para tu descanso. ¡Tenemos 4 tamaños disponibles!','cama'),('LB3231','LU1','Cama Condesa Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-condesa-indi/cama-condesa.jpg','Resistencia, elegancia y sustentabilidad fueron las tres ideas que teníamos en la cabeza al crear esta cama individual de madera certificada con cabecera capitonada gris claro.','cama'),('LU1001B2','LU1','Colchón Luuna Basics 2 Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-indi/basics-2.png','Luuna Basics 2 Individual es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('LU1002B2','LU1','Colchón Luuna Basics 2 Matrimonial','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-matri/basics-2.png','Luuna Basics 2 Matrimonial es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('MA1201','MA1','Transportadora Para Mascotas Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/pet-carrier-mappa-char/pet-carrier.webp','La transportadora Mappa es ideal para viajar con tu mejor amigo. Su diseño está creado para brindar comodidad tanto a tu mascota como a ti',''),('MA1301','MA1','Portalaptop Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/porta-laptop-mappa-char/portalaptop.webp','El portalaptop Mappa es perfecto para transportar tu computadora o tableta.',''),('MA1401','MA1','Organizadores Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/organizadores-mappa-char/organizador.webp','Los organizadores Mappa son el accesorio ideal para empacar tus pertenencias de la manera más eficiente. Comprime y organiza tu ropa para que puedas guardar mucho más en tu maleta.',''),('MA4003','MA1','Maleta Mappa Grande Color Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/master-maleta-mappa-hard-shell-lote-san-gra/sand-s-01.jpeg','El tamaño que necesitas para lanzarte a la aventura más duradera. Su gran capacidad hará que puedas viajar con todo lo necesario.',''),('MA4012','MA1','Set Maleta Cabina + Grande Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san-lote/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.',''),('MX-MAP-MAL-KIT2-SAN','MA1','SET MALETA CABINA + GRANDE ARENA','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.',''),('NB7224','NO1','Cama Natural Tejida King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-natural-tejida-king/tejida-fondo-blanco.jpg','Creamos esta cama para los amantes de lo natural y artesanal. Está hecha de madera certificada y tejido artesanal, lo que la hace resistente y amigable con el medio ambiente.','cama'),('NP6321','NO1','Protector de Colchón Essential Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-indi/protector_essential.png','El Protector Essential Individual te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','protector'),('NP6323','NO1','Protector de Colchón Essential Queen','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-queen/protector_essentialc05dcc.png','El Protector Essential Queen te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche','protector'),('NP6324','NO1','Protector de Colchón Essential King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-king/protector_essentialc05dcc.png','El Protector Essential King te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','protector'),('SH7003','LU1','Juego de Sábanas Satinadas Queen Size Blanco Rayas','','No existe mejor sensación que el rose del satin en la piel. Y tampoco existe mejor calidad en telas que las que son elaboradas con textiles certificados. ¡Compruébalo con estas sábanas!','sabanas'),('SI1004','LU1','Colchón Luuna Signature King','','8 opciones de confort. Un colchón. Conoce la máxima expresión de tecnologí­a y total personalización con Luuna.','colchón');
+INSERT INTO `producto` VALUES ('AN1133V','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!','almohadas'),('AN1133VCH','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!','almohadas'),('LB2231','LU1','Cama Anzures Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-anzures-indi/base-anzures8b4bc3.jpg','Cama individual de madera sustentable de abedul y nogal negro, con cabecera capitonada gris grafito. Un complemento de lujo y comodidad para tu descanso. ¡Tenemos 4 tamaños disponibles!','cama'),('LB3231','LU1','Cama Condesa Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-condesa-indi/cama-condesa.jpg','Resistencia, elegancia y sustentabilidad fueron las tres ideas que teníamos en la cabeza al crear esta cama individual de madera certificada con cabecera capitonada gris claro.','cama'),('LU1001B2','LU1','Colchón Luuna Basics 2 Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-indi/basics-2.png','Luuna Basics 2 Individual es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('LU1002B2','LU1','Colchón Luuna Basics 2 Matrimonial','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-matri/basics-2.png','Luuna Basics 2 Matrimonial es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('MA1201','MA1','Transportadora Para Mascotas Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/pet-carrier-mappa-char/pet-carrier.webp','La transportadora Mappa es ideal para viajar con tu mejor amigo. Su diseño está creado para brindar comodidad tanto a tu mascota como a ti','accesorios'),('MA1301','MA1','Portalaptop Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/porta-laptop-mappa-char/portalaptop.webp','El portalaptop Mappa es perfecto para transportar tu computadora o tableta.','accesorios'),('MA1401','MA1','Organizadores Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/organizadores-mappa-char/organizador.webp','Los organizadores Mappa son el accesorio ideal para empacar tus pertenencias de la manera más eficiente. Comprime y organiza tu ropa para que puedas guardar mucho más en tu maleta.','accesorios'),('MA4003','MA1','Maleta Mappa Grande Color Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/master-maleta-mappa-hard-shell-lote-san-gra/sand-s-01.jpeg','El tamaño que necesitas para lanzarte a la aventura más duradera. Su gran capacidad hará que puedas viajar con todo lo necesario.','maletas'),('MA4012','MA1','Set Maleta Cabina + Grande Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san-lote/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.','maletas'),('MX-MAP-MAL-KIT2-SAN','MA1','SET MALETA CABINA + GRANDE ARENA','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.','maletas'),('NB7224','NO1','Cama Natural Tejida King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-natural-tejida-king/tejida-fondo-blanco.jpg','Creamos esta cama para los amantes de lo natural y artesanal. Está hecha de madera certificada y tejido artesanal, lo que la hace resistente y amigable con el medio ambiente.','cama'),('NP6321','NO1','Protector de Colchón Essential Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-indi/protector_essential.png','El Protector Essential Individual te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','blancos'),('NP6323','NO1','Protector de Colchón Essential Queen','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-queen/protector_essentialc05dcc.png','El Protector Essential Queen te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche','blancos'),('NP6324','NO1','Protector de Colchón Essential King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-king/protector_essentialc05dcc.png','El Protector Essential King te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','blancos'),('SH7003','LU1','Juego de Sábanas Satinadas Queen Size Blanco Rayas','','No existe mejor sensación que el rose del satin en la piel. Y tampoco existe mejor calidad en telas que las que son elaboradas con textiles certificados. ¡Compruébalo con estas sábanas!','sábanas'),('SI1004','LU1','Colchón Luuna Signature King','','8 opciones de confort. Un colchón. Conoce la máxima expresión de tecnologí­a y total personalización con Luuna.','colchón');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,13 +215,10 @@ DROP TABLE IF EXISTS `respuestas`;
 CREATE TABLE `respuestas` (
   `idrespuestas` int NOT NULL AUTO_INCREMENT,
   `fk_respuestas_review` int NOT NULL,
-  `fk_respuestas_pregunta` int NOT NULL,
   `Descripción` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idrespuestas`),
   UNIQUE KEY `idrespuestas_UNIQUE` (`idrespuestas`),
   KEY `fk_review_respuestas_idx` (`fk_respuestas_review`),
-  KEY `fk_pregunta_respuestas_idx` (`fk_respuestas_pregunta`),
-  CONSTRAINT `fk_pregunta_respuestas` FOREIGN KEY (`fk_respuestas_pregunta`) REFERENCES `pregunta` (`idPregunta`),
   CONSTRAINT `fk_review_respuestas` FOREIGN KEY (`fk_respuestas_review`) REFERENCES `review` (`idReview`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -259,7 +229,7 @@ CREATE TABLE `respuestas` (
 
 LOCK TABLES `respuestas` WRITE;
 /*!40000 ALTER TABLE `respuestas` DISABLE KEYS */;
-INSERT INTO `respuestas` VALUES (1,1,1,'Solo'),(2,2,2,'No me encanta el precio, es muy elevado'),(3,3,3,'Es perfecto'),(4,4,4,'15 a 24 años'),(5,5,5,'Más de 8 horas'),(6,6,6,'Es ligeramente mejor'),(7,7,7,'Precio'),(8,8,8,'El precio es muy elevado y hay demasiada personalización'),(9,9,9,'Sí'),(10,7,7,'Calidad'),(11,7,7,'Diseño');
+INSERT INTO `respuestas` VALUES (1,1,'Solo'),(2,2,'No me encanta el precio, es muy elevado'),(3,3,'Es perfecto'),(4,4,'15 a 24 años'),(5,5,'Más de 8 horas'),(6,6,'Es ligeramente mejor'),(7,7,'Precio'),(8,8,'El precio es muy elevado y hay demasiada personalización'),(9,9,'Sí'),(10,7,'Calidad'),(11,7,'Diseño');
 /*!40000 ALTER TABLE `respuestas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +241,7 @@ DROP TABLE IF EXISTS `review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `review` (
-  `idReview` int NOT NULL,
+  `idReview` int NOT NULL AUTO_INCREMENT,
   `Fk_Review_Venta` int NOT NULL,
   `Descripcion` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Titulo` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
@@ -281,7 +251,7 @@ CREATE TABLE `review` (
   PRIMARY KEY (`idReview`),
   KEY `fk_venta_review_idx` (`Fk_Review_Venta`),
   CONSTRAINT `fk_venta_review` FOREIGN KEY (`Fk_Review_Venta`) REFERENCES `venta` (`idVenta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -290,7 +260,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,1,'Excelente producto. Lo uso todos los días y no puedo estar más satisfecho con su rendimiento y durabilidad','Se me cayó del 5to piso','2023-03-07 00:00:00',5,1),(2,2,'¡Increíble! No puedo imaginar mi vida sin este producto. Realmente hace todo más fácil y eficiente','Muy buen producto','2024-01-21 00:00:00',4,1),(3,3,'Buen producto, me sorprendió','Es un producto de alta calidad y muy duradero','2024-01-16 00:00:00',2,1),(4,4,'Me encanta este producto. Es versátil, fácil de usar y muy útil en mi día a día','Útil','2024-01-23 00:00:00',4,1),(5,5,'Lo compré hace unas semanas y ya no puedo vivir sin él. Definitivamente vale la pena cada centavo, es lo que me gustaría decir, pero es muy pequeño','Pensé que era más grande','2024-01-21 00:00:00',1,1),(6,6,'He probado muchos productos similares, pero este se destaca por su calidad y funcionalidad. Lo recomiendo ampliamente','Lo mejor que existe!!!','2024-01-14 00:00:00',4,1),(7,7,'Qué gran compra! Este producto ha mejorado significativamente mi rutina diaria. Lo recomendaría a cualquiera','Producto recibido bien','2024-01-14 00:00:00',5,1),(8,8,'Gran producto, alta calidad y durabilidad, materiales pesados y lujosos, definitivamente arte','Es arte','2024-02-18 00:00:00',5,1),(9,9,'Funciona como se describe. Es robusto y confiable. No puedo pedir más de este producto','Satisfecho','2024-02-12 00:00:00',4,1),(10,10,'Este producto ha hecho una gran diferencia en mi vida. Es práctico, eficiente y fácil de usar','Impactante ','2024-02-27 00:00:00',4,1),(11,11,'Lo compré como regalo y resultó ser un gran acierto. La persona que lo recibió está encantada con el','Gran regalo','2024-02-29 00:00:00',5,1),(12,12,'\"He probado muchos productos similares, pero ninguno se compara a este. Su calidad es insuperable','Buenisismos materiales','2023-12-11 00:00:00',4,1),(13,13,'Es justo lo que necesitaba. Este producto ha simplificado muchas tareas para mí. ¡Totalmente recomendado! aunq ya la perdí D:','Buena compra','2023-12-23 00:00:00',4,1),(14,14,'Un producto imprescindible en mi hogar. Su diseño y durabilidad lo convierten en una excelente elección.','Amo aqui','2023-12-19 00:00:00',4,1),(15,15,'Utiliza materiales premium, además de cumplir perfectamente con su función','Alta calidad del material','2023-12-27 00:00:00',1,1),(16,16,'Estoy sorprendido por lo bien que funciona este producto. Sin duda alguna, es una compra que no me arrepiento','Gran usabilidad','2023-12-31 00:00:00',4,1),(17,17,'Sí cumplen con lo que piden pero esperaba más','Bueno pero....','2023-11-16 00:00:00',3,1),(18,18,'Me impresiona la calidad y la atención al detalle de este producto. Sin duda, una excelente adquisición','MUUUY buen producto','2023-11-01 00:00:00',4,1),(19,19,'Es increíble cómo un producto tan simple puede hacer tanto. Definitivamente recomendaría este producto a cualquiera','Increible lo útil y bonito q es','2023-11-18 00:00:00',5,1),(20,20,'Este producto superó mis expectativas. Es de alta calidad y cumple con su propósito. Lo recomiendo sin dudarlo ','La mayor calidad que existe','2024-01-12 00:00:00',5,1);
+INSERT INTO `review` VALUES (1,1,'Excelente producto. Lo uso todos los días y no puedo estar más satisfecho con su rendimiento y durabilidad','Se me cayó del 5to piso','2023-03-07 00:00:00',5,1),(2,2,'¡Increíble! No puedo imaginar mi vida sin este producto. Realmente hace todo más fácil y eficiente','Muy buen producto','2024-01-21 00:00:00',4,1),(3,3,'Buen producto, me sorprendió','Es un producto de alta calidad y muy duradero','2024-01-16 00:00:00',2,1),(4,4,'Me encanta este producto. Es versátil, fácil de usar y muy útil en mi día a día','Útil','2024-01-23 00:00:00',4,1),(5,21,'Lo compré hace unas semanas y ya no puedo vivir sin él. Definitivamente vale la pena cada centavo, es lo que me gustaría decir, pero es muy pequeño','Pensé que era más grande','2024-01-21 00:00:00',1,1),(6,6,'He probado muchos productos similares, pero este se destaca por su calidad y funcionalidad. Lo recomiendo ampliamente','Lo mejor que existe!!!','2024-01-14 00:00:00',4,1),(7,7,'Qué gran compra! Este producto ha mejorado significativamente mi rutina diaria. Lo recomendaría a cualquiera','Producto recibido bien','2024-01-14 00:00:00',5,1),(8,8,'Gran producto, alta calidad y durabilidad, materiales pesados y lujosos, definitivamente arte','Es arte','2024-02-18 00:00:00',5,1),(9,22,'Funciona como se describe. Es robusto y confiable. No puedo pedir más de este producto','Satisfecho','2024-02-12 00:00:00',4,1),(10,10,'Este producto ha hecho una gran diferencia en mi vida. Es práctico, eficiente y fácil de usar','Impactante ','2024-02-27 00:00:00',4,1),(11,11,'Lo compré como regalo y resultó ser un gran acierto. La persona que lo recibió está encantada con el','Gran regalo','2024-02-29 00:00:00',5,1),(12,12,'\"He probado muchos productos similares, pero ninguno se compara a este. Su calidad es insuperable','Buenisismos materiales','2023-12-11 00:00:00',4,1),(13,13,'Es justo lo que necesitaba. Este producto ha simplificado muchas tareas para mí. ¡Totalmente recomendado! aunq ya la perdí D:','Buena compra','2023-12-23 00:00:00',4,1),(14,23,'Un producto imprescindible en mi hogar. Su diseño y durabilidad lo convierten en una excelente elección.','Amo aqui','2023-12-19 00:00:00',4,1),(15,15,'Utiliza materiales premium, además de cumplir perfectamente con su función','Alta calidad del material','2023-12-27 00:00:00',1,1),(16,16,'Estoy sorprendido por lo bien que funciona este producto. Sin duda alguna, es una compra que no me arrepiento','Gran usabilidad','2023-12-31 00:00:00',4,1),(17,17,'Sí cumplen con lo que piden pero esperaba más','Bueno pero....','2023-11-16 00:00:00',3,1),(18,18,'Me impresiona la calidad y la atención al detalle de este producto. Sin duda, una excelente adquisición','MUUUY buen producto','2023-11-01 00:00:00',4,1),(19,19,'Es increíble cómo un producto tan simple puede hacer tanto. Definitivamente recomendaría este producto a cualquiera','Increible lo útil y bonito q es','2023-11-18 00:00:00',5,1),(20,20,'Este producto superó mis expectativas. Es de alta calidad y cumple con su propósito. Lo recomiendo sin dudarlo ','La mayor calidad que existe','2024-01-12 00:00:00',5,1);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -363,11 +333,11 @@ CREATE TABLE `venta` (
   `Fecha` datetime NOT NULL,
   `SalesOrderNum` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idVenta`),
-  KEY `Fk_Cliente_Venta_idx` (`Fk_Venta_Cliente`),
   KEY `Fk_Producto_Venta_idx` (`Fk_Venta_Producto`),
+  KEY `Fk_Cliente_Venta_idx` (`Fk_Venta_Cliente`),
   CONSTRAINT `Fk_Cliente_Venta` FOREIGN KEY (`Fk_Venta_Cliente`) REFERENCES `cliente` (`idCliente`),
   CONSTRAINT `Fk_Producto_Venta` FOREIGN KEY (`Fk_Venta_Producto`) REFERENCES `producto` (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,7 +346,7 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (1,7289,'AN1133V','2023-03-07 00:00:00',NULL),(2,7289,'AN1133VCH','2023-03-07 00:00:00',NULL),(3,7289,'MA4012','2023-02-02 00:00:00',NULL),(4,25498,'SH7003','2023-03-03 00:00:00',NULL),(5,25498,'AR9043','2023-04-04 00:00:00',NULL),(6,25498,'MA1301','2023-05-05 00:00:00',NULL),(7,37274,'MA1301','2023-06-06 00:00:00',NULL),(8,37274,'SH7003','2023-07-07 00:00:00',NULL),(9,37274,'AR9043','2023-08-08 00:00:00',NULL),(10,37274,'NP6323','2023-09-09 00:00:00',NULL),(11,321456,'MX-MAP-MAL-KIT2-SAN','2023-10-10 00:00:00',NULL),(12,321456,'SH7003','2023-11-11 00:00:00',NULL),(13,321456,'LU1002B2','2023-12-12 00:00:00',NULL),(14,91171,'AR9043','2023-11-12 00:00:00',NULL),(15,91171,'LU1002B2','2023-12-14 00:00:00',NULL),(16,91171,'MA1301','2023-12-23 00:00:00',NULL),(17,123789,'NP6323','2023-01-12 00:00:00',NULL),(18,123789,'AN1133VCH','2023-01-15 00:00:00',NULL),(19,123789,'LB3231','2023-01-16 00:00:00',NULL),(20,123789,'MX-MAP-MAL-KIT2-SAN','2023-01-23 00:00:00',NULL),(21,562323,'MA4003','2023-01-25 00:00:00',NULL),(22,562323,'LB3231','2023-03-17 00:00:00',NULL),(23,562323,'NP6323','2023-03-12 00:00:00',NULL),(24,987412,'SH7003','2023-03-23 00:00:00',NULL),(25,987412,'MX-MAP-MAL-KIT2-SAN','2023-03-21 00:00:00',NULL),(26,987412,'LU1001B2','2023-06-30 00:00:00',NULL),(27,974858,'MA1301','2023-03-19 00:00:00',NULL),(28,974858,'MA4003','2023-03-17 00:00:00',NULL),(29,974858,'AR9043','2023-05-24 00:00:00',NULL),(30,974858,'MA1301','2023-05-27 00:00:00',NULL),(31,60764,'LB3231','2023-05-02 00:00:00',NULL),(32,60764,'MX-MAP-MAL-KIT2-SAN','2023-05-17 00:00:00',NULL),(33,90234,'LB3231','2023-07-17 00:00:00',NULL),(34,90234,'MA1301','2023-07-11 00:00:00',NULL),(35,90234,'LU1002B2','2023-07-21 00:00:00',NULL),(36,321456,'AR9043','2023-07-03 00:00:00',NULL),(37,321456,'LU1002B2','2023-07-12 00:00:00',NULL),(38,321456,'MA1301','2023-08-07 00:00:00',NULL),(39,321456,'MX-MAP-MAL-KIT2-SAN','2023-08-21 00:00:00',NULL),(40,92971,'LB3231','2023-08-12 00:00:00',NULL),(41,92971,'NP6323','2023-09-07 00:00:00',NULL),(42,92971,'AN1133VCH','2023-09-12 00:00:00',NULL),(43,92971,'LU1002B2','2023-09-27 00:00:00',NULL),(44,37274,'MA1301','2023-09-17 00:00:00',NULL),(45,37274,'NP6323','2023-09-13 00:00:00',NULL),(46,37274,'MA1301','2023-10-05 00:00:00',NULL),(47,37274,'AN1133VCH','2023-10-30 00:00:00',NULL),(48,987654,'NP6323','2023-10-12 00:00:00',NULL),(49,987654,'AN1133VCH','2023-10-09 00:00:00',NULL),(50,987654,'LU1002B2','2023-12-24 00:00:00',NULL),(51,987654,'NB7224','2021-12-24 00:00:00',NULL);
+INSERT INTO `venta` VALUES (1,7289,'AN1133V','2023-03-07 00:00:00',NULL),(2,7289,'AN1133VCH','2023-03-07 00:00:00',NULL),(3,7289,'MA4012','2023-02-02 00:00:00',NULL),(4,25498,'SH7003','2023-03-03 00:00:00',NULL),(6,25498,'MA1301','2023-05-05 00:00:00',NULL),(7,37274,'MA1301','2023-06-06 00:00:00',NULL),(8,37274,'SH7003','2023-07-07 00:00:00',NULL),(10,37274,'NP6323','2023-09-09 00:00:00',NULL),(11,321456,'MX-MAP-MAL-KIT2-SAN','2023-10-10 00:00:00',NULL),(12,321456,'SH7003','2023-11-11 00:00:00',NULL),(13,321456,'LU1002B2','2023-12-12 00:00:00',NULL),(15,91171,'LU1002B2','2023-12-14 00:00:00',NULL),(16,91171,'MA1301','2023-12-23 00:00:00',NULL),(17,123789,'NP6323','2023-01-12 00:00:00',NULL),(18,123789,'AN1133VCH','2023-01-15 00:00:00',NULL),(19,123789,'LB3231','2023-01-16 00:00:00',NULL),(20,123789,'MX-MAP-MAL-KIT2-SAN','2023-01-23 00:00:00',NULL),(21,562323,'MA4003','2023-01-25 00:00:00',NULL),(22,562323,'LB3231','2023-03-17 00:00:00',NULL),(23,562323,'NP6323','2023-03-12 00:00:00',NULL),(24,987412,'SH7003','2023-03-23 00:00:00',NULL),(25,987412,'MX-MAP-MAL-KIT2-SAN','2023-03-21 00:00:00',NULL),(26,987412,'LU1001B2','2023-06-30 00:00:00',NULL),(27,974858,'MA1301','2023-03-19 00:00:00',NULL),(28,974858,'MA4003','2023-03-17 00:00:00',NULL),(30,974858,'MA1301','2023-05-27 00:00:00',NULL),(31,60764,'LB3231','2023-05-02 00:00:00',NULL),(32,60764,'MX-MAP-MAL-KIT2-SAN','2023-05-17 00:00:00',NULL),(33,90234,'LB3231','2023-07-17 00:00:00',NULL),(34,90234,'MA1301','2023-07-11 00:00:00',NULL),(35,90234,'LU1002B2','2023-07-21 00:00:00',NULL),(37,321456,'LU1002B2','2023-07-12 00:00:00',NULL),(38,321456,'MA1301','2023-08-07 00:00:00',NULL),(39,321456,'MX-MAP-MAL-KIT2-SAN','2023-08-21 00:00:00',NULL),(40,92971,'LB3231','2023-08-12 00:00:00',NULL),(41,92971,'NP6323','2023-09-07 00:00:00',NULL),(42,92971,'AN1133VCH','2023-09-12 00:00:00',NULL),(43,92971,'LU1002B2','2023-09-27 00:00:00',NULL),(44,37274,'MA1301','2023-09-17 00:00:00',NULL),(45,37274,'NP6323','2023-09-13 00:00:00',NULL),(46,37274,'MA1301','2023-10-05 00:00:00',NULL),(47,37274,'AN1133VCH','2023-10-30 00:00:00',NULL),(48,987654,'NP6323','2023-10-12 00:00:00',NULL),(49,987654,'AN1133VCH','2023-10-09 00:00:00',NULL),(50,987654,'LU1002B2','2023-12-24 00:00:00',NULL),(51,987654,'NB7224','2021-12-24 00:00:00',NULL),(52,7289,'SI1004','2023-03-07 00:00:00','1234'),(53,7289,'SI1004','2023-03-07 00:00:00','1234'),(54,7289,'SI1004','2023-03-07 00:00:00','1235'),(55,7289,'SI1004','2023-03-07 00:00:00','1235'),(56,7289,'SI1004','2023-03-07 00:00:00','1235'),(57,7289,'SI1004','2023-03-07 00:00:00','1235'),(58,7289,'SI1004','2023-03-07 00:00:00','1235');
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -643,4 +613,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-18 10:27:53
+-- Dump completed on 2024-04-18 17:07:03
