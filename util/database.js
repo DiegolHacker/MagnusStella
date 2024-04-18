@@ -1,11 +1,11 @@
 const mysql = require('mysql2');
+require('dotenv').config();
 
-// usar la conexion a la base de datos que vayamos a utilizar
 const conection = mysql.createPool({
-    host: '146.190.127.1',
-    user: 'magnusstellaip',
-    database: 'magnusstella',
-    password: 'waspy0hasCik_paqFYW',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
 });
 
 module.exports = conection.promise();
