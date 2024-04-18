@@ -1262,6 +1262,9 @@ label {
     margin-left: 50px;
 }
 
+.input-product{
+    margin-top: 1px;
+}
 
 .dropdown-content {
     display: none;

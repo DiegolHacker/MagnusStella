@@ -12,8 +12,10 @@
     <div class="cat-search">    
         <form action="<%=ruta%>/<%=marca%>" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
-            <button type="submit" class="ingresar-btn">Submit</button>
+            <div class="input-product">
+                <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
+                <button type="submit" class="ingresar-btn">Submit</button>
+            </div>
         </form>
         <%-include('includes/categorias.ejs', { marca:marca,ruta}) %>
         <% if(errorProducto) { %>
