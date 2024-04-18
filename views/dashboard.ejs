@@ -11,14 +11,19 @@
     
     <div class="cat-search">    
         <form action="<%=ruta%>/<%=marca%>" method="POST">
-            <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
-            <button type="submit" class="ingresar-btn">Submit</button>
+            <div class="input-product">
+                <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
+                <button type="submit" class="ingresar-btn">Submit</button>
+            </div>
         </form>
         <%-include('includes/categorias.ejs', { marca:marca,ruta}) %>
         <% if(errorProducto) { %>
             <div id="error-message"> <h4> <%= errorProducto %> </h4></div>
         <% } %>
-
+        
+        <% if(categoria) { %>
+            <h1><%= categoria %></h1>
+        <% } %>
     </div>
 
 
