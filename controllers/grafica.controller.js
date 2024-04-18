@@ -26,6 +26,7 @@ exports.get_dashboard = async (request, response, next) => {
                                 numAVGEstrella: roundedStarAVGNum,
                                 porcentaje: roundedStarAVGNumComplementario,
                                 marca: marca,
+                                categoria:categoria || undefined,
                                 ruta: "/graphics/dashboard",
                                 errorProducto : errorMessage,
                                 permisos: request.session.permisos || []
@@ -49,6 +50,7 @@ exports.get_dashboard = async (request, response, next) => {
                                 numAVGEstrella: roundedStarAVGNum,
                                 porcentaje: roundedStarAVGNumComplementario,
                                 marca: marca || "LU1",
+                                categoria: categoria || undefined,
                                 ruta: "/graphics/dashboard",
                                 errorProducto : errorMessage,
                                 permisos: request.session.permisos || []
