@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `magnusstella` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `magnusstella`;
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: magnusstella
 -- ------------------------------------------------------
--- Server version	8.2.0
+-- Server version	8.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -377,6 +379,260 @@ LOCK TABLES `venta` WRITE;
 INSERT INTO `venta` VALUES (1,7289,'AN1133V','2023-03-07 00:00:00',NULL),(2,7289,'AN1133VCH','2023-03-07 00:00:00',NULL),(3,7289,'MA4012','2023-02-02 00:00:00',NULL),(4,25498,'SH7003','2023-03-03 00:00:00',NULL),(5,25498,'AR9043','2023-04-04 00:00:00',NULL),(6,25498,'MA1301','2023-05-05 00:00:00',NULL),(7,37274,'MA1301','2023-06-06 00:00:00',NULL),(8,37274,'SH7003','2023-07-07 00:00:00',NULL),(9,37274,'AR9043','2023-08-08 00:00:00',NULL),(10,37274,'NP6323','2023-09-09 00:00:00',NULL),(11,321456,'MX-MAP-MAL-KIT2-SAN','2023-10-10 00:00:00',NULL),(12,321456,'SH7003','2023-11-11 00:00:00',NULL),(13,321456,'LU1002B2','2023-12-12 00:00:00',NULL),(14,91171,'AR9043','2023-11-12 00:00:00',NULL),(15,91171,'LU1002B2','2023-12-14 00:00:00',NULL),(16,91171,'MA1301','2023-12-23 00:00:00',NULL),(17,123789,'NP6323','2023-01-12 00:00:00',NULL),(18,123789,'AN1133VCH','2023-01-15 00:00:00',NULL),(19,123789,'LB3231','2023-01-16 00:00:00',NULL),(20,123789,'MX-MAP-MAL-KIT2-SAN','2023-01-23 00:00:00',NULL),(21,562323,'MA4003','2023-01-25 00:00:00',NULL),(22,562323,'LB3231','2023-03-17 00:00:00',NULL),(23,562323,'NP6323','2023-03-12 00:00:00',NULL),(24,987412,'SH7003','2023-03-23 00:00:00',NULL),(25,987412,'MX-MAP-MAL-KIT2-SAN','2023-03-21 00:00:00',NULL),(26,987412,'LU1001B2','2023-06-30 00:00:00',NULL),(27,974858,'MA1301','2023-03-19 00:00:00',NULL),(28,974858,'MA4003','2023-03-17 00:00:00',NULL),(29,974858,'AR9043','2023-05-24 00:00:00',NULL),(30,974858,'MA1301','2023-05-27 00:00:00',NULL),(31,60764,'LB3231','2023-05-02 00:00:00',NULL),(32,60764,'MX-MAP-MAL-KIT2-SAN','2023-05-17 00:00:00',NULL),(33,90234,'LB3231','2023-07-17 00:00:00',NULL),(34,90234,'MA1301','2023-07-11 00:00:00',NULL),(35,90234,'LU1002B2','2023-07-21 00:00:00',NULL),(36,321456,'AR9043','2023-07-03 00:00:00',NULL),(37,321456,'LU1002B2','2023-07-12 00:00:00',NULL),(38,321456,'MA1301','2023-08-07 00:00:00',NULL),(39,321456,'MX-MAP-MAL-KIT2-SAN','2023-08-21 00:00:00',NULL),(40,92971,'LB3231','2023-08-12 00:00:00',NULL),(41,92971,'NP6323','2023-09-07 00:00:00',NULL),(42,92971,'AN1133VCH','2023-09-12 00:00:00',NULL),(43,92971,'LU1002B2','2023-09-27 00:00:00',NULL),(44,37274,'MA1301','2023-09-17 00:00:00',NULL),(45,37274,'NP6323','2023-09-13 00:00:00',NULL),(46,37274,'MA1301','2023-10-05 00:00:00',NULL),(47,37274,'AN1133VCH','2023-10-30 00:00:00',NULL),(48,987654,'NP6323','2023-10-12 00:00:00',NULL),(49,987654,'AN1133VCH','2023-10-09 00:00:00',NULL),(50,987654,'LU1002B2','2023-12-24 00:00:00',NULL),(51,987654,'NB7224','2021-12-24 00:00:00',NULL);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'magnusstella'
+--
+/*!50003 DROP FUNCTION IF EXISTS `PuntajeItemM` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemM`(diff_marca varchar(25)) RETURNS float
+    DETERMINISTIC
+BEGIN
+declare promedio float;
+
+select avg(Puntaje) into promedio
+from review r, venta v, producto p
+where r.fk_review_venta = v.idventa 
+and v.fk_venta_producto = p.idproducto
+and (fk_idmarca_producto = diff_marca);
+return promedio; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `PuntajeItemMC` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemMC`(Umarca varchar(25), Ucategoria varchar(45)) RETURNS float
+    DETERMINISTIC
+BEGIN
+declare promedio float;
+
+select avg(Puntaje) into promedio
+from review r, venta v, producto p
+where r.fk_review_venta = v.idventa 
+and v.fk_venta_producto = p.idproducto
+and (fk_idmarca_producto = Umarca)
+and p.categoria = Ucategoria;
+return promedio;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `PuntajeItemP` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemP`(diff_idproducto varchar(25)) RETURNS int
+    DETERMINISTIC
+BEGIN
+declare promedio float;
+
+select avg(Puntaje) into promedio
+from review r, venta v, producto p
+where r.fk_review_venta = v.idventa 
+and v.fk_venta_producto = p.idproducto
+and (idproducto = diff_idproducto);
+
+RETURN promedio;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasM` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasM`(Umarca varchar(25)) RETURNS int
+    DETERMINISTIC
+BEGIN
+
+declare contestadas int;
+
+SELECT COUNT(*) INTO contestadas
+    FROM review r, venta v, producto p
+    where r.fk_review_venta = v.idVenta
+    and v.fk_venta_producto = p.idproducto
+    and p.fk_idMarca_producto = Umarca;
+
+RETURN contestadas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasMC` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int
+    DETERMINISTIC
+BEGIN
+declare contestadas int;
+
+SELECT COUNT(*) INTO contestadas
+    FROM review r, venta v, producto p
+    where r.fk_review_venta = v.idVenta
+    and v.fk_venta_producto = p.idproducto
+    and p.fk_idMarca_producto = diff_marca
+    and p.categoria = diff_categoria;
+
+RETURN contestadas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasP` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasP`(diff_producto varchar(25)) RETURNS int
+    DETERMINISTIC
+BEGIN
+declare contestadas int;
+
+SELECT COUNT(*) INTO contestadas
+    FROM review r, venta v, producto p
+    where r.fk_review_venta = v.idVenta
+    and v.fk_venta_producto = p.idproducto
+    and p.idProducto = diff_producto;
+    
+RETURN contestadas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasM` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasM`(diff_marca varchar(25)) RETURNS int
+    DETERMINISTIC
+BEGIN
+declare enviadas int;
+
+SELECT COUNT(*) INTO enviadas
+    FROM venta v, producto p
+    where v.fk_venta_producto = p.idproducto
+    and p.fk_idmarca_producto = diff_marca;
+
+RETURN enviadas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasMC` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int
+    DETERMINISTIC
+BEGIN
+declare enviadas int;
+
+SELECT COUNT(*) INTO enviadas
+    FROM venta v, producto p
+    where v.fk_venta_producto = p.idproducto
+    and p.fk_idmarca_producto = diff_marca
+    and p.categoria = diff_categoria;
+
+RETURN enviadas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasP` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasP`(diff_producto varchar(25)) RETURNS int
+    DETERMINISTIC
+BEGIN
+declare enviadas int;
+
+SELECT COUNT(*) INTO enviadas
+    FROM venta v, producto p
+    where v.fk_venta_producto = p.idproducto
+    and p.idProducto = diff_producto;
+return enviadas;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -387,4 +643,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-16 12:05:48
+-- Dump completed on 2024-04-18 10:27:53
