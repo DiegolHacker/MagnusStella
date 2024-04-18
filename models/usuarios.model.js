@@ -127,7 +127,10 @@ module.exports = class Usuarios {
             return db.execute('UPDATE usuario SET IDRol = ?, Correo = ? WHERE (idUsuario = ?)',
                 [IdRol, Correo, idUsuario]);
         }
+    }
 
-
+    static delete(id) {
+        return db.execute('DELETE FROM usuario WHERE idUsuario=?', 
+            [id]);
     }
 }

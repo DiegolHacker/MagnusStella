@@ -68,3 +68,14 @@ exports.post_editar = (request, response, next) => {
         });
 
 };
+
+exports.post_delete = (request, response, next) => {
+    Usuarios.delete(request.body.id)
+        .then(() => {
+            return Usuarios.fetch();
+    })
+    .then(([usuarios, fieldData]) => {
+        return response.status(200).json({usuarios: usuarios})
+        })
+    .catch((error) => {console.log(error)});
+};
