@@ -48,7 +48,7 @@ exports.get_dashboard = async (request, response, next) => {
                                 encuestasEnviadas: reviewsSent,
                                 numAVGEstrella: roundedStarAVGNum,
                                 porcentaje: roundedStarAVGNumComplementario,
-                                marca: marca,
+                                marca: marca || "LU1",
                                 ruta: "/graphics/dashboard",
                                 errorProducto : errorMessage,
                                 permisos: request.session.permisos || []

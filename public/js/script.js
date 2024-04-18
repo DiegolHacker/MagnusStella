@@ -83,64 +83,6 @@ function openTab(tabName) {
   document.getElementById(tabName).style.display = "block";  
 }
 
-
-//Seleccionar marca
-let getBrand = localStorage.getItem("brand");
-let getFirstLoad = localStorage.getItem("isFirstLoad")
-
-let brand;
-
-//Si es la primera vez que se carga la página se pone Luuna por default
-if (!getFirstLoad) {
-  localStorage.setItem('isFirstLoad', true);
-  localStorage.setItem("brand", "LU1");
-  brand = "LU1"
-  DefaultBrand.style.display = "inline";
- }
-
-Brand.forEach(function(elem) {
-  elem.addEventListener("click" , () =>{
-    //Cambiar el valor de la marca seleccionada
-    console.log("Brand Change");
-    localStorage.setItem("brand", elem.dataset.value);
-    brand = elem.dataset.value;
-    // console.log(brand)
-    // console.log(localStorage.getItem("brand"));
-
-
-   
-    //Cambiar la visibilidad de los logos
-    var cloneBrands = [...Brand];
-    var i = cloneBrands.indexOf(elem);
-
-    //Mostrar la marca que fue seleccionada
-    var BrandLogosL = [...BrandLogos];
-    BrandLogosL[i].style.display = "inline";
-    BrandLogosL.splice(i,1);
-
-    //Esconder las marcas que no fueron seleccionadas
-    BrandLogosL.forEach(function(element) {
-      element.style.display = "none";
-    })
-  });
-
-  //Si ya se habia escogido una marca, renderizar ese logo.
-  if(getBrand){
-    var cloneBrands = [...Brand];
-    var i = cloneBrands.indexOf(elem);
-    var BrandLogosL = [...BrandLogos];
-
-    if(getBrand ==  elem.dataset.value){
-      BrandLogosL[i].style.display = "inline";
-    }
-  }
-  
-})
-
-//declarar la variable brand como global
-// window.brand =brand;
-
-
 //dashboard
 
 let lineColor1 = getComputedStyle(document.documentElement).getPropertyValue('--line-color-1');
