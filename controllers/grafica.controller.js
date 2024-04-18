@@ -38,6 +38,7 @@ exports.get_dashboard = async (request, response, next) => {
                 numAVGEstrella: roundedStarAVGNum,
                 porcentaje: roundedStarAVGNumComplementario,
                 marca: marca,
+                categoria: categoria,
                 ruta: "/graphics/dashboard",
                 errorProducto: errorMessage,
                 permisos: request.session.permisos || [],
