@@ -80,7 +80,9 @@ exports.get_dashboard = async (request, response, next) => {
                     marca: marca,
                     ruta: "/graphics/dashboard",
                     errorProducto: undefined,
-                    permisos: request.session.permisos || []
+                    permisos: request.session.permisos || [],
+                    csrfToken: request.csrfToken(),
+
                 });
             })
             .catch(error => {
