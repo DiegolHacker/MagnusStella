@@ -5,7 +5,7 @@
         <h5>Editor de preguntas:</h5>
     </div>  
     <form action="/emails/correos/editar" method="POST">
-        
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <input type="hidden" name="idp" value="<%= idp %>">
         <input type="hidden" name="marca" value="<%= marca %>">
         <div class="credential-input">

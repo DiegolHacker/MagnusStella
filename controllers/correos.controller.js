@@ -26,6 +26,7 @@ exports.get_correos = async (request, response, next) => {
         // Ahora renderiza con los datos obtenidos
         response.render("correos", {
             preguntas: preguntas,
+            csrfToken: request.csrfToken(),
             titulo: "Correos",
             marca: marca || "LU1",
             ruta: "/emails/correos",
@@ -46,7 +47,7 @@ exports.get_correos = async (request, response, next) => {
 exports.get_correos_editar = async (request, response, next) => {
     const marca = request.params.marca;
     const idp = request.params.pregunta_id;
-
+    
     try {
         const [tipo] = await Correos.emailtipo_pre(idp);
         const opciones  = await Correos.emailopciones(idp);
@@ -56,6 +57,7 @@ exports.get_correos_editar = async (request, response, next) => {
         // Ahora renderiza con los datos obtenidos
         response.render("editar_correos", {
             titulo: "Correos",
+            csrfToken: request.csrfToken(),
             marca: marca || "LU1",
             ruta: "/emails/correos",
             idp:idp,

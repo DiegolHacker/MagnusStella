@@ -45,42 +45,48 @@
             method: 'GET'
     
         }).then((result) => {
-            console.log(result);
             return result.json(); //Regresa otra promesa
         }).then((data) => {
-            console.log(data);
             document.getElementById('respuesta_ajax').innerHTML = '';
 
-            if (data && data.resenas && data.resenas.length > 0) {
-                const resenasHTML = data.resenas.map(resena => {
-                    return `
-                        <div class="item-container">
-                            <a href="/reviews/resenas_completas/${resena.FK_idMarca_Producto}/${resena.idReview}">
-                                ${resena.idProducto} ${resena.Titulo}
-                            </a>
-                            <img src="/images/${resena.FK_idMarca_Producto}/${resena.idProducto}.jpg" class="img_producto">
-                            <div class="estrellas">
-                                ${Array.from({ length: 5 }, (_, index) => {
-                                    return index < resena.Puntaje ? '<i class="bx bxs-star" id="stars_y"></i>' : '<i class="bx bx-star" id="stars_g"></i>';
-                                }).join('')}
-                            </div>
-                            <p id="sub_question">${resena.Descripcion}</p> 
-                            <div class="ver_pagina">
-                                <input type="checkbox" id="click">
-                                <label for="click" class="text"></label>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-
-                document.getElementById('respuesta_ajax').innerHTML = resenasHTML;
+            
+            if (valor_busqueda.trim() === '') {
+                // Redirige al usuario a la ruta de todas las reseñas
+                window.location.href = `/reviews/resenas/<%= marca %>`;
             } else {
-                document.getElementById('respuesta_ajax').innerHTML = 'No se encontraron reseñas.';
+                // Si hay una búsqueda, mostrar los resultados de la búsqueda
+                if (data && data.resenas && data.resenas.length > 0) {
+                    const resenasHTML = data.resenas.map(resena => {
+                        return `
+                            <div class="item-container">
+                                <a href="/reviews/resenas_completas/${resena.FK_idMarca_Producto}/${resena.idReview}">
+                                    ${resena.idProducto} ${resena.Titulo}
+                                </a>
+                                <img src="/images/${resena.FK_idMarca_Producto}/${resena.idProducto}.jpg" class="img_producto">
+                                <div class="estrellas">
+                                    ${Array.from({ length: 5 }, (_, index) => {
+                                        return index < resena.Puntaje ? '<i class="bx bxs-star" id="stars_y"></i>' : '<i class="bx bx-star" id="stars_g"></i>';
+                                    }).join('')}
+                                </div>
+                                <p id="sub_question">${resena.Descripcion}</p> 
+                                <div class="ver_pagina">
+                                    <input type="checkbox" id="click">
+                                    <label for="click" class="text"></label>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+    
+                    document.getElementById('respuesta_ajax').innerHTML = resenasHTML;
+                } else {
+                    document.getElementById('respuesta_ajax').innerHTML = 'No se encontraron reseñas.';
+                }
             }
         }).catch(err => {
             console.log(err);
         });
-    };   
+    };
+    
     document.getElementById('buscar').onkeyup = accion_asincrona;
 </script>
 
