@@ -40,6 +40,8 @@ exports.get_dashboard = async (request, response, next) => {
                 marca: marca,
                 ruta: "/graphics/dashboard",
                 errorProducto: errorMessage,
+                permisos: request.session.permisos || [],
+                csrfToken: request.csrfToken(),
             });
         })
         .catch(error => {
