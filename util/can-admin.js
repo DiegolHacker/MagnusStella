@@ -10,7 +10,13 @@ module.exports = (request, response, next) => {
     if (can_admin) {
         next();
     } else {
-        return response.redirect("/users/logout");
+        response.status(403);
+        return response.render("403", {
+            titulo: '403',
+            marca: "LU1",
+            permisos: request.session.permisos || [],
+            ruta: "/graphics/dashboard"
+        });
     }
     
 }
