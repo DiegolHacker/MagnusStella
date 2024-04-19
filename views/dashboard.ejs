@@ -19,7 +19,7 @@
         </form>
         <%-include('includes/categorias.ejs', { marca:marca,ruta}) %>
         <% if(errorProducto) { %>
-            <div id="error-message"> <h4> <%= errorProducto %> </h4></div>
+            <div id="error-message" class="cat-tittle"> <h4> <%= errorProducto %> </h4></div>
         <% } %>
         
         <% if(categoria !== '*') { %>
