@@ -44,18 +44,19 @@ const fileStorage = multer.diskStorage({
 });
 app.use(multer({ storage: fileStorage }).single('image'));
 
+
+
+
+
 const routesZecore = require('./routes/zecore.routes')
 
 // Define las rutas más específicas primero
-app.use('/api/zecore/venta', routesZecore);
-
-
-
+app.use('/api', routesZecore);
 
 //PROTECCION CONTRA CROSS-SITE REQUEST FORGERY
-//const csrf = require('csurf');
-//const csrfProtection = csrf();
-//app.use(csrfProtection); 
+const csrf = require('csurf');
+const csrfProtection = csrf();
+app.use(csrfProtection); 
 
 
 
@@ -67,6 +68,8 @@ const routasReview = require('./routes/resenas.routes');
 const routasCorreos = require('./routes/correos.routes');
 const routasGraphics = require('./routes/grafica.routes');
 const routasAyuda = require('./routes/ayuda.routes');
+
+
 
 app.use('/users', routasLogin);
 app.use('/reviews', routasReview);
