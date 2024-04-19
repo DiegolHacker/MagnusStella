@@ -1,0 +1,252 @@
+[33mcommit 946c97cbe4806fc8643411451ae4668d590cacc4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mApi_Zecore[m[33m, [m[1;31morigin/Api_Zecore[m[33m)[m
+Author: Juan Pablo <a01705408@tec.mx>
+Date:   Thu Apr 18 19:18:30 2024 -0600
+
+    Problemas con git
+
+[33mcommit 484866e9aa44290fefc322de210d66c0aeea3104[m
+Author: Juan Pablo <a01705408@tec.mx>
+Date:   Thu Apr 18 19:15:42 2024 -0600
+
+    Zecore puede: Enviar Venta, Enviar Nuevo Producto, Modificar Producto. Se utilizó una API key falsa, habrá que cambiarla
+
+[33mcommit 2855df74ce4bedde444cfc407cd78c3630752b2f[m
+Author: Juan Pablo <a01705408@tec.mx>
+Date:   Thu Apr 18 13:17:12 2024 -0600
+
+    Adelanto
+
+[33mcommit af24a9d04a2abd61dc94fb4ef6738d1b8b9cdd9e[m
+Merge: e342e76 896e675
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Wed Apr 17 21:17:33 2024 -0600
+
+    Merge branch 'develop' of https://github.com/DiegolHacker/MagnusStella into develop
+
+[33mcommit e342e76c52b2824d9600396985f579aca009aee4[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Wed Apr 17 21:17:29 2024 -0600
+
+    .env
+
+[33mcommit 896e675a89b0bab65db440721078a0d4e1fec7ec[m
+Author: Diego <a01705506@tec.mx>
+Date:   Wed Apr 17 15:34:03 2024 -0600
+
+    [FIX] Marca seleccionada e imagen de marca desfazadas.
+
+[33mcommit 3e1eb197f088de13c4f761cf1a71cdafda624fe2[m
+Merge: 91b8050 c2b714f
+Author: Angie <A01705651@tec.mx>
+Date:   Wed Apr 17 00:36:59 2024 -0600
+
+    Merge branch 'ayuda_resenas' into develop
+
+[33mcommit c2b714fba394d843b5ffd437e343bd2e3ac695d0[m[33m ([m[1;31morigin/ayuda_resenas[m[33m)[m
+Author: Angie <A01705651@tec.mx>
+Date:   Wed Apr 17 00:36:14 2024 -0600
+
+    reseñas_ayuda
+
+[33mcommit 91b8050a8782fc077dbefb6f9ef118eea300ac6e[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 19:30:53 2024 -0600
+
+    cambio a user
+
+[33mcommit 5de0ccf84fd43089af01254fb4ac4c83d018a1ee[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 19:28:50 2024 -0600
+
+    cambio a database en util
+
+[33mcommit 6779c8bfbc1f1de0fa87a8964ca840610ea85801[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 18:09:06 2024 -0600
+
+    cambio a database util
+
+[33mcommit a6f59b7eb642512430de79e294b02d7a70ccae33[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 18:04:17 2024 -0600
+
+    cambio
+
+[33mcommit a815fa4b82a55ec9548192d1876851bd10879c08[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 18:01:50 2024 -0600
+
+    cambio mas pequenio aun
+
+[33mcommit 436f51dec2bec6085edd94086986d05dee36d99a[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 17:57:27 2024 -0600
+
+    cambio pequenio
+
+[33mcommit caa6329fa7222cdce08b61efef02d87fef4c77c3[m
+Merge: 086a34f 4611ba4
+Author: Angie <A01705651@tec.mx>
+Date:   Tue Apr 16 16:55:28 2024 -0600
+
+    Merge branch 'search_resenas' into develop
+
+[33mcommit 4611ba482f5f6de642b98eff4c87934751e0e37a[m[33m ([m[1;31morigin/search_resenas[m[33m)[m
+Author: Angie <A01705651@tec.mx>
+Date:   Tue Apr 16 16:55:04 2024 -0600
+
+    reseñas por producto 2.0
+
+[33mcommit 086a34ff873147f361fd96cee3fdc3e7e4cfa7bb[m
+Merge: 232405f ed75dd8
+Author: Angie <A01705651@tec.mx>
+Date:   Tue Apr 16 15:43:45 2024 -0600
+
+    Merge branch 'search_resenas' into develop
+
+[33mcommit ed75dd826a9279634a9c06a2128f9b5c0555b4be[m
+Author: Angie <A01705651@tec.mx>
+Date:   Tue Apr 16 15:41:50 2024 -0600
+
+    reseñas por producto
+
+[33mcommit 232405f7034432d2f6259b882bad0286415ad8bf[m
+Merge: 0e95a33 c11ab3d
+Author: Diego <a01705506@tec.mx>
+Date:   Tue Apr 16 14:09:31 2024 -0600
+
+    Merge branch 'DiegoF_RBAC2' into develop
+
+[33mcommit c11ab3dfc5f63e4427ef3ca222ae9eafc25e26ac[m[33m ([m[1;31morigin/DiegoF_RBAC2[m[33m)[m
+Author: Diego <a01705506@tec.mx>
+Date:   Tue Apr 16 14:04:47 2024 -0600
+
+    RBAC Finalizado
+
+[33mcommit 0e95a3347cf22e9868beff1785480c1936596a9d[m
+Merge: 21f8c03 a0bfb0e
+Author: Angie <A01705651@tec.mx>
+Date:   Tue Apr 16 11:53:15 2024 -0600
+
+    Merge branch 'update_correo' into develop
+
+[33mcommit a0bfb0eee553501e187fbd6244e2172ea0b49dfc[m[33m ([m[1;31morigin/update_correo[m[33m)[m
+Author: Angie <A01705651@tec.mx>
+Date:   Tue Apr 16 11:51:46 2024 -0600
+
+    correo editar preguntas
+
+[33mcommit 21f8c03ccd5a526c3e457580774eb29c9a13dd17[m
+Merge: 5ebfd1a 2a781fa
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 09:44:34 2024 -0600
+
+    Merge branch 'develop' of https://github.com/DiegolHacker/MagnusStella into develop
+
+[33mcommit 5ebfd1a01ee5bd4218d32193af636e9dad5224e0[m[33m ([m[1;31morigin/refactor_producto[m[33m)[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Tue Apr 16 09:42:20 2024 -0600
+
+    refactor de producto search
+
+[33mcommit 2a781fad08f8d6b590aee8605100ad7809fa97da[m
+Author: Diego <a01705506@tec.mx>
+Date:   Mon Apr 15 21:54:19 2024 -0600
+
+    [FIX] styles new color
+
+[33mcommit e8dabb6fef3ff5ca836885e17220c79a94ae07f0[m
+Merge: 0a3692a ee70e8d
+Author: Angie <A01705651@tec.mx>
+Date:   Mon Apr 15 20:31:43 2024 -0600
+
+    Merge branch 'editar_preguntas' into develop
+
+[33mcommit ee70e8dde949ab777461daa6b3fcfda768e56aa4[m[33m ([m[1;31morigin/editar_preguntas[m[33m)[m
+Author: Angie <A01705651@tec.mx>
+Date:   Mon Apr 15 20:30:48 2024 -0600
+
+    correo editar
+
+[33mcommit 0a3692abf9d915caeedf3f02d76b98cbaa74d341[m
+Merge: 9f80b94 f3b928c
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Mon Apr 15 19:43:45 2024 -0600
+
+    Merge branch 'correcionGraficasProducto' into develop
+
+[33mcommit f3b928c636ae0cb587013395f9394080d6dfb0a6[m[33m ([m[1;31morigin/correcionGraficasProducto[m[33m)[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Mon Apr 15 19:42:58 2024 -0600
+
+    graficas con filtro de producto terminadas, mensaje de error si producto no existe terminado, falta colocar bien el error
+
+[33mcommit 9f80b9419ec623d9784c630c17afca9058cf5ad4[m[33m ([m[1;31morigin/pablo/guarda_imagen_usuario[m[33m)[m
+Author: Pablo Hazael Hurtado Mireles <h.h.m.pablo@gmail.com>
+Date:   Mon Apr 15 14:54:20 2024 -0600
+
+    crear usuario guarda imagen
+
+[33mcommit c5d40d647183bbfda51a93956395c6101fb88dbf[m
+Merge: 7b7df2f 0080284
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Mon Apr 15 11:58:55 2024 -0600
+
+    Merge branch 'implementacionAJAXDiegoA' into develop
+
+[33mcommit 0080284dbf395dd68d9dd8662ac176ac02a4344b[m[33m ([m[1;31morigin/implementacionAJAXDiegoA[m[33m)[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Mon Apr 15 11:57:54 2024 -0600
+
+    comienxo de ajax, login y signup implementados
+
+[33mcommit 7b7df2f3a5a44c98943ab7e77de57dbb25631b23[m
+Merge: faa79bb bb65ad4
+Author: Angie <A01705651@tec.mx>
+Date:   Sun Apr 14 22:15:37 2024 -0600
+
+    Merge branch 'correos_dinamico' into develop
+
+[33mcommit bb65ad4e62e64dba64c06f6ef6d130dec2529405[m[33m ([m[1;31morigin/correos_dinamico[m[33m)[m
+Author: Angie <A01705651@tec.mx>
+Date:   Sun Apr 14 22:13:08 2024 -0600
+
+    correo dinamico
+
+[33mcommit b5b78ddaba3e1f9bb8bb1be46de12f9b0278b129[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Sat Apr 13 12:38:53 2024 -0600
+
+    funcion ajax implementada, falta resolver errores
+
+[33mcommit aa1af67ee3c722a7b28e57f2e4e7469ce6407cdc[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Sat Apr 13 12:26:53 2024 -0600
+
+    comienzo de implementacion ajax
+
+[33mcommit faa79bb378e6302358ef9abe30250735de7680fc[m
+Merge: 05052e7 2c7bf62
+Author: Diego <a01705506@tec.mx>
+Date:   Fri Apr 12 10:29:32 2024 -0600
+
+    Merge branch 'develop' of https://github.com/DiegolHacker/MagnusStella into develop
+
+[33mcommit 05052e79b8a00181c51a3190196758dc59decc5b[m
+Author: Diego <a01705506@tec.mx>
+Date:   Fri Apr 12 10:28:11 2024 -0600
+
+    [FEAT] Interfaz ayuda fase 2
+
+[33mcommit 2c7bf62c1ed2522caf82a26f1330349c6d9a4ae7[m
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Thu Apr 11 11:55:11 2024 -0600
+
+    cambio en el dropdown de las categorias
+
+[33mcommit 65ebd2a59579fc63c94e03ec59094a0894bbd344[m
+Merge: 9425828 0430ee3
+Author: DiegoRAP2003 <diegoalfaropinto12@gmail.com>
+Date:   Thu Apr 11 11:52:12 2024 -0600
+
+  
