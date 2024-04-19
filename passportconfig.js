@@ -1,1 +1,0 @@
-//Posible catástrofe
