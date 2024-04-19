@@ -2,7 +2,7 @@
 
 Repositorio del proyecto Magnus Stella
 
-Link al video del avance 4: https://www.youtube.com/watch?v=itFDy_NNPX8
+Link al video del avance 5: https://youtu.be/LA35vZSQ_Yk
 
 Link al plan de trabajo: https://docs.google.com/spreadsheets/d/14qqpqTPrNFSvosdWhxxysa9sYtoJLHFr9-l_b_Szorg/edit?usp=drive_link
 
