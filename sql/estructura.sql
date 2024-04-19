@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `magnusstella` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `magnusstella`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: magnusstella
@@ -251,7 +249,7 @@ CREATE TABLE `review` (
   PRIMARY KEY (`idReview`),
   KEY `fk_venta_review_idx` (`Fk_Review_Venta`),
   CONSTRAINT `fk_venta_review` FOREIGN KEY (`Fk_Review_Venta`) REFERENCES `venta` (`idVenta`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +258,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,1,'Excelente producto. Lo uso todos los días y no puedo estar más satisfecho con su rendimiento y durabilidad','Se me cayó del 5to piso','2023-03-07 00:00:00',5,1),(2,2,'¡Increíble! No puedo imaginar mi vida sin este producto. Realmente hace todo más fácil y eficiente','Muy buen producto','2024-01-21 00:00:00',4,1),(3,3,'Buen producto, me sorprendió','Es un producto de alta calidad y muy duradero','2024-01-16 00:00:00',2,1),(4,4,'Me encanta este producto. Es versátil, fácil de usar y muy útil en mi día a día','Útil','2024-01-23 00:00:00',4,1),(5,21,'Lo compré hace unas semanas y ya no puedo vivir sin él. Definitivamente vale la pena cada centavo, es lo que me gustaría decir, pero es muy pequeño','Pensé que era más grande','2024-01-21 00:00:00',1,1),(6,6,'He probado muchos productos similares, pero este se destaca por su calidad y funcionalidad. Lo recomiendo ampliamente','Lo mejor que existe!!!','2024-01-14 00:00:00',4,1),(7,7,'Qué gran compra! Este producto ha mejorado significativamente mi rutina diaria. Lo recomendaría a cualquiera','Producto recibido bien','2024-01-14 00:00:00',5,1),(8,8,'Gran producto, alta calidad y durabilidad, materiales pesados y lujosos, definitivamente arte','Es arte','2024-02-18 00:00:00',5,1),(9,22,'Funciona como se describe. Es robusto y confiable. No puedo pedir más de este producto','Satisfecho','2024-02-12 00:00:00',4,1),(10,10,'Este producto ha hecho una gran diferencia en mi vida. Es práctico, eficiente y fácil de usar','Impactante ','2024-02-27 00:00:00',4,1),(11,11,'Lo compré como regalo y resultó ser un gran acierto. La persona que lo recibió está encantada con el','Gran regalo','2024-02-29 00:00:00',5,1),(12,12,'\"He probado muchos productos similares, pero ninguno se compara a este. Su calidad es insuperable','Buenisismos materiales','2023-12-11 00:00:00',4,1),(13,13,'Es justo lo que necesitaba. Este producto ha simplificado muchas tareas para mí. ¡Totalmente recomendado! aunq ya la perdí D:','Buena compra','2023-12-23 00:00:00',4,1),(14,23,'Un producto imprescindible en mi hogar. Su diseño y durabilidad lo convierten en una excelente elección.','Amo aqui','2023-12-19 00:00:00',4,1),(15,15,'Utiliza materiales premium, además de cumplir perfectamente con su función','Alta calidad del material','2023-12-27 00:00:00',1,1),(16,16,'Estoy sorprendido por lo bien que funciona este producto. Sin duda alguna, es una compra que no me arrepiento','Gran usabilidad','2023-12-31 00:00:00',4,1),(17,17,'Sí cumplen con lo que piden pero esperaba más','Bueno pero....','2023-11-16 00:00:00',3,1),(18,18,'Me impresiona la calidad y la atención al detalle de este producto. Sin duda, una excelente adquisición','MUUUY buen producto','2023-11-01 00:00:00',4,1),(19,19,'Es increíble cómo un producto tan simple puede hacer tanto. Definitivamente recomendaría este producto a cualquiera','Increible lo útil y bonito q es','2023-11-18 00:00:00',5,1),(20,20,'Este producto superó mis expectativas. Es de alta calidad y cumple con su propósito. Lo recomiendo sin dudarlo ','La mayor calidad que existe','2024-01-12 00:00:00',5,1);
+INSERT INTO `review` VALUES (1,1,'Excelente producto. Lo uso todos los días y no puedo estar más satisfecho con su rendimiento y durabilidad','Se me cayó del 5to piso','2023-03-07 00:00:00',5,1),(2,2,'¡Increíble! No puedo imaginar mi vida sin este producto. Realmente hace todo más fácil y eficiente','Muy buen producto','2024-01-21 00:00:00',4,1),(3,3,'Buen producto, me sorprendió','Es un producto de alta calidad y muy duradero','2024-01-16 00:00:00',2,1),(4,4,'Me encanta este producto. Es versátil, fácil de usar y muy útil en mi día a día','Útil','2024-01-23 00:00:00',4,1),(5,21,'Lo compré hace unas semanas y ya no puedo vivir sin él. Definitivamente vale la pena cada centavo, es lo que me gustaría decir, pero es muy pequeño','Pensé que era más grande','2024-01-21 00:00:00',1,1),(6,6,'He probado muchos productos similares, pero este se destaca por su calidad y funcionalidad. Lo recomiendo ampliamente','Lo mejor que existe!!!','2024-01-14 00:00:00',4,1),(7,7,'Qué gran compra! Este producto ha mejorado significativamente mi rutina diaria. Lo recomendaría a cualquiera','Producto recibido bien','2024-01-14 00:00:00',5,1),(8,8,'Gran producto, alta calidad y durabilidad, materiales pesados y lujosos, definitivamente arte','Es arte','2024-02-18 00:00:00',5,1),(9,22,'Funciona como se describe. Es robusto y confiable. No puedo pedir más de este producto','Satisfecho','2024-02-12 00:00:00',4,1),(10,10,'Este producto ha hecho una gran diferencia en mi vida. Es práctico, eficiente y fácil de usar','Impactante ','2024-02-27 00:00:00',4,1),(11,11,'Lo compré como regalo y resultó ser un gran acierto. La persona que lo recibió está encantada con el','Gran regalo','2024-02-29 00:00:00',5,1),(12,12,'\"He probado muchos productos similares, pero ninguno se compara a este. Su calidad es insuperable','Buenisismos materiales','2023-12-11 00:00:00',4,1),(13,13,'Es justo lo que necesitaba. Este producto ha simplificado muchas tareas para mí. ¡Totalmente recomendado! aunq ya la perdí D:','Buena compra','2023-12-23 00:00:00',4,1),(14,23,'Un producto imprescindible en mi hogar. Su diseño y durabilidad lo convierten en una excelente elección.','Amo aqui','2023-12-19 00:00:00',4,1),(15,15,'Utiliza materiales premium, además de cumplir perfectamente con su función','Alta calidad del material','2023-12-27 00:00:00',1,1),(16,16,'Estoy sorprendido por lo bien que funciona este producto. Sin duda alguna, es una compra que no me arrepiento','Gran usabilidad','2023-12-31 00:00:00',4,1),(17,17,'Sí cumplen con lo que piden pero esperaba más','Bueno pero....','2023-11-16 00:00:00',3,1),(18,18,'Me impresiona la calidad y la atención al detalle de este producto. Sin duda, una excelente adquisición','MUUUY buen producto','2023-11-01 00:00:00',4,1),(19,19,'Es increíble cómo un producto tan simple puede hacer tanto. Definitivamente recomendaría este producto a cualquiera','Increible lo útil y bonito q es','2023-11-18 00:00:00',5,1),(20,20,'Este producto superó mis expectativas. Es de alta calidad y cumple con su propósito. Lo recomiendo sin dudarlo ','La mayor calidad que existe','2024-01-12 00:00:00',5,1),(21,63,'Alta calidad del producto e increíblemente suaves','No se imaginan lo suave que son','2024-04-04 00:00:00',3,1),(22,64,'La parte donde se apoya mi nuca estaba muy dura, me incomodó','Incomodas','2023-03-30 00:00:00',2,1),(23,65,'Recomendadísimo con los protectores de NOOZ','Muy buenas, pero se ensucian mucho','2024-01-14 00:00:00',5,1),(24,66,'Están en el punto perfecto, ni tan duras ni tan suaves, además de que después de 3 meses de uso no se han desgastado para nada','Firmes pero fluffy','2024-04-18 00:00:00',5,1);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,7 +304,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idUsuario`),
   KEY `IDRol_idx` (`IDRol`),
   CONSTRAINT `IDRol` FOREIGN KEY (`IDRol`) REFERENCES `rol` (`IDRol`)
-) ENGINE=InnoDB AUTO_INCREMENT=901939 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=901940 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,7 +335,7 @@ CREATE TABLE `venta` (
   KEY `Fk_Cliente_Venta_idx` (`Fk_Venta_Cliente`),
   CONSTRAINT `Fk_Cliente_Venta` FOREIGN KEY (`Fk_Venta_Cliente`) REFERENCES `cliente` (`idCliente`),
   CONSTRAINT `Fk_Producto_Venta` FOREIGN KEY (`Fk_Venta_Producto`) REFERENCES `producto` (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,263 +344,9 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (1,7289,'AN1133V','2023-03-07 00:00:00',NULL),(2,7289,'AN1133VCH','2023-03-07 00:00:00',NULL),(3,7289,'MA4012','2023-02-02 00:00:00',NULL),(4,25498,'SH7003','2023-03-03 00:00:00',NULL),(6,25498,'MA1301','2023-05-05 00:00:00',NULL),(7,37274,'MA1301','2023-06-06 00:00:00',NULL),(8,37274,'SH7003','2023-07-07 00:00:00',NULL),(10,37274,'NP6323','2023-09-09 00:00:00',NULL),(11,321456,'MX-MAP-MAL-KIT2-SAN','2023-10-10 00:00:00',NULL),(12,321456,'SH7003','2023-11-11 00:00:00',NULL),(13,321456,'LU1002B2','2023-12-12 00:00:00',NULL),(15,91171,'LU1002B2','2023-12-14 00:00:00',NULL),(16,91171,'MA1301','2023-12-23 00:00:00',NULL),(17,123789,'NP6323','2023-01-12 00:00:00',NULL),(18,123789,'AN1133VCH','2023-01-15 00:00:00',NULL),(19,123789,'LB3231','2023-01-16 00:00:00',NULL),(20,123789,'MX-MAP-MAL-KIT2-SAN','2023-01-23 00:00:00',NULL),(21,562323,'MA4003','2023-01-25 00:00:00',NULL),(22,562323,'LB3231','2023-03-17 00:00:00',NULL),(23,562323,'NP6323','2023-03-12 00:00:00',NULL),(24,987412,'SH7003','2023-03-23 00:00:00',NULL),(25,987412,'MX-MAP-MAL-KIT2-SAN','2023-03-21 00:00:00',NULL),(26,987412,'LU1001B2','2023-06-30 00:00:00',NULL),(27,974858,'MA1301','2023-03-19 00:00:00',NULL),(28,974858,'MA4003','2023-03-17 00:00:00',NULL),(30,974858,'MA1301','2023-05-27 00:00:00',NULL),(31,60764,'LB3231','2023-05-02 00:00:00',NULL),(32,60764,'MX-MAP-MAL-KIT2-SAN','2023-05-17 00:00:00',NULL),(33,90234,'LB3231','2023-07-17 00:00:00',NULL),(34,90234,'MA1301','2023-07-11 00:00:00',NULL),(35,90234,'LU1002B2','2023-07-21 00:00:00',NULL),(37,321456,'LU1002B2','2023-07-12 00:00:00',NULL),(38,321456,'MA1301','2023-08-07 00:00:00',NULL),(39,321456,'MX-MAP-MAL-KIT2-SAN','2023-08-21 00:00:00',NULL),(40,92971,'LB3231','2023-08-12 00:00:00',NULL),(41,92971,'NP6323','2023-09-07 00:00:00',NULL),(42,92971,'AN1133VCH','2023-09-12 00:00:00',NULL),(43,92971,'LU1002B2','2023-09-27 00:00:00',NULL),(44,37274,'MA1301','2023-09-17 00:00:00',NULL),(45,37274,'NP6323','2023-09-13 00:00:00',NULL),(46,37274,'MA1301','2023-10-05 00:00:00',NULL),(47,37274,'AN1133VCH','2023-10-30 00:00:00',NULL),(48,987654,'NP6323','2023-10-12 00:00:00',NULL),(49,987654,'AN1133VCH','2023-10-09 00:00:00',NULL),(50,987654,'LU1002B2','2023-12-24 00:00:00',NULL),(51,987654,'NB7224','2021-12-24 00:00:00',NULL),(52,7289,'SI1004','2023-03-07 00:00:00','1234'),(53,7289,'SI1004','2023-03-07 00:00:00','1234'),(54,7289,'SI1004','2023-03-07 00:00:00','1235'),(55,7289,'SI1004','2023-03-07 00:00:00','1235'),(56,7289,'SI1004','2023-03-07 00:00:00','1235'),(57,7289,'SI1004','2023-03-07 00:00:00','1235'),(58,7289,'SI1004','2023-03-07 00:00:00','1235');
+INSERT INTO `venta` VALUES (1,7289,'AN1133V','2023-03-07 00:00:00',NULL),(2,7289,'AN1133VCH','2023-03-07 00:00:00',NULL),(3,7289,'MA4012','2023-02-02 00:00:00',NULL),(4,25498,'SH7003','2023-03-03 00:00:00',NULL),(6,25498,'MA1301','2023-05-05 00:00:00',NULL),(7,37274,'MA1301','2023-06-06 00:00:00',NULL),(8,37274,'SH7003','2023-07-07 00:00:00',NULL),(10,37274,'NP6323','2023-09-09 00:00:00',NULL),(11,321456,'MX-MAP-MAL-KIT2-SAN','2023-10-10 00:00:00',NULL),(12,321456,'SH7003','2023-11-11 00:00:00',NULL),(13,321456,'LU1002B2','2023-12-12 00:00:00',NULL),(15,91171,'LU1002B2','2023-12-14 00:00:00',NULL),(16,91171,'MA1301','2023-12-23 00:00:00',NULL),(17,123789,'NP6323','2023-01-12 00:00:00',NULL),(18,123789,'AN1133VCH','2023-01-15 00:00:00',NULL),(19,123789,'LB3231','2023-01-16 00:00:00',NULL),(20,123789,'MX-MAP-MAL-KIT2-SAN','2023-01-23 00:00:00',NULL),(21,562323,'MA4003','2023-01-25 00:00:00',NULL),(22,562323,'LB3231','2023-03-17 00:00:00',NULL),(23,562323,'NP6323','2023-03-12 00:00:00',NULL),(24,987412,'SH7003','2023-03-23 00:00:00',NULL),(25,987412,'MX-MAP-MAL-KIT2-SAN','2023-03-21 00:00:00',NULL),(26,987412,'LU1001B2','2023-06-30 00:00:00',NULL),(27,974858,'MA1301','2023-03-19 00:00:00',NULL),(28,974858,'MA4003','2023-03-17 00:00:00',NULL),(30,974858,'MA1301','2023-05-27 00:00:00',NULL),(31,60764,'LB3231','2023-05-02 00:00:00',NULL),(32,60764,'MX-MAP-MAL-KIT2-SAN','2023-05-17 00:00:00',NULL),(33,90234,'LB3231','2023-07-17 00:00:00',NULL),(34,90234,'MA1301','2023-07-11 00:00:00',NULL),(35,90234,'LU1002B2','2023-07-21 00:00:00',NULL),(37,321456,'LU1002B2','2023-07-12 00:00:00',NULL),(38,321456,'MA1301','2023-08-07 00:00:00',NULL),(39,321456,'MX-MAP-MAL-KIT2-SAN','2023-08-21 00:00:00',NULL),(40,92971,'LB3231','2023-08-12 00:00:00',NULL),(41,92971,'NP6323','2023-09-07 00:00:00',NULL),(42,92971,'AN1133VCH','2023-09-12 00:00:00',NULL),(43,92971,'LU1002B2','2023-09-27 00:00:00',NULL),(44,37274,'MA1301','2023-09-17 00:00:00',NULL),(45,37274,'NP6323','2023-09-13 00:00:00',NULL),(46,37274,'MA1301','2023-10-05 00:00:00',NULL),(47,37274,'AN1133VCH','2023-10-30 00:00:00',NULL),(48,987654,'NP6323','2023-10-12 00:00:00',NULL),(49,987654,'AN1133VCH','2023-10-09 00:00:00',NULL),(50,987654,'LU1002B2','2023-12-24 00:00:00',NULL),(51,987654,'NB7224','2021-12-24 00:00:00',NULL),(52,7289,'SI1004','2023-03-07 00:00:00','1234'),(53,7289,'SI1004','2023-03-07 00:00:00','1234'),(54,7289,'SI1004','2023-03-07 00:00:00','1235'),(55,7289,'SI1004','2023-03-07 00:00:00','1235'),(56,7289,'SI1004','2023-03-07 00:00:00','1235'),(57,7289,'SI1004','2023-03-07 00:00:00','1235'),(58,7289,'SI1004','2023-03-07 00:00:00','1235'),(59,7289,'NB7224','2024-04-18 00:00:00','1236'),(60,7289,'NB7224','2024-04-18 00:00:00','1237'),(61,91171,'NP6321','2024-04-18 00:00:00','5000'),(62,90234,'SI1004','2023-03-07 00:00:00','1235'),(63,76363,'MA1301','2024-04-10 00:00:00',NULL),(64,987412,'MA1301','2023-02-02 00:00:00',NULL),(65,91171,'MA1301','2023-03-03 00:00:00',NULL),(66,76363,'MA1301','2024-01-28 00:00:00',NULL);
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'magnusstella'
---
-/*!50003 DROP FUNCTION IF EXISTS `PuntajeItemM` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemM`(diff_marca varchar(25)) RETURNS float
-    DETERMINISTIC
-BEGIN
-declare promedio float;
-
-select avg(Puntaje) into promedio
-from review r, venta v, producto p
-where r.fk_review_venta = v.idventa 
-and v.fk_venta_producto = p.idproducto
-and (fk_idmarca_producto = diff_marca);
-return promedio; 
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `PuntajeItemMC` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemMC`(Umarca varchar(25), Ucategoria varchar(45)) RETURNS float
-    DETERMINISTIC
-BEGIN
-declare promedio float;
-
-select avg(Puntaje) into promedio
-from review r, venta v, producto p
-where r.fk_review_venta = v.idventa 
-and v.fk_venta_producto = p.idproducto
-and (fk_idmarca_producto = Umarca)
-and p.categoria = Ucategoria;
-return promedio;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `PuntajeItemP` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemP`(diff_idproducto varchar(25)) RETURNS int
-    DETERMINISTIC
-BEGIN
-declare promedio float;
-
-select avg(Puntaje) into promedio
-from review r, venta v, producto p
-where r.fk_review_venta = v.idventa 
-and v.fk_venta_producto = p.idproducto
-and (idproducto = diff_idproducto);
-
-RETURN promedio;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasM` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasM`(Umarca varchar(25)) RETURNS int
-    DETERMINISTIC
-BEGIN
-
-declare contestadas int;
-
-SELECT COUNT(*) INTO contestadas
-    FROM review r, venta v, producto p
-    where r.fk_review_venta = v.idVenta
-    and v.fk_venta_producto = p.idproducto
-    and p.fk_idMarca_producto = Umarca;
-
-RETURN contestadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasMC` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int
-    DETERMINISTIC
-BEGIN
-declare contestadas int;
-
-SELECT COUNT(*) INTO contestadas
-    FROM review r, venta v, producto p
-    where r.fk_review_venta = v.idVenta
-    and v.fk_venta_producto = p.idproducto
-    and p.fk_idMarca_producto = diff_marca
-    and p.categoria = diff_categoria;
-
-RETURN contestadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasP` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasP`(diff_producto varchar(25)) RETURNS int
-    DETERMINISTIC
-BEGIN
-declare contestadas int;
-
-SELECT COUNT(*) INTO contestadas
-    FROM review r, venta v, producto p
-    where r.fk_review_venta = v.idVenta
-    and v.fk_venta_producto = p.idproducto
-    and p.idProducto = diff_producto;
-    
-RETURN contestadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasM` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasM`(diff_marca varchar(25)) RETURNS int
-    DETERMINISTIC
-BEGIN
-declare enviadas int;
-
-SELECT COUNT(*) INTO enviadas
-    FROM venta v, producto p
-    where v.fk_venta_producto = p.idproducto
-    and p.fk_idmarca_producto = diff_marca;
-
-RETURN enviadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasMC` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int
-    DETERMINISTIC
-BEGIN
-declare enviadas int;
-
-SELECT COUNT(*) INTO enviadas
-    FROM venta v, producto p
-    where v.fk_venta_producto = p.idproducto
-    and p.fk_idmarca_producto = diff_marca
-    and p.categoria = diff_categoria;
-
-RETURN enviadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasP` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasP`(diff_producto varchar(25)) RETURNS int
-    DETERMINISTIC
-BEGIN
-declare enviadas int;
-
-SELECT COUNT(*) INTO enviadas
-    FROM venta v, producto p
-    where v.fk_venta_producto = p.idproducto
-    and p.idProducto = diff_producto;
-return enviadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -613,4 +357,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-18 17:07:03
+-- Dump completed on 2024-04-18 22:52:09
