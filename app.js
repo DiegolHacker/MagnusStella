@@ -27,6 +27,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(bodyParser.json());
 
+
+
 const multer = require('multer');
 //fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
 const fileStorage = multer.diskStorage({
@@ -43,10 +45,19 @@ const fileStorage = multer.diskStorage({
 app.use(multer({ storage: fileStorage }).single('image'));
 
 
+
+
+
+const routesZecore = require('./routes/zecore.routes')
+
+// Define las rutas más específicas primero
+app.use('/api', routesZecore);
+
 //PROTECCION CONTRA CROSS-SITE REQUEST FORGERY
 const csrf = require('csurf');
 const csrfProtection = csrf();
 app.use(csrfProtection); 
+
 
 
 //FIN CSRF
@@ -58,7 +69,8 @@ const routasCorreos = require('./routes/correos.routes');
 const routasGraphics = require('./routes/grafica.routes');
 const routasAyuda = require('./routes/ayuda.routes');
 
-// Define las rutas más específicas primero
+
+
 app.use('/users', routasLogin);
 app.use('/reviews', routasReview);
 app.use('/emails', routasCorreos);
