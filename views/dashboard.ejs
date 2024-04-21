@@ -13,6 +13,7 @@
         <form action="<%=ruta%>/<%=marca%>" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="input-product">
+                <!-- meter dos input que sea tipo date, uno va a ser el inicial y el otro el final, asi esos le llegan a la query  -->
                 <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
                 <button type="submit" class="ingresar-btn">Submit</button>
             </div>

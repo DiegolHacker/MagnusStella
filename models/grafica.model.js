@@ -15,7 +15,7 @@ exports.StarAvgLine = (marca,categoriaS) => {
         parametros.push(categoriaS);
     }
     
-  
+  // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
 
     query += ` 
     GROUP BY MONTHNAME(r.Fecha)
@@ -64,6 +64,9 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
         parametros = [productoS]
     }
 
+  // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
+
+
     return Promise.all([db.execute(query1,parametros), db.execute(query2,parametros)])
         .then(([resultContestadas, resultEnviadas]) => {
             let contestadas = resultContestadas[0][0][q1String];
@@ -104,6 +107,9 @@ WHERE
         parametros.push(productoS)
     }
 
+      // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
+
+
     query += `
 GROUP BY 
     MONTHNAME(v.fecha);`;
@@ -142,6 +148,9 @@ exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
         qString = `PuntajeItemP(?)`;
         parametros = [productoS];
     };
+
+      // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
+
 
     return db.execute(query,parametros)
         .then((resultContestadas) => {
