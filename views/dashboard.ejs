@@ -10,14 +10,39 @@
 <div class="graficas">
     
     <div class="cat-search">    
-        <form action="<%=ruta%>/<%=marca%>" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <div class="input-product">
-                <!-- meter dos input que sea tipo date, uno va a ser el inicial y el otro el final, asi esos le llegan a la query  -->
-                <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
-                <button type="submit" class="ingresar-btn">Submit</button>
+
+
+        <button id="openModalBtn">Open Modal</button>
+        
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <h2>Filtros</h2>
+                <form action="<%=ruta%>/<%=marca%>" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <div class="input-product">
+
+                        <div class="inputFilter">
+                            <label for="producto">Buscar Producto</label>
+                            <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
+                        </div>
+                        
+                        <div class="inputFilter">
+                            <label for="startDate">Fecha de inicio</label>
+                            <input type="date" name="startDate" id="dateFilter">
+                        </div>
+                        
+                        <div class="inputFilter">
+                            <label for="endDate">Fecha final</label>
+                            <input type="date" name="endDate" id="dateFilter">
+                        </div>
+
+                        <button type="submit" class="ingresar-btn">Submit</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
+
         <%-include('includes/categorias.ejs', { marca:marca,ruta}) %>
         <% if(errorProducto) { %>
             <div id="error-message" class="cat-tittle"> <h4> <%= errorProducto %> </h4></div>

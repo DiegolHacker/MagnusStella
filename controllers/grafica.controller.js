@@ -5,6 +5,8 @@ exports.get_dashboard = async (request, response, next) => {
     const marca = request.params.marca
     let categoria = request.params.categoria || '*';
     let producto = request.body.producto || '*'; //"AN1133V"
+    let startDate = request.body.startDate || '*';
+    let endDate = request.body.endDate || '*';
     //metodo post va a llamar esta funcion, checar igual que se haya mandado la fecha, si no se mando nada, meter una fecha default que sea el ano actual, o el Quarter actual
     
     let errorMessage = '';
