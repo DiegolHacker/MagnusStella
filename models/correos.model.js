@@ -1,6 +1,38 @@
 const db = require('../util/database');
 
 module.exports = class Correos {
+    constructor(descripcion, tipo, opciones) {
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.opciones = opciones;
+    }
+
+    async save() {
+        try {
+            // Guardar la pregunta
+            const preguntaResult = await db.execute(
+                'INSERT INTO pregunta (Descripcion, Tipo) VALUES (?, ?)',
+                [this.descripcion, this.tipo]
+            );
+            const preguntaId = preguntaResult.insertopcion;
+
+            // Guardar las opciones relacionadas con la pregunta
+            const optionPromises = this.opciones.map(opcion =>
+                db.execute(
+                    'INSERT INTO opciones (descripcion, fk_opciones_pregunta) VALUES (?, ?)',
+                    [opcion, preguntaId]
+                )
+            );
+            await Promise.all(optionPromises);
+
+            console.log('Pregunta Guardada:', preguntaResult);
+            return preguntaResult; // Retorna el ResultSetHeader
+        } catch (error) {
+            console.log('Error guardando Pregunta:', error);
+            throw error;
+        }
+    }
+    
     static async emailConfiguration(id) {
         const query1 = `SELECT p.descripcion FROM pregunta p WHERE fk_pregunta_idmarca = ?`;
         const query2 = `SELECT p.idPregunta FROM pregunta p WHERE fk_pregunta_idmarca = ?`;
@@ -56,3 +88,4 @@ module.exports = class Correos {
         [opcion, idOpcion]);
     }
 }
+

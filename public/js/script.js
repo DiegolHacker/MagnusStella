@@ -144,3 +144,20 @@ const titulo2 = 'Encuestas enviadas por mes';
 
 creaGraficaLinea(graph2,enviadaMeses,enviadas,titulo2,lineColor1);
 
+//función para agregar nuevo campo de entrada
+function agregarCampoInput() {
+  var container = document.getElementById('opciones-container');
+  var button = document.getElementById('button_opcion');
+  var counter = container.querySelectorAll('input').length + 1; 
+
+  var newInput = document.createElement('input');
+  newInput.name = 'op_' + counter;
+  newInput.id = 'op_' + counter;
+  newInput.type = 'text';
+  newInput.classList.add('input');
+  container.insertBefore(newInput, button); 
+}
+
+document.getElementById('button_opcion').addEventListener('click', function() {
+  agregarCampoInput();
+});
