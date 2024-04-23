@@ -1039,7 +1039,7 @@ label {
     align-items: baseline;
     margin-left: 20px;
     margin-bottom: 30px;
-    color: #2d73b9;
+    color: (--edit-color);
     font-weight: 500;
 }
 
@@ -1049,7 +1049,7 @@ label {
     height: 30px;
     border: none;
     border-radius: 5px;
-    outline-color: #2d73b9;
+    outline-color: (--edit-color);
 }
 
 .login-title,
@@ -1061,7 +1061,7 @@ label {
     justify-content: center;
     align-items: center;
     font-size: 33px;
-    color: #2d73b9;
+    color: var(--edit-color);
 
 }
 

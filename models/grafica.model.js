@@ -51,8 +51,8 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
     if(categoriaS !== '*'){
         query1 = `SELECT ReviewsContestadasMC(?,?)`;
         query2 = `SELECT ReviewsEnviadasMC(?,?)`;
-        q1String = 'ReviewsContestadasM(?,?)';
-        q2String = 'ReviewsEnviadasM(?,?)';
+        q1String = 'ReviewsContestadasMC(?,?)';
+        q2String = 'ReviewsEnviadasMC(?,?)';
         parametros.push(categoriaS);
     }
 
