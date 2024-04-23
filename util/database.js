@@ -5,7 +5,7 @@ const conection = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'magnusstella',
-    password: 'root',
+    password: 'Trucopablo11',
 });
 
 module.exports = conection.promise();

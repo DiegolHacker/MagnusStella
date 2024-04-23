@@ -53,6 +53,7 @@ exports.get_correos_editar = async (request, response, next) => {
         const to_opcion = await Correos.emailcountopcion(idp);
         const pregunta = await Correos.emailpregunta(idp);
         const marca = request.params.marca;
+        
         // Ahora renderiza con los datos obtenidos
         response.render("editar_correos", {
             titulo: "Correos",

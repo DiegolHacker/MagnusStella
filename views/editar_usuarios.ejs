@@ -9,6 +9,7 @@
     <form action= "/usuarios/editar/<%= usuario.idUsuario %>" method="POST">
         <input type="hidden" name="uIdusuario" value="<%= usuario.idUsuario %>" >
         <input type="hidden" name="uPassword" value="<%= usuario.Password %>" >
+        <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" >  
 
         <div class="credential-input">
             <label class="label" for="correo">Correo: </label>

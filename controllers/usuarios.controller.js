@@ -97,11 +97,11 @@ exports.post_signup = (request,response,next) => {
     console.log(usuarios)
     usuarios.save()
         .then(() =>{
-            response.redirect('/usuarios/LU1/1')
+            response.redirect('/usuarios/1/LU1')
         })
         .catch(err => {
             console.log("Error al hacer el signup:",err);
-            response.redirect('/usuarios/LU1/1')
+            response.redirect('/usuarios/1/LU1')
         });
 }
 
