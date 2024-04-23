@@ -12,7 +12,7 @@
     <div class="cat-search">    
 
 
-        <button id="openModalBtn">Open Modal</button>
+        <button id="openModalBtn">Filtros</button>
         
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -112,30 +112,6 @@
             console.log("Selected option:", selectedValue);
             return selectedValue;
     }
-
-    //AJAX para busqueda de producto
-
-    // const accion_asincrona = () => {
-    //     console.log('Buscando...');
-    //     const valor_busqueda = document.getElementById('buscar').value;
-    //     //función que manda la petición asíncrona
-    //     fetch('/graphics/dashboard/<%=marca%>/' + valor_busqueda, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         }
-    //     }).then((result) => {
-    //         console.log(result);
-    //         return result.json(); //Regresa otra promesa
-    //     }).then((data) => {
-    //         console.log(data);
-    //         //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
-    //         //...
-    //     }).catch(err => {
-    //         console.log(err);
-    //     });
-    // };
-    // document.getElementById('buscar').onkeyup = accion_asincrona;
 
 </script>
 <%-include('includes/footer.ejs')%>

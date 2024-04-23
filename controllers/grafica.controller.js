@@ -14,7 +14,7 @@ exports.get_dashboard = async (request, response, next) => {
     if(producto !== "*") {
 
         try {
-            const result = await Model.search(producto);
+            const result = await Model.search(producto,marca);
                 
             if(result.error !== undefined) {
                 errorMessage = result.error;
@@ -30,7 +30,7 @@ exports.get_dashboard = async (request, response, next) => {
             
     }
     
-    Promise.all([Model.StarAvgLine(marca,categoria), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto),Model.StarAvgNumber(marca,categoria,producto)])
+    Promise.all([Model.StarAvgLine(marca,categoria,producto,startDate,endDate), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto,startDate,endDate),Model.StarAvgNumber(marca,categoria,producto,startDate,endDate)])
         .then(([averageScores, responseRates,reviewsSent,starAVGNum]) => {
             const roundedStarAVGNum = Math.round(starAVGNum * 100) / 100
             const roundedStarAVGNumComplementario = Math.round(100 - ((roundedStarAVGNum / 5) * 100));
