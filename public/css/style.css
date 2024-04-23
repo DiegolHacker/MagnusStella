@@ -876,6 +876,8 @@ table.table .avatar {
 
 .estrellas {
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .clearfix {
@@ -1030,6 +1032,8 @@ label {
     color: #f9002e;
 }
 
+
+
 /* Signup */
 
 .credential-input {
@@ -1049,7 +1053,7 @@ label {
     height: 30px;
     border: none;
     border-radius: 5px;
-    outline-color: #2d73b9;
+    outline-color: var(--edit-color);
 }
 
 .login-title,
@@ -1061,7 +1065,7 @@ label {
     justify-content: center;
     align-items: center;
     font-size: 33px;
-    color: #2d73b9;
+    color: var(--edit-color);
 
 }
 
@@ -1324,4 +1328,18 @@ label {
 
 .box-box {
     width: 65%;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.opcion input[type="text"] {
+    margin-right: 5px;
+}
+
+.opcion button {
+    margin-left: 5px;
 }
