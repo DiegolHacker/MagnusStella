@@ -210,20 +210,20 @@ exports.enviar_resenia = async (request, response, next) => {
           main().catch(console.error);
 
     
-        // Ahora renderiza con los datos obtenidos
-        response.render("correos", {
-            preguntas: preguntas,
-            titulo: "Correos",
-            marca: marca || "LU1",
-            ruta: "/emails/correos",
-            idp:idp,
-            total: total,
-            tipos: tipos,
-            opciones: opciones,
-            idp:idp,
-            total_opciones: total_opciones,
-            permisos: request.session.permisos || []
-        });
+    //     // Ahora renderiza con los datos obtenidos
+    //     response.render("correos", {
+    //         preguntas: preguntas,
+    //         titulo: "Correos",
+    //         marca: marca || "LU1",
+    //         ruta: "/emails/correos",
+    //         idp:idp,
+    //         total: total,
+    //         tipos: tipos,
+    //         opciones: opciones,
+    //         idp:idp,
+    //         total_opciones: total_opciones,
+    //         permisos: request.session.permisos || []
+    //     });
     } catch (error) {
         console.error('Error al cargar las preguntas:', error);
         response.status(500).send('Error interno del servidor');

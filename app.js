@@ -45,37 +45,37 @@ app.use(multer({ storage: fileStorage }).single('image'));
 //---------------------------------------------------Nodemailer--------------------------------------------------
 
 
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // Use `true` for port 465, `false` for all other ports
-  auth: {
-    user: "tracpablo@gmail.com",
-    pass: "gjlu ultc ppfm srbq",
-  },
-});
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 465,
+//   secure: true, // Use `true` for port 465, `false` for all other ports
+//   auth: {
+//     user: "tracpablo@gmail.com",
+//     pass: "gjlu ultc ppfm srbq",
+//   },
+// });
 
-transporter.verify().then(() => {
-    console.log("Ready to send emails");
-})
+// transporter.verify().then(() => {
+//     console.log("Ready to send emails");
+// })
 
-// async..await is not allowed in global scope, must use a wrapper
-async function main() {
-  // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"Forgot password" <tracpablo@gmail.com>', // sender address
-    to: "a01710778@tec.mx", // list of receivers
-    subject: "Forgot password", // Subject line
-    html: "<b>Hello world?</b>", // html body
-  });
+// // async..await is not allowed in global scope, must use a wrapper
+// async function main() {
+//   // send mail with defined transport object
+//   const info = await transporter.sendMail({
+//     from: '"Forgot password" <tracpablo@gmail.com>', // sender address
+//     to: "a01710778@tec.mx", // list of receivers
+//     subject: "Forgot password", // Subject line
+//     html: "<b>Hello world?</b>", // html body
+//   });
 
-  console.log("Message sent: %s", info.messageId);
-  // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
-}
+//   console.log("Message sent: %s", info.messageId);
+//   // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+// }
 
-main().catch(console.error);
+// main().catch(console.error);
 
 //---------------------------------------------------Fin Nodemailer--------------------------------------------------
 
