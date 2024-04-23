@@ -83,3 +83,19 @@ exports.post_delete = (request, response, next) => {
         })
     .catch((error) => {console.log(error)});
 };
+
+
+exports.get_registroUsuarios = (request, response, next) => {
+    Usuarios.getRegistros()
+    .then(([usuarios, fieldData]) => {
+        response.render('registroUsuarios', {
+            usuarios: usuarios, 
+            titulo:"Usuarios", 
+            marca: "LU1",
+            ruta: "/usuarios/registro/",
+            permisos: request.session.permisos || [],
+            csrfToken: request.csrfToken(),
+        });
+        })
+    .catch((error) => {console.log(error)});
+};

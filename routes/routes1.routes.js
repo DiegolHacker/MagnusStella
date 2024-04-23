@@ -8,6 +8,7 @@ router.get('/usuarios/editar/:usuario_id/:marca', isAuth, canAdmin, controladore
 router.post('/usuarios/editar/:usuario_id', isAuth, canAdmin, controladores.post_editar);
 router.get('/usuarios/:pag/:marca', isAuth, canAdmin, controladores.get_usuarios);
 router.post('/usuarios/delete', isAuth, canAdmin, controladores.post_delete);
+router.get('/usuarios/registro', isAuth, canAdmin, controladores.get_registroUsuarios);
 router.get("/", (request,response,next) => {
     response.redirect("/graphics/dashboard/LU1");
 })
