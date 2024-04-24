@@ -20,7 +20,8 @@ exports.get_usuarios = (request, response, next) => {
             totalUsers: result.totalUsers,
             totalPages: result.totalPages,
             ruta: "/usuarios/" + pag ,
-            permisos: request.session.permisos || []
+            permisos: request.session.permisos || [],
+            csrfToken: request.csrfToken(),
         });
     }).catch(error => {
         console.log(error);
@@ -42,7 +43,8 @@ exports.get_editar = (request, response, next) => {
             titulo:"Usuarios", 
             marca: marca || "LU1",
             ruta: "/usuarios/editar/" +  request.params.usuario_id,
-            permisos: request.session.permisos || []
+            permisos: request.session.permisos || [],
+            csrfToken: request.csrfToken(),
         });
     })
     .catch(err => {
@@ -57,7 +59,7 @@ exports.post_editar = (request, response, next) => {
     var password = request.body.password || "";
     var IdRol = request.body.idrol || "";
     var idUser = request.body.uIdusuario || "";
-    console.log(correo)
+    // const correos = require("../app.js/")
 
     Usuarios.saveUsernameChanges(IdRol, password, correo, idUser)
         .then(() =>{
@@ -78,6 +80,22 @@ exports.post_delete = (request, response, next) => {
     })
     .then(([usuarios, fieldData]) => {
         return response.status(200).json({usuarios: usuarios})
+        })
+    .catch((error) => {console.log(error)});
+};
+
+
+exports.get_registroUsuarios = (request, response, next) => {
+    Usuarios.getRegistros()
+    .then(([usuarios, fieldData]) => {
+        response.render('registroUsuarios', {
+            usuarios: usuarios, 
+            titulo:"Usuarios", 
+            marca: "LU1",
+            ruta: "/usuarios/registro/",
+            permisos: request.session.permisos || [],
+            csrfToken: request.csrfToken(),
+        });
         })
     .catch((error) => {console.log(error)});
 };

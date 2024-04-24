@@ -5,12 +5,16 @@ exports.get_dashboard = async (request, response, next) => {
     const marca = request.params.marca
     let categoria = request.params.categoria || '*';
     let producto = request.body.producto || '*'; //"AN1133V"
+    let startDate = request.body.startDate || '*';
+    let endDate = request.body.endDate || '*';
+    //metodo post va a llamar esta funcion, checar igual que se haya mandado la fecha, si no se mando nada, meter una fecha default que sea el ano actual, o el Quarter actual
+    
     let errorMessage = '';
 
     if(producto !== "*") {
 
         try {
-            const result = await Model.search(producto);
+            const result = await Model.search(producto,marca);
                 
             if(result.error !== undefined) {
                 errorMessage = result.error;
@@ -26,7 +30,7 @@ exports.get_dashboard = async (request, response, next) => {
             
     }
     
-    Promise.all([Model.StarAvgLine(marca,categoria), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto),Model.StarAvgNumber(marca,categoria,producto)])
+    Promise.all([Model.StarAvgLine(marca,categoria,producto,startDate,endDate), Model.tasaDeRespuesta(marca,categoria,producto),Model.ReviewsSentxMonth(marca,categoria,producto,startDate,endDate),Model.StarAvgNumber(marca,categoria,producto,startDate,endDate)])
         .then(([averageScores, responseRates,reviewsSent,starAVGNum]) => {
             const roundedStarAVGNum = Math.round(starAVGNum * 100) / 100
             const roundedStarAVGNumComplementario = Math.round(100 - ((roundedStarAVGNum / 5) * 100));

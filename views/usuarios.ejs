@@ -1,7 +1,7 @@
 <%- include('includes/navigation.ejs') %>
 
 <link rel="stylesheet" href="/ccs/usuarios-resenia.css">
-
+    <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" >  
 
     <div class="container-fluid">
         <div class="table-responsive">
@@ -13,7 +13,7 @@
                     </div>
                     <div class="buttons">
                         <a href="/users/signup/<%= marca %>" class="btn btn-primary"><i class='bx bx-user-plus icon'></i><span>Crear usuario</span></a>
-                        <a href="#" class="btn btn-primary"><i class='bx bx-list-plus icon'></i><span>Crear Excel</span></a>
+                        <a href="#" class="btn btn-primary"><i class='bx bx-list-plus icon'></i><span>Crear Rol</span></a>
                     </div>
                 </div>
 
@@ -89,12 +89,14 @@
     
     <script>
         const eliminar = (id) => {
+            const csrf = document.getElementById('_csrf').value;
+
             console.log("ELiminando")
             fetch('/usuarios/delete', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        // 'csrf-token': csrf
+                        'csrf-token': csrf
                     },
                     body: JSON.stringify({id: id})
                 }).then(result => {

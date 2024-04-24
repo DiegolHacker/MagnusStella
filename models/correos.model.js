@@ -49,7 +49,7 @@ module.exports = class Correos {
     }
 
     static async emailpreguntas(marca) {
-        const query = 'SELECT COUNT(IdPregunta) as count FROM Pregunta WHERE fk_pregunta_idmarca = ?';
+        const query = 'SELECT COUNT(IdPregunta) as count FROM pregunta WHERE fk_pregunta_idmarca = ?';
         const [rows] = await db.execute(query, [marca]);
         return rows[0].count;
     }

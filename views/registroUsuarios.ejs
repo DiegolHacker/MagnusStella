@@ -1,0 +1,55 @@
+<%- include('includes/navigation.ejs') %>
+
+<link rel="stylesheet" href="/ccs/usuarios-resenia.css">
+    <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" >  
+
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+
+                <div class="table-title">
+                    <div class="text">
+                        <h2><b>Control de usuarios</b></h2>
+                    </div>
+                </div>
+
+                <div id="respuesta_ajax">
+
+                    <div id="notificacion">
+
+                        <% if(usuarios.length < 1) {  %>
+                            <div class="notification is-info">
+                                No existen Usuarios.
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id#</th>
+                                <th>Usuario</th>
+                                <th>Accion</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <% for (let usuario of usuarios) { %>
+                            <tr>
+                                <td><%= usuario.idHistorial %></td>
+                                <td><%= usuario.Usuario %></td>
+                                <td><%= usuario.Accion %></td>
+                                <td><%= usuario.Fecha %></td>
+
+                            </tr>
+                            <% }; %>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+<%- include('includes/footer.ejs') %>
