@@ -108,5 +108,40 @@ module.exports = class Reviews {
             });
     }
     
+    static fetchorden(marca, orden, callback){
+        let query = `
+        SELECT 
+            r.idReview AS idreview, 
+            r.Descripcion AS descripcion, 
+            r.Titulo AS titulo, 
+            r.Fecha AS fecha, 
+            r.Puntaje AS puntaje, 
+            v.Fk_Venta_Producto AS idProducto
+        FROM 
+            review r
+        JOIN 
+            venta v ON r.Fk_Review_Venta = v.idVenta
+        JOIN 
+            producto p ON v.Fk_Venta_Producto = p.idProducto
+        WHERE 
+            p.FK_idMarca_Producto = ? `;
+    
+        // Añadir la cláusula ORDER BY dependiendo del valor de 'orden'
+        if (orden === 'ascendente') {
+            query += `ORDER BY r.Puntaje ASC`;
+        } else if (orden === 'descendente') {
+            query += `ORDER BY r.Puntaje DESC`;
+        }
+    
+        db.execute(query, [marca])
+        .then(([rows]) => {
+            callback(null, rows);
+        })
+        .catch(err => {
+            console.error('Error fetching reviews and product IDs from database:', err);
+            callback(err, []);
+        });
+    }
+    
 
 }

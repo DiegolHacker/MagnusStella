@@ -113,7 +113,6 @@ exports.get_correos_crear = async (request, response, next) => {
     const marca = request.params.marca;
     
     try {
-        const marca = request.params.marca;
         // Ahora renderiza con los datos obtenidos
         response.render("crear_correos", {
             titulo: "Correos",
@@ -148,12 +147,8 @@ exports.post_crear_correos = (request,response,next) => {
             permisos: request.session.permisos || []
         });
     }
-    console.log("Pregunta:", question);
-    console.log("Tipo:", tipo);
-    console.log("Opciones:", opciones);
 
-    const pregunta = new Correos(question,tipo, opciones);
-    console.log(pregunta)
+    const pregunta = new Correos(question,tipo, opciones, marca);
     pregunta.save()
         .then(() =>{
             response.redirect('/emails/correos/' + marca);

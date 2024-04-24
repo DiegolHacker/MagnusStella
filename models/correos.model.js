@@ -1,21 +1,24 @@
 const db = require('../util/database');
 
 module.exports = class Correos {
-    constructor(descripcion, tipo, opciones) {
+    constructor(descripcion, tipo, opciones,marca) {
         this.descripcion = descripcion;
         this.tipo = tipo;
         this.opciones = opciones;
+        this.marca = marca;
     }
 
     async save() {
         try {
             // Guardar la pregunta
             const preguntaResult = await db.execute(
-                'INSERT INTO pregunta (Descripcion, Tipo) VALUES (?, ?)',
-                [this.descripcion, this.tipo]
+                'INSERT INTO pregunta (Descripcion, Tipo, fk_pregunta_idmarca ) VALUES (?, ?, ?)',
+                [this.descripcion, this.tipo, this.marca]
             );
-            const preguntaId = preguntaResult.insertopcion;
-
+    
+            // Extraer el ID de la pregunta del resultado de la consulta
+            const preguntaId = preguntaResult[0].insertId;
+    
             // Guardar las opciones relacionadas con la pregunta
             const optionPromises = this.opciones.map(opcion =>
                 db.execute(
@@ -23,16 +26,18 @@ module.exports = class Correos {
                     [opcion, preguntaId]
                 )
             );
+            
             await Promise.all(optionPromises);
-
+    
             console.log('Pregunta Guardada:', preguntaResult);
-            return preguntaResult; // Retorna el ResultSetHeader
+            return preguntaResult; 
         } catch (error) {
             console.log('Error guardando Pregunta:', error);
             throw error;
         }
     }
     
+
     static async emailConfiguration(id) {
         const query1 = `SELECT p.descripcion FROM pregunta p WHERE fk_pregunta_idmarca = ?`;
         const query2 = `SELECT p.idPregunta FROM pregunta p WHERE fk_pregunta_idmarca = ?`;
@@ -87,5 +92,18 @@ module.exports = class Correos {
         return db.execute('UPDATE opciones SET descripcion = ? WHERE (idopciones = ?)',
         [opcion, idOpcion]);
     }
-}
 
+    static async delete(id) {
+        try {
+            await db.execute('DELETE FROM opciones WHERE fk_opciones_pregunta=?', [id]);
+
+            const result = await db.execute('DELETE FROM pregunta WHERE idPregunta=?', [id]);
+    
+            return result;
+        } catch (error) {
+            console.log('Error eliminando pregunta y opciones:', error);
+            throw error;
+        }
+    }
+    
+}
