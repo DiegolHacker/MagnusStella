@@ -643,8 +643,8 @@ table.table td a.settings {
     color: var(--edit-color);
 }
 
-table.table td a.delete {
-    color: #B00020;
+a.delete {
+    color: #d8052c;
 }
 
 table.table td i {
