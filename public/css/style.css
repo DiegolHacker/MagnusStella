@@ -643,8 +643,8 @@ table.table td a.settings {
     color: var(--edit-color);
 }
 
-table.table td a.delete {
-    color: #B00020;
+a.delete {
+    color: #d8052c;
 }
 
 table.table td i {
@@ -876,6 +876,8 @@ table.table .avatar {
 
 .estrellas {
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .clearfix {
@@ -1030,6 +1032,8 @@ label {
     color: #f9002e;
 }
 
+
+
 /* Signup */
 
 .credential-input {
@@ -1039,7 +1043,7 @@ label {
     align-items: baseline;
     margin-left: 20px;
     margin-bottom: 30px;
-    color: #2d73b9;
+    color: (--edit-color);
     font-weight: 500;
 }
 
@@ -1049,7 +1053,7 @@ label {
     height: 30px;
     border: none;
     border-radius: 5px;
-    outline-color: #2d73b9;
+    outline-color: var(--edit-color);
 }
 
 .login-title,
@@ -1061,7 +1065,7 @@ label {
     justify-content: center;
     align-items: center;
     font-size: 33px;
-    color: #2d73b9;
+    color: var(--edit-color);
 
 }
 
@@ -1194,10 +1198,14 @@ label {
 
 #promedioEstrellaNumero h1{
     margin-top: 15px;
-    color: #121418;
+    color: #000000;
     font-weight: 500;
     font-size: 55px;
 
+}
+
+#promedioEstrellaNumero h3{
+    color: #000000;
 }
 
 #estrella-numero{
@@ -1260,6 +1268,7 @@ label {
 .cat-search{
     display: flex;
     margin-left: 50px;
+    align-items: center;
 }
 
 .cat-tittle{
@@ -1269,6 +1278,8 @@ label {
 
 .input-product{
     margin-top: 1px;
+    display: flex;
+    flex-direction: column;
 }
 
 

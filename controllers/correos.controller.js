@@ -54,6 +54,7 @@ exports.get_correos_editar = async (request, response, next) => {
         const to_opcion = await Correos.emailcountopcion(idp);
         const pregunta = await Correos.emailpregunta(idp);
         const marca = request.params.marca;
+        
         // Ahora renderiza con los datos obtenidos
         response.render("editar_correos", {
             titulo: "Correos",
@@ -64,7 +65,6 @@ exports.get_correos_editar = async (request, response, next) => {
             tipos: tipo,
             opciones: opciones,
             pregunta:pregunta,
-            idp:idp,
             total_opciones: to_opcion,
             permisos: request.session.permisos || []
         });
@@ -108,3 +108,55 @@ exports.post_editar_correos = async (request, response, next) => {
         response.status(500).send("Error interno del servidor");
     }
 };
+
+exports.get_correos_crear = async (request, response, next) => {
+    const marca = request.params.marca;
+    
+    try {
+        // Ahora renderiza con los datos obtenidos
+        response.render("crear_correos", {
+            titulo: "Correos",
+            csrfToken: request.csrfToken(),
+            marca: marca || "LU1",
+            ruta: "/emails/correos",
+            permisos: request.session.permisos || []
+        });
+    } catch (error) {
+        console.error('Error al cargar las preguntas:', error);
+        response.status(500).send('Error interno del servidor');
+    }
+};
+
+exports.post_crear_correos = (request,response,next) => {
+    const marca = request.params.marca
+    const {question, tipo} = request.body;
+    const opciones = [];
+
+    Object.keys(request.body).forEach(key => {
+        if (key.startsWith("op_")) {
+            opciones.push(request.body[key]);
+        }
+    });
+
+    if (!question || !tipo || opciones.length === 0) {
+        return response.render("crear_correos", {
+            titulo: "Correos",
+            error: "Llena todos los campos",
+            marca: marca || "LU1",
+            ruta: "/emails/correos",
+            permisos: request.session.permisos || []
+        });
+    }
+
+    const pregunta = new Correos(question,tipo, opciones, marca);
+    pregunta.save()
+        .then(() =>{
+            response.redirect('/emails/correos/' + marca);
+        })
+        .catch(err => {
+            console.log("Error al hacer el signup:",err);
+            response.redirect('/emails/correos/' + marca);
+        });
+}
+
+

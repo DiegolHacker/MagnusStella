@@ -1,7 +1,8 @@
 const { search } = require('../routes/routes1.routes');
 const db = require('../util/database');
 
-exports.StarAvgLine = (marca,categoriaS) => {
+exports.StarAvgLine = (marca,categoriaS,productoS,startDate,endDate) => {
+    //tabla review
     let query = `SELECT MONTHNAME(r.Fecha) as Mes, AVG(Puntaje) as Promedio
     FROM review r
     JOIN venta v ON r.fk_review_venta = v.idventa 
@@ -11,11 +12,28 @@ exports.StarAvgLine = (marca,categoriaS) => {
 
     if (categoriaS !== '*') {
         query += `
-    AND Categoria = ?`;
+    AND Categoria = ?`
         parametros.push(categoriaS);
     }
+
+    if(productoS !== '*'){
+        query += `
+    AND p.idProducto = ?`
+        parametros.push(productoS);
+    }
+
+    if (startDate !== '*' && endDate !== '*') {
+        query += ` AND v.Fecha BETWEEN ? AND ?`;
+        parametros.push(startDate, endDate);
+    } else if (startDate !== '*') {
+        query += ` AND v.Fecha >= ?`;
+        parametros.push(startDate);
+    } else if (endDate !== '*') {
+        query += ` AND v.Fecha <= ?`;
+        parametros.push(endDate);
+  }
     
-  
+  // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
 
     query += ` 
     GROUP BY MONTHNAME(r.Fecha)
@@ -51,8 +69,8 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
     if(categoriaS !== '*'){
         query1 = `SELECT ReviewsContestadasMC(?,?)`;
         query2 = `SELECT ReviewsEnviadasMC(?,?)`;
-        q1String = 'ReviewsContestadasM(?,?)';
-        q2String = 'ReviewsEnviadasM(?,?)';
+        q1String = 'ReviewsContestadasMC(?,?)';
+        q2String = 'ReviewsEnviadasMC(?,?)';
         parametros.push(categoriaS);
     }
 
@@ -63,6 +81,9 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
         q2String = 'ReviewsEnviadasP(?)';
         parametros = [productoS]
     }
+
+  // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
+
 
     return Promise.all([db.execute(query1,parametros), db.execute(query2,parametros)])
         .then(([resultContestadas, resultEnviadas]) => {
@@ -79,7 +100,8 @@ exports.tasaDeRespuesta = (marca,categoriaS,productoS) => {
         });
 };
 
-exports.ReviewsSentxMonth = (marca,categoriaS,productoS) => {
+exports.ReviewsSentxMonth = (marca,categoriaS,productoS,startDate,endDate) => {
+    //tabla venta
     let query = `SELECT 
     MONTHNAME(v.fecha) AS mes,
     COUNT(*) AS Cantidad_Enviadas
@@ -104,6 +126,20 @@ WHERE
         parametros.push(productoS)
     }
 
+    if (startDate !== '*' && endDate !== '*') {
+        query += ` AND v.Fecha BETWEEN ? AND ?`;
+        parametros.push(startDate, endDate);
+    } else if (startDate !== '*') {
+        query += ` AND v.Fecha >= ?`;
+        parametros.push(startDate);
+    } else if (endDate !== '*') {
+        query += ` AND v.Fecha <= ?`;
+        parametros.push(endDate);
+  }
+
+      // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
+
+
     query += `
 GROUP BY 
     MONTHNAME(v.fecha);`;
@@ -126,27 +162,45 @@ GROUP BY
 };
 
 
-exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
-    let query = `SELECT PuntajeItemM(?)`;
-    let qString = `PuntajeItemM(?)`;
+exports.StarAvgNumber = (marca,categoriaS,productoS,startDate,endDate) =>  {
+    let query = `SELECT avg(Puntaje)
+    FROM review r, venta v, producto
+    WHERE r.fk_review_venta = v.idventa
+    AND v.fk_venta_producto = idproducto
+AND fk_idmarca_producto = ? `;
     let parametros = [marca];
     
     if(categoriaS !== '*'){
-        query = `SELECT PuntajeItemMC(?,?)`;
-        qString = `PuntajeItemMC(?,?)`;
+        query += `
+and p.categoria = ? `;
         parametros.push(categoriaS);
     };
 
     if(productoS !== '*'){
-        query = `SELECT PuntajeItemP(?)`;
-        qString = `PuntajeItemP(?)`;
-        parametros = [productoS];
+        query += `
+AND idproducto = ? `;
+        parametros.push(productoS);
     };
 
-    return db.execute(query,parametros)
-        .then((resultContestadas) => {
-            let resultado = resultContestadas[0][0][qString];
+    if (startDate !== '*' && endDate !== '*') {
+        query += ` AND v.Fecha BETWEEN ? AND ?`;
+        parametros.push(startDate, endDate);
+    } else if (startDate !== '*') {
+        query += ` AND v.Fecha >= ?`;
+        parametros.push(startDate);
+    } else if (endDate !== '*') {
+        query += ` AND v.Fecha <= ?`;
+        parametros.push(endDate);
+  }
 
+    query += `;`
+
+      // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
+    
+      return db.execute(query,parametros)
+        .then((resultContestadas) => {
+            let resultado = resultContestadas[0][0]['avg(Puntaje)'];
+            // console.log("holaa")
             return resultado;
         })
         .catch(err => {
@@ -155,9 +209,10 @@ exports.StarAvgNumber = (marca,categoriaS,productoS) =>  {
         });
 };
 
-exports.search = (valor_busqueda) => {
-    let query = 'SELECT * FROM producto WHERE idProducto = ?';
-    return db.execute(query,[valor_busqueda])
+exports.search = (valor_busqueda,marca) => {
+    let query =`SELECT * FROM producto WHERE idProducto = ?
+    AND FK_idMarca_Producto = ?`;
+    return db.execute(query,[valor_busqueda,marca])
         .then(([rows]) => {
             if(rows.length === 0){
                 return {error: 'Producto no existente'};

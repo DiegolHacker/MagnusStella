@@ -143,4 +143,9 @@ module.exports = class Usuarios {
             AND p.idpermiso = per.idPermiso`, 
             [correo]);
     }
+    static getRegistros(){
+        return db.execute(`
+        SELECT * FROM historialusuarios
+        `)
+    }
 }

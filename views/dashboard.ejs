@@ -10,13 +10,39 @@
 <div class="graficas">
     
     <div class="cat-search">    
-        <form action="<%=ruta%>/<%=marca%>" method="POST">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <div class="input-product">
-                <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
-                <button type="submit" class="ingresar-btn">Submit</button>
+
+
+        <button id="openModalBtn">Filtros</button>
+        
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <h2>Filtros</h2>
+                <form action="<%=ruta%>/<%=marca%>" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <div class="input-product">
+
+                        <div class="inputFilter">
+                            <label for="producto">Buscar Producto</label>
+                            <input id="buscar" name="producto" class="input is-info" type="text" placeholder="Buscar Producto..." />
+                        </div>
+                        
+                        <div class="inputFilter">
+                            <label for="startDate">Fecha de inicio</label>
+                            <input type="date" name="startDate" id="dateFilter">
+                        </div>
+                        
+                        <div class="inputFilter">
+                            <label for="endDate">Fecha final</label>
+                            <input type="date" name="endDate" id="dateFilter">
+                        </div>
+
+                        <button type="submit" class="ingresar-btn">Submit</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
+
         <%-include('includes/categorias.ejs', { marca:marca,ruta}) %>
         <% if(errorProducto) { %>
             <div id="error-message" class="cat-tittle"> <h4> <%= errorProducto %> </h4></div>
@@ -86,30 +112,6 @@
             console.log("Selected option:", selectedValue);
             return selectedValue;
     }
-
-    //AJAX para busqueda de producto
-
-    // const accion_asincrona = () => {
-    //     console.log('Buscando...');
-    //     const valor_busqueda = document.getElementById('buscar').value;
-    //     //función que manda la petición asíncrona
-    //     fetch('/graphics/dashboard/<%=marca%>/' + valor_busqueda, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         }
-    //     }).then((result) => {
-    //         console.log(result);
-    //         return result.json(); //Regresa otra promesa
-    //     }).then((data) => {
-    //         console.log(data);
-    //         //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
-    //         //...
-    //     }).catch(err => {
-    //         console.log(err);
-    //     });
-    // };
-    // document.getElementById('buscar').onkeyup = accion_asincrona;
 
 </script>
 <%-include('includes/footer.ejs')%>
