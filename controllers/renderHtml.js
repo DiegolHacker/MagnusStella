@@ -86,13 +86,17 @@ exports.post_delete = (request, response, next) => {
 
 
 exports.get_registroUsuarios = (request, response, next) => {
+    const marca = request.params.marca;
+    console.log("dentro registro")
+
     Usuarios.getRegistros()
     .then(([usuarios, fieldData]) => {
+        console.log(usuarios.length)
         response.render('registroUsuarios', {
             usuarios: usuarios, 
             titulo:"Usuarios", 
-            marca: "LU1",
-            ruta: "/usuarios/registro/",
+            marca: marca,
+            ruta: "/usuarios/registro",
             permisos: request.session.permisos || [],
             csrfToken: request.csrfToken(),
         });

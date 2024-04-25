@@ -19,7 +19,7 @@
 
                         <% if(usuarios.length < 1) {  %>
                             <div class="notification is-info">
-                                No existen Usuarios.
+                                No existen Cambios.
                             </div>
                         <% } %>
                     </div>
@@ -35,7 +35,16 @@
                         </thead>
                         
                         <tbody>
+                            <% let total = 0 %>
+                            <% let modificados = 0 %>
+                            <% let creados = 0 %>
+                            <% let eliminados = 0 %>
                             <% for (let usuario of usuarios) { %>
+                                <% total += 1 %>
+
+                                <% if (usuario.Accion == "Alta Usuario") { creados += 1}%>
+                                <% if (usuario.Accion == "Baja Usuario") { eliminados += 1}%>
+                                <% if (usuario.Accion == "Modifico Usuario") { modificados += 1}%>
                             <tr>
                                 <td><%= usuario.idHistorial %></td>
                                 <td><%= usuario.Usuario %></td>
@@ -46,6 +55,20 @@
                             <% }; %>
                         </tbody>
                     </table>
+
+                    <div class="clearfix">
+                        <div class="hint-text">Movimientos totales: <b><%= total %></b></div>
+                        <ul class="pagination">
+                            <li class="page-item">Creados: <b><%= creados %></b></li>
+
+                            <li class="page-item">Eliminados: <b><%= eliminados %></b></li>
+
+                            <li class="page-item">Modificados: <b><%= modificados %></b></li>
+
+                        </ul>
+                        </div>
+                    </div>
+
                 </div>
 
 
