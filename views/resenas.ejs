@@ -22,6 +22,7 @@
       <img
         src="/images/<%= marca %>/<%= resena.itemcode %>.jpg"
         class="img_producto"
+        alt="Imagen de la marca <%= marca %>"
       />
       <div class="estrellas">
         <% for (var i = 0; i < 5; i++) { %> <% if (i < resena.estrellas) { %>
@@ -70,7 +71,9 @@
                                 }/${resena.idReview}">
                                     ${resena.idProducto} ${resena.Titulo}
                                 </a>
-                                <img src="/images/${
+                                <img alt="Imagen del producto ${
+                                  resena.FK_idMarca_Producto
+                                }" src="/images/${
                                   resena.FK_idMarca_Producto
                                 }/${
                   resena.idProducto
