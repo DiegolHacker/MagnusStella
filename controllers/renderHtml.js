@@ -7,6 +7,7 @@ exports.post_marca = (request, response, next) => {
 exports.get_usuarios = (request, response, next) => {
   const marca = request.params.marca;
   const pag = parseInt(request.params.pag) || 1; // Asegúrate de que 'pag' sea un número
+  console.log("dentro de usuarios");
 
   Usuarios.fetchPag(pag)
     .then((result) => {
