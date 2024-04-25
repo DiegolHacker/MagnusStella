@@ -1,43 +1,51 @@
 <%-include('includes/navigation.ejs')%>
 
+<div class="signup-box box">
+  <div class="signup-title title">
+    <h5>Ingresa la informacion del nuevo usuario</h5>
+  </div>
 
-    <div class="signup-box box">
-        <div class="signup-title title">
-            <h5>Ingresa la informacion del nuevo usuario</h5>
-        </div>
+  <% if(typeof error !=='undefined' ){ %>
+  <div class="alert">
+    <p class="error"><%= error %></p>
+  </div>
+  <% } %>
 
-        <% if(typeof error !=='undefined' ){ %>
-            <div class="alert">
-                <p class="error">
-                    <%= error %>
-                </p>
-            </div>
-            <% } %>
-
-                <form action="/users/signup" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <div class="credential-input">
-                        <label for="name">Nombre:</label>
-                        <input type="text" name="name" id="username" placeholder="Ingresa tu nombre"><br>
-                        <label for="email">Correo electronico:</label>
-                        <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico"><br>
-                        <label for="password">Contrasena:</label>
-                        <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena"><br>
-                        <label for="rol">Rol:</label>
-                        <input type="number" name="rol" id="rol" placeholder="Ingresa el rol">
-                    </div>
-
-                
-                        <label for="image">   Imagen:</label>
-                        <input class="input" type="file" name="image" id="image" required>
-
-
-                    <div class="ingresarBtn">
-                        <button type="submit" class="ingresar-btn">Crear Usuario</button>
-                    </div>
-                </form>
-
+  <form action="/users/signup" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+    <div class="credential-input">
+      <label for="name">Nombre:</label>
+      <input
+        type="text"
+        name="name"
+        id="username"
+        placeholder="Ingresa tu nombre"
+      /><br />
+      <label for="email">Correo electronico:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Ingresa tu correo electronico"
+      /><br />
+      <label for="password">Contrasena:</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Ingresa tu contrasena"
+      /><br />
+      <label for="rol">Rol:</label>
+      <input type="number" name="rol" id="rol" placeholder="Ingresa el rol" />
     </div>
 
+    <label for="image"> Imagen:</label>
+    <input class="input" type="file" name="image" id="image" required />
+
+    <div class="ingresarBtn">
+      <button type="submit" class="ingresar-btn">Crear Usuario</button>
+    </div>
+  </form>
+</div>
 
 <%-include('includes/footer.ejs')%>

@@ -1,37 +1,55 @@
-<%- include('includes/navigation.ejs')%>
-
-<% for (let usuario of usuarios) { %>
+<%- include('includes/navigation.ejs')%> <% for (let usuario of usuarios) { %>
 <div class="signup-box box">
-    <div class="signup-title title">
-        <h4>Nombre de usuario: <%= usuario.Nombre%></h4>
+  <div class="signup-title title">
+    <h4>Nombre de usuario: <%= usuario.Nombre%></h4>
+  </div>
+
+  <form action="/usuarios/editar/<%= usuario.idUsuario %>" method="POST">
+    <input type="hidden" name="uIdusuario" value="<%= usuario.idUsuario %>" />
+    <input type="hidden" name="uPassword" value="<%= usuario.Password %>" />
+    <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
+
+    <div class="credential-input">
+      <label class="label" for="correo">Correo: </label>
+      <input
+        class="input is-success"
+        type="text"
+        placeholder="Text input"
+        value="<%= usuario.Correo%>"
+        name="correo"
+        id="correo"
+        type="text"
+      />
     </div>
-    
-    <form action= "/usuarios/editar/<%= usuario.idUsuario %>" method="POST">
-        <input type="hidden" name="uIdusuario" value="<%= usuario.idUsuario %>" >
-        <input type="hidden" name="uPassword" value="<%= usuario.Password %>" >
-        <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" >  
+    <div class="credential-input">
+      <label class="label" for="password">Password: </label>
+      <input
+        class="input is-success"
+        type="text"
+        placeholder="Text input"
+        value=""
+        name="password"
+        id="password"
+        type="text"
+      />
+    </div>
+    <div class="credential-input">
+      <label class="label" for="idrol">IDRol: </label>
+      <input
+        class="input is-success"
+        type="text"
+        placeholder="Text input"
+        value="<%= usuario.IDRol%>"
+        name="idrol"
+        id="idrol"
+        type="text"
+      />
+    </div>
 
-        <div class="credential-input">
-            <label class="label" for="correo">Correo: </label>
-            <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.Correo%>" name="correo" id="correo" type="text">
-        </div>
-        <div class="credential-input">
-            <label class="label" for="password">Password: </label>
-            <input class="input is-success" type="text" placeholder="Text input" value="" name="password" id="password" type="text">
-        </div>
-        <div class="credential-input">
-            <label class="label" for="idrol">IDRol: </label>
-            <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.IDRol%>" name="idrol" id="idrol" type="text">
-        </div>
-        
-        <div class="ingresarBtn">
-            <input type="submit" value=" Guardar " class="ingresar-btn">
-            <a href="/usuarios/1/<%= marca %>">Cancelar</a>
-        </div>
-            
-    </form>
+    <div class="ingresarBtn">
+      <input type="submit" value=" Guardar " class="ingresar-btn" />
+      <a href="/usuarios/1/<%= marca %>">Cancelar</a>
+    </div>
+  </form>
 </div>
-<% } %>
-  
-
-<%- include('includes/footer.ejs') %>
+<% } %> <%- include('includes/footer.ejs') %>

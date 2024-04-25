@@ -1,76 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <meta name="google-signin-client_id" content="510682302712-bvc0hgpv3knm4sglnnrkma4hn3rhmqpn.apps.googleusercontent.com">
-    <div id="g_id_onload" data-client_id="510682302712-bvc0hgpv3knm4sglnnrkma4hn3rhmqpn.apps.googleusercontent.com"
-        data-callback="handleCredentialResponse">
-    </div>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="google-signin-client_id"
+      content="510682302712-bvc0hgpv3knm4sglnnrkma4hn3rhmqpn.apps.googleusercontent.com"
+    />
+    <div
+      id="g_id_onload"
+      data-client_id="510682302712-bvc0hgpv3knm4sglnnrkma4hn3rhmqpn.apps.googleusercontent.com"
+      data-callback="handleCredentialResponse"
+    ></div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <link rel="stylesheet" href="/css/styles.css"> -->
-    <link rel="stylesheet" href="/css/login_syles.css">
+    <link rel="stylesheet" href="/css/login_syles.css" />
     <script>
-        function decodeJwtResponse(token) {
-            let base64Url = token.split('.')[1]
-            let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-            let jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
-                console.log('%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-            }).join(''));
-            return JSON.parse(jsonPayload)
-        }
+      function decodeJwtResponse(token) {
+        let base64Url = token.split(".")[1];
+        let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+        let jsonPayload = decodeURIComponent(
+          atob(base64)
+            .split("")
+            .map(function (c) {
+              console.log(
+                "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+              );
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+        );
+        return JSON.parse(jsonPayload);
+      }
 
-        window.handleCredentialResponse = (response) => {
-            // decodeJwtResponse() is a custom function defined by you
-            // to decode the credential response.
-            responsePayload = decodeJwtResponse(response.credential);
+      window.handleCredentialResponse = (response) => {
+        // decodeJwtResponse() is a custom function defined by you
+        // to decode the credential response.
+        responsePayload = decodeJwtResponse(response.credential);
 
-            console.log("ID: " + responsePayload.sub);
-            console.log('Full Name: ' + responsePayload.name);
-            console.log('Given Name: ' + responsePayload.given_name);
-            console.log('Family Name: ' + responsePayload.family_name);
-            console.log("Image URL: " + responsePayload.picture);
-            console.log("Email: " + responsePayload.email);
-        }
-
+        console.log("ID: " + responsePayload.sub);
+        console.log("Full Name: " + responsePayload.name);
+        console.log("Given Name: " + responsePayload.given_name);
+        console.log("Family Name: " + responsePayload.family_name);
+        console.log("Image URL: " + responsePayload.picture);
+        console.log("Email: " + responsePayload.email);
+      };
     </script>
     <title>LogIn</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="login-box box">
-        <div class="login-title title">
-            <h4>Log-In</h4>
+      <div class="login-title title">
+        <h4>Log-In</h4>
+      </div>
+      <% if(typeof error !=='undefined' ){ %>
+      <div class="alert">
+        <p><%= error %></p>
+      </div>
+      <% } %>
+      <form action="/users/login" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <div class="credential-input">
+          <label for="name">Nombre de usuario:</label>
+          <input
+            type="email"
+            name="name"
+            id="username"
+            placeholder="Ingresa tu correo electronico"
+          />
         </div>
-        <% if(typeof error !=='undefined' ){ %>
-            <div class="alert">
-                <p>
-                    <%= error %>
-                </p>
-            </div>
-            <% } %>
-                <form action="/users/login" method="post">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <div class="credential-input">
-                        <label for="name">Nombre de usuario:</label>
-                        <input type="email" name="name" id="username" placeholder="Ingresa tu correo electronico">
-                    </div>
-                    <div class="credential-input">
-                        <label for="password">Contrasena:</label>
-                        <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena">
-                    </div>
-                    <div class="ingresar-btn">
-                        <button type="submit" class="btn">Ingresar</button>
-                    </div>
-                </form>
+        <div class="credential-input">
+          <label for="password">Contrasena:</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Ingresa tu contrasena"
+          />
+        </div>
+        <div class="ingresar-btn">
+          <button type="submit" class="btn">Ingresar</button>
+        </div>
+      </form>
 
-
-
-                <div class="google-login">
-                    <p>Log-In con google:</p>
-                    <div class="g_id_signin" data-type="standard"></div>    
-                </div>
-
-
+      <div class="google-login">
+        <p>Log-In con google:</p>
+        <div class="g_id_signin" data-type="standard"></div>
+      </div>
+    </div>
+  </body>
+</html>
