@@ -5,8 +5,8 @@ const userModel = require('./models/usuarios.model');
 passport.use(
   new GoogleStrategy(
     {
-      clientID: '',//poner manana un .env para esto
-      clientSecret: '',
+      clientID: placeholder,//poner manana un .env para esto
+      clientSecret: placeholder ,
       callbackURL: 'http://localhost:3000/usuarios/auth/google/callback',
     },
     async (accessToken, refreshToken, profile, done) => {
