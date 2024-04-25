@@ -26,19 +26,6 @@
                 <i class="bx bx-sun sun"></i>
             </div>
 
-            <div class="profile">
-                <div class="userProfile">
-                    <i class="bx bx-x cancel"></i>
-                    <i class="bx bx-user user"></i>
-                </div>
-                <div class="user-sub-menu">
-                    <ul>
-                        <li><a href="#">Configuración</a></li>
-                        <li><a href="/ayuda/<%=marca%>">Ayuda</a></li>
-                        <li><a href="/users/logout">Cerrar sesión</a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
         
             <!-- <div class="logo-zebrands">
@@ -48,19 +35,19 @@
             <span class="logo navLogo"><a href="#"><%= titulo %> </a></span>
 
 
-            <div class="dropdown">
-                <button class="dropbtn">
-                    <% if(marca == "LU1"){ %>
-                        <img class="brand-logo default-brand" src="/logos/Logo_Luuna_2.png" width="184 px" height="61 px" alt="">
+            <div class="dropdown dropdown-marca">
+                <button class="dropbtn dropbtn-marca">
+                    <% if(marca == "LU1"){ %> 
+                        <img class="brand-logo default-brand" src="/logos/Logo_Luuna_3.png" width="196 px" height="61 px" alt="">
                     <% } %>
                     <% if(marca == "NO1"){ %>
-                        <img class="brand-logo" src="/logos/Logo_Nooz_2.png" width="184 px" height="61 px" alt="">
+                        <img class="brand-logo" src="/logos/Logo_Nooz_3.png" width="196 px" height="61 px" alt="">
                     <% } %>
                     <% if(marca == "MA1"){ %>
-                        <img class="brand-logo" src="/logos/Logo_Mappa_2.png" width="184 px" height="61 px" alt="">
+                        <img class="brand-logo" src="/logos/Logo_Mappa_3.png" width="196 px" height="61 px" alt="">
                     <% } %>
                 </button>
-                <div class="dropdown-content">
+                <div class="dropdown-content dropdown-content-marca">
                     <a href="<%=ruta%>/LU1"><img class="select-brand" data-value="LU1" src="/logos/Logo_Luuna_2.png" width="150 px"
                             height="50 px" alt=""></a>
                     <a href="<%=ruta%>/NO1"><img class="select-brand" data-value="NO1" src="/logos/Logo_Nooz_2.png" width="150 px"
@@ -85,7 +72,7 @@
                         <li class="nav-link">
                             <a href="/graphics/dashboard/<%=marca%>">
                                 <i class="bx bx-line-chart icon"></i>
-                                <span class="text nav-text">DashBoard</span>
+                                <span class="text nav-text">Dashboard</span>
                             </a>
                         </li>
                         <li class="nav-link">
@@ -113,7 +100,24 @@
                         <% } %>
                     <% } %>
                 </ul>
+                    
+                <ul class="menu-links bottom-icons"> 
+                    <li class="nav-link">
+                        <a href="/ayuda/<%=marca%>">
+                        <i class='bx bx-help-circle icon'></i>
+                        <span class="text nav-text">Ayuda</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="/users/logout">
+                        <i class='bx bx-exit icon'></i>
+                        <span class="text nav-text">Logout</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
+            
         </div>
     </nav>
 

@@ -2,7 +2,6 @@
 const body = document.querySelector("body"),
       nav = document.querySelector("nav"),
       modeToggle = document.querySelector(".dark-light"),
-      userProfile = document.querySelector(".userProfile"),
       sidebar = body.querySelector(".side_bar"),
       toggle = body.querySelector(".toggle"),
       siderbarClose = document.querySelector(".siderbarClose"),
@@ -47,11 +46,6 @@ modeToggle.addEventListener("click" , () => {
   }else{
       localStorage.setItem("mode", "dark-mode");
   }
-});
-
-
-userProfile.addEventListener("click" , () =>{
-   userProfile.classList.toggle("active");
 });
  
 
