@@ -23,6 +23,10 @@ exports.get_correos = async (request, response, next) => {
             total_opciones.push(to_opcion);
         }
     
+        const dias = await Correos.emaildias(marca)
+        const diasValue = dias[0][0].Dias;
+        
+   
         // Ahora renderiza con los datos obtenidos
         response.render("correos", {
             preguntas: preguntas,
@@ -30,7 +34,7 @@ exports.get_correos = async (request, response, next) => {
             titulo: "Correos",
             marca: marca || "LU1",
             ruta: "/emails/correos",
-            idp:idp,
+            dias: diasValue,
             total: total,
             tipos: tipos,
             opciones: opciones,
@@ -160,3 +164,20 @@ exports.post_crear_correos = (request,response,next) => {
 }
 
 
+exports.actualizarDias = async (req, res) => {
+    const idMarca = req.params.marca; 
+    const nuevoDias = req.body.dias; 
+
+    try {
+        const actualizacionExitosa = await Correos.actualizarDias(idMarca, nuevoDias);
+
+        if (actualizacionExitosa) {
+            res.status(200).send('¡Actualización exitosa!');
+        } else {
+            res.status(500).send('Error: No se pudo actualizar los días.');
+        }
+    } catch (error) {
+        console.error('Error al actualizar los días:', error);
+        res.status(500).send('Error interno del servidor');
+    }
+};

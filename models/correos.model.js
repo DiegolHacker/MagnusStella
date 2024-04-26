@@ -46,6 +46,11 @@ module.exports = class Correos {
         return { preguntas: rows1, idp: rows2 };
     }
 
+    static async emaildias(id) {
+        const query1 = `SELECT m.Dias FROM marca m WHERE idMarca = ?`;
+        const dias = await db.execute(query1, [id]);    
+        return dias;
+    }
 
     static async emailtipo_pre(id_p) {
         const query = 'SELECT p.tipo FROM pregunta p WHERE idPregunta = ?';
@@ -106,4 +111,15 @@ module.exports = class Correos {
         }
     }
     
+        
+    static async actualizarDias(idMarca, nuevoDias) {
+        try {
+            const query = 'UPDATE marca SET Dias = ? WHERE idMarca = ?';
+            const result = await db.execute(query, [nuevoDias, idMarca]);
+
+        } catch (error) {
+            console.error('Error al actualizar los días:', error);
+            throw error; 
+        }
+    }
 }

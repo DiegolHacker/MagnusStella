@@ -13,6 +13,7 @@
     <div class="item-boxes">
         <% resenas.forEach(function(resena, index) { %>
             <div class="item-container">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
                 <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
                 <div class="estrellas">
@@ -26,9 +27,12 @@
                 </div>
                 <p id="sub_question"><%= resena.resena_descrip %></p> 
                 <div class="ver_pagina">
-                    <input type="checkbox" id="click">
-                    <label for="click" class="text"></label>
+                    <input type="checkbox" id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %>>
+
+                    <label for="visibilidadCheckbox" class="text"></label>
                 </div>
+                <body data-marca="<%= marca %>">   
+                
             </div>
             <% if ((index + 1) % 2 === 0) { %>
                 <div class="clearfix"></div>
@@ -88,6 +92,41 @@
     };
     
     document.getElementById('buscar').onkeyup = accion_asincrona;
+
+    // Dentro del event listener de "DOMContentLoaded"
+    document.querySelectorAll("[id^='visibilidadCheckbox']").forEach(checkbox => {
+        checkbox.addEventListener("change", function() {
+            // Obtener el ID de la reseña a partir del ID del checkbox
+            const idReview = this.id.split("_")[1];
+            console.log(idReview);
+            
+        const nuevaVisibilidad = this.checked ? 1 : 0;
+        // Realizar una solicitud al servidor para actualizar la visibilidad
+        fetch('/reviews/resenas/visibilidad/' + idReview, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'X-CSRF-Token': '<%= csrfToken %>' 
+                
+            },
+            body: JSON.stringify({ visibilidad: nuevaVisibilidad }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al actualizar la visibilidad");
+            }
+            // Si la solicitud se realiza con éxito, actualiza el valor de resena.visibilidad
+            // Esto dependerá de cómo esté estructurado tu código para almacenar los datos de la reseña
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            // En caso de error, revierte el estado del checkbox
+            this.checked = !this.checked;
+        });
+    });
+
+});
+
 </script>
 
 

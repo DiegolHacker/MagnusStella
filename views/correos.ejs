@@ -4,12 +4,13 @@
     <div class="editor-de-preguntas">
         <h2>Configuración</h2>
 
-        <form>
+        <form id="form-dias">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <label for="dias">Días a los que se envía la encuesta:</label>
-            <input type="number" id="dias" name="dias" min="3" max="60" value="15">
-            <button type="submit" class="subir boton">Enviar</button>
+            <input type="number" id="dias" name="dias" min="3" max="60" value="<%= dias %>">
+            <button type="button" id="btn-enviar-dias" class="subir boton">Enviar</button>
         </form>
+        
 
         <form>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
@@ -28,6 +29,7 @@
         <a href="/emails/correos/crear/<%= marca %>" class="add-ques-button boton">Añadir pregunta + </a>
 
     </div>
+    <body data-marca="<%= marca %>">
 
     <div class="preview-html">
         <div class="contenido">
@@ -37,12 +39,17 @@
             <img id="producto_img" src="/images/<%= marca %>producto.png" height="130">
             <div class="rating-box">
                 <h5 id="question_text"><b>¿Cuál es su calificación general?</b></h5>
-                <div class="estrellas">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
+                <div class="rating">
+                    <input value="5" name="rate" id="star5" type="radio">
+                    <label title="text" for="star5"></label>
+                    <input value="4" name="rate" id="star4" type="radio">
+                    <label title="text" for="star4"></label>
+                    <input value="3" name="rate" id="star3" type="radio" checked="">
+                    <label title="text" for="star3"></label>
+                    <input value="2" name="rate" id="star2" type="radio">
+                    <label title="text" for="star2"></label>
+                    <input value="1" name="rate" id="star1" type="radio">
+                    <label title="text" for="star1"></label>
                 </div>
             </div>
             <h4><b>Título de tu reseña: </b></h4>
@@ -133,6 +140,38 @@ async function deletePregunta(id) {
         console.error('Error al eliminar la pregunta:', error);
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnEnviarDias = document.getElementById('btn-enviar-dias');
+    const marca = document.body.getAttribute('data-marca');
+    btnEnviarDias.addEventListener('click', function(event) {
+        event.preventDefault(); 
+
+        const newDiasValue = document.getElementById('dias').value;
+        console.log(newDiasValue);
+
+        fetch(`/emails/correos/actualizarDias/${marca}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': '<%= csrfToken %>' 
+            },
+            body: JSON.stringify({ dias: newDiasValue })
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('dias').value = newDiasValue;
+                console.log('¡Actualización exitosa!');
+            } else {
+                console.error('Error al actualizar los días:', response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Error al actualizar los días:', error);
+        });
+    });
+
+});
 </script>
 <%- include('includes/footer.ejs') %>
 

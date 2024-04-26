@@ -18,6 +18,7 @@ exports.get_resenas_completas = (request, response, next) => {
         response.render("resenas_completas", { resenas: resenaCompleta, 
             titulo: "Reseña Completa",
             marca: marca || "LU1",
+            csrfToken: request.csrfToken(),
             ruta: "/reviews/resenas/completas/:marca/:id" ,
             permisos: request.session.permisos || []
         });
@@ -38,6 +39,7 @@ exports.get_resenas = (request, response, next) => {
             resena_descrip: resena.descripcion,
             estrellas: resena.puntaje,
             itemcode: resena.idProducto,
+            visibilidad: resena.visible
 
         }));
         
@@ -46,6 +48,7 @@ exports.get_resenas = (request, response, next) => {
             marca:marca || "LU1",
             id:idReview,
             ruta: "/reviews/resenas",
+            csrfToken: request.csrfToken(),
             permisos: request.session.permisos || []      
 
             });
@@ -226,5 +229,25 @@ exports.enviar_resenia = async (request, response, next) => {
     } catch (error) {
         console.error('Error al cargar las preguntas:', error);
         response.status(500).send('Error interno del servidor');
+    }
+};
+
+exports.actualizarvisibilidad = async (req, res) => {
+    const idreview = req.params.idr; // Obtener el ID de la reseña desde los parámetros de la URL
+    const visibilidad = req.body.visibilidad; // Obtener la visibilidad desde el cuerpo de la solicitud
+
+    try {
+        // Realizar la operación de actualización en el modelo
+        const actualizacionExitosa = await Reviews.actualizarvisibilidad(idreview, visibilidad);
+
+        // Verificar si la actualización fue exitosa
+        if (actualizacionExitosa) {
+            // Si la actualización fue exitosa, enviar una respuesta 200 (OK)
+            res.status(200).send('¡Actualización exitosa!');
+        } 
+    } catch (error) {
+        // En caso de error, imprimir el error en la consola del servidor y enviar una respuesta 500 (Error del servidor)
+        console.error('Error al actualizar la visibilidad:', error);
+        res.status(500).send('Error interno del servidor');
     }
 };

@@ -20,6 +20,7 @@ module.exports = class Reviews {
             r.Titulo AS titulo, 
             r.Fecha AS fecha, 
             r.Puntaje AS puntaje, 
+            r.Visibilidad AS visible,
             v.Fk_Venta_Producto AS idProducto
   
         FROM 
@@ -142,6 +143,24 @@ module.exports = class Reviews {
             callback(err, []);
         });
     }
+    static async actualizarvisibilidad(idreview, visibilidad) {
+        try {
+            console.log(idreview);
+            console.log(visibilidad);
+            const query = 'UPDATE review SET Visibilidad = ? WHERE idReview = ?';
+            const [result] = await db.execute(query, [visibilidad, idreview]);
     
-
-}
+            // Verificar si se actualizó al menos una fila en la base de datos
+            if (result.affectedRows > 0) {
+                // Si se actualizó al menos una fila, la actualización fue exitosa
+                return true;
+            } else {
+                // Si no se actualizó ninguna fila, la actualización no fue exitosa
+                return false;
+            }
+        } catch (error) {
+            console.error('Error al actualizar la visibilidad:', error);
+            throw error; // Lanzar el error para que sea manejado por el controlador
+        }
+    }
+}    

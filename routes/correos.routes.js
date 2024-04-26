@@ -9,4 +9,5 @@ router.post('/correos/editar/', controladores.post_editar_correos);
 router.get("/correos/:marca", isAuth, canEdit, controladores.get_correos);
 router.get("/correos/crear/:marca", isAuth, canEdit, controladores.get_correos_crear);
 router.post('/correos/crear/:marca', controladores.post_crear_correos);
+router.post('/correos/actualizarDias/:marca', controladores.actualizarDias);
 module.exports = router;
