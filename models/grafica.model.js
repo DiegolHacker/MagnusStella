@@ -80,7 +80,6 @@ exports.tasaDeRespuesta = (marca, categoriaS, productoS, startDate, endDate) => 
       AND p.Categoria = ?`;
     query2 += `
       AND p.Categoria = ?`;
-
     parametros.push(categoriaS);
   }
 
@@ -89,7 +88,6 @@ exports.tasaDeRespuesta = (marca, categoriaS, productoS, startDate, endDate) => 
       AND p.idProducto = ?`;
     query2 += `
       AND p.idProducto = ?`;
-
     parametros.push(productoS);
   }
 
@@ -118,8 +116,7 @@ exports.tasaDeRespuesta = (marca, categoriaS, productoS, startDate, endDate) => 
   }
 
   // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
-  console.log("start date: ", startDate);
-  console.log("end date: ", endDate);
+
   return Promise.all([
     db.execute(query1, parametros),
     db.execute(query2, parametros),
@@ -127,8 +124,6 @@ exports.tasaDeRespuesta = (marca, categoriaS, productoS, startDate, endDate) => 
     .then(([[resultContestadas, fieldData1], [resultEnviadas, fieldData2]]) => {
       let contestadas = resultContestadas[0]["contestadas"];
       let enviadas = resultEnviadas[0]["enviadas"];
-      console.log("enviadas: ",  enviadas);
-      console.log("contestadas: ",  contestadas);
       let resultado = (contestadas / enviadas) * 100;
 
       return resultado;
@@ -211,9 +206,9 @@ GROUP BY
 
 exports.StarAvgNumber = (marca, categoriaS, productoS, startDate, endDate) => {
   let query = `SELECT avg(Puntaje)
-    FROM review r, venta v, producto p
+    FROM review r, venta v, producto
     WHERE r.fk_review_venta = v.idventa
-    AND v.fk_venta_producto = p.idproducto
+    AND v.fk_venta_producto = idproducto
 AND fk_idmarca_producto = ? `;
   let parametros = [marca];
 
@@ -225,7 +220,7 @@ and p.categoria = ? `;
 
   if (productoS !== "*") {
     query += `
-AND p.idproducto = ? `;
+AND idproducto = ? `;
     parametros.push(productoS);
   }
 
