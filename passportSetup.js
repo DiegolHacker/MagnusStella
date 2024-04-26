@@ -5,9 +5,9 @@ const userModel = require('./models/usuarios.model');
 passport.use(
   new GoogleStrategy(
     {
-    //   clientID: placeholder,//poner manana un .env para esto
-    //   clientSecret: placeholder ,
-      callbackURL: 'http://localhost:3000/usuarios/auth/google/callback',
+      clientID: process.env.ClientIDGoogle,//poner manana un .env para esto
+      clientSecret: process.env.ClientSecretGoogle ,
+      callbackURL: 'http://localhost:3000/users/auth/google/callback',
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -20,6 +20,7 @@ passport.use(
         } else {
           // User not found, return false to deny authentication
           return done(null, false);
+          console.log('Error el usuario no se encontro')
         }
       } catch (err) {
         console.error('Error in google strategy callback: ', err);

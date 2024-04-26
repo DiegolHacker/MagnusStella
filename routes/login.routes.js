@@ -12,7 +12,7 @@ router.post("/signup", controladores.post_signup);
 
 // Google OAuth routes
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/usuarios/login' }), async (req, res) => {
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/users/login' }), async (req, res) => {
   try {
     const { id, displayName, emails } = req.user;
     const email = emails[0].value;
@@ -20,19 +20,28 @@ router.get('/auth/google/callback', passport.authenticate('google', { failureRed
     // Find the user by email
     const { user, passwordMatch } = await Usuarios.findByEmail(email);
 
+    console.log(user)
+
     if (user) {
       // User found, set session and redirect
       req.session.isLoggedIn = true;
+      req.session.permisos = user.permisos;
       req.session.user = user;
-      res.redirect('/');
+      return req.session.save(err => {
+        if(err){
+          response.redirect('/users/login');
+        }
+        res.redirect('/');
+      });
     } else {
       // User not found, display an error message or redirect to registration page
       req.session.error = 'User not registered. Please contact the admin.';
-      res.redirect('/register');
+      console.log(req.session.error);
+      res.redirect('/users/login');
     }
   } catch (error) {
     console.error('Error during Google OAuth callback:', error);
-    res.redirect('/usuarios/login');
+    res.redirect('/users/login');
   }
 });
 
