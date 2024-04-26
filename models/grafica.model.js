@@ -58,39 +58,77 @@ exports.StarAvgLine = (marca, categoriaS, productoS, startDate, endDate) => {
     });
 };
 
-exports.tasaDeRespuesta = (marca, categoriaS, productoS) => {
-  let query1 = `SELECT ReviewsContestadasM(?)`;
-  let query2 = `SELECT ReviewsEnviadasM(?)`;
-  let q1String = "ReviewsContestadasM(?)";
-  let q2String = "ReviewsEnviadasM(?)";
+exports.tasaDeRespuesta = (marca, categoriaS, productoS, startDate, endDate) => {
+  let query1 = `SELECT COUNT(*) as contestadas
+                FROM review r
+                JOIN venta v ON r.fk_review_venta = v.idventa 
+                JOIN producto p ON v.fk_venta_producto = p.idproducto
+                WHERE r.fk_review_venta = v.idVenta
+                AND v.fk_venta_producto = p.idproducto
+                AND p.fk_idMarca_producto = ?`;
+
+  let query2 = `SELECT COUNT(*) as enviadas
+                FROM venta v
+                JOIN producto p ON v.fk_venta_producto = p.idproducto
+                WHERE v.fk_venta_producto = p.idproducto
+                AND p.fk_idmarca_producto = ?`;
+
   let parametros = [marca];
 
   if (categoriaS !== "*") {
-    query1 = `SELECT ReviewsContestadasMC(?,?)`;
-    query2 = `SELECT ReviewsEnviadasMC(?,?)`;
-    q1String = "ReviewsContestadasMC(?,?)";
-    q2String = "ReviewsEnviadasMC(?,?)";
+    query1 += `
+      AND p.Categoria = ?`;
+    query2 += `
+      AND p.Categoria = ?`;
+
     parametros.push(categoriaS);
   }
 
   if (productoS !== "*") {
-    query1 = `SELECT ReviewsContestadasP(?)`;
-    query2 = `SELECT ReviewsEnviadasP(?)`;
-    q1String = "ReviewsContestadasP(?)";
-    q2String = "ReviewsEnviadasP(?)";
-    parametros = [productoS];
+    query1 += `
+      AND p.idProducto = ?`;
+    query2 += `
+      AND p.idProducto = ?`;
+
+    parametros.push(productoS);
+  }
+
+  if (startDate !== "*" && endDate !== "*") {
+    query1 += ` 
+      AND v.Fecha BETWEEN ? AND ?`;
+    query2 += ` 
+      AND v.Fecha BETWEEN ? AND ?`;
+    parametros.push(startDate, endDate);
+  } 
+
+  else if (startDate !== "*") {
+    query1 += ` 
+    AND v.Fecha >= ?`;
+    query2 += ` 
+    AND v.Fecha >= ?`;
+    parametros.push(startDate);
+  } 
+
+  else if (endDate !== "*") {
+    query1 += ` 
+    AND v.Fecha <= ?`;
+    query2 += ` 
+    AND v.Fecha <= ?`;
+    parametros.push(endDate);
   }
 
   // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
-
+  console.log("start date: ", startDate);
+  console.log("end date: ", endDate);
   return Promise.all([
     db.execute(query1, parametros),
     db.execute(query2, parametros),
   ])
-    .then(([resultContestadas, resultEnviadas]) => {
-      let contestadas = resultContestadas[0][0][q1String];
-      let enviadas = resultEnviadas[0][0][q2String];
-
+    .then(([[resultContestadas, fieldData1], [resultEnviadas, fieldData2]]) => {
+      let contestadas = resultContestadas[0]["contestadas"];
+      let enviadas = resultEnviadas[0]["enviadas"];
+      console.log("enviadas: ",  enviadas);
+      console.log("contestadas: ",  contestadas);
       let resultado = (contestadas / enviadas) * 100;
 
       return resultado;

@@ -27,7 +27,7 @@ exports.get_dashboard = async (request, response, next) => {
 
   Promise.all([
     Model.StarAvgLine(marca, categoria, producto, startDate, endDate),
-    Model.tasaDeRespuesta(marca, categoria, producto),
+    Model.tasaDeRespuesta(marca, categoria, producto, startDate, endDate),
     Model.ReviewsSentxMonth(marca, categoria, producto, startDate, endDate),
     Model.StarAvgNumber(marca, categoria, producto, startDate, endDate),
   ])
