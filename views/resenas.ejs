@@ -1,195 +1,134 @@
-<%- include('includes/navigation.ejs'), { marca: marca, } %>
+<%- include('includes/navigation.ejs'), {
+  marca: marca,
+} %>
 
 <div id="search-autocomplete" class="form-outline" data-mdb-input-init>
-  <input
-    type="search"
-    id="buscar"
-    class="form-control"
-    placeholder="Busca tu producto"
-  />
+  <input type="search" id="buscar" class="form-control" placeholder="Busca tu producto"/>
   <button type="button" class="btn btn-primary" data-mdb-ripple-init>
-    <i class="fas fa-search"></i>
+      <i class="fas fa-search"></i>
   </button>
 </div>
 
 <div id="respuesta_ajax" class="respuesta_ajax">
-<<<<<<< HEAD
   <div class="item-boxes">
-    <% resenas.forEach(function(resena, index) { %>
-    <div class="item-container">
-      <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"
-        ><%= resena.itemcode %> <%= resena.title %></a
-      >
-      <img
-        src="/images/<%= marca %>/<%= resena.itemcode %>.jpg"
-        class="img_producto"
-        alt="Imagen de la marca <%= marca %>"
-      />
-      <div class="estrellas">
-        <% for (var i = 0; i < 5; i++) { %> <% if (i < resena.estrellas) { %>
-        <i class="bx bxs-star" id="stars_y"></i>
-        <% } else { %>
-        <i class="bx bx-star" id="stars_g"></i>
-        <% } %> <% } %>
-      </div>
-      <p id="sub_question"><%= resena.resena_descrip %></p>
-      <div class="ver_pagina">
-        <input type="checkbox" id="click" />
-        <label for="click" class="text"></label>
-      </div>
-=======
-    <div class="item-boxes">
-        <% resenas.forEach(function(resena, index) { %>
-            <div class="item-container">
-                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
-                <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
-                <div class="estrellas">
-                    <% for (var i = 0; i < 5; i++) { %>
-                        <% if (i < resena.estrellas) { %>
-                            <i class='bx bxs-star' id="stars_y"></i>
-                        <% } else { %>
-                            <i class='bx bx-star' id="stars_g"></i>
-                        <% } %>
-                    <% } %>
-                </div>
-                <p id="sub_question"><%= resena.resena_descrip %></p> 
-                <div class="ver_pagina">
-                    <input type="checkbox" id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %>>
+      <% resenas.forEach(function(resena, index) { %>
+          <div class="item-container">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
+              <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
+              <div class="estrellas">
+                  <% for (var i = 0; i < 5; i++) { %>
+                      <% if (i < resena.estrellas) { %>
+                          <i class='bx bxs-star' id="stars_y"></i>
+                      <% } else { %>
+                          <i class='bx bx-star' id="stars_g"></i>
+                      <% } %>
+                  <% } %>
+              </div>
+              <p id="sub_question"><%= resena.resena_descrip %></p> 
+              <div class="ver_pagina">
+                  <input type="checkbox" id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %>>
 
-                    <label for="visibilidadCheckbox" class="text"></label>
-                </div>
-                <body data-marca="<%= marca %>">   
-                
-            </div>
-            <% if ((index + 1) % 2 === 0) { %>
-                <div class="clearfix"></div>
-            <% } %>
-        <% }); %>
->>>>>>> errores
-    </div>
-    <% if ((index + 1) % 2 === 0) { %>
-    <div class="clearfix"></div>
-    <% } %> <% }); %>
+                  <label for="visibilidadCheckbox" class="text"></label>
+              </div>
+              <body data-marca="<%= marca %>">   
+              
+          </div>
+          <% if ((index + 1) % 2 === 0) { %>
+              <div class="clearfix"></div>
+          <% } %>
+      <% }); %>
   </div>
 </div>
 <script>
   const accion_asincrona = () => {
-    console.log("Buscando...");
-    const valor_busqueda = document.getElementById("buscar").value;
-    //función que manda la petición asíncrona
-    fetch("/reviews/resenas/<%= marca %>/buscar/" + valor_busqueda, {
-      method: "GET",
-    })
-      .then((result) => {
-        return result.json(); //Regresa otra promesa
-      })
-      .then((data) => {
-        document.getElementById("respuesta_ajax").innerHTML = "";
+      console.log('Buscando...');
+      const valor_busqueda = document.getElementById('buscar').value;
+      //función que manda la petición asíncrona
+      fetch('/reviews/resenas/<%= marca %>/buscar/' + valor_busqueda, {
+          method: 'GET'
+  
+      }).then((result) => {
+          return result.json(); //Regresa otra promesa
+      }).then((data) => {
+          document.getElementById('respuesta_ajax').innerHTML = '';
 
-        if (valor_busqueda.trim() === "") {
-          // Redirige al usuario a la ruta de todas las reseñas
-          window.location.href = `/reviews/resenas/<%= marca %>`;
-        } else {
-          // Si hay una búsqueda, mostrar los resultados de la búsqueda
-          if (data && data.resenas && data.resenas.length > 0) {
-            const resenasHTML = data.resenas
-              .map((resena) => {
-                return `
-                            <div class="item-container">
-                                <a href="/reviews/resenas_completas/${
-                                  resena.FK_idMarca_Producto
-                                }/${resena.idReview}">
-                                    ${resena.idProducto} ${resena.Titulo}
-                                </a>
-                                <img alt="Imagen del producto ${
-                                  resena.FK_idMarca_Producto
-                                }" src="/images/${
-                                  resena.FK_idMarca_Producto
-                                }/${
-                  resena.idProducto
-                }.jpg" class="img_producto">
-                                <div class="estrellas">
-                                    ${Array.from({ length: 5 }, (_, index) => {
-                                      return index < resena.Puntaje
-                                        ? '<i class="bx bxs-star" id="stars_y"></i>'
-                                        : '<i class="bx bx-star" id="stars_g"></i>';
-                                    }).join("")}
-                                </div>
-                                <p id="sub_question">${resena.Descripcion}</p> 
-                                <div class="ver_pagina">
-                                    <input type="checkbox" id="click">
-                                    <label for="click" class="text"></label>
-                                </div>
-                            </div>
-                        `;
-<<<<<<< HEAD
-              })
-              .join("");
-
-            document.getElementById("respuesta_ajax").innerHTML = resenasHTML;
+          
+          if (valor_busqueda.trim() === '') {
+              // Redirige al usuario a la ruta de todas las reseñas
+              window.location.href = `/reviews/resenas/<%= marca %>`;
           } else {
-            document.getElementById("respuesta_ajax").innerHTML =
-              "No se encontraron reseñas.";
+              // Si hay una búsqueda, mostrar los resultados de la búsqueda
+              if (data && data.resenas && data.resenas.length > 0) {
+                  const resenasHTML = data.resenas.map(resena => {
+                      return `
+                          <div class="item-container">
+                              <a href="/reviews/resenas_completas/${resena.FK_idMarca_Producto}/${resena.idReview}">
+                                  ${resena.idProducto} ${resena.Titulo}
+                              </a>
+                              <img src="/images/${resena.FK_idMarca_Producto}/${resena.idProducto}.jpg" class="img_producto">
+                              <div class="estrellas">
+                                  ${Array.from({ length: 5 }, (_, index) => {
+                                      return index < resena.Puntaje ? '<i class="bx bxs-star" id="stars_y"></i>' : '<i class="bx bx-star" id="stars_g"></i>';
+                                  }).join('')}
+                              </div>
+                              <p id="sub_question">${resena.Descripcion}</p> 
+                              <div class="ver_pagina">
+                                  <input type="checkbox" id="click">
+                                  <label for="click" class="text"></label>
+                              </div>
+                          </div>
+                      `;
+                  }).join('');
+  
+                  document.getElementById('respuesta_ajax').innerHTML = resenasHTML;
+              } else {
+                  document.getElementById('respuesta_ajax').innerHTML = 'No se encontraron reseñas.';
+              }
           }
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+      }).catch(err => {
+          console.log(err);
       });
   };
+  
+  document.getElementById('buscar').onkeyup = accion_asincrona;
 
-  document.getElementById("buscar").onkeyup = accion_asincrona;
-=======
-                    }).join('');
-    
-                    document.getElementById('respuesta_ajax').innerHTML = resenasHTML;
-                } else {
-                    document.getElementById('respuesta_ajax').innerHTML = 'No se encontraron reseñas.';
-                }
-            }
-        }).catch(err => {
-            console.log(err);
-        });
-    };
-    
-    document.getElementById('buscar').onkeyup = accion_asincrona;
-
-    // Dentro del event listener de "DOMContentLoaded"
-    document.querySelectorAll("[id^='visibilidadCheckbox']").forEach(checkbox => {
-        checkbox.addEventListener("change", function() {
-            // Obtener el ID de la reseña a partir del ID del checkbox
-            const idReview = this.id.split("_")[1];
-            console.log(idReview);
-            
-        const nuevaVisibilidad = this.checked ? 1 : 0;
-        // Realizar una solicitud al servidor para actualizar la visibilidad
-        fetch('/reviews/resenas/visibilidad/' + idReview, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                'X-CSRF-Token': '<%= csrfToken %>' 
-                
-            },
-            body: JSON.stringify({ visibilidad: nuevaVisibilidad }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Error al actualizar la visibilidad");
-            }
-            // Si la solicitud se realiza con éxito, actualiza el valor de resena.visibilidad
-            // Esto dependerá de cómo esté estructurado tu código para almacenar los datos de la reseña
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            // En caso de error, revierte el estado del checkbox
-            this.checked = !this.checked;
-        });
-    });
+  // Dentro del event listener de "DOMContentLoaded"
+  document.querySelectorAll("[id^='visibilidadCheckbox']").forEach(checkbox => {
+      checkbox.addEventListener("change", function() {
+          // Obtener el ID de la reseña a partir del ID del checkbox
+          const idReview = this.id.split("_")[1];
+          console.log(idReview);
+          
+      const nuevaVisibilidad = this.checked ? 1 : 0;
+      // Realizar una solicitud al servidor para actualizar la visibilidad
+      fetch('/reviews/resenas/visibilidad/' + idReview, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              'X-CSRF-Token': '<%= csrfToken %>' 
+              
+          },
+          body: JSON.stringify({ visibilidad: nuevaVisibilidad }),
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Error al actualizar la visibilidad");
+          }
+          // Si la solicitud se realiza con éxito, actualiza el valor de resena.visibilidad
+          // Esto dependerá de cómo esté estructurado tu código para almacenar los datos de la reseña
+      })
+      .catch(error => {
+          console.error("Error:", error);
+          // En caso de error, revierte el estado del checkbox
+          this.checked = !this.checked;
+      });
+  });
 
 });
 
->>>>>>> errores
 </script>
+
+
 
 <%- include('includes/footer.ejs') %>

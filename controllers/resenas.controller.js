@@ -47,6 +47,7 @@ exports.get_resenas = (request, response, next) => {
       marca: marca || "LU1",
       id: idReview,
       ruta: "/reviews/resenas",
+      csrfToken: request.csrfToken(),
       permisos: request.session.permisos || [],
     });
   });
@@ -223,7 +224,4 @@ exports.enviar_resenia = async (request, response, next) => {
   }
 };
 
-
-exports.post_visibilidad = (request, response, next) => {
-
-}
+exports.post_visibilidad = (request, response, next) => {};
