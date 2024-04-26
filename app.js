@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 
 
 app.use(session({
-    secret: 'mi string',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
 }));
