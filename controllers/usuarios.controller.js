@@ -1,9 +1,10 @@
 const Usuarios = require("../models/usuarios.model");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 exports.get_login = (request, response, next) => {
   const error = request.session.error || "";
-  request.session.error = "";
+  // request.session.error = '';
   response.render("login", {
     username: request.session.username || "",
     registrar: false,
