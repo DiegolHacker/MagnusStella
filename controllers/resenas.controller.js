@@ -67,6 +67,8 @@ exports.get_buscar = (request, response, next) => {
 
 exports.enviar_resenia = async (request, response, next) => {
   const marca = request.params.marca;
+  const csrfToken = request.csrfToken();
+  console.log(csrfToken);
 
   try {
     const total = await Correos.emailpreguntas(marca); // Espera a que se resuelva la promesa
@@ -87,42 +89,30 @@ exports.enviar_resenia = async (request, response, next) => {
 
     let html = ``;
 
-    html += `<!DOCTYPE html>
-        <html lang="en">
+    html += `
 
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="/css/style.css">
-            <link rel="stylesheet" href="/css/correos.css">
-            <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-            <script src="/models/grafica.model.js"></script>
-            <title>Zėbrands</title>
-        </head>
 
         <body>
         <div class="preview-html">
             <div class="contenido">
-                <img src="/images/${marca}.png" height="200" width="100%">
+                <form action="http://localhost:3000/users/login" method="POST">
+                <input type="hidden" name="_csrf" value="${csrfToken}" />
+
+                <img src="cid:unique@nodemailer.com" height="200" width="100%">
                 <h4><b>Hola user,</b></h4>
                 <p id="sub_question">Has comprado recientemente 'producto' <br> ¿Nos cuentas tu experiencia?</p>
-                <img id="producto_img" src="/images/${marca}producto.png" height="130">
                 <div class="rating-box">
                     <h5 id="question_text"><b>¿Cuál es su calificación general?</b></h5>
-                    <div class="estrellas">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
+                    <div class="rating">
+                      <input type="radio" name"clr1">
+                      <input type="radio" name"clr1">
+                      <input type="radio" name"clr1">
+                      <input type="radio" name"clr1">
+                      <input type="radio" name"clr1">
                     </div>
                 </div>
                 <h4><b>Título de tu reseña: </b></h4>
-                <form>
-                    <input type="text" id="title_rev" name="titulo_review" placeholder="Título"><br>
-                </form>
+                <input type="text" id="title_rev" name="titulo_review" placeholder="Título"><br>
                 <h4><b>Reseña: </b></h4>
                 <textarea name="descripcion_review" id="description_rev" cols="35" rows="4" placeholder="Escribe aquí tu reseña"></textarea>
                 <div id="survey-form">
@@ -135,11 +125,13 @@ exports.enviar_resenia = async (request, response, next) => {
       if (tipos[i][0].tipo == 1) {
         html += `
                 <p id="sub_question">Elige una de las siguientes opciones</p>
-                <select name="answer-<%= preguntas[i].idPregunta %>">
-                    opciones[i].forEach(opcion => {
-                        <option value="<%= opcion.idOpcion %>"><%= opcion.descripcion %></option>
-                    });
-                </select>
+                                
+                <select name="answer-${preguntas[i].idPregunta}">`;
+
+        opciones[i].forEach((opcion) => {
+          html += `<input type="radio" name="gender" value="${opcion.idOpcion}" checked> ${opcion.descripcion}<br>`;
+        });
+        html += `</select>
                 `;
       } else if (tipos[i][0].tipo == 2) {
         opciones[i].forEach((opcion) => {
@@ -167,13 +159,69 @@ exports.enviar_resenia = async (request, response, next) => {
                 <div class="submit-button-container">
                     <button type="submit" class="submit-button">¡Envía tu reseña!</button>
                 </div>
+            </form>
+
             </div>
         </div>
-        </body>
 
-        <!-- tenemos que cambiar el logo de zebrands a uno con color blanco y ver que ponemos en medio -->
+      <link rel="stylesheet" href="/css/style.css" />
+      <link rel="stylesheet" href="/css/correos.css" />
 
-        </html>`;
+
+        <style>
+        @import ("https://fonts.googleapis.com/css?family=Roboto|Varela+Round")
+        @import ("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
+        @import ("https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css")
+
+        .rating:not(:checked) > input {
+          position: absolute;
+          appearance: none;
+        }
+        
+        .rating:not(:checked) > label {
+          float: right;
+          cursor: pointer;
+          font-size: 30px;
+          color: #666;
+          
+        }
+        
+        .rating:not(:checked) > label:before {
+          content: '★';
+        }
+        
+        .rating > input:checked + label:hover,
+        .rating > input:checked + label:hover ~ label,
+        .rating > input:checked ~ label:hover,
+        .rating > input:checked ~ label:hover ~ label,
+        .rating > label:hover ~ input:checked ~ label {
+          color: #fdd300;
+        }
+        
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+          color: #fdca00;
+        }
+        
+        .rating > input:checked ~ label {
+          color: #fdd300;
+          
+        }
+        
+        .rating-box .rating {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: nowrap;
+          flex-direction: row-reverse;
+        }
+        </style>
+
+        <div>
+          <p> algo </p>
+        </div>
+
+        </body>`;
 
     const nodemailer = require("nodemailer");
 
@@ -194,6 +242,13 @@ exports.enviar_resenia = async (request, response, next) => {
         to: "a01710778@tec.mx", // list of receivers
         subject: "Intento1", // Subject line
         html: html,
+        attachments: [
+          {
+            filename: "image.png",
+            path: `./public/images/${marca}.png`,
+            cid: "unique@nodemailer.com", //same cid value as in the html img src
+          },
+        ],
       });
 
       console.log("Message sent: %s", info.messageId);
@@ -202,20 +257,20 @@ exports.enviar_resenia = async (request, response, next) => {
 
     main().catch(console.error);
 
-    //     // Ahora renderiza con los datos obtenidos
-    //     response.render("correos", {
-    //         preguntas: preguntas,
-    //         titulo: "Correos",
-    //         marca: marca || "LU1",
-    //         ruta: "/emails/correos",
-    //         idp:idp,
-    //         total: total,
-    //         tipos: tipos,
-    //         opciones: opciones,
-    //         idp:idp,
-    //         total_opciones: total_opciones,
-    //         permisos: request.session.permisos || []
-    //     });
+    // Ahora renderiza con los datos obtenidos
+    response.render("prueba_correo", {
+      preguntas: preguntas,
+      titulo: "Correos",
+      marca: marca || "LU1",
+      ruta: "/reviews/resenas/enviar_resenia/LU1",
+      idp: idp,
+      total: total,
+      tipos: tipos,
+      opciones: opciones,
+      idp: idp,
+      total_opciones: total_opciones,
+      permisos: request.session.permisos || [],
+    });
   } catch (error) {
     console.error("Error al cargar las preguntas:", error);
     response.status(500).send("Error interno del servidor");

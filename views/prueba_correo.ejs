@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+        rel="stylesheet"
+    />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+    />
+
+    <style>
+        .estrellas {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        }
+
+        .container .contenido .rating-box .estrellas {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        }
+
+        .estrellas i {
+        color: var(--toggle-color);
+        font-size: 35px;
+        cursor: pointer;
+        }
+
+        .estrellas i.active {
+        color: #fdd300;
+        }
+
+        .correos-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        }
+
+        .editor-de-preguntas,
+        .preview-html {
+        display: flex;
+        flex-direction: column;
+        width: 35%;
+        }
+
+        .preview-html {
+        overflow: auto;
+        width: 45%;
+        }
+
+        .form-container {
+        display: flex;
+        justify-content: end;
+        }
+
+        .submit-button-container {
+        margin: 20px 0 20px 0;
+        width: 100%;
+        }
+
+        .submit-button button {
+        width: 30%;
+        border: none;
+        }
+
+        .add-ques-button {
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        }
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <div class="main-content">
+
+        <div class="correos-container">
+
+        <div class="preview-html">
+            <div class="contenido">
+            <img src="/images/<%= marca %>.png" height="200" width="100%" alt="Imagen de la marca <%= marca %>"/>
+            <h4><b>Hola user,</b></h4>
+            <p id="sub_question">
+                Has comprado recientemente 'producto' <br />
+                ¿Nos cuentas tu experiencia?
+            </p>
+            <img
+                id="producto_img"
+                src="/images/<%= marca %>producto.png"
+                height="130"
+                alt="Imagen del producto <%= producto.png %>"
+            />
+            <div class="rating-box">
+                <h5 id="question_text"><b>¿Cuál es su calificación general?</b></h5>
+                <div class="estrellas">
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                <i class="bx bxs-star"></i>
+                </div>
+            </div>
+            <h4><b>Título de tu reseña: </b></h4>
+            <form>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <input
+                type="text"
+                id="title_rev"
+                name="titulo_review"
+                placeholder="Título"
+                /><br />
+            </form>
+            <h4><b>Reseña: </b></h4>
+            <textarea
+                name="descripcion_review"
+                id="description_rev"
+                cols="35"
+                rows="4"
+                placeholder="Escribe aquí tu reseña"
+            ></textarea>
+            <div id="survey-form">
+                <% for (var i = 0; i < preguntas.length; i++) { %>
+                <br />
+                <h4><b><%= preguntas[i].descripcion %></b></h4>
+                <% if (tipos[i][0].tipo == 1) { %>
+                <p id="sub_question">Elige una de las siguientes opciones</p>
+                <select name="answer-<%= preguntas[i].idPregunta %>">
+                <% opciones[i].forEach(opcion => { %>
+                <option value="<%= opcion.idOpcion %>">
+                    <%= opcion.descripcion %>
+                </option>
+                <% }); %>
+                </select>
+                <% } else if (tipos[i][0].tipo == 2) { %> <% opciones[i].forEach(opcion
+                => { %>
+                <textarea
+                name="answer-<%= preguntas[i].idPregunta %>"
+                id="option-<%= opcion.idOpcion %>"
+                cols="35"
+                rows="3"
+                placeholder="<%= opcion.descripcion %>"
+                ></textarea>
+                <br />
+                <% }); %> <% } else if (tipos[i][0].tipo == 3) { %>
+                <p id="sub_question">Elige una o varias de las siguientes opciones</p>
+                <% opciones[i].forEach(opcion => { %>
+                <input
+                type="checkbox"
+                id="option-<%= opcion.idOpcion %>"
+                name="answer-<%= preguntas[i].idPregunta %>"
+                value="<%= opcion.idOpcion %>"
+                />
+                <label for="option-<%= opcion.idOpcion %>"> <%= opcion.descripcion %> </label><br/>
+                <% }); %> 
+                <% } %> 
+                <% } %> 
+            </div>
+
+            <div class="submit-button-container">
+                <button type="submit" class="submit-button">¡Envía tu reseña!</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+  </body>
+    
+    <!-- tenemos que cambiar el logo de zebrands a uno con color blanco y ver que ponemos en medio -->
+    
+</html>

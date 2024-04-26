@@ -14,7 +14,12 @@ router.get(
 router.get("/resenas/:marca/buscar/:valor_busqueda", controladores.get_buscar);
 router.get("/resenas/:marca/buscar", controladores.get_buscar);
 router.get("/resenas/:marca", isAuth, canView, controladores.get_resenas);
-router.get("/resenas/:marca", isAuth, canView, controladores.get_resenas);
+router.get(
+  "/resenas/enviar_resenia/:marca",
+  isAuth,
+  canView,
+  controladores.enviar_resenia
+);
 // router.get("/correos/:marca", controladores.get_correos);
 
 module.exports = router;
