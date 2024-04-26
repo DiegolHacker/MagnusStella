@@ -1,6 +1,7 @@
-const express = require("express");
-const db = require('./util/database');  
+const express = require("express"); 
 const app = express();
+const passport = require('passport');
+require('./passportSetup');
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -19,6 +20,10 @@ app.use(session({
     saveUninitialized: false,
 }));
 
+//passportjs para usar google login
+app.use(passport.initialize());
+app.use(passport.session());
+
 const path = require("path");
 app.use(express.static(path.join(__dirname, "/public")));
 
@@ -26,8 +31,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(bodyParser.json());
-
-
 
 const multer = require('multer');
 //fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
@@ -95,8 +98,6 @@ app.use('/api', routesZecore);
 const csrf = require('csurf');
 const csrfProtection = csrf();
 app.use(csrfProtection); 
-
-
 
 //FIN CSRF
 
