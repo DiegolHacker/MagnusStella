@@ -19,4 +19,5 @@ router.get(
   controladores.get_correos_crear
 );
 router.post("/correos/crear/:marca", controladores.post_crear_correos);
+router.post("/correos/actualizarDias/:marca", controladores.actualizarDias);
 module.exports = router;

@@ -776,6 +776,46 @@ table.table .avatar {
 .estrellas i.active {
   color: #fdd300;
 }
+.rating:not(:checked) > input {
+  position: absolute;
+  appearance: none;
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 30px;
+  color: #666;
+}
+
+.rating:not(:checked) > label:before {
+  content: "★";
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #fdd300;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #fdca00;
+}
+
+.rating > input:checked ~ label {
+  color: #fdd300;
+}
+
+.rating-box .rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+}
 
 #title_rev {
   width: 250px;
@@ -1009,6 +1049,10 @@ label {
 
 /* Signup */
 
+.signup-box {
+  overflow: auto;
+}
+
 .credential-input {
   display: flex;
   flex-direction: column;
@@ -1024,9 +1068,37 @@ label {
   margin-top: 10px;
   width: 90%;
   height: 30px;
-  border: none;
+  border: var(--edit-color);
+  background-color: var(--text-color-up);
   border-radius: 5px;
-  outline-color: var(--edit-color);
+  outline: 2px solid var(--edit-color);
+}
+#opciones-container {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos a lo largo del contenedor */
+  align-items: baseline; /* Alinea los elementos verticalmente */
+  flex-wrap: wrap;
+  align-content: center;
+  flex-direction: column;
+}
+
+.opcion {
+  flex: 1; /* Hacer que los elementos ocupen todo el espacio disponible */
+  margin: 0 10px; /* Añadir margen horizontal entre los elementos */
+  display: flex; /* Establecer como contenedor flexible para alinear elementos hijos */
+  align-items: center; /* Alinear los elementos hijos verticalmente */
+}
+
+.opcion input {
+  flex: 1; /* Que el input ocupe todo el espacio disponible */
+  margin-right: 5px; /* Añadir un margen derecho */
+}
+
+.opcion button {
+  background: none; /* Eliminar el fondo del botón */
+  border: none; /* Eliminar el borde del botón */
+  cursor: pointer; /* Cambiar el cursor a pointer */
+  font-size: 23px;
 }
 
 .login-title,

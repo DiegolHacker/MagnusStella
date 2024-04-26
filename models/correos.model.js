@@ -44,6 +44,11 @@ module.exports = class Correos {
     const [rows2] = await db.execute(query2, [id]);
     return { preguntas: rows1, idp: rows2 };
   }
+  static async emaildias(id) {
+    const query1 = `SELECT m.Dias FROM marca m WHERE idMarca = ?`;
+    const dias = await db.execute(query1, [id]);
+    return dias;
+  }
 
   static async emailtipo_pre(id_p) {
     const query = "SELECT p.tipo FROM pregunta p WHERE idPregunta = ?";

@@ -22,6 +22,9 @@ exports.get_correos = async (request, response, next) => {
       total_opciones.push(to_opcion);
     }
 
+    const dias = await Correos.emaildias(marca);
+    const diasValue = dias[0][0].Dias;
+
     // Ahora renderiza con los datos obtenidos
     response.render("correos", {
       preguntas: preguntas,
@@ -29,7 +32,7 @@ exports.get_correos = async (request, response, next) => {
       titulo: "Correos",
       marca: marca || "LU1",
       ruta: "/emails/correos",
-      idp: idp,
+      dias: diasValue,
       total: total,
       tipos: tipos,
       opciones: opciones,

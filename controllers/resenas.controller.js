@@ -19,6 +19,7 @@ exports.get_resenas_completas = (request, response, next) => {
       resenas: resenaCompleta,
       titulo: "Reseña Completa",
       marca: marca || "LU1",
+            csrfToken: request.csrfToken(),
       ruta: "/reviews/resenas/completas/:marca/:id",
       permisos: request.session.permisos || [],
     });
@@ -26,27 +27,29 @@ exports.get_resenas_completas = (request, response, next) => {
 };
 
 exports.get_resenas = (request, response, next) => {
-  const marca = request.params.marca;
-  const idReview = request.params.id;
-  Reviews.fetchAll(marca, (err, resenasList) => {
-    if (err) {
-      return response.status(500);
-    }
-    const resenas = resenasList.map((resena) => ({
-      id: resena.idreview,
-      title: resena.titulo,
-      resena_descrip: resena.descripcion,
-      estrellas: resena.puntaje,
-      itemcode: resena.idProducto,
-    }));
+    const marca = request.params.marca
+    const idReview = request.params.id;
+    Reviews.fetchAll(marca, (err, resenasList) => {
+        if (err) {
+            return response.status(500);
+        }
+        const resenas = resenasList.map(resena => ({
+            id:resena.idreview,
+            title: resena.titulo, 
+            resena_descrip: resena.descripcion,
+            estrellas: resena.puntaje,
+            itemcode: resena.idProducto,
 
-    response.render("resenas", {
-      resenas: resenas,
-      titulo: "Reseñas",
-      marca: marca || "LU1",
-      id: idReview,
-      ruta: "/reviews/resenas",
-      permisos: request.session.permisos || [],
+        }));
+        
+        response.render("resenas", { resenas: resenas, 
+            titulo: "Reseñas", 
+            marca:marca || "LU1",
+            id:idReview,
+            ruta: "/reviews/resenas",
+            permisos: request.session.permisos || []      
+
+            });
     });
   });
 };

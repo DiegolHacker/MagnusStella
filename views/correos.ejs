@@ -4,12 +4,13 @@
   <div class="editor-de-preguntas">
     <h2>Configuración</h2>
 
-    <form>
+    <form id="form-dias">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <label for="dias">Días a los que se envía la encuesta:</label>
-      <input type="number" id="dias" name="dias" min="3" max="60" value="15" />
-      <button type="submit" class="subir boton">Enviar</button>
+      <input type="number" id="dias" name="dias" min="3" max="60" value="<%= dias %>" />
+      <button type="button" id="btn-enviar-dias" class="subir boton">Enviar</button>
     </form>
+        
 
     <form>
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
@@ -41,10 +42,10 @@
     </div>
     <% } %>
 
-    <a href="/emails/correos/crear/<%= marca %>" class="add-ques-button boton"
-      >Añadir pregunta +
-    </a>
-  </div>
+        <a href="/emails/correos/crear/<%= marca %>" class="add-ques-button boton">Añadir pregunta + </a>
+
+    </div>
+    <body data-marca="<%= marca %>">
 
   <div class="preview-html">
     <div class="contenido">
@@ -179,6 +180,38 @@
     } catch (error) {
       console.error("Error al eliminar la pregunta:", error);
     }
-  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnEnviarDias = document.getElementById('btn-enviar-dias');
+    const marca = document.body.getAttribute('data-marca');
+    btnEnviarDias.addEventListener('click', function(event) {
+        event.preventDefault(); 
+
+        const newDiasValue = document.getElementById('dias').value;
+        console.log(newDiasValue);
+
+        fetch(`/emails/correos/actualizarDias/${marca}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': '<%= csrfToken %>' 
+            },
+            body: JSON.stringify({ dias: newDiasValue })
+        })
+        .then(response => {
+            if (response.ok) {
+                document.getElementById('dias').value = newDiasValue;
+                console.log('¡Actualización exitosa!');
+            } else {
+                console.error('Error al actualizar los días:', response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Error al actualizar los días:', error);
+        });
+    });
+
+});
 </script>
 <%- include('includes/footer.ejs') %>
