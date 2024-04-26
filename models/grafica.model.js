@@ -173,9 +173,9 @@ GROUP BY
 
 exports.StarAvgNumber = (marca, categoriaS, productoS, startDate, endDate) => {
   let query = `SELECT avg(Puntaje)
-    FROM review r, venta v, producto
+    FROM review r, venta v, producto p
     WHERE r.fk_review_venta = v.idventa
-    AND v.fk_venta_producto = idproducto
+    AND v.fk_venta_producto = p.idproducto
 AND fk_idmarca_producto = ? `;
   let parametros = [marca];
 
@@ -187,7 +187,7 @@ and p.categoria = ? `;
 
   if (productoS !== "*") {
     query += `
-AND idproducto = ? `;
+AND p.idproducto = ? `;
     parametros.push(productoS);
   }
 
