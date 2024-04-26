@@ -4,7 +4,7 @@ const ZecoreProductHelper = require("../models/zecoreproducthelper.model");
 exports.validateToken = (req, res, next) => {
   const token = req.headers["authorization"];
   // validar token
-  if (!token || token !== "Prueba") {
+  if (!token || token !== process.env.API_KEY) {
     return res.status(403).json({ message: "Acceso no autorizado." });
   }
   // token ok, seguir
