@@ -1,49 +1,49 @@
 const Usuarios = require("../models/usuarios.model");
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
+const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 exports.get_login = (request, response, next) => {
-    const error = request.session.error || '';
-    // request.session.error = '';
-    response.render("login", {
-        username: request.session.username || "",
-        registrar: false,
-        error: error,
-        csrfToken: request.csrfToken(),
-        permisos: request.session.permisos || []
-    })
+  const error = request.session.error || "";
+  // request.session.error = '';
+  response.render("login", {
+    username: request.session.username || "",
+    registrar: false,
+    error: error,
+    csrfToken: request.csrfToken(),
+    permisos: request.session.permisos || [],
+  });
 };
 
 exports.post_login = (request, response, next) => {
-    const email = request.body.name;
-    const password = request.body.password;
-    if(!email || !password){
-        return response.render("login", {error: "Llena todos los campos"});
-    }
-// console.log(email,password)
-    Usuarios.findByEmail(email)
-        .then(user => {
-            if (user) {
-                bcrypt.compare(password, user.user.contrasena)
-                    .then(doMatch => {
-                        if (doMatch) {
-                            Usuarios.getPermisos(email).then(([permisos, fieldData]) => {
-                                request.session.isLoggedIn = true;
-                                request.session.permisos = permisos;
-                                console.log(request.session.permisos);
-                                request.session.user = user;
-                                return request.session.save(err => {
-                                    response.redirect('/');
-                                });
-                            }).catch((error) => {console.log(error)});
-                        } else {
-                            response.redirect('/users/login');
-                        }
-                    })
-                    .catch(err => {
-                        console.error('Error during login despues de bycompare', err);
-                        response.render("login",{error: "Usuario no existe"});
-                    });
+  const email = request.body.name;
+  const password = request.body.password;
+  if (!email || !password) {
+    return response.render("login", { error: "Llena todos los campos" });
+  }
+  // console.log(email,password)
+  Usuarios.findByEmail(email)
+    .then((user) => {
+      if (user) {
+        // console.log(password)
+        // console.log(user.user.contrasena)
+        // console.log(user)
+        bcrypt
+          .compare(password, user.user.contrasena)
+          .then((doMatch) => {
+            if (doMatch) {
+              Usuarios.getPermisos(email)
+                .then(([permisos, fieldData]) => {
+                  request.session.isLoggedIn = true;
+                  request.session.permisos = permisos;
+                  console.log(request.session.permisos);
+                  request.session.user = user;
+                  return request.session.save((err) => {
+                    response.redirect("/");
+                  });
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
             } else {
               response.redirect("/users/login");
             }
