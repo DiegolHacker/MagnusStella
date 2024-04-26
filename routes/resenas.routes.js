@@ -5,18 +5,8 @@ const isAuth = require("../util/is-auth");
 const canView = require("../util/can-view");
 
 // Asigna controladores específicos a cada ruta
-router.post(
-  "/resenas/visibilidad/:idr",
-  isAuth,
-  canView,
-  controladores.actualizarvisibilidad
-);
-router.get(
-  "/resenas_completas/:marca/:id",
-  isAuth,
-  canView,
-  controladores.get_resenas_completas
-);
+router.post("/resenas/visibilidad/:idr", isAuth, canView, controladores.post_visibilidad);
+router.get("/resenas_completas/:marca/:id", isAuth, canView, controladores.get_resenas_completas);
 router.get("/resenas/:marca/buscar/:valor_busqueda", controladores.get_buscar);
 router.get("/resenas/:marca/buscar", controladores.get_buscar);
 router.get("/resenas/:marca", isAuth, canView, controladores.get_resenas);

@@ -160,3 +160,7 @@ exports.post_crear_correos = (request, response, next) => {
       response.redirect("/emails/correos/" + marca);
     });
 };
+
+exports.post_dias = (request, response, next) => {
+  
+}
