@@ -14,22 +14,24 @@ router.post("/signup", controladores.post_signup);
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/users/login' }), async (req, res) => {
   try {
-    const { id, displayName, emails } = req.user;
-    const email = emails[0].value;
+    const email = req.user.email;
 
     // Find the user by email
     const { user, passwordMatch } = await Usuarios.findByEmail(email);
+    const arrayPermisos = await Usuarios.getPermisos(email);
 
-    console.log(user)
+    const permisos = arrayPermisos[0];
+
+    console.log(permisos)
 
     if (user) {
       // User found, set session and redirect
       req.session.isLoggedIn = true;
-      req.session.permisos = user.permisos;
+      req.session.permisos = permisos;
       req.session.user = user;
       return req.session.save(err => {
         if(err){
-          response.redirect('/users/login');
+          res.redirect('/users/login');
         }
         res.redirect('/');
       });

@@ -24,9 +24,6 @@ exports.post_login = (request, response, next) => {
     Usuarios.findByEmail(email)
         .then(user => {
             if (user) {
-                // console.log(password)
-                // console.log(user.user.contrasena)
-                // console.log(user)
                 bcrypt.compare(password, user.user.contrasena)
                     .then(doMatch => {
                         if (doMatch) {

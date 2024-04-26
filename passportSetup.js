@@ -2,6 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const userModel = require('./models/usuarios.model');
 
+//Prueba123
 passport.use(
   new GoogleStrategy(
     {
@@ -15,12 +16,13 @@ passport.use(
         const email = emails[0].value;
 
         const { user, passwordMatch } = await userModel.findByEmail(email);
+        // console.log(user)
         if (user) {
           return done(null, user);
         } else {
           // User not found, return false to deny authentication
-          return done(null, false);
           console.log('Error el usuario no se encontro')
+          return done(null, false);
         }
       } catch (err) {
         console.error('Error in google strategy callback: ', err);

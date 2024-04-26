@@ -45,7 +45,8 @@ module.exports = class Usuarios {
             .then(([rows]) => {
                 if (rows.length > 0) {
                     const userData = rows[0];
-                    const user = new Usuarios(userData.Nombre, userData.Correo, userData.Password, userData.idUsuario, userData.IDRol,userData.Image, userData.Estado);
+                    //aqui se esta guardando el numero de usuario en donde deberia de estar la imagen
+                    const user = new Usuarios(userData.Nombre, userData.Correo, userData.Password, userData.Image, userData.IDRol,userData.idUsuario, userData.Estado);
                     return { user: user, passwordMatch: true }; // Return user data with passwordMatch true
                 }
                 return { user: null, passwordMatch: false }; // Return null user and passwordMatch false if user not found

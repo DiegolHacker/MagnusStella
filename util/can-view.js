@@ -10,6 +10,7 @@ module.exports = (request, response, next) => {
     if (can_view) {
         next();
     } else {
+        console.log("problema")
         response.status(403);
         return response.render("403", {
             marca: marca || "LU1",
