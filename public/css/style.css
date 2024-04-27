@@ -860,12 +860,6 @@ table.table .avatar {
   flex-wrap: wrap;
   justify-content: center;
 }
-.item-boxes {
-  overflow: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 
 .item-container {
   width: 280px;
@@ -1456,3 +1450,4 @@ label {
 
   /* right: 0; */
 }
+
