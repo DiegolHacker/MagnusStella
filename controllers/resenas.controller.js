@@ -228,7 +228,5 @@ exports.enviar_resenia = async (request, response, next) => {
 exports.post_visibilidad = (request, response, next) => {
   const nvisibilidad = request.body.visibilidad;
   const idrev = request.params.id;
-  console.log("nvisibilidad: ", nvisibilidad);
-  console.log("idrev: ", idrev)
-  Reviews.actualizarvisibilidad(idrev, nvisibilidad)
+  Reviews.actualizarvisibilidad(idrev, nvisibilidad) //Toma el estado de la visibilidad del body y el id de la review a modificar del url.
 };
