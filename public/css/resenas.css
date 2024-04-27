@@ -1,0 +1,31 @@
+.form-resenas{
+    width: 100%;
+    
+}
+.respuesta_ajax{
+    width: 100%;        
+}
+.item-boxes{
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+body {
+    padding-bottom: 0%;
+}
+
+.btn{
+    background-color: var(--nav-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 19pt;
+    padding: 0;
+}
+
+.btn:hover {
+  background-color: var(--hover-color);
+}

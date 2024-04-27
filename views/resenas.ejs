@@ -2,6 +2,10 @@
   marca: marca,
 } %>
 
+<head>
+    <link rel="stylesheet" href="/css/resenas.css">
+</head>
+
 <div id="search-autocomplete" class="form-outline" data-mdb-input-init>
   <input type="search" id="buscar" class="form-control" placeholder="Busca tu producto"/>
   <button type="button" class="btn btn-primary" data-mdb-ripple-init>
@@ -10,36 +14,41 @@
 </div>
 
 <div id="respuesta_ajax" class="respuesta_ajax">
-  <div class="item-boxes">
-      <% resenas.forEach(function(resena, index) { %>
-          <div class="item-container">
-              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-              <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
-              <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
-              <div class="estrellas">
-                  <% for (var i = 0; i < 5; i++) { %>
-                      <% if (i < resena.estrellas) { %>
-                          <i class='bx bxs-star' id="stars_y"></i>
-                      <% } else { %>
-                          <i class='bx bx-star' id="stars_g"></i>
-                      <% } %>
-                  <% } %>
-              </div>
-              <p id="sub_question"><%= resena.resena_descrip %></p> 
-              <div class="ver_pagina">
-                  <input type="checkbox" id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %>>
+    <div class="item-boxes">
+            
+            <% resenas.forEach(function(resena, index) { %>
+            <div class="item-container">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
+                <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
+                <div class="estrellas">
+                    <% for (var i = 0; i < 5; i++) { %>
+                        <% if (i < resena.estrellas) { %>
+                            <i class='bx bxs-star' id="stars_y"></i>
+                        <% } else { %>
+                            <i class='bx bx-star' id="stars_g"></i>
+                        <% } %>
+                    <% } %>
+                </div>
+                <p id="sub_question"><%= resena.resena_descrip %></p> 
+                <div class="ver_pagina">
+                    <input 
+                        type="checkbox" 
+                        id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> >
 
-                  <label for="visibilidadCheckbox" class="text"></label>
-              </div>
-              <body data-marca="<%= marca %>">   
-              
-          </div>
-          <% if ((index + 1) % 2 === 0) { %>
-              <div class="clearfix"></div>
-          <% } %>
-      <% }); %>
-  </div>
+                    <label for="visibilidadCheckbox" class="text"></label> 
+                </div>
+                <body data-marca="<%= marca %>">   
+                
+            </div>
+            <% if ((index + 1) % 2 === 0) { %>
+                <div class="clearfix"></div>
+            <% } %>
+            <% }); %>
+        
+    </div>
 </div>
+
 <script>
   const accion_asincrona = () => {
       console.log('Buscando...');
@@ -93,14 +102,14 @@
   
   document.getElementById('buscar').onkeyup = accion_asincrona;
 
-  // Dentro del event listener de "DOMContentLoaded"
+//   Dentro del event listener de "DOMContentLoaded"
   document.querySelectorAll("[id^='visibilidadCheckbox']").forEach(checkbox => {
       checkbox.addEventListener("change", function() {
           // Obtener el ID de la reseña a partir del ID del checkbox
           const idReview = this.id.split("_")[1];
           console.log(idReview);
           
-      const nuevaVisibilidad = this.checked ? 1 : 0;
+      const nuevaVisibilidad = this.checked ? 0 : 1;
       // Realizar una solicitud al servidor para actualizar la visibilidad
       fetch('/reviews/resenas/visibilidad/' + idReview, {
           method: "POST",
@@ -125,7 +134,7 @@
       });
   });
 
-});
+  });
 
 </script>
 

@@ -153,8 +153,8 @@ module.exports = class Reviews {
   }
   static async actualizarvisibilidad(idreview, visibilidad) {
     try {
-      console.log(idreview);
-      console.log(visibilidad);
+      console.log("IDreview: ", idreview);
+      console.log("Visibilidad: ", visibilidad);
       const query = "UPDATE review SET Visibilidad = ? WHERE idReview = ?";
       const [result] = await db.execute(query, [visibilidad, idreview]);
 
