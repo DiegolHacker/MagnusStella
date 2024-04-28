@@ -231,6 +231,10 @@ header .image-text .header-text {
   opacity: 0;
 }
 
+.titulo {
+  font-size: 20pt;
+}
+
 nav {
   position: fixed;
   top: 0;
