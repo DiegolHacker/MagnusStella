@@ -31,12 +31,20 @@
             </div>
             <p id="sub_question"><%= resena.resena_descrip %></p> 
             <div class="ver_pagina">
-                
-                <input 
-                    type="checkbox" 
-                    id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
-
-                <label for="visibilidadCheckbox" class="text"></label> 
+                <% let editable = false %>
+                <% for (let permiso of permisos) { %> 
+                    <% if (permiso.funcion =="editar") { %>
+                        <% editable = true %>
+                    <% } %>
+                <% } %>
+                <% if (editable) { %>
+                    <input type="checkbox" class="estado-visibilidad" id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
+                    <label for="visibilidadCheckbox" class="text"></label> 
+                <% } %>
+                <% if (!editable) { %>
+                    <input type="checkbox" class="estado-visibilidad" disabled id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
+                    <label for="visibilidadCheckbox" class="text"></label>
+                <% } %>
             </div>
             <body data-marca="<%= marca %>">   
             
