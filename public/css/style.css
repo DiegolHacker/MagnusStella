@@ -35,6 +35,7 @@
   --line-color-1: #005cb9;
   --boxShadow2: rgba(0, 0, 0, 0.2);
   --help-card-color: #d1d1d1;
+  --disabled-color: #47688a;
 
   /* Transition */
   --tran-02: all 0.2s ease;
@@ -79,6 +80,7 @@ body.dark {
   --line-color-1: #b97100;
   --boxShadow2: rgba(255, 255, 255, 0.258);
   --help-card-color: #3a3b3c;
+  --disabled-color: #919191;
 }
 
 .side_bar.close {
@@ -906,68 +908,7 @@ table.table .avatar {
   margin-top: 20px;
 }
 
-.ver_pagina {
-  padding-top: 16px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--body-color);
-  align-items: end;
-  border-radius: 5px;
-  padding: auto right;
-}
 
-.ver_pagina input {
-  outline: none;
-  height: 20px;
-  /* Ajustado */
-  width: 50px;
-  /* Ajustado */
-  border-radius: 50px;
-  appearance: none;
-  position: relative;
-  background: #005cb9;
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.ver_pagina input:checked {
-  background: #e6e6e6;
-}
-
-.ver_pagina input:before {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  height: 100%;
-  width: 20px;
-  /* Ajustado */
-  background: linear-gradient(#fff, #f2f2f2, #e6e6e6, #d9d9d9);
-  border-radius: 50px;
-  transform: scale(0.85);
-  transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-input:checked:before {
-  left: 25px;
-  /* Ajustado */
-}
-
-input:checked ~ .text:before {
-  content: "Deshabilitado";
-  font-size: 10px;
-  /* Ajustado */
-  font-weight: 500;
-  color: var(--primary-color-light);
-}
-
-.ver_pagina .text:before {
-  content: "Habilitado";
-  color: var(--edit-color);
-  font-size: 11px;
-  /* Ajustado */
-}
 
 #search-autocomplete {
   display: flex;

@@ -30,22 +30,26 @@
                 <% } %>
             </div>
             <p id="sub_question"><%= resena.resena_descrip %></p> 
-            <div class="ver_pagina">
-                <% let editable = false %>
-                <% for (let permiso of permisos) { %> 
-                    <% if (permiso.funcion =="editar") { %>
-                        <% editable = true %>
-                    <% } %>
+            
+            <% let editable = false %>
+            <% for (let permiso of permisos) { %> 
+                <% if (permiso.funcion =="editar") { %>
+                    <% editable = true %>
                 <% } %>
-                <% if (editable) { %>
+            <% } %>
+            <% if (editable) { %>
+                <div class="switch-checkbox">
                     <input type="checkbox" id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
                     <label for="visibilidadCheckbox" class="text"></label> 
-                <% } %>
-                <% if (!editable) { %>
+                </div>
+            <% } %>
+            <% if (!editable) { %>
+                <div class="switch-checkbox deshabilitado">
                     <input type="checkbox" disabled id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
                     <label for="visibilidadCheckbox" class="text"></label>
-                <% } %>
-            </div>
+                </div>
+            <% } %>
+            
             <body data-marca="<%= marca %>">   
             
         </div>
@@ -57,6 +61,7 @@
 </div>
 
 <script>
+    
   const accion_asincrona = () => {
       console.log('Buscando...');
       const valor_busqueda = document.getElementById('buscar').value;
