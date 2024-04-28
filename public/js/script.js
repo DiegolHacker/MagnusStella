@@ -13,8 +13,13 @@ const body = document.querySelector("body"),
 //cositas para el moda
 let modal = document.getElementById("myModal");
 
+let modalActive = document.getElementById("myModal-active");
+
 // Get the button that opens the modal
 let btn = document.getElementById("openModalBtn");
+
+//get the button that opens modal of active filters
+let btn_active = document.getElementById("openModalBtn-active");
 
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
@@ -165,23 +170,26 @@ btn.onclick = function () {
   modal.style.display = "block";
 };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
+btn_active.onclick = function () {
+  modalActive.style.display = "block";
 };
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-  if (event.target == modal) {
+  if (event.target == modal || event.target == modalActive) {
     modal.style.display = "none";
+    modalActive.style.display = "none";
   }
 };
 
 window.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     modal.style.display = "none";
+    modalActive.style.display = "none";
   }
-}); //función para agregar nuevo campo de entrada
+});
+
+//función para agregar nuevo campo de entrada
 function agregarCampoInput() {
   var container = document.getElementById("opciones-container");
   var button = document.getElementById("button_opcion");

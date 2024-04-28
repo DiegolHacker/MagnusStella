@@ -39,6 +39,7 @@ exports.get_resenas = (request, response, next) => {
       resena_descrip: resena.descripcion,
       estrellas: resena.puntaje,
       itemcode: resena.idProducto,
+      visibilidad: resena.visible
     }));
 
     response.render("resenas", {
@@ -224,4 +225,8 @@ exports.enviar_resenia = async (request, response, next) => {
   }
 };
 
-exports.post_visibilidad = (request, response, next) => {};
+exports.post_visibilidad = (request, response, next) => {
+  const nvisibilidad = request.body.visibilidad;
+  const idrev = request.params.id;
+  Reviews.actualizarvisibilidad(idrev, nvisibilidad) //Toma el estado de la visibilidad del body y el id de la review a modificar del url.
+};

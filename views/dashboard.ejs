@@ -5,7 +5,6 @@ encuestasEnviadas, ruta: ruta, }) %>
 <div class="graficas">
   <div class="cat-search">
     <button id="openModalBtn">Filtros</button>
-
     <div id="myModal" class="modal">
       <div class="modal-content">
         <h2>Filtros</h2>
@@ -33,14 +32,38 @@ encuestasEnviadas, ruta: ruta, }) %>
               <input type="date" name="endDate" id="dateFilter" />
             </div>
 
-            <button type="submit" class="ingresar-btn">Submit</button>
+            <button type="submit" class="ingresar-btn">Filtrar</button>
           </div>
         </form>
       </div>
     </div>
 
-    <%-include('includes/categorias.ejs', { marca:marca,ruta}) %> <%
-    if(errorProducto) { %>
+    <button id="openModalBtn-active">Filtros activos</button>
+    <div id="myModal-active" class="modal">
+      <div class="modal-content modal-content-active">
+        <h2>Filtros activos</h2>
+        <ul>
+          <% for (const key in filtrosActivos) { %>
+            <li>
+              <%= key %>: <%= filtrosActivos[key] %>
+            </li>
+            <% } %>
+        </ul>
+        <p>* : no hay filtro seleccionado</p>
+
+        <div class="input-product-active">
+          <form action="<%=ruta%>/<%=marca%>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <button type="submit" class="ingresar-btn ingresar-btn-active">Eliminar filtros</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <%-include('includes/categorias.ejs', { marca:marca,ruta}) %> 
+    
+    <%if(errorProducto) { %>
     <div id="error-message" class="cat-tittle">
       <h4><%= errorProducto %></h4>
     </div>

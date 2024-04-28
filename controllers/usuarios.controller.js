@@ -18,15 +18,14 @@ exports.post_login = (request, response, next) => {
   const email = request.body.name;
   const password = request.body.password;
   if (!email || !password) {
-    return response.render("login", { error: "Llena todos los campos" });
+    return response.render("login", {
+      error: "Llena todos los campos",
+      csrfToken: request.csrfToken(),
+    });
   }
-  // console.log(email,password)
   Usuarios.findByEmail(email)
     .then((user) => {
       if (user) {
-        // console.log(password)
-        // console.log(user.user.contrasena)
-        // console.log(user)
         bcrypt
           .compare(password, user.user.contrasena)
           .then((doMatch) => {
@@ -42,23 +41,35 @@ exports.post_login = (request, response, next) => {
                   });
                 })
                 .catch((error) => {
+                  console.log("error en permisos");
                   console.log(error);
                 });
             } else {
-              response.redirect("/users/login");
+              response.redirect(
+                "/users/error donde creo que hay que poner eso"
+              );
             }
           })
           .catch((err) => {
+            console.log("error .catch");
             console.error("Error during login despues de bycompare", err);
-            response.render("login", { error: "Usuario no existe" });
+            response.render("login", {
+              error: "Usuario o contrasena no son validas",
+              csrfToken: request.csrfToken(),
+            });
           });
       } else {
+        console.log("error else");
         response.redirect("/users/login");
+        response.render("login", { error: "Usuario no existe" });
       }
     })
     .catch((err) => {
       console.error("Error during login", err);
-      response.redirect("/users/login");
+      response.render("login", {
+        error: "Usuario no existe",
+        csrfToken: request.csrfToken(),
+      });
     });
 };
 

@@ -6,7 +6,7 @@ body {
   align-items: center;
   flex-direction: column;
   height: 98vh;
-  background-color: #d7e2fb;
+  background-color: #e3e6ec;
   font-family: "Poppins", sans-serif;
 }
 
@@ -30,7 +30,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 40px;
-  color: #2d73b9;
+  color: #333d4e;
 }
 
 .credential-input {
@@ -40,8 +40,29 @@ body {
   align-items: baseline;
   margin-left: 20px;
   margin-bottom: 30px;
-  color: #2d73b9;
+  color: #333d4e;
   font-weight: 500;
+}
+
+#togglePasswordBtn {
+  height: 32px;
+  margin-top: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border: none;
+  background-color: #f6f1f1;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 1.5px 1px rgba(0, 0, 0, 0.1),
+    1.5px 0px 1px rgba(0, 0, 0, 0.1);
+
+  transition: box-shadow 0.2s ease;
+}
+
+#togglePasswordBtn:hover {
+  box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.2),
+    inset 0px 0.5px 1px rgba(0, 0, 0, 0.2),
+    inset 0.5px 0px 1px rgba(0, 0, 0, 0.2);
 }
 
 .credential-input input {
@@ -50,7 +71,22 @@ body {
   height: 30px;
   border: none;
   border-radius: 5px;
-  outline-color: #2d73b9;
+  outline-color: #333d4e;
+}
+
+.passwordInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
+#password {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .login-title h4 {
@@ -105,4 +141,39 @@ footer {
   flex-direction: row;
   justify-content: center;
   color: red;
+}
+
+/* boton de google */
+
+.login-with-google-btn {
+  display: inline-block;
+  background-color: #2d73b9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-with-google-btn:hover {
+  background-color: #357ae8;
+}
+
+.google-btn-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.tittle-web-app {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+}
+
+.tittle-web-app h1 {
+  margin-left: 20px;
 }
