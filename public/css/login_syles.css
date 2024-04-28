@@ -44,6 +44,11 @@ body {
   font-weight: 500;
 }
 
+.passwordInput {
+  display: flex;
+  flex-direction: row;
+}
+
 .credential-input input {
   margin-top: 10px;
   width: 90%;
@@ -51,6 +56,13 @@ body {
   border: none;
   border-radius: 5px;
   outline-color: #333d4e;
+}
+
+#password {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .login-title h4 {

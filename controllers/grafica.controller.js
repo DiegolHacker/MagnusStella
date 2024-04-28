@@ -3,11 +3,20 @@ const Model = require("../models/grafica.model"); // Reemplaza './model' con la 
 exports.get_dashboard = async (request, response, next) => {
   const marca = request.params.marca;
   let categoria = request.params.categoria || "*";
-  let producto = request.body.producto || "*"; //"AN1133V"
+  let producto = request.body.producto || "*";
   let startDate = request.body.startDate || "*";
   let endDate = request.body.endDate || "*";
   //metodo post va a llamar esta funcion, checar igual que se haya mandado la fecha, si no se mando nada, meter una fecha default que sea el ano actual, o el Quarter actual
 
+  let filtrosActivos = {
+    Marca: marca,
+    Producto: producto,
+    Categoria: categoria,
+    Desde: startDate,
+    Hasta: endDate,
+  };
+
+  console.log(filtrosActivos);
   let errorMessage = "";
 
   if (producto !== "*") {
@@ -49,6 +58,7 @@ exports.get_dashboard = async (request, response, next) => {
         errorProducto: errorMessage,
         permisos: request.session.permisos || [],
         csrfToken: request.csrfToken(),
+        filtrosActivos: filtrosActivos,
       });
     })
     .catch((error) => {
