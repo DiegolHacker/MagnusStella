@@ -979,7 +979,12 @@ label {
 }
 
 .ingresar-btn:hover {
-  box-shadow: 0 1px 2px 0 var(--boxShadow);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.ingresar-btn-active {
+  background-color: #cc3300;
+  color: #fff;
 }
 
 .error {
@@ -1269,13 +1274,18 @@ label {
   flex-direction: column;
 }
 
+.input-product-active {
+  display: flex;
+  justify-content: center;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
   /* background-color: #f9f9f9; */
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 0;
   margin-top: 4px;
 }
 
@@ -1295,7 +1305,9 @@ label {
   display: block;
 }
 
-.dropdown:hover .dropbtn {
+.dropdown:hover .dropbtn,
+#openModalBtn-active:hover,
+#openModalBtn:hover {
   background-color: var(--nav-color);
   color: var(--search-bar);
 }
@@ -1323,10 +1335,12 @@ label {
 
 /* Modal para los filtros de pagina de graficas */
 
-#openModalBtn {
+#openModalBtn,
+#openModalBtn-active {
   outline: none;
   border: none;
   background-color: var(--backGroundColor);
+  /* background-color: #2e7d32; */
   color: var(--search-text);
   font-size: 16px;
   border: none;
@@ -1335,6 +1349,11 @@ label {
   display: flex;
   align-items: center;
   height: 60px;
+}
+
+#openModalBtn-active {
+  margin-left: 8px;
+  /* background-color: #000000; */
 }
 
 .modal {
@@ -1361,6 +1380,7 @@ label {
   width: 30%;
   height: 400px;
   border-radius: 10px;
+  color: var(--search-text);
 }
 
 .inputFilter {
@@ -1368,9 +1388,24 @@ label {
 }
 
 .modal-content h2 {
+  color: var(--search-text);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.modal-content li {
+  margin-left: 50px;
+}
+
+.modal-content-active {
+  width: 27%;
+}
+
+.modal-content-active p {
+  font-weight: 90;
+  font-size: 10px;
+  color: #cc3300;
 }
 
 .close {
@@ -1395,4 +1430,3 @@ label {
 
   /* right: 0; */
 }
-
