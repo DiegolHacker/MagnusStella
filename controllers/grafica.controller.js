@@ -16,7 +16,6 @@ exports.get_dashboard = async (request, response, next) => {
     Hasta: endDate,
   };
 
-  console.log(filtrosActivos);
   let errorMessage = "";
 
   if (producto !== "*") {

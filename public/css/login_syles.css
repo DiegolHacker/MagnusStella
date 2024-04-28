@@ -44,9 +44,25 @@ body {
   font-weight: 500;
 }
 
-.passwordInput {
-  display: flex;
-  flex-direction: row;
+#togglePasswordBtn {
+  height: 32px;
+  margin-top: 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border: none;
+  background-color: #f6f1f1;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 1.5px 1px rgba(0, 0, 0, 0.1),
+    1.5px 0px 1px rgba(0, 0, 0, 0.1);
+
+  transition: box-shadow 0.2s ease;
+}
+
+#togglePasswordBtn:hover {
+  box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.2),
+    inset 0px 0.5px 1px rgba(0, 0, 0, 0.2),
+    inset 0.5px 0px 1px rgba(0, 0, 0, 0.2);
 }
 
 .credential-input input {
@@ -56,6 +72,14 @@ body {
   border: none;
   border-radius: 5px;
   outline-color: #333d4e;
+}
+
+.passwordInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
 }
 
 #password {

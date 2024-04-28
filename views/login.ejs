@@ -45,7 +45,9 @@
               id="password"
               placeholder="Ingresa tu contrasena"
             />
-            <button type="button" id="togglePasswordBtn" onclick="togglePassword()">Show Password</button>
+            <button type="button" id="togglePasswordBtn" onclick="togglePassword()">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
         <div class="ingresar-btn">
@@ -64,17 +66,21 @@
 
 <script>
   function togglePassword() {
-      var passwordInput = document.getElementById("password");
-      var togglePasswordBtn = document.getElementById("togglePasswordBtn");
+    var passwordInput = document.getElementById("password");
+    var togglePasswordBtn = document.getElementById("togglePasswordBtn");
+    var eyeIcon = togglePasswordBtn.querySelector("i");
 
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        togglePasswordBtn.textContent = "Hide Password";
-      } else {
-        passwordInput.type = "password";
-        togglePasswordBtn.textContent = "Show Password";
-      }
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+    } else {
+      passwordInput.type = "password";
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
     }
+  }
+
 </script>
 
 
