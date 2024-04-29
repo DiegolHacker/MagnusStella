@@ -39,7 +39,7 @@ exports.get_resenas = (request, response, next) => {
       resena_descrip: resena.descripcion,
       estrellas: resena.puntaje,
       itemcode: resena.idProducto,
-      visibilidad: resena.visible
+      visibilidad: resena.visible,
     }));
 
     response.render("resenas", {
@@ -228,5 +228,34 @@ exports.enviar_resenia = async (request, response, next) => {
 exports.post_visibilidad = (request, response, next) => {
   const nvisibilidad = request.body.visibilidad;
   const idrev = request.params.id;
-  Reviews.actualizarvisibilidad(idrev, nvisibilidad) //Toma el estado de la visibilidad del body y el id de la review a modificar del url.
+  Reviews.actualizarvisibilidad(idrev, nvisibilidad); //Toma el estado de la visibilidad del body y el id de la review a modificar del url.
+};
+
+exports.get_resenas_f = (request, response, next) => {
+  const marca = request.params.marca;
+  const idReview = request.params.id;
+  let orden = request.body.orden || "*"; //"AN1133V"
+  let startDate = request.body.startDate || "*";
+  let endDate = request.body.endDate || "*";
+  Reviews.fetch_f(marca, orden, startDate, endDate, (err, resenasList) => {
+    
+    const resenas = resenasList.map((resena) => ({
+      id: resena.idreview,
+      title: resena.titulo,
+      resena_descrip: resena.descripcion,
+      estrellas: resena.puntaje,
+      itemcode: resena.idProducto,
+      visibilidad: resena.visible,
+    }));
+
+    response.render("resenas", {
+      resenas: resenas,
+      titulo: "Reseñas",
+      marca: marca || "LU1",
+      id: idReview,
+      ruta: "/reviews/resenas",
+      csrfToken: request.csrfToken(),
+      permisos: request.session.permisos || [],
+    });
+  });
 };

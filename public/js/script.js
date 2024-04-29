@@ -14,10 +14,12 @@ const body = document.querySelector("body"),
 let modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
+
 let btn = document.getElementById("openModalBtn");
 
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
+
 
 //este pedazo de codigo hace que el toggle funcione y habra el menu
 toggle.addEventListener("click", () => {
@@ -159,29 +161,36 @@ const titulo2 = "Encuestas enviadas por mes";
 
 creaGraficaLinea(graph2, enviadaMeses, enviadas, titulo2, lineColor1);
 
-//script para el modal
+function initModal(btn2, modal2, span2) {
+  btn2.onclick = function () {
+    console.log("click");
+    modal2.style.display = "block";
+  };
 
-btn.onclick = function () {
-  modal.style.display = "block";
-};
+  span2.onclick = function () {
+    modal2.style.display = "none";
+  };
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
+  // Cuando el usuario hace clic en cualquier lugar fuera del modal, ciérralo
+  window.onclick = function (event) {
+    if (event.target == modal2) {
+      modal2.style.display = "none";
+    }
+  };
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
+  // Cuando el usuario presiona la tecla Escape, cierra el modal
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      modal2.style.display = "none";
+    }
+  });
+}
 
-window.addEventListener("keydown", function (event) {
-  if (event.key === "Escape") {
-    modal.style.display = "none";
-  }
-}); //función para agregar nuevo campo de entrada
+// Inicializar el primer modal
+initModal(btn, modal, span);
+
+
+ //función para agregar nuevo campo de entrada
 function agregarCampoInput() {
   var container = document.getElementById("opciones-container");
   var button = document.getElementById("button_opcion");
