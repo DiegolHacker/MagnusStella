@@ -55,6 +55,7 @@ router.get(
         req.session.user = user;
         return req.session.save((err) => {
           if (err) {
+	    console.log("Error aqui");
             res.redirect("/users/login");
           }
           res.redirect("/");
