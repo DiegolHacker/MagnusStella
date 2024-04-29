@@ -8,7 +8,8 @@ passport.use(
     {
       clientID: process.env.ClientIDGoogle, //poner manana un .env para esto
       clientSecret: process.env.ClientSecretGoogle,
-      callbackURL: "http://localhost:3000/users/auth/google/callback",
+      callbackURL:
+        "https://magnusstellacore.laing.mx/users/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
