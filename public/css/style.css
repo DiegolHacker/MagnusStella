@@ -16,7 +16,7 @@
   /*--text-color: #FFF;  Letras en blanco */
   --search-bar: #f2f2f2;
   --search-text: #121418;
-  --sidebar-color: #3f526b;
+  --sidebar-color: #2e3d50;
   --primary-color: #fff;
   --primary-color-light: #5c5c5c;
   --toggle-color: #ddd;
@@ -42,10 +42,10 @@
   --delete-color-hover: #eb7d91;
 
   /* Transition */
-  --tran-02: all 0.2s ease;
-  --tran-03: all 0.3s ease;
-  --tran-04: all 0.4s ease;
-  --tran-05: all 0.5s ease;
+  --tran-02: all 0.0s ease;
+  --tran-03: all 0.0s ease;
+  --tran-04: all 0.0s ease;
+  --tran-05: all 0.0s ease;
 }
 
 body {
@@ -66,7 +66,7 @@ body.dark {
   --text-color: #ccc;
   /* Letras en blanco */
   --search-bar: #4a4c4f;
-  --sidebar-color: #2e3031;
+  --sidebar-color: #242526;
   --primary-color: #ccc;
   --side-nav: #ccc;
   --primary-color-light: #3a3b3c;
