@@ -3,12 +3,14 @@ const router = express.Router();
 const controladores = require("../controllers/usuarios.controller");
 const passport = require('passport');
 const Usuarios = require('../models/usuarios.model');
+const isAuth = require("../util/is-auth");
+const canAdmin = require("../util/can-admin");
 
 router.get("/login", controladores.get_login);
 router.post("/login", controladores.post_login);
 router.get("/logout", controladores.get_logout);
-router.get("/signup/:marca", controladores.get_signup);
-router.post("/signup", controladores.post_signup);
+router.get("/signup/:marca", isAuth, canAdmin, controladores.get_signup);
+router.post("/signup", isAuth, canAdmin, controladores.post_signup);
 
 // Google OAuth routes
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

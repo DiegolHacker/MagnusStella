@@ -9,12 +9,7 @@ const canView = require("../util/can-view");
 // router.use(csrfProtection)
 
 router.get("/dashboard/:marca", isAuth, canView, controladores.get_dashboard);
-router.get(
-  "/dashboard/:marca/:categoria",
-  isAuth,
-  canView,
-  controladores.get_dashboard
-);
+router.get("/dashboard/:marca/:categoria", isAuth, canView, controladores.get_dashboard);
 router.post("/dashboard/:marca", isAuth, canView, controladores.get_dashboard);
 
 module.exports = router;
