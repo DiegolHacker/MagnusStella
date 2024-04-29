@@ -11,31 +11,33 @@
 
 :root {
   --body-color: #fff;
-  --nav-color: #005cb9;
+  --nav-color: #2e3d50;
   --side-nav: #fff;
   /*--text-color: #FFF;  Letras en blanco */
   --search-bar: #f2f2f2;
   --search-text: #121418;
-  --sidebar-color: #005cb9;
+  --sidebar-color: #3f526b;
   --primary-color: #fff;
   --primary-color-light: #5c5c5c;
   --toggle-color: #ddd;
   --text-color-up: #fff;
   --text-color: #fff;
-  --edit-color: #005cb9;
+  --edit-color: #2e3d50;
   --text-color_rev: #434141;
-  --hover-color: #277cd1;
-  --highlight: #2c8cec;
-  --highlight2: #4ea5fc;
+  --hover-color: #3f526b;
+  --highlight: #557196;
+  --highlight2: #668bbb;
   --divBackground: #f1f2f2;
   --boxShadow: rgba(24, 23, 23, 0.884);
   --image1Display: none;
   --image2Display: inline;
   --backGroundColor: #fbfafa;
-  --line-color-1: #005cb9;
+  --line-color-1: #2e3d50;
   --boxShadow2: rgba(0, 0, 0, 0.2);
-  --help-card-color: #d1d1d1;
+  --help-card-color: #eaf0f8;
   --disabled-color: #47688a;
+  --title-color: #2e3d50;
+  --title-color-hover: #557196;
 
   /* Transition */
   --tran-02: all 0.2s ease;
@@ -62,7 +64,7 @@ body.dark {
   --text-color: #ccc;
   /* Letras en blanco */
   --search-bar: #4a4c4f;
-  --sidebar-color: #242526;
+  --sidebar-color: #2e3031;
   --primary-color: #ccc;
   --side-nav: #ccc;
   --primary-color-light: #3a3b3c;
@@ -81,6 +83,8 @@ body.dark {
   --boxShadow2: rgba(255, 255, 255, 0.258);
   --help-card-color: #3a3b3c;
   --disabled-color: #919191;
+  --title-color: #eaf0f8;
+  --title-color-hover: #c0d1e7;
 }
 
 .side_bar.close {
@@ -246,9 +250,9 @@ nav {
   z-index: 100;
 }
 
-body.dark nav {
+/* body.dark nav {
   border: 1px solid #393838;
-}
+} */
 
 nav .nav-bar {
   position: relative;
@@ -460,16 +464,16 @@ body {
 a:link {
   font-size: 20px;
   text-decoration: none;
-  color: #003ce0;
+  color: var(--nav-color);
 }
 
 a:visited {
   text-decoration: none;
-  color: #003ce0;
+  color: var(--nav-color);
 }
 
 a:hover {
-  color: #d7e2fb;
+  color: var(--highlight);
 }
 
 body.dark a:link {
@@ -634,10 +638,6 @@ table.table td a:hover {
 
 table.table td a.settings {
   color: var(--edit-color);
-}
-
-a.delete {
-  color: #d8052c;
 }
 
 table.table td i {
@@ -930,47 +930,6 @@ label {
 }
 
 /* estilos para pagina de correo */
-
-.ques-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  margin-bottom: 20px;
-  margin-top: 5px;
-  border-radius: 10px;
-  border: none;
-}
-
-.add-ques-button:hover {
-  background-color: var(--highlight2);
-}
-
-.ques-container {
-  border-radius: 15px;
-  width: 95%;
-  background-color: var(--backGroundColor);
-}
-
-#dias {
-  width: 4em;
-  border: none;
-  border-bottom-left-radius: 11pt;
-  border-top-left-radius: 11pt;
-}
-
-#hora {
-  width: 8em;
-  border: none;
-  border-bottom-left-radius: 11pt;
-  border-top-left-radius: 11pt;
-}
-#subir {
-  width: 4em;
-  border: none;
-  border-bottom-right-radius: 11pt;
-  border-top-right-radius: 11pt;
-}
 
 .ingresar-btn {
   border: none;
