@@ -148,8 +148,8 @@ const myChart = new Chart(ctx, {
     datasets: [
       {
         data: [tasaDeRespuesta, 100 - tasaDeRespuesta],
-        backgroundColor: ["#005CB9", "#D9D9D9"],
-        hoverBackgroundColor: ["#005CB9", "#D9D9D9"],
+        backgroundColor: ["#2e3d50", "#D9D9D9"],
+        hoverBackgroundColor: ["#2e3d50", "#D9D9D9"],
       },
     ],
   },

@@ -6,16 +6,14 @@
   justify-content: space-evenly;
 }
 
-/* .editor-de-preguntas{
-    /* background-color: black; 
-} */
+body {
+    padding-bottom: 0%;
+}
 
 .editor-de-preguntas,
 .preview-html {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   width: 35%;
 }
 
@@ -39,8 +37,104 @@
   border: none;
 }
 
-.add-ques-button {
-  border-radius: 5px;
+/* botón de eliminar en modo claro */
+a.delete {
+  color: var(--delete-color);
+}
+
+a.delete:hover {
+  color: var(--delete-color-hover);
+}
+
+.ques-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: none;
+}
+
+.add-ques-button{
+  border-radius: 1em;
   outline: none;
   border: none;
+  background-color: var(--highlight);
+  display: flex;
+  justify-content: center;
+}
+
+.add-ques-button:hover {
+  background-color: var(--highlight2);
+  color:#fff
+}
+
+.ques-container {
+  border-radius: 1em;
+  width: 100%;
+  background-color: var(--backGroundColor);
+}
+
+#dias {
+  width: 4em;
+  border: none;
+  border-bottom-left-radius: 11pt;
+  border-top-left-radius: 11pt;
+}
+
+#hora {
+  width: 8em;
+  border: none;
+  border-bottom-left-radius: 11pt;
+  border-top-left-radius: 11pt;
+}
+#subir {
+  width: 4em;
+  border: none;
+  border-bottom-right-radius: 11pt;
+  border-top-right-radius: 11pt;
+}
+
+a.add-ques-button{
+  color:#fff;
+}
+
+a.add-ques-button:hover{
+  color:#fff;
+}
+
+body.dark a.add-ques-button:hover {
+  color: #fff;
+}
+/* botón de eliminar en modo oscuro */
+body.dark a.delete:link {
+  text-decoration: none;
+  color: var(--delete-color);
+}
+
+body.dark a.delete:link:hover {
+  text-decoration: none;
+  color: var(--delete-color-hover);
+}
+
+body.dark a.settings:link {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:link:hover {
+  text-decoration: none;
+  color: var(--highlight2);
+}
+
+body.dark a.settings:visited {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:visited:hover {
+  text-decoration: none;
+  color: var(--highlight2);
 }

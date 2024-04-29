@@ -58,7 +58,7 @@
         <% resenas.forEach(function(resena, index) { %>
         <div class="item-container">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
+            <a id="nombre-resena" href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
             <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
             <div class="estrellas">
                 <% for (var i = 0; i < 5; i++) { %>
