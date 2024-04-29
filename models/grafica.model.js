@@ -3,11 +3,12 @@ const db = require("../util/database");
 
 exports.StarAvgLine = (marca, categoriaS, productoS, startDate, endDate) => {
   //tabla review
-  let query = `SELECT MONTHNAME(r.Fecha) as Mes, AVG(Puntaje) as Promedio
-    FROM review r
-    JOIN venta v ON r.fk_review_venta = v.idventa 
-    JOIN producto p ON v.fk_venta_producto = p.idproducto
-    WHERE fk_idMarca_Producto = ?`;
+  let query = `SELECT CONCAT(YEAR(MAX(r.Fecha)), '-', LPAD(MONTH(MAX(r.Fecha)), 2, '0')) as Mes,
+       AVG(Puntaje) as Promedio
+FROM review r
+JOIN venta v ON r.fk_review_venta = v.idventa 
+JOIN producto p ON v.fk_venta_producto = p.idproducto
+WHERE fk_idMarca_Producto = ?`;
   let parametros = [marca];
 
   if (categoriaS !== "*") {
@@ -36,8 +37,8 @@ exports.StarAvgLine = (marca, categoriaS, productoS, startDate, endDate) => {
   // agregar WHERE star fecha y final fecha = a los dos parametros que le van a llegar de el ejs y push al arreglo
 
   query += ` 
-    GROUP BY MONTHNAME(r.Fecha)
-    ORDER BY MONTHNAME(r.Fecha) ASC;`;
+GROUP BY YEAR(r.Fecha), MONTH(r.Fecha)
+ORDER BY YEAR(r.Fecha), MONTH(r.Fecha) ASC;`;
 
   return db
     .execute(query, parametros)
@@ -58,7 +59,13 @@ exports.StarAvgLine = (marca, categoriaS, productoS, startDate, endDate) => {
     });
 };
 
-exports.tasaDeRespuesta = (marca, categoriaS, productoS, startDate, endDate) => {
+exports.tasaDeRespuesta = (
+  marca,
+  categoriaS,
+  productoS,
+  startDate,
+  endDate
+) => {
   let query1 = `SELECT COUNT(*) as contestadas
                 FROM review r
                 JOIN venta v ON r.fk_review_venta = v.idventa 
@@ -97,17 +104,13 @@ exports.tasaDeRespuesta = (marca, categoriaS, productoS, startDate, endDate) => 
     query2 += ` 
       AND v.Fecha BETWEEN ? AND ?`;
     parametros.push(startDate, endDate);
-  } 
-
-  else if (startDate !== "*") {
+  } else if (startDate !== "*") {
     query1 += ` 
     AND v.Fecha >= ?`;
     query2 += ` 
     AND v.Fecha >= ?`;
     parametros.push(startDate);
-  } 
-
-  else if (endDate !== "*") {
+  } else if (endDate !== "*") {
     query1 += ` 
     AND v.Fecha <= ?`;
     query2 += ` 
@@ -146,7 +149,7 @@ exports.ReviewsSentxMonth = (
 ) => {
   //tabla venta
   let query = `SELECT 
-    MONTHNAME(v.fecha) AS mes,
+    CONCAT(YEAR(MAX(v.fecha)), '-', LPAD(MONTH(MAX(v.fecha)), 2, '0')) AS mes,
     COUNT(*) AS Cantidad_Enviadas
 FROM 
     venta v
@@ -184,7 +187,9 @@ WHERE
 
   query += `
 GROUP BY 
-    MONTHNAME(v.fecha);`;
+    YEAR(v.fecha), MONTH(v.fecha)
+ORDER BY 
+    YEAR(v.fecha), MONTH(v.fecha);`;
 
   return db
     .execute(query, parametros)

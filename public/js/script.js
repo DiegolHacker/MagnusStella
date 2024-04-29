@@ -206,3 +206,19 @@ function agregarCampoInput() {
 document.getElementById("button_opcion").addEventListener("click", function () {
   agregarCampoInput();
 });
+
+function togglePassword() {
+  var passwordInput = document.getElementById("password");
+  var togglePasswordBtn = document.getElementById("togglePasswordBtn");
+  var eyeIcon = togglePasswordBtn.querySelector("i");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    eyeIcon.classList.remove("fa-eye");
+    eyeIcon.classList.add("fa-eye-slash");
+  } else {
+    passwordInput.type = "password";
+    eyeIcon.classList.remove("fa-eye-slash");
+    eyeIcon.classList.add("fa-eye");
+  }
+}
