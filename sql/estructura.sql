@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `magnusstella` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `magnusstella`;
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: magnusstella
 -- ------------------------------------------------------
--- Server version	5.5.5-10.5.12-MariaDB
+-- Server version	8.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,11 +25,11 @@ DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cliente` (
-  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `Correo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `idCliente` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Correo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=987655 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=987655 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,32 +43,6 @@ INSERT INTO `cliente` VALUES (7289,'Lucía Hernández','luciahrdz4567@outlook.co
 UNLOCK TABLES;
 
 --
--- Table structure for table `historialusuarios`
---
-
-DROP TABLE IF EXISTS `historialusuarios`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `historialusuarios` (
-  `idHistorial` int(11) NOT NULL AUTO_INCREMENT,
-  `Usuario` varchar(45) DEFAULT NULL,
-  `Accion` varchar(45) DEFAULT NULL,
-  `Fecha` datetime DEFAULT NULL,
-  PRIMARY KEY (`idHistorial`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `historialusuarios`
---
-
-LOCK TABLES `historialusuarios` WRITE;
-/*!40000 ALTER TABLE `historialusuarios` DISABLE KEYS */;
-INSERT INTO `historialusuarios` VALUES (1,'111','Alta Usuario','2024-04-23 05:29:49'),(2,'111','Baja Usuario','2024-04-23 05:32:56'),(3,'Alberto González Fernández','Baja Usuario','2024-04-23 09:36:36');
-/*!40000 ALTER TABLE `historialusuarios` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `marca`
 --
 
@@ -74,12 +50,12 @@ DROP TABLE IF EXISTS `marca`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `marca` (
-  `idMarca` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `Nombre` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
-  `Logo` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
-  `Dias` int(11) NOT NULL,
+  `idMarca` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Nombre` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Logo` varchar(250) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Dias` int NOT NULL,
   PRIMARY KEY (`idMarca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,13 +76,13 @@ DROP TABLE IF EXISTS `opciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `opciones` (
-  `idopciones` int(11) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `fk_opciones_pregunta` int(11) NOT NULL,
+  `idopciones` int NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `fk_opciones_pregunta` int NOT NULL,
   PRIMARY KEY (`idopciones`),
   KEY `Fk_Pregunta_Opciones_idx` (`fk_opciones_pregunta`),
   CONSTRAINT `Fk_Pregunta_Opciones` FOREIGN KEY (`fk_opciones_pregunta`) REFERENCES `pregunta` (`idPregunta`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,10 +103,10 @@ DROP TABLE IF EXISTS `permiso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permiso` (
-  `idPermiso` int(11) NOT NULL,
-  `funcion` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `idPermiso` int NOT NULL,
+  `funcion` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`idPermiso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,13 +127,13 @@ DROP TABLE IF EXISTS `posee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `posee` (
-  `idrol` int(11) NOT NULL,
-  `idpermiso` int(11) NOT NULL,
+  `idrol` int NOT NULL,
+  `idpermiso` int NOT NULL,
   KEY `fk_idrol_posee_idx` (`idrol`),
   KEY `fk_idpermiso_posee_idx` (`idpermiso`),
   CONSTRAINT `fk_idpermiso_posee` FOREIGN KEY (`idpermiso`) REFERENCES `permiso` (`idPermiso`),
   CONSTRAINT `fk_idrol_posee` FOREIGN KEY (`idrol`) REFERENCES `rol` (`IDRol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,15 +154,15 @@ DROP TABLE IF EXISTS `pregunta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pregunta` (
-  `idPregunta` int(11) NOT NULL AUTO_INCREMENT,
-  `Descripcion` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `Tipo` int(11) NOT NULL,
-  `Opcion` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
-  `fk_pregunta_idmarca` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `idPregunta` int NOT NULL AUTO_INCREMENT,
+  `Descripcion` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Tipo` int NOT NULL,
+  `Opcion` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `fk_pregunta_idmarca` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`idPregunta`),
   KEY `fk_idmarca_pregunta_idx` (`fk_pregunta_idmarca`),
   CONSTRAINT `fk_idmarca_pregunta` FOREIGN KEY (`fk_pregunta_idmarca`) REFERENCES `marca` (`idMarca`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +171,7 @@ CREATE TABLE `pregunta` (
 
 LOCK TABLES `pregunta` WRITE;
 /*!40000 ALTER TABLE `pregunta` DISABLE KEYS */;
-INSERT INTO `pregunta` VALUES (1,'¿Con cuántas personas duermes?',3,'1','LU1'),(2,'En general, ¿Cuál es el peor aspecto del producto?',2,'2','LU1'),(3,'¿Cuál es su grado de satisfacción con el producto?',1,'3','NO1'),(4,'¿Qué edad tienes?',1,'4','NO1'),(5,'¿En promedio, cuántas horas duermes cada noche?',1,'5','NO1'),(6,'¿Cómo se compara su nuevo colchón al anterior?',1,'6','LU1'),(7,'¿Por qué elegiste Mappa vs otras marcas?',3,'7','MA1'),(8,'¿Qué mejoras le haría al producto?',2,'8','MA1'),(9,'¿Estaba en par con sus espectativas?',1,'9','MA1');
+INSERT INTO `pregunta` VALUES (1,'¿Con cuántas personas duermes?',3,'1','LU1'),(2,'En general, ¿Cuál es el peor aspecto del producto?',2,'2','LU1'),(3,'¿Cuál es su grado de satisfacción con el producto?',1,'3','NO1'),(4,'¿Qué edad tienes?',1,'4','NO1'),(5,'¿En promedio, cuántas horas duermes cada noche?',1,'5','NO1'),(6,'¿Cómo se compara su nuevo colchón al anterior?',1,'6','LU1'),(7,'¿Por qué elegiste Mappa vs otras marcas?',3,'7','MA1'),(8,'¿Qué mejoras le haría al producto?',2,'8','MA1'),(9,'¿Estaba en par con sus espectativas?',1,'9','MA1'),(10,'Hola',1,'10','MA1');
 /*!40000 ALTER TABLE `pregunta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,16 +183,16 @@ DROP TABLE IF EXISTS `producto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `producto` (
-  `idProducto` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `FK_idMarca_Producto` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `Nombre` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `Imagen` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
-  `Descripcion` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
-  `Categoria` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `idProducto` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `FK_idMarca_Producto` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Imagen` varchar(400) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `Descripcion` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Categoria` varchar(45) COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`idProducto`),
   KEY `idMarca_idx` (`FK_idMarca_Producto`),
   CONSTRAINT `fk_marca_producto` FOREIGN KEY (`FK_idMarca_Producto`) REFERENCES `marca` (`idMarca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +201,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES ('AN1133V','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!','almohadas'),('AN1133VCH','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!','almohadas'),('LB2231','LU1','Cama Anzures Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-anzures-indi/base-anzures8b4bc3.jpg','Cama individual de madera sustentable de abedul y nogal negro, con cabecera capitonada gris grafito. Un complemento de lujo y comodidad para tu descanso. ¡Tenemos 4 tamaños disponibles!','cama'),('LB3231','LU1','Cama Condesa Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-condesa-indi/cama-condesa.jpg','Resistencia, elegancia y sustentabilidad fueron las tres ideas que teníamos en la cabeza al crear esta cama individual de madera certificada con cabecera capitonada gris claro.','cama'),('LU1001B2','LU1','Colchón Luuna Basics 2 Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-indi/basics-2.png','Luuna Basics 2 Individual es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('LU1002B2','LU1','Colchón Luuna Basics 2 Matrimonial','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-matri/basics-2.png','Luuna Basics 2 Matrimonial es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('MA1201','MA1','Transportadora Para Mascotas Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/pet-carrier-mappa-char/pet-carrier.webp','La transportadora Mappa es ideal para viajar con tu mejor amigo. Su diseño está creado para brindar comodidad tanto a tu mascota como a ti','accesorios'),('MA1301','MA1','Portalaptop Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/porta-laptop-mappa-char/portalaptop.webp','El portalaptop Mappa es perfecto para transportar tu computadora o tableta.','accesorios'),('MA1401','MA1','Organizadores Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/organizadores-mappa-char/organizador.webp','Los organizadores Mappa son el accesorio ideal para empacar tus pertenencias de la manera más eficiente. Comprime y organiza tu ropa para que puedas guardar mucho más en tu maleta.','accesorios'),('MA4003','MA1','Maleta Mappa Grande Color Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/master-maleta-mappa-hard-shell-lote-san-gra/sand-s-01.jpeg','El tamaño que necesitas para lanzarte a la aventura más duradera. Su gran capacidad hará que puedas viajar con todo lo necesario.','maletas'),('MA4012','MA1','Set Maleta Cabina + Grande Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san-lote/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.','maletas'),('MX-MAP-MAL-KIT2-SAN','MA1','SET MALETA CABINA + GRANDE ARENA','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.','maletas'),('NB7224','NO1','Cama Natural Tejida King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-natural-tejida-king/tejida-fondo-blanco.jpg','Creamos esta cama para los amantes de lo natural y artesanal. Está hecha de madera certificada y tejido artesanal, lo que la hace resistente y amigable con el medio ambiente.','cama'),('NP6321','NO1','Protector de Colchón Essential Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-indi/protector_essential.png','El Protector Essential Individual te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','blancos'),('NP6323','NO1','Protector de Colchón Essential Queen','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-queen/protector_essentialc05dcc.png','El Protector Essential Queen te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche','blancos'),('NP6324','NO1','Protector de Colchón Essential King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-king/protector_essentialc05dcc.png','El Protector Essential King te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','blancos'),('SH7003','LU1','Juego de Sábanas Satinadas Queen Size Blanco Rayas','','No existe mejor sensación que el rose del satin en la piel. Y tampoco existe mejor calidad en telas que las que son elaboradas con textiles certificados. ¡Compruébalo con estas sábanas!','sábanas'),('SI1004','LU1','Colchón Luuna Signature King','','8 opciones de confort. Un colchón. Conoce la máxima expresión de tecnologí­a y total personalización con Luuna.','colchón');
+INSERT INTO `producto` VALUES ('AN1133V','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!','almohadas'),('AN1133VCH','NO1','2 Pack Almohada Essential Regular','','Para descansar como rey basta con un par de almohadas rellenas de microfibra cepillada que asemeja a la sensación de las plumas naturales. ¡Créenos, sostendrán tu cabeza como a su majestad!','almohadas'),('DI1001','LU1','Colchón Inflable 24','imagen.png','Cama de ultra lujo','colchón'),('LB2231','LU1','Cama Anzures Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-anzures-indi/base-anzures8b4bc3.jpg','Cama individual de madera sustentable de abedul y nogal negro, con cabecera capitonada gris grafito. Un complemento de lujo y comodidad para tu descanso. ¡Tenemos 4 tamaños disponibles!','cama'),('LB3231','LU1','Cama Condesa Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-condesa-indi/cama-condesa.jpg','Resistencia, elegancia y sustentabilidad fueron las tres ideas que teníamos en la cabeza al crear esta cama individual de madera certificada con cabecera capitonada gris claro.','cama'),('LU1001B2','LU1','Colchón Luuna Basics 2 Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-indi/basics-2.png','Luuna Basics 2 Individual es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('LU1002B2','LU1','Colchón Luuna Basics 2 Matrimonial','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/luuna-colchÃ³n-basic-2-matri/basics-2.png','Luuna Basics 2 Matrimonial es ideal para tener un descanso profundo. Sus dos capas de espumas certificadas garantizan una combinación de soporte y frescura que perduran con el paso de los años. ¡Compruébalo tú mismo!','colchón'),('MA1201','MA1','Transportadora Para Mascotas Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/pet-carrier-mappa-char/pet-carrier.webp','La transportadora Mappa es ideal para viajar con tu mejor amigo. Su diseño está creado para brindar comodidad tanto a tu mascota como a ti','accesorios'),('MA1301','MA1','Portalaptop Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/porta-laptop-mappa-char/portalaptop.webp','El portalaptop Mappa es perfecto para transportar tu computadora o tableta.','accesorios'),('MA1401','MA1','Organizadores Mappa','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/organizadores-mappa-char/organizador.webp','Los organizadores Mappa son el accesorio ideal para empacar tus pertenencias de la manera más eficiente. Comprime y organiza tu ropa para que puedas guardar mucho más en tu maleta.','accesorios'),('MA4003','MA1','Maleta Mappa Grande Color Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/master-maleta-mappa-hard-shell-lote-san-gra/sand-s-01.jpeg','El tamaño que necesitas para lanzarte a la aventura más duradera. Su gran capacidad hará que puedas viajar con todo lo necesario.','maletas'),('MA4012','MA1','Set Maleta Cabina + Grande Arena','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san-lote/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.','maletas'),('MX-MAP-MAL-KIT2-SAN','MA1','SET MALETA CABINA + GRANDE ARENA','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/kit-cabina-grande-san/1.-sets-monocromaticos20.png','Este set de dos piezas es ideal para que encuentres el equilibrio entre lo que necesitas tener a la mano y la capacidad óptima para lo que documentarás.','maletas'),('NB7224','NO1','Cama Natural Tejida King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/cama-natural-tejida-king/tejida-fondo-blanco.jpg','Creamos esta cama para los amantes de lo natural y artesanal. Está hecha de madera certificada y tejido artesanal, lo que la hace resistente y amigable con el medio ambiente.','cama'),('NP6321','NO1','Protector de Colchón Essential Individual','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-indi/protector_essential.png','El Protector Essential Individual te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','blancos'),('NP6323','NO1','Protector de Colchón Essential Queen','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-queen/protector_essentialc05dcc.png','El Protector Essential Queen te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche','blancos'),('NP6324','NO1','Protector de Colchón Essential King','https://zeb-main-bucket.s3.us-west-2.amazonaws.com/public/web-item/protector-de-colchÃ³n-essential-bamboo-king/protector_essentialc05dcc.png','El Protector Essential King te será muy útil si estás buscando algo suave, impermeable y transpirable que se asegure de que ese colchón que tanto trabajo te costó tener dure mucho más tiempo y de que tú pases una buena noche.','blancos'),('SH7003','LU1','Juego de Sábanas Satinadas Queen Size Blanco Rayas','','No existe mejor sensación que el rose del satin en la piel. Y tampoco existe mejor calidad en telas que las que son elaboradas con textiles certificados. ¡Compruébalo con estas sábanas!','sábanas'),('SI1004','LU1','Colchón Luuna Signature King','','8 opciones de confort. Un colchón. Conoce la máxima expresión de tecnologí­a y total personalización con Luuna.','colchón');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -237,14 +213,17 @@ DROP TABLE IF EXISTS `respuestas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `respuestas` (
-  `idrespuestas` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_respuestas_review` int(11) NOT NULL,
-  `Descripción` varchar(400) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `idrespuestas` int NOT NULL AUTO_INCREMENT,
+  `fk_respuestas_review` int NOT NULL,
+  `Descripción` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `fk_respuestas_pregunta` int NOT NULL,
   PRIMARY KEY (`idrespuestas`),
   UNIQUE KEY `idrespuestas_UNIQUE` (`idrespuestas`),
   KEY `fk_review_respuestas_idx` (`fk_respuestas_review`),
+  KEY `fk_pregunta_respuestas_idx` (`fk_respuestas_pregunta`),
+  CONSTRAINT `fk_pregunta_respuestas` FOREIGN KEY (`fk_respuestas_pregunta`) REFERENCES `pregunta` (`idPregunta`),
   CONSTRAINT `fk_review_respuestas` FOREIGN KEY (`fk_respuestas_review`) REFERENCES `review` (`idReview`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +232,7 @@ CREATE TABLE `respuestas` (
 
 LOCK TABLES `respuestas` WRITE;
 /*!40000 ALTER TABLE `respuestas` DISABLE KEYS */;
-INSERT INTO `respuestas` VALUES (1,1,'Solo'),(2,2,'No me encanta el precio, es muy elevado'),(3,3,'Es perfecto'),(4,4,'15 a 24 años'),(5,5,'Más de 8 horas'),(6,6,'Es ligeramente mejor'),(7,7,'Precio'),(8,8,'El precio es muy elevado y hay demasiada personalización'),(9,9,'Sí'),(10,7,'Calidad'),(11,7,'Diseño');
+INSERT INTO `respuestas` VALUES (1,1,'Solo',1),(2,2,'No me encanta el precio, es muy elevado',2),(3,3,'Es perfecto',2),(4,4,'15 a 24 años',4),(5,5,'Más de 8 horas',5),(6,6,'Es ligeramente mejor',6),(7,7,'Precio',7),(8,8,'El precio es muy elevado y hay demasiada personalización',2),(9,9,'Sí',9),(10,7,'Calidad',7),(11,7,'Diseño',7),(12,1,'Prueba',10);
 /*!40000 ALTER TABLE `respuestas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,17 +244,17 @@ DROP TABLE IF EXISTS `review`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `review` (
-  `idReview` int(11) NOT NULL AUTO_INCREMENT,
-  `Fk_Review_Venta` int(11) NOT NULL,
-  `Descripcion` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `Titulo` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `idReview` int NOT NULL AUTO_INCREMENT,
+  `Fk_Review_Venta` int NOT NULL,
+  `Descripcion` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Titulo` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Fecha` datetime NOT NULL,
-  `Puntaje` int(11) NOT NULL,
-  `Visibilidad` tinyint(4) NOT NULL DEFAULT 1,
+  `Puntaje` int NOT NULL,
+  `Visibilidad` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`idReview`),
   KEY `fk_venta_review_idx` (`Fk_Review_Venta`),
   CONSTRAINT `fk_venta_review` FOREIGN KEY (`Fk_Review_Venta`) REFERENCES `venta` (`idVenta`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +263,7 @@ CREATE TABLE `review` (
 
 LOCK TABLES `review` WRITE;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
-INSERT INTO `review` VALUES (1,1,'Excelente producto. Lo uso todos los días y no puedo estar más satisfecho con su rendimiento y durabilidad','Se me cayó del 5to piso','2023-03-07 00:00:00',5,1),(2,2,'¡Increíble! No puedo imaginar mi vida sin este producto. Realmente hace todo más fácil y eficiente','Muy buen producto','2024-01-21 00:00:00',4,1),(3,3,'Buen producto, me sorprendió','Es un producto de alta calidad y muy duradero','2024-01-16 00:00:00',2,1),(4,4,'Me encanta este producto. Es versátil, fácil de usar y muy útil en mi día a día','Útil','2024-01-23 00:00:00',4,1),(5,21,'Lo compré hace unas semanas y ya no puedo vivir sin él. Definitivamente vale la pena cada centavo, es lo que me gustaría decir, pero es muy pequeño','Pensé que era más grande','2024-01-21 00:00:00',1,1),(6,6,'He probado muchos productos similares, pero este se destaca por su calidad y funcionalidad. Lo recomiendo ampliamente','Lo mejor que existe!!!','2024-01-14 00:00:00',4,1),(7,7,'Qué gran compra! Este producto ha mejorado significativamente mi rutina diaria. Lo recomendaría a cualquiera','Producto recibido bien','2024-01-14 00:00:00',5,1),(8,8,'Gran producto, alta calidad y durabilidad, materiales pesados y lujosos, definitivamente arte','Es arte','2024-02-18 00:00:00',5,1),(9,22,'Funciona como se describe. Es robusto y confiable. No puedo pedir más de este producto','Satisfecho','2024-02-12 00:00:00',4,1),(10,10,'Este producto ha hecho una gran diferencia en mi vida. Es práctico, eficiente y fácil de usar','Impactante ','2024-02-27 00:00:00',4,1),(11,11,'Lo compré como regalo y resultó ser un gran acierto. La persona que lo recibió está encantada con el','Gran regalo','2024-02-29 00:00:00',5,1),(12,12,'\"He probado muchos productos similares, pero ninguno se compara a este. Su calidad es insuperable','Buenisismos materiales','2023-12-11 00:00:00',4,1),(13,13,'Es justo lo que necesitaba. Este producto ha simplificado muchas tareas para mí. ¡Totalmente recomendado! aunq ya la perdí D:','Buena compra','2023-12-23 00:00:00',4,1),(14,23,'Un producto imprescindible en mi hogar. Su diseño y durabilidad lo convierten en una excelente elección.','Amo aqui','2023-12-19 00:00:00',4,1),(15,15,'Utiliza materiales premium, además de cumplir perfectamente con su función','Alta calidad del material','2023-12-27 00:00:00',1,1),(16,16,'Estoy sorprendido por lo bien que funciona este producto. Sin duda alguna, es una compra que no me arrepiento','Gran usabilidad','2023-12-31 00:00:00',4,1),(17,17,'Sí cumplen con lo que piden pero esperaba más','Bueno pero....','2023-11-16 00:00:00',3,1),(18,18,'Me impresiona la calidad y la atención al detalle de este producto. Sin duda, una excelente adquisición','MUUUY buen producto','2023-11-01 00:00:00',4,1),(19,19,'Es increíble cómo un producto tan simple puede hacer tanto. Definitivamente recomendaría este producto a cualquiera','Increible lo útil y bonito q es','2023-11-18 00:00:00',5,1),(20,20,'Este producto superó mis expectativas. Es de alta calidad y cumple con su propósito. Lo recomiendo sin dudarlo ','La mayor calidad que existe','2024-01-12 00:00:00',5,1),(21,63,'Alta calidad del producto e increíblemente suaves','No se imaginan lo suave que son','2024-04-04 00:00:00',3,1),(22,64,'La parte donde se apoya mi nuca estaba muy dura, me incomodó','Incomodas','2023-03-30 00:00:00',2,1),(23,65,'Recomendadísimo con los protectores de NOOZ','Muy buenas, pero se ensucian mucho','2024-01-14 00:00:00',5,1),(24,66,'Están en el punto perfecto, ni tan duras ni tan suaves, además de que después de 3 meses de uso no se han desgastado para nada','Firmes pero fluffy','2024-04-18 00:00:00',5,1);
+INSERT INTO `review` VALUES (1,1,'Excelente producto. Lo uso todos los días y no puedo estar más satisfecho con su rendimiento y durabilidad','Se me cayó del 5to piso','2023-03-07 00:00:00',5,1),(2,2,'¡Increíble! No puedo imaginar mi vida sin este producto. Realmente hace todo más fácil y eficiente','Muy buen producto','2024-01-21 00:00:00',4,1),(3,3,'Buen producto, me sorprendió','Es un producto de alta calidad y muy duradero','2024-01-16 00:00:00',2,1),(4,4,'Me encanta este producto. Es versátil, fácil de usar y muy útil en mi día a día','Útil','2024-01-23 00:00:00',4,1),(5,21,'Lo compré hace unas semanas y ya no puedo vivir sin él. Definitivamente vale la pena cada centavo, es lo que me gustaría decir, pero es muy pequeño','Pensé que era más grande','2024-01-21 00:00:00',1,1),(6,6,'He probado muchos productos similares, pero este se destaca por su calidad y funcionalidad. Lo recomiendo ampliamente','Lo mejor que existe!!!','2024-01-14 00:00:00',4,1),(7,7,'Qué gran compra! Este producto ha mejorado significativamente mi rutina diaria. Lo recomendaría a cualquiera','Producto recibido bien','2024-01-14 00:00:00',5,1),(8,8,'Gran producto, alta calidad y durabilidad, materiales pesados y lujosos, definitivamente arte','Es arte','2024-02-18 00:00:00',5,1),(9,22,'Funciona como se describe. Es robusto y confiable. No puedo pedir más de este producto','Satisfecho','2024-02-12 00:00:00',4,1),(10,10,'Este producto ha hecho una gran diferencia en mi vida. Es práctico, eficiente y fácil de usar','Impactante ','2024-02-27 00:00:00',4,1),(11,11,'Lo compré como regalo y resultó ser un gran acierto. La persona que lo recibió está encantada con el','Gran regalo','2024-02-29 00:00:00',5,1),(12,12,'\"He probado muchos productos similares, pero ninguno se compara a este. Su calidad es insuperable','Buenisismos materiales','2023-12-11 00:00:00',4,1),(13,13,'Es justo lo que necesitaba. Este producto ha simplificado muchas tareas para mí. ¡Totalmente recomendado! aunq ya la perdí D:','Buena compra','2023-12-23 00:00:00',4,1),(14,23,'Un producto imprescindible en mi hogar. Su diseño y durabilidad lo convierten en una excelente elección.','Amo aqui','2023-12-19 00:00:00',4,1),(15,15,'Utiliza materiales premium, además de cumplir perfectamente con su función','Alta calidad del material','2023-12-27 00:00:00',1,1),(16,16,'Estoy sorprendido por lo bien que funciona este producto. Sin duda alguna, es una compra que no me arrepiento','Gran usabilidad','2023-12-31 00:00:00',4,1),(17,17,'Sí cumplen con lo que piden pero esperaba más','Bueno pero....','2023-11-16 00:00:00',3,1),(18,18,'Me impresiona la calidad y la atención al detalle de este producto. Sin duda, una excelente adquisición','MUUUY buen producto','2023-11-01 00:00:00',4,1),(19,19,'Es increíble cómo un producto tan simple puede hacer tanto. Definitivamente recomendaría este producto a cualquiera','Increible lo útil y bonito q es','2023-11-18 00:00:00',5,1),(20,20,'Este producto superó mis expectativas. Es de alta calidad y cumple con su propósito. Lo recomiendo sin dudarlo ','La mayor calidad que existe','2024-01-12 00:00:00',5,1),(21,63,'Alta calidad del producto e increíblemente suaves','No se imaginan lo suave que son','2024-04-04 00:00:00',3,1),(22,64,'La parte donde se apoya mi nuca estaba muy dura, me incomodó','Incomodas','2023-03-30 00:00:00',2,1),(23,65,'Recomendadísimo con los protectores de NOOZ','Muy buenas, pero se ensucian mucho','2024-01-14 00:00:00',5,1),(24,66,'Están en el punto perfecto, ni tan duras ni tan suaves, además de que después de 3 meses de uso no se han desgastado para nada','Firmes pero fluffy','2024-04-18 00:00:00',5,1),(25,21,'Muy buena ejecución por parte de los diseñadores, verdaderamente una obra de arte, wow','INCREÍBLE, DE VERDAD 100/10','2024-04-26 00:00:00',5,1);
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,10 +275,10 @@ DROP TABLE IF EXISTS `rol`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rol` (
-  `IDRol` int(11) NOT NULL,
-  `Nombre` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `IDRol` int NOT NULL,
+  `Nombre` varchar(30) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`IDRol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -320,17 +299,17 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `IDRol` int(11) NOT NULL,
-  `Nombre` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
-  `Password` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
-  `Correo` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `Imagen` varchar(400) COLLATE utf8_spanish_ci NOT NULL,
-  `Estado` tinyint(4) NOT NULL DEFAULT 1,
+  `idUsuario` int NOT NULL AUTO_INCREMENT,
+  `IDRol` int NOT NULL,
+  `Nombre` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Password` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Correo` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Imagen` varchar(400) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Estado` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`idUsuario`),
   KEY `IDRol_idx` (`IDRol`),
   CONSTRAINT `IDRol` FOREIGN KEY (`IDRol`) REFERENCES `rol` (`IDRol`)
-) ENGINE=InnoDB AUTO_INCREMENT=901941 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=901943 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,39 +318,9 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,1,'Alejandro López Martín','contraseña231','alelo@gmail.com','',1),(2,1,'Julia Martinez Norris','contraseñajajajaj','july@gmail.com','',1),(3,2,'Elena García Pérez','contraseña342','elegarpe@gmail.com','',1),(4,2,'Ana García López','contraseña123','anygar@hotmail.com','',1),(5,2,'Juan Pérez Martínez','contraseña456','juanpema@outlook.com','',1),(6,3,'Francisco Pérez Martínez','contraseña4568','franpe@gmail.com','',1),(7,1,'María González Fernández','contraseña789','magodelqueso@gmail.com','',1),(8,3,'Sandra González Fernández','contraseña7891','sandygo@gmail.com','',1),(9,3,'Daniel Rodríguez Díaz','contraseña0124','danro@gmail.com','',1),(10,3,'Pedro Rodríguez Díaz','contraseña012','pedrodriguez@outlook.com','',1),(11,3,'Isabel López Martín','contraseña321','isalop@gmail.com','',1),(12,3,'David García Pérez','contraseña1234','davigar@yahoo.com','',1),(13,3,'Jorge García Pérez','contraseña243','jorgar@gmail.com','',1),(729012,3,'Clara Pérez Martínez','contraseña354','clap@gmail.com','',1),(767890,3,'Cristina López Martín','contraseña132','crslop@gmail.com','',1),(789012,2,'Laura Pérez Martínez','contraseña4567','laupe1@gmail.com','',1),(890123,2,'Miguel González Fernández','contraseña7890','migonz@outlook.com','',1),(901234,2,'Marta Rodríguez Díaz','contraseña0123','marodri@gmail.com','',1),(901934,2,'Beatriz Rodríguez Díaz','contraseña576','betyro@gmail.com','',1),(901935,3,'Diego Fuentes Juvera','$2a$12$6aZ8H8DVt2a83HC6JFc5SO9xUXpiYZU0fQ.5FXX0goWQvA/HPYZtS','diegofuentes@gmail.com','tianshu-liu-SBK40fdKbAg-unsplash.jpg',1),(901936,1,'admin','$2a$12$0U9UbyQe/RUJOwAjlElk9OX8E8RQCDABTgP0HF6qX.tASeG8a3u4a','admin@gmail.com','admin logo.png',1),(901937,3,'CRM','$2a$12$C6Cg9bmpFXauH7gmBq/gKO/8PIB1SL8t5/F.OQ3ziuezdBztIX2QC','crm@gmail.com','CRM logo.png',1),(901938,2,'Analitic','$2a$12$XP5H3ZkzGzyVLjcGiMtXLOAPO.DDMdCsxDmxG1wnwrxCdkUVZxKGG','analitic@gmail.com','analitic logo.png',1);
+INSERT INTO `usuario` VALUES (-98402,1,'Super Admin','$2a$12$z2jtH70Di4rUHLVB9iW7uewOX7kWqrQLGJPzxJons0IRZXuxtdYXe','SuperAdmin@MagnusStella.com','superadmin.png',1),(1,1,'Alejandro López Martín','contraseña231','alelo@gmail.com','',1),(2,1,'Julia Martinez Norris','contraseñajajajaj','july@gmail.com','',1),(3,2,'Elena García Pérez','contraseña342','elegarpe@gmail.com','',1),(4,2,'Ana García López','contraseña123','anygar@hotmail.com','',1),(5,2,'Juan Pérez Martínez','contraseña456','juanpema@outlook.com','',1),(6,3,'Francisco Pérez Martínez','contraseña4568','franpe@gmail.com','',1),(7,1,'María González Fernández','contraseña789','mago@gmail.com','',1),(8,3,'Sandra González Fernández','contraseña7891','sandygo@gmail.com','',1),(9,3,'Daniel Rodríguez Díaz','contraseña0124','danro@gmail.com','',1),(10,3,'Pedro Rodríguez Díaz','contraseña012','pedrodriguez@outlook.com','',1),(11,3,'Isabel López Martín','contraseña321','isalop@gmail.com','',1),(12,3,'David García Pérez','contraseña1234','davigar@yahoo.com','',1),(13,3,'Jorge García Pérez','contraseña243','jorgar@gmail.com','',1),(729012,3,'Clara Pérez Martínez','contraseña354','clap@gmail.com','',1),(767890,3,'Cristina López Martín','contraseña132','crslop@gmail.com','',1),(789012,2,'Laura Pérez Martínez','contraseña4567','laupe1@gmail.com','',1),(880123,2,'Alberto González Fernández','contraseña465','algo@gmail.com','',1),(890123,2,'Miguel González Fernández','contraseña7890','migonz@outlook.com','',1),(901234,2,'Marta Rodríguez Díaz','contraseña0123','marodri@gmail.com','',1),(901935,3,'Diego Fuentes Juvera','$2a$12$6aZ8H8DVt2a83HC6JFc5SO9xUXpiYZU0fQ.5FXX0goWQvA/HPYZtS','diegofuentes@gmail.com','tianshu-liu-SBK40fdKbAg-unsplash.jpg',0),(901936,1,'admin','$2a$12$0U9UbyQe/RUJOwAjlElk9OX8E8RQCDABTgP0HF6qX.tASeG8a3u4a','admin@gmail.com','admin logo.png',1),(901937,3,'CRM','$2a$12$C6Cg9bmpFXauH7gmBq/gKO/8PIB1SL8t5/F.OQ3ziuezdBztIX2QC','crm@gmail.com','CRM logo.png',1),(901938,2,'Analitic','$2a$12$XP5H3ZkzGzyVLjcGiMtXLOAPO.DDMdCsxDmxG1wnwrxCdkUVZxKGG','analitic@gmail.com','analitic logo.png',1),(901940,3,'Juan Pablo Chávez Leal','$2a$12$T1emmWLj4EoAEyBe7aBivu2/O/MjsbSja38WHyCjuce8toEuNV7RC','a01705408@tec.mx','amarillo-pollito-bebe-de-pollo-volando-b7j5t8 (1).jpg',1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `registraUsuario` AFTER INSERT ON `usuario` FOR EACH ROW INSERT INTO historialusuarios VALUES(DEFAULT, NEW.Nombre, 'Alta Usuario', NOW()) */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `eliminaUsuario` AFTER DELETE ON `usuario` FOR EACH ROW INSERT INTO historialusuarios VALUES(DEFAULT, OLD.Nombre, 'Baja Usuario', NOW()) */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `venta`
@@ -381,17 +330,17 @@ DROP TABLE IF EXISTS `venta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `venta` (
-  `idVenta` int(11) NOT NULL AUTO_INCREMENT,
-  `Fk_Venta_Cliente` int(11) NOT NULL,
-  `Fk_Venta_Producto` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `idVenta` int NOT NULL AUTO_INCREMENT,
+  `Fk_Venta_Cliente` int NOT NULL,
+  `Fk_Venta_Producto` varchar(25) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Fecha` datetime NOT NULL,
-  `SalesOrderNum` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `SalesOrderNum` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idVenta`),
   KEY `Fk_Producto_Venta_idx` (`Fk_Venta_Producto`),
   KEY `Fk_Cliente_Venta_idx` (`Fk_Venta_Cliente`),
   CONSTRAINT `Fk_Cliente_Venta` FOREIGN KEY (`Fk_Venta_Cliente`) REFERENCES `cliente` (`idCliente`),
   CONSTRAINT `Fk_Producto_Venta` FOREIGN KEY (`Fk_Venta_Producto`) REFERENCES `producto` (`idProducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -400,52 +349,20 @@ CREATE TABLE `venta` (
 
 LOCK TABLES `venta` WRITE;
 /*!40000 ALTER TABLE `venta` DISABLE KEYS */;
-INSERT INTO `venta` VALUES (1,7289,'AN1133V','2023-03-07 00:00:00',NULL),(2,7289,'AN1133VCH','2023-03-07 00:00:00',NULL),(3,7289,'MA4012','2023-02-02 00:00:00',NULL),(4,25498,'SH7003','2023-03-03 00:00:00',NULL),(6,25498,'MA1301','2023-05-05 00:00:00',NULL),(7,37274,'MA1301','2023-06-06 00:00:00',NULL),(8,37274,'SH7003','2023-07-07 00:00:00',NULL),(10,37274,'NP6323','2023-09-09 00:00:00',NULL),(11,321456,'MX-MAP-MAL-KIT2-SAN','2023-10-10 00:00:00',NULL),(12,321456,'SH7003','2023-11-11 00:00:00',NULL),(13,321456,'LU1002B2','2023-12-12 00:00:00',NULL),(15,91171,'LU1002B2','2023-12-14 00:00:00',NULL),(16,91171,'MA1301','2023-12-23 00:00:00',NULL),(17,123789,'NP6323','2023-01-12 00:00:00',NULL),(18,123789,'AN1133VCH','2023-01-15 00:00:00',NULL),(19,123789,'LB3231','2023-01-16 00:00:00',NULL),(20,123789,'MX-MAP-MAL-KIT2-SAN','2023-01-23 00:00:00',NULL),(21,562323,'MA4003','2023-01-25 00:00:00',NULL),(22,562323,'LB3231','2023-03-17 00:00:00',NULL),(23,562323,'NP6323','2023-03-12 00:00:00',NULL),(24,987412,'SH7003','2023-03-23 00:00:00',NULL),(25,987412,'MX-MAP-MAL-KIT2-SAN','2023-03-21 00:00:00',NULL),(26,987412,'LU1001B2','2023-06-30 00:00:00',NULL),(27,974858,'MA1301','2023-03-19 00:00:00',NULL),(28,974858,'MA4003','2023-03-17 00:00:00',NULL),(30,974858,'MA1301','2023-05-27 00:00:00',NULL),(31,60764,'LB3231','2023-05-02 00:00:00',NULL),(32,60764,'MX-MAP-MAL-KIT2-SAN','2023-05-17 00:00:00',NULL),(33,90234,'LB3231','2023-07-17 00:00:00',NULL),(34,90234,'MA1301','2023-07-11 00:00:00',NULL),(35,90234,'LU1002B2','2023-07-21 00:00:00',NULL),(37,321456,'LU1002B2','2023-07-12 00:00:00',NULL),(38,321456,'MA1301','2023-08-07 00:00:00',NULL),(39,321456,'MX-MAP-MAL-KIT2-SAN','2023-08-21 00:00:00',NULL),(40,92971,'LB3231','2023-08-12 00:00:00',NULL),(41,92971,'NP6323','2023-09-07 00:00:00',NULL),(42,92971,'AN1133VCH','2023-09-12 00:00:00',NULL),(43,92971,'LU1002B2','2023-09-27 00:00:00',NULL),(44,37274,'MA1301','2023-09-17 00:00:00',NULL),(45,37274,'NP6323','2023-09-13 00:00:00',NULL),(46,37274,'MA1301','2023-10-05 00:00:00',NULL),(47,37274,'AN1133VCH','2023-10-30 00:00:00',NULL),(48,987654,'NP6323','2023-10-12 00:00:00',NULL),(49,987654,'AN1133VCH','2023-10-09 00:00:00',NULL),(50,987654,'LU1002B2','2023-12-24 00:00:00',NULL),(51,987654,'NB7224','2021-12-24 00:00:00',NULL),(52,7289,'SI1004','2023-03-07 00:00:00','1234'),(53,7289,'SI1004','2023-03-07 00:00:00','1234'),(54,7289,'SI1004','2023-03-07 00:00:00','1235'),(55,7289,'SI1004','2023-03-07 00:00:00','1235'),(56,7289,'SI1004','2023-03-07 00:00:00','1235'),(57,7289,'SI1004','2023-03-07 00:00:00','1235'),(58,7289,'SI1004','2023-03-07 00:00:00','1235'),(59,7289,'NB7224','2024-04-18 00:00:00','1236'),(60,7289,'NB7224','2024-04-18 00:00:00','1237'),(61,91171,'NP6321','2024-04-18 00:00:00','5000'),(62,90234,'SI1004','2023-03-07 00:00:00','1235'),(63,76363,'MA1301','2024-04-10 00:00:00',NULL),(64,987412,'MA1301','2023-02-02 00:00:00',NULL),(65,91171,'MA1301','2023-03-03 00:00:00',NULL),(66,76363,'MA1301','2024-01-28 00:00:00',NULL);
+INSERT INTO `venta` VALUES (1,7289,'AN1133V','2023-03-07 00:00:00',NULL),(2,7289,'AN1133VCH','2023-03-07 00:00:00',NULL),(3,7289,'MA4012','2023-02-02 00:00:00',NULL),(4,25498,'SH7003','2023-03-03 00:00:00',NULL),(6,25498,'MA1301','2023-05-05 00:00:00',NULL),(7,37274,'MA1301','2023-06-06 00:00:00',NULL),(8,37274,'SH7003','2023-07-07 00:00:00',NULL),(10,37274,'NP6323','2023-09-09 00:00:00',NULL),(11,321456,'MX-MAP-MAL-KIT2-SAN','2023-10-10 00:00:00',NULL),(12,321456,'SH7003','2023-11-11 00:00:00',NULL),(13,321456,'LU1002B2','2023-12-12 00:00:00',NULL),(15,91171,'LU1002B2','2023-12-14 00:00:00',NULL),(16,91171,'MA1301','2023-12-23 00:00:00',NULL),(17,123789,'NP6323','2023-01-12 00:00:00',NULL),(18,123789,'AN1133VCH','2023-01-15 00:00:00',NULL),(19,123789,'LB3231','2023-01-16 00:00:00',NULL),(20,123789,'MX-MAP-MAL-KIT2-SAN','2023-01-23 00:00:00',NULL),(21,562323,'MA4003','2023-01-25 00:00:00',NULL),(22,562323,'LB3231','2023-03-17 00:00:00',NULL),(23,562323,'NP6323','2023-03-12 00:00:00',NULL),(24,987412,'SH7003','2023-03-23 00:00:00',NULL),(25,987412,'MX-MAP-MAL-KIT2-SAN','2023-03-21 00:00:00',NULL),(26,987412,'LU1001B2','2023-06-30 00:00:00',NULL),(27,974858,'MA1301','2023-03-19 00:00:00',NULL),(28,974858,'MA4003','2023-03-17 00:00:00',NULL),(30,974858,'MA1301','2023-05-27 00:00:00',NULL),(31,60764,'LB3231','2023-05-02 00:00:00',NULL),(32,60764,'MX-MAP-MAL-KIT2-SAN','2023-05-17 00:00:00',NULL),(33,90234,'LB3231','2023-07-17 00:00:00',NULL),(34,90234,'MA1301','2023-07-11 00:00:00',NULL),(35,90234,'LU1002B2','2023-07-21 00:00:00',NULL),(37,321456,'LU1002B2','2023-07-12 00:00:00',NULL),(38,321456,'MA1301','2023-08-07 00:00:00',NULL),(39,321456,'MX-MAP-MAL-KIT2-SAN','2023-08-21 00:00:00',NULL),(40,92971,'LB3231','2023-08-12 00:00:00',NULL),(41,92971,'NP6323','2023-09-07 00:00:00',NULL),(42,92971,'AN1133VCH','2023-09-12 00:00:00',NULL),(43,92971,'LU1002B2','2023-09-27 00:00:00',NULL),(44,37274,'MA1301','2023-09-17 00:00:00',NULL),(45,37274,'NP6323','2023-09-13 00:00:00',NULL),(46,37274,'MA1301','2023-10-05 00:00:00',NULL),(47,37274,'AN1133VCH','2023-10-30 00:00:00',NULL),(48,987654,'NP6323','2023-10-12 00:00:00',NULL),(49,987654,'AN1133VCH','2023-10-09 00:00:00',NULL),(50,987654,'LU1002B2','2023-12-24 00:00:00',NULL),(51,987654,'NB7224','2021-12-24 00:00:00',NULL),(52,7289,'SI1004','2023-03-07 00:00:00','1234'),(53,7289,'SI1004','2023-03-07 00:00:00','1234'),(54,7289,'SI1004','2023-03-07 00:00:00','1235'),(55,7289,'SI1004','2023-03-07 00:00:00','1235'),(56,7289,'SI1004','2023-03-07 00:00:00','1235'),(57,7289,'SI1004','2023-03-07 00:00:00','1235'),(58,7289,'SI1004','2023-03-07 00:00:00','1235'),(59,7289,'NB7224','2024-04-18 00:00:00','1236'),(60,7289,'NB7224','2024-04-18 00:00:00','1237'),(61,91171,'NP6321','2024-04-18 00:00:00','5000'),(62,90234,'SI1004','2023-03-07 00:00:00','1235'),(63,76363,'MA1301','2024-04-10 00:00:00',NULL),(64,987412,'MA1301','2023-02-02 00:00:00',NULL),(65,91171,'MA1301','2023-03-03 00:00:00',NULL),(66,76363,'MA1301','2024-01-28 00:00:00',NULL),(67,90234,'DI1001','2023-04-26 00:00:00','1236');
 /*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'magnusstella'
---
-
---
 -- Dumping routines for database 'magnusstella'
 --
-/*!50003 DROP FUNCTION IF EXISTS `PuntajeItem` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItem`(diff_idproducto varchar(25)) RETURNS float
-    DETERMINISTIC
-BEGIN
-declare promedio float;
-
-select avg(Puntaje) into promedio
-from review r, venta v, producto p
-where r.fk_review_venta = v.idventa 
-and v.fk_venta_producto = p.idproducto
-and (idproducto = diff_idproducto);
-
-RETURN promedio;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP FUNCTION IF EXISTS `PuntajeItemM` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -459,8 +376,35 @@ from review r, venta v, producto p
 where r.fk_review_venta = v.idventa 
 and v.fk_venta_producto = p.idproducto
 and (fk_idmarca_producto = diff_marca);
+return promedio; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `PuntajeItemMC` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemMC`(Umarca varchar(25), Ucategoria varchar(45)) RETURNS float
+    DETERMINISTIC
+BEGIN
+declare promedio float;
 
-RETURN promedio;
+select avg(Puntaje) into promedio
+from review r, venta v, producto p
+where r.fk_review_venta = v.idventa 
+and v.fk_venta_producto = p.idproducto
+and (fk_idmarca_producto = Umarca)
+and p.categoria = Ucategoria;
+return promedio;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -473,11 +417,11 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemP`(diff_idproducto varchar(25)) RETURNS float
+CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeItemP`(diff_idproducto varchar(25)) RETURNS int
     DETERMINISTIC
 BEGIN
 declare promedio float;
@@ -489,138 +433,6 @@ and v.fk_venta_producto = p.idproducto
 and (idproducto = diff_idproducto);
 
 RETURN promedio;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `PuntajeMesItem` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `PuntajeMesItem`(diff_idproducto varchar(25)) RETURNS float
-    DETERMINISTIC
-BEGIN
-declare promedio float;
-
-select avg(Puntaje) into promedio
-from review r, venta v, producto p
-where r.fk_review_venta = v.idventa 
-and v.fk_venta_producto = p.idproducto
-and (idproducto = diff_idproducto);
-
-RETURN promedio;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `RatioRespuestaDia` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `RatioRespuestaDia`(diff_fecha datetime) RETURNS decimal(10,2)
-    DETERMINISTIC
-BEGIN
-    DECLARE proportion DECIMAL(10,2);
-    DECLARE enviadas INT;
-    DECLARE contestadas INT;
-
-    SELECT COUNT(*) INTO contestadas
-    FROM review 
-    WHERE DATE(fecha) = DATE(diff_fecha);
-
-    SELECT COUNT(*) INTO enviadas
-    FROM venta
-    WHERE DATE(fecha) = DATE(diff_fecha);
-
-    IF (enviadas = 0 OR contestadas = 0) THEN
-        SET proportion = 0;
-    ELSE
-        SET proportion = (contestadas / enviadas * 100);
-    END IF;
-
-    RETURN proportion;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `RatioRespuestaMes` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `RatioRespuestaMes`(diff_fecha datetime) RETURNS decimal(10,2)
-    DETERMINISTIC
-BEGIN
-    DECLARE proportion DECIMAL(10,2);
-    DECLARE enviadas INT;
-    DECLARE contestadas INT;
-
-    SELECT COUNT(*) INTO contestadas
-    FROM review 
-    WHERE YEAR(fecha) = YEAR(diff_fecha) AND MONTH(fecha) = MONTH(diff_fecha);
-
-    SELECT COUNT(*) INTO enviadas
-    FROM venta
-    WHERE YEAR(fecha) = YEAR(diff_fecha) AND MONTH(fecha) = MONTH(diff_fecha);
-
-    IF (enviadas = 0 OR contestadas = 0) THEN
-        SET proportion = 0;
-    ELSE
-        SET proportion = (contestadas / enviadas * 100);
-    END IF;
-
-    RETURN proportion;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadas` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadas`(diff_marca varchar(25)) RETURNS int(11)
-    DETERMINISTIC
-BEGIN
-declare contestadas int;
-
-SELECT COUNT(*) INTO contestadas
-    FROM review r, venta v, producto p
-    where r.fk_review_venta = v.idVenta
-    and v.fk_venta_producto = p.idproducto
-    and p.fk_idMarca_producto = diff_marca;
-
-RETURN contestadas;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -633,20 +445,21 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasM`(diff_marca varchar(25)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasM`(Umarca varchar(25)) RETURNS int
     DETERMINISTIC
 BEGIN
+
 declare contestadas int;
 
 SELECT COUNT(*) INTO contestadas
     FROM review r, venta v, producto p
     where r.fk_review_venta = v.idVenta
     and v.fk_venta_producto = p.idproducto
-    and p.fk_idMarca_producto = diff_marca;
+    and p.fk_idMarca_producto = Umarca;
 
 RETURN contestadas;
 END ;;
@@ -661,11 +474,11 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int
     DETERMINISTIC
 BEGIN
 declare contestadas int;
@@ -684,47 +497,17 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasMCP` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasMCP`(diff_marca varchar(25), diff_categoria varchar(45), diff_producto varchar(25)) RETURNS int(11)
-    DETERMINISTIC
-BEGIN
-declare contestadas int;
-
-SELECT COUNT(*) INTO contestadas
-    FROM review r, venta v, producto p
-    where r.fk_review_venta = v.idVenta
-    and v.fk_venta_producto = p.idproducto
-    and p.fk_idMarca_producto = diff_marca
-    and p.categoria = diff_categoria
-    and p.idproducto = diff_producto;
-
-RETURN contestadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP FUNCTION IF EXISTS `ReviewsContestadasP` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasP`(diff_producto varchar(25)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsContestadasP`(diff_producto varchar(25)) RETURNS int
     DETERMINISTIC
 BEGIN
 declare contestadas int;
@@ -742,69 +525,17 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `Reviewsenviadas` */;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasM` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `Reviewsenviadas`() RETURNS int(11)
-    DETERMINISTIC
-BEGIN
-declare enviadas int;
-
-SELECT COUNT(*) INTO enviadas
-    FROM venta;
-
-
-RETURN enviadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsenviadasDia` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsenviadasDia`(diff_fecha datetime) RETURNS int(11)
-    DETERMINISTIC
-BEGIN
-
-declare enviadas int;
-SELECT COUNT(*) INTO enviadas
-    FROM venta
-    WHERE DATE(fecha) = DATE(diff_fecha);
-
-RETURN enviadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsenviadasM` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsenviadasM`(diff_marca varchar(25)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasM`(diff_marca varchar(25)) RETURNS int
     DETERMINISTIC
 BEGIN
 declare enviadas int;
@@ -821,17 +552,17 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsenviadasMC` */;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasMC` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsenviadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasMC`(diff_marca varchar(25), diff_categoria varchar(45)) RETURNS int
     DETERMINISTIC
 BEGIN
 declare enviadas int;
@@ -849,45 +580,17 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsenviadasMCP` */;
+/*!50003 DROP FUNCTION IF EXISTS `ReviewsEnviadasP` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsenviadasMCP`(diff_marca varchar(25), diff_categoria varchar(45), diff_producto varchar(25)) RETURNS int(11)
-    DETERMINISTIC
-BEGIN
-declare enviadas int;
-
-SELECT COUNT(*) INTO enviadas
-    FROM venta v, producto p
-    where v.fk_venta_producto = p.idproducto
-    and p.fk_idmarca_producto = diff_marca
-    and p.categoria = diff_categoria
-    and p.idProducto = diff_producto;
-RETURN enviadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsenviadasP` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsenviadasP`(diff_producto varchar(25)) RETURNS int(11)
+CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsEnviadasP`(diff_producto varchar(25)) RETURNS int
     DETERMINISTIC
 BEGIN
 declare enviadas int;
@@ -897,90 +600,6 @@ SELECT COUNT(*) INTO enviadas
     where v.fk_venta_producto = p.idproducto
     and p.idProducto = diff_producto;
 return enviadas;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `ReviewsxFecha` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `ReviewsxFecha`(diff_fecha datetime) RETURNS int(11)
-    DETERMINISTIC
-BEGIN
-declare numreviews int;
-
-select count(*) into numreviews
-from review
-where date(fecha) = diff_fecha;
-
-RETURN numreviews;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `EliminarUsuario` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `EliminarUsuario`(diff_idUsuario varchar(25))
-BEGIN
-update usuario set Estado=0 where idUsuario = diff_idUsuario;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `ModificarProductos` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ModificarProductos`(diff_categoria varchar(45), diff_idProducto varchar(25), diff_imagen varchar(400), diff_Nombre varchar(100))
-BEGIN
-update produto set categoria = diff_categoria, imagen = diff_imagen, nombre = diff_nombre
-where idProducto = diff_idProducto;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `OcultarReview` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `OcultarReview`(diff_idReview int)
-BEGIN
-update review set Visibilidad = 0 where idReview = diff_idReview;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -997,4 +616,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-23  9:47:42
+-- Dump completed on 2024-04-28 18:06:42
