@@ -10,16 +10,10 @@ body {
     padding-bottom: 0%;
 }
 
-/* .editor-de-preguntas{
-    /* background-color: black; 
-} */
-
 .editor-de-preguntas,
 .preview-html {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   width: 35%;
 }
 
@@ -43,19 +37,13 @@ body {
   border: none;
 }
 
-.add-ques-button {
-  border-radius: 5px;
-  outline: none;
-  border: none;
-}
-
-
+/* botón de eliminar en modo claro */
 a.delete {
-  color: #c54b61;
+  color: var(--delete-color);
 }
 
 a.delete:hover {
-  color: #db6d81;
+  color: var(--delete-color-hover);
 }
 
 .ques-container {
@@ -70,19 +58,22 @@ a.delete:hover {
 }
 
 .add-ques-button{
+  border-radius: 1em;
+  outline: none;
+  border: none;
   background-color: var(--highlight);
   display: flex;
-  align-items: center;
-  text-align: center;
+  justify-content: center;
 }
 
 .add-ques-button:hover {
   background-color: var(--highlight2);
+  color:#fff
 }
 
 .ques-container {
-  border-radius: 15px;
-  width: 95%;
+  border-radius: 1em;
+  width: 100%;
   background-color: var(--backGroundColor);
 }
 
@@ -108,4 +99,42 @@ a.delete:hover {
 
 a.add-ques-button{
   color:#fff;
+}
+
+a.add-ques-button:hover{
+  color:#fff;
+}
+
+body.dark a.add-ques-button:hover {
+  color: #fff;
+}
+/* botón de eliminar en modo oscuro */
+body.dark a.delete:link {
+  text-decoration: none;
+  color: var(--delete-color);
+}
+
+body.dark a.delete:link:hover {
+  text-decoration: none;
+  color: var(--delete-color-hover);
+}
+
+body.dark a.settings:link {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:link:hover {
+  text-decoration: none;
+  color: var(--highlight2);
+}
+
+body.dark a.settings:visited {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+body.dark a.settings:visited:hover {
+  text-decoration: none;
+  color: var(--highlight2);
 }

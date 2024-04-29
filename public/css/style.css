@@ -38,6 +38,8 @@
   --disabled-color: #47688a;
   --title-color: #2e3d50;
   --title-color-hover: #557196;
+  --delete-color: #c54b61;
+  --delete-color-hover: #eb7d91;
 
   /* Transition */
   --tran-02: all 0.2s ease;
@@ -72,8 +74,8 @@ body.dark {
   --toggle-color: #727171c2;
   --text-color_rev: #ccc;
   --hover-color: #3a3b3c;
-  --highlight: #005cb9;
-  --highlight2: #2b95ff;
+  --highlight: #557196;
+  --highlight2: #668bbb;
   --divBackground: #848484;
   --boxShadow: #ffffffc0;
   --image1Display: inline;
@@ -85,6 +87,8 @@ body.dark {
   --disabled-color: #919191;
   --title-color: #eaf0f8;
   --title-color-hover: #c0d1e7;
+  --delete-color: #c54b61;
+  --delete-color-hover: #eb7d91;
 }
 
 .side_bar.close {
