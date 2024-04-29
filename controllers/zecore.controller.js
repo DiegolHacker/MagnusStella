@@ -20,10 +20,10 @@ exports.post_ModifyProduct = (request, response, next) => {
         .json({ message: "Hemos recibido la información" });
     })
     .catch((error) => {
-      console.log("Error al recibir la información " + error);
+      console.log("Error al recibir la información: " + error);
       return response
         .status(500)
-        .json({ message: "Error al recibir la información " + error });
+        .json({ message: "Error al recibir la información: " + error });
     });
 };
 

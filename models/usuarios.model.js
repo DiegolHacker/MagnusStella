@@ -85,6 +85,52 @@ module.exports = class Usuarios {
     ]);
   }
 
+    static async usuarios_fetchPag(pag) {
+    try {
+      const [rows] = await db.execute(
+        "SELECT COUNT(IdUsuario) AS totalUsuarios FROM usuario;"
+      );
+      let totalUsers = rows[0].totalUsuarios;
+      const pageSize = 5;
+      let totalPages = Math.ceil(totalUsers / pageSize);
+      let inicio = (pag - 1) * pageSize;
+
+      const users = await db.execute(
+        `SELECT * FROM usuario where idUsuario != ${process.env.SUPER_ID} ORDER BY Nombre LIMIT ${inicio}, ${pageSize}`
+      );
+      return (users);
+    } catch (err) {
+      console.error("Error fetching paginated users:", err);
+      throw err;
+    }
+  }
+
+  
+  static async resto_fetchPag(pag) {
+    try {
+      const [rows] = await db.execute(
+        "SELECT COUNT(IdUsuario) AS totalUsuarios FROM usuario;"
+      );
+      let totalUsers = rows[0].totalUsuarios;
+      const pageSize = 5;
+      let totalPages = Math.ceil(totalUsers / pageSize);
+      let inicio = (pag - 1) * pageSize;
+
+      const [users] = await db.execute(
+        `SELECT * FROM usuario where idUsuario != ${process.env.SUPER_ID} ORDER BY Nombre LIMIT ${inicio}, ${pageSize}`
+      );
+
+      return { 
+        pageSize: pageSize,
+        totalUsers: totalUsers,
+        totalPages: totalPages,
+      };
+    } catch (err) {
+      console.error("Error fetching paginated users:", err);
+      throw err;
+    }
+  }
+
   static async fetchPag(pag) {
     try {
       const [rows] = await db.execute(

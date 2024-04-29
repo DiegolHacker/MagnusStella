@@ -114,52 +114,14 @@ module.exports = class Reviews {
       });
   }
 
-  static fetchorden(marca, orden, callback) {
-    let query = `
-        SELECT 
-            r.idReview AS idreview, 
-            r.Descripcion AS descripcion, 
-            r.Titulo AS titulo, 
-            r.Fecha AS fecha, 
-            r.Puntaje AS puntaje, 
-            v.Fk_Venta_Producto AS idProducto
-        FROM 
-            review r
-        JOIN 
-            venta v ON r.Fk_Review_Venta = v.idVenta
-        JOIN 
-            producto p ON v.Fk_Venta_Producto = p.idProducto
-        WHERE 
-            p.FK_idMarca_Producto = ? `;
-
-    // Añadir la cláusula ORDER BY dependiendo del valor de 'orden'
-    if (orden === "ascendente") {
-      query += `ORDER BY r.Puntaje ASC`;
-    } else if (orden === "descendente") {
-      query += `ORDER BY r.Puntaje DESC`;
-    }
-
-    db.execute(query, [marca])
-      .then(([rows]) => {
-        callback(null, rows);
-      })
-      .catch((err) => {
-        console.error(
-          "Error fetching reviews and product IDs from database:",
-          err
-        );
-        callback(err, []);
-      });
-  }
-
-
   static async actualizarvisibilidad(idreview, visibilidad) {
     try {
       const [result] = await db.execute(
         `UPDATE review 
         SET Visibilidad = ? 
-        WHERE idReview = ?`
-        , [visibilidad, idreview]);
+        WHERE idReview = ?`,
+        [visibilidad, idreview]
+      );
 
       // Verificar si se actualizó al menos una fila.
       if (result.affectedRows > 0) {
@@ -171,5 +133,56 @@ module.exports = class Reviews {
       console.error("Error al actualizar la visibilidad:", error);
       throw error;
     }
+  }
+
+  static fetch_f(marca, orden, startDate, endDate, callback) {
+    let query = `
+        SELECT 
+            r.idReview AS idreview, 
+            r.Descripcion AS descripcion, 
+            r.Titulo AS titulo, 
+            r.Fecha AS fecha, 
+            r.Puntaje AS puntaje, 
+            r.Visibilidad AS visible,
+            v.Fk_Venta_Producto AS idProducto
+        FROM 
+            review r
+        JOIN 
+            venta v ON r.Fk_Review_Venta = v.idVenta
+        JOIN 
+            producto p ON v.Fk_Venta_Producto = p.idProducto
+        WHERE 
+            p.FK_idMarca_Producto = ? `;
+
+    let parametros = [marca];
+
+    if (startDate !== "*" && endDate !== "*") {
+      query += ` AND v.Fecha BETWEEN ? AND ?`;
+      parametros.push(startDate, endDate);
+    } else if (startDate !== "*") {
+      query += ` AND v.Fecha >= ?`;
+      parametros.push(startDate);
+    } else if (endDate !== "*") {
+      query += ` AND v.Fecha <= ?`;
+      parametros.push(endDate);
+    }
+
+    if (orden === "ascendente") {
+      query += ` ORDER BY r.Puntaje ASC`;
+    } else if (orden === "descendente") {
+      query += ` ORDER BY r.Puntaje DESC`;
+    }
+
+    db.execute(query, parametros)
+      .then(([rows]) => {
+        callback(null, rows);
+      })
+      .catch((err) => {
+        console.error(
+          "Error fetching reviews and product IDs from database:",
+          err
+        );
+        callback(err, []);
+      });
   }
 };

@@ -45,9 +45,7 @@ exports.post_login = (request, response, next) => {
                   console.log(error);
                 });
             } else {
-              response.redirect(
-                "/users/error donde creo que hay que poner eso"
-              );
+              response.redirect("/users/login");
             }
           })
           .catch((err) => {
