@@ -70,7 +70,7 @@ module.exports = class Usuarios {
   }
 
   static fetchAll() {
-    return db.execute("SELECT * FROM usuario ");
+    return db.execute(`SELECT * FROM usuario where idUsuario != ${process.env.SUPER_ID}`);
   }
 
   static fetchPag(pag) {
@@ -96,7 +96,7 @@ module.exports = class Usuarios {
       let inicio = (pag - 1) * pageSize;
 
       const [users] = await db.execute(
-        `SELECT * FROM usuario ORDER BY Nombre LIMIT ${inicio}, ${pageSize}`
+        `SELECT * FROM usuario where idUsuario != ${process.env.SUPER_ID} ORDER BY Nombre LIMIT ${inicio}, ${pageSize}`
       );
 
       return {
@@ -112,7 +112,7 @@ module.exports = class Usuarios {
   }
 
   static fetchOne(id) {
-    return db.execute("SELECT * FROM usuario WHERE idUsuario=?", [id]);
+    return db.execute(`SELECT * FROM usuario WHERE idUsuario=? and idUsuario != ${process.env.SUPER_ID}`, [id]);
   }
 
   static fetch(pag, id) {
@@ -144,16 +144,16 @@ module.exports = class Usuarios {
           throw err;
         });
     } else {
-      console.log("Sin modificar contrasenia");
+      console.log("Sin modificar contraseña");
       return db.execute(
-        "UPDATE usuario SET IDRol = ?, Correo = ? WHERE (idUsuario = ?)",
+        `UPDATE usuario SET IDRol = ?, Correo = ? WHERE (idUsuario = ?) and idUsuario != ${process.env.SUPER_ID}`,
         [IdRol, Correo, idUsuario]
       );
     }
   }
 
   static delete(id) {
-    return db.execute("DELETE FROM usuario WHERE idUsuario=?", [id]);
+    return db.execute(`DELETE FROM usuario WHERE idUsuario=? and idUsuario != ${process.env.SUPER_ID}`, [id]);
   }
 
   static getPermisos(correo) {
