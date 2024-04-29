@@ -16,18 +16,8 @@ router.post(
   canAdmin,
   controladores.post_editar
 );
-router.get(
-  "/usuarios/registro/:marca",
-  isAuth,
-  canAdmin,
-  controladores.get_registroUsuarios
-);
-router.get(
-  "/usuarios/:pag/:marca",
-  isAuth,
-  canAdmin,
-  controladores.get_usuarios
-);
+router.get("/usuarios/registro/:marca", isAuth,canAdmin,controladores.get_registroUsuarios);
+router.get("/usuarios/:pag/:marca",isAuth,canAdmin,controladores.get_usuarios);
 router.post("/usuarios/delete", isAuth, canAdmin, controladores.post_delete);
 router.get("/", (request, response, next) => {
   response.redirect("/graphics/dashboard/LU1");

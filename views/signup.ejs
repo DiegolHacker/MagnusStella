@@ -1,5 +1,9 @@
 <%-include('includes/navigation.ejs')%>
 
+<head>
+  <link rel="stylesheet" href="/css/signup.css">
+</head>
+
 <div class="signup-box box">
   <div class="signup-title title">
     <h5>Ingresa la informacion del nuevo usuario</h5>
@@ -39,7 +43,11 @@
         required
       /><br />
       <label for="rol">Rol:</label>
-      <input type="number" name="rol" id="rol" placeholder="Ingresa el rol" required  />
+      <select name="rol" id="rol">
+        <option value="2">Analítica</option>
+        <option value="3">CRM</option>
+        <option value="1">Admin</option>
+      </select>
     </div>
 
     <label for="image"> Imagen:</label>
