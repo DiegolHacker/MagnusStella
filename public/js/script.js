@@ -16,6 +16,7 @@ let modal = document.getElementById("myModal");
 let modalActive = document.getElementById("myModal-active");
 
 // Get the button that opens the modal
+
 let btn = document.getElementById("openModalBtn");
 
 //get the button that opens modal of active filters
@@ -23,6 +24,7 @@ let btn_active = document.getElementById("openModalBtn-active");
 
 // Get the <span> element that closes the modal
 let span = document.getElementsByClassName("close")[0];
+
 
 //este pedazo de codigo hace que el toggle funcione y habra el menu
 toggle.addEventListener("click", () => {
@@ -164,10 +166,9 @@ const titulo2 = "Encuestas enviadas por mes";
 
 creaGraficaLinea(graph2, enviadaMeses, enviadas, titulo2, lineColor1);
 
-//script para el modal
 
 btn.onclick = function () {
-  modal.style.display = "block";
+    modal.style.display = "block";
 };
 
 btn_active.onclick = function () {

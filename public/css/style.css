@@ -1344,6 +1344,46 @@ label {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+#open_ModalBtn2 {
+  outline: none;
+  border: none;
+  background-color: var(--backGroundColor);
+  color: var(--search-text);
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.modal2 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; */
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content2 {
+  background-color: var(--backGroundColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  height: 400px;
+  border-radius: 10px;
+}
+
 .modal-content {
   background-color: var(--backGroundColor);
   display: flex;
@@ -1405,7 +1445,6 @@ label {
 
   /* right: 0; */
 }
-
 /* boton del ojito para vista de creacion de usuario y edicion de usuario */
 
 #togglePasswordBtn {
