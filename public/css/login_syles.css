@@ -8,6 +8,12 @@ body {
   height: 98vh;
   background-color: #e3e6ec;
   font-family: "Poppins", sans-serif;
+  background-image: url("../images/Fondo-Login.png");
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 .login-box,
@@ -30,7 +36,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 40px;
-  color: #333d4e;
+  color: #2e3d50;
 }
 
 .credential-input {
@@ -40,7 +46,7 @@ body {
   align-items: baseline;
   margin-left: 20px;
   margin-bottom: 30px;
-  color: #333d4e;
+  color: #2e3d50;
   font-weight: 500;
 }
 
@@ -71,7 +77,7 @@ body {
   height: 30px;
   border: none;
   border-radius: 5px;
-  outline-color: #333d4e;
+  outline-color: #2e3d50;
 }
 
 .passwordInput {
@@ -117,17 +123,17 @@ footer {
 
 .btn {
   border: none;
-  background-color: #fff;
   border-radius: 5px;
   width: 90px;
   height: 30px;
   transition: all 0.3s ease;
-  background-color: #2e3d50;
+  background-color: #415774;
+  font-size: 16px;
   color: #fff;
 }
 
 .btn:hover {
-  box-shadow: 0 0 4px #525252;
+  background-color: #567499;
 }
 
 /* Signup */
@@ -149,8 +155,7 @@ footer {
 /* boton de google */
 
 .login-with-google-btn {
-  display: inline-block;
-  background-color: #2d73b9;
+  background-color: #415774;
   color: white;
   border: none;
   border-radius: 4px;
@@ -159,28 +164,36 @@ footer {
   font-size: 16px;
   cursor: pointer;
   text-decoration: none;
+	display: flex;
+	align-items: center;
 }
 
 .login-with-google-btn:hover {
-  background-color: #357ae8;
+  background-color: #567499;
 }
 
 .google-btn-div {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+
 }
 
-.tittle-web-app {
+.title-web-app {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
 }
 
-.tittle-web-app h1 {
+.title-web-app h1 {
   margin-left: 20px;
 }
 
 h1{
-  color: #2e3d50;
+  color: #eaf3ff;
+}
+
+i{
+  font-size: 18pt;
+  padding: 0;
 }
