@@ -1,54 +1,89 @@
 <%-include('includes/navigation.ejs')%>
-
+  <head>
+    <link rel="stylesheet" href="/css/signup.css">
+  </head>
+  
 <div class="signup-box box">
-  <div class="signup-title title">
-    <h5>Ingresa la informacion del nuevo usuario</h5>
-  </div>
-
-  <% if(typeof error !=='undefined' ){ %>
-  <div class="alert">
-    <p class="error"><%= error %></p>
-  </div>
-  <% } %>
-
-  <form action="/users/signup" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-    <div class="credential-input">
-      <label for="name">Nombre:</label>
-      <input
-        type="text"
-        name="name"
-        id="username"
-        placeholder="Ingresa tu nombre"
-        required
-      /><br />
-      <label for="email">Correo electronico:</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Ingresa tu correo electronico"
-        required
-      /><br />
-      <label for="password">Contrasena:</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="Ingresa tu contrasena"
-        required
-      /><br />
-      <label for="rol">Rol:</label>
-      <input type="number" name="rol" id="rol" placeholder="Ingresa el rol" required  />
+    <div class="signup-title title">
+      <h5>Ingresa la informacion del nuevo usuario</h5>
     </div>
 
-    <label for="image"> Imagen:</label>
-    <input class="input" type="file" name="image" id="image" required />
+    <% if(typeof error !=='undefined' ){ %>
+      <div class="alert">
+        <p class="error">
+          <%= error %>
+        </p>
+      </div>
+      <% } %>
+        <form id="registerForm" action="/users/signup" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <div class="credential-input">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" id="username" placeholder="Ingresa tu nombre" required /><br />
+            <label for="email">Correo electronico:</label>
+            <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico" required /><br />
+            
+            <label for="password">Contrasena:</label>
+            <div class="passwordInput">
+              <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena" required /><br />
+              <button type="button" id="togglePasswordBtn" onclick="togglePassword()">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+            <span id="passwordError" class="error"></span>
 
-    <div class="ingresarBtn">
-      <button type="submit" class="ingresar-btn">Crear Usuario</button>
-    </div>
-  </form>
-</div>
+            <br />
+            <label for="rol">Rol:</label>
+            <select name="rol" id="rol">
+              <option value="2">Analítica</option>
+              <option value="3">CRM</option>
+              <option value="1">Admin</option>
+            </select>
+          </div>
 
-<%-include('includes/footer.ejs')%>
+          <label for="image"> Imagen:</label>
+          <input class="input" type="file" name="image" id="image" required />
+          <div class="ingresarBtn">
+            <button type="submit" class="ingresar-btn">Crear Usuario</button>
+          </div>
+        </form>
+  </div>
+  <%-include('includes/footer.ejs')%>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#password').on('input', function () {
+          var password = $(this).val();
+          var csrfToken = $('input[name="_csrf"]').val();
+
+          // Make an AJAX request to the server to validate the password
+          $.ajax({
+            type: 'POST',
+            url: '/users/validate-password',
+            data: { password: password, _csrf: csrfToken },
+            success: function (response) {
+              if (response.valid) {
+                // Password is valid, clear the error message
+                $('#passwordError').text('');
+              } else {
+                // Password is invalid, display the error message
+                $('#passwordError').text(response.message);
+              }
+            },
+            error: function () {
+              alert('An error occurred while validating the password.');
+            }
+          });
+        });
+
+        // Prevent form submission if password is invalid
+        $('#registerForm').submit(function (event) {
+          var passwordError = $('#passwordError').text();
+          if (passwordError) {
+            event.preventDefault();
+            alert('Please enter a valid password.');
+          }
+        });
+      });
+    </script>
