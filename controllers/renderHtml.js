@@ -11,7 +11,7 @@ exports.get_usuarios = (request, response, next) => {
 
   Usuarios.fetchPag(pag)
     .then((result) => {
-      // console.log(result.users)
+      // console.log(result)
       response.render("usuarios", {
         usuarios: result.users,
         titulo: "Usuarios",
@@ -73,12 +73,26 @@ exports.post_editar = (request, response, next) => {
 };
 
 exports.post_delete = (request, response, next) => {
+  let currentPage = request.body.currentPage || 1;
+  let marca = request.body.marca || "LU1";
   Usuarios.delete(request.body.id)
     .then(() => {
-      return Usuarios.fetch();
+      return Usuarios.usuarios_fetchPag(currentPage);
     })
-    .then(([usuarios, fieldData]) => {
-      return response.status(200).json({ usuarios: usuarios });
+    .then(([result1]) => {
+      usuarios = result1
+      return Usuarios.resto_fetchPag(currentPage);
+    })
+    .then((result2) => {
+      return response.status(200).json({ 
+        usuarios: usuarios,
+        marca: request.body.marca || "LU1",
+        currentPage: currentPage,
+        pageSize: result2.pageSize,
+        totalUsers: result2.totalUsers,
+        totalPages: result2.totalPages,
+      });
+
     })
     .catch((error) => {
       console.log(error);
