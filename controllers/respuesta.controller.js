@@ -27,5 +27,6 @@ const respuestaM = require("../models/respuesta.model");
 // };
 
 exports.post_MailResponse = (request, response, next) => {
+  response.redirect("/");
   console.log(request.body);
 };
