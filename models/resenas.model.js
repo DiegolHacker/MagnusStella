@@ -88,7 +88,6 @@ module.exports = class Reviews {
       });
   }
   static search(valor_busqueda, marca, callback) {
-    console.log(valor_busqueda);
     const query = `
             SELECT * 
             FROM review r
