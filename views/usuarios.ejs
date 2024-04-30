@@ -55,8 +55,16 @@
                 >
               </td>
               <td><%= usuario.Correo %></td>
-              <td><%= usuario.IDRol %></td>
-              <% if (usuario.Estado ==="0") { %>
+          
+              <% if (usuario.IDRol =="1") { %>
+                <td>Admin</td>
+                <% } else if (usuario.IDRol =="2") {  %>
+                <td>Analítica</td>
+                <% } else if (usuario.IDRol =="3") {  %>
+                  <td>CRM</td>
+                  <% } %>
+          
+              <% if (usuario.Estado =="0") { %>
               <td><span class="status text-warning">&bull;</span>Inactivo</td>
               <% } else { %>
               <td><span class="status text-success">&bull;</span>Activo</td>

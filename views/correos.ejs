@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); 
 
         const newDiasValue = document.getElementById('dias').value;
-        console.log(newDiasValue);
+        
 
         fetch(`/emails/correos/actualizarDias/${marca}`, {
             method: 'POST',
