@@ -5,6 +5,7 @@ const ejs = require('ejs');
 
 //Definimos las variables para nodemailer
 const transporter = nodemailer.createTransport({
+  service: "Gmail",
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
@@ -143,7 +144,7 @@ exports.enviar_resenia = async (request, response, next) => {
           const info = await transporter.sendMail({
 
             from: '"Forgot password" <tracpablo@gmail.com>', // sender address
-            to: "a01710778@tec.mx", // list of receivers
+            to: "tracpablo@gmail.com", // list of receivers
             subject: "Intento1", // Subject line
             html: template,
             attachments: [
@@ -178,7 +179,7 @@ exports.enviar_resenia = async (request, response, next) => {
       idp: idp,
       total_opciones: total_opciones,
       permisos: request.session.permisos || [],
-      
+
     });
   } catch (error) {
     console.error("Error al cargar las preguntas:", error);
