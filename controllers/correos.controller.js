@@ -161,6 +161,17 @@ exports.post_crear_correos = (request, response, next) => {
     });
 };
 
+exports.borrar_pregunta = async (request, response, next) => {
+  const idPregunta = request.params.pregunta_id;  //Toma el id de la pregunta de la ruta.
+  try {
+    await Correos.delete(idPregunta);
+  } catch (error) {
+    console.log("Error al borrar:", error);
+    response.status(500).send("Error interno del servidor");
+  }
+
+}
+
 exports.post_dias = (request, response, next) => {
   
 }
