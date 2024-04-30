@@ -1,14 +1,17 @@
 const respuestaM = require("../models/respuesta.model");
 
 exports.post_MailResponse = (request, response, next) => {
+
+  console.log(request.body);
+
   const resp = request.body;
+
   const respuesta = new respuestaM({
     nombre: resp.nombre,
     email: resp.email,
     mensaje: resp.mensaje,
-  });
+  });  
 
-  console.log(request.body);
   respuesta
     .save()
     .then(() => {

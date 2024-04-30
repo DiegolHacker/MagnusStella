@@ -219,7 +219,7 @@ AND fk_idmarca_producto = ? `;
 
   if (categoriaS !== "*") {
     query += `
-and p.categoria = ? `;
+and Categoria = ? `;
     parametros.push(categoriaS);
   }
 
@@ -248,7 +248,6 @@ AND idproducto = ? `;
     .execute(query, parametros)
     .then((resultContestadas) => {
       let resultado = resultContestadas[0][0]["avg(Puntaje)"];
-      // console.log("holaa")
       return resultado;
     })
     .catch((err) => {
