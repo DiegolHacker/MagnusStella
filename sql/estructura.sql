@@ -89,7 +89,7 @@ CREATE TABLE `marca` (
 
 LOCK TABLES `marca` WRITE;
 /*!40000 ALTER TABLE `marca` DISABLE KEYS */;
-INSERT INTO `marca` VALUES ('AR1','ARTI','https://logopond.com/logos/1dc04df6dc37355f5ce2d39bc984aa73.png',0),('LU1','LUUNAA','https://zeb-main-bucket.b-cdn.net/catalog-website/luuna.mx/group-186ad7c.svg?width=1600',0),('MA1','MAPPA','https://zeb-main-bucket.b-cdn.net/catalog-website/mappa.mx/mappa-logotipo_mesa-de-trabajo-1-4-.png?width=1600',0),('NO1','NOOZ','https://zeb-main-bucket.b-cdn.net/catalog-website/nooz.mx/nooz-header-logo.png?width=1600',0);
+INSERT INTO `marca` VALUES ('LU1','LUUNAA','https://zeb-main-bucket.b-cdn.net/catalog-website/luuna.mx/group-186ad7c.svg?width=1600',0),('MA1','MAPPA','https://zeb-main-bucket.b-cdn.net/catalog-website/mappa.mx/mappa-logotipo_mesa-de-trabajo-1-4-.png?width=1600',0),('NO1','NOOZ','https://zeb-main-bucket.b-cdn.net/catalog-website/nooz.mx/nooz-header-logo.png?width=1600',0),('NULL1','NONE','None',0);
 /*!40000 ALTER TABLE `marca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,11 +154,13 @@ DROP TABLE IF EXISTS `posee`;
 CREATE TABLE `posee` (
   `idrol` int NOT NULL,
   `idpermiso` int NOT NULL,
+  `pk` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`pk`),
   KEY `fk_idrol_posee_idx` (`idrol`),
   KEY `fk_idpermiso_posee_idx` (`idpermiso`),
   CONSTRAINT `fk_idpermiso_posee` FOREIGN KEY (`idpermiso`) REFERENCES `permiso` (`idPermiso`),
   CONSTRAINT `fk_idrol_posee` FOREIGN KEY (`idrol`) REFERENCES `rol` (`IDRol`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +169,7 @@ CREATE TABLE `posee` (
 
 LOCK TABLES `posee` WRITE;
 /*!40000 ALTER TABLE `posee` DISABLE KEYS */;
-INSERT INTO `posee` VALUES (0,0),(2,1),(1,1),(1,3),(3,1),(3,2);
+INSERT INTO `posee` VALUES (0,0,1),(2,1,2),(1,1,3),(1,3,4),(3,1,5),(3,2,6),(1,2,7);
 /*!40000 ALTER TABLE `posee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -691,4 +693,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-29 18:07:08
+-- Dump completed on 2024-04-29 20:04:55
