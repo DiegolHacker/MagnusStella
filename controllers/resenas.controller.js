@@ -140,48 +140,13 @@ exports.enviar_resenia = async (request, response, next) => {
         //Usamos main para enviar los correos
         async function main() {
 
-          html2 = `
-                  <form id="registerForm" action="https://magnusstellacore.laing.mx/respuesta/Mailresponse" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-          <div class="credential-input">
-            <label for="name">Nombre:</label>
-            <input type="text" name="name" id="username" placeholder="Ingresa tu nombre" required /><br />
-            <label for="email">Correo electronico:</label>
-            <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico" required /><br />
-            
-            <label for="password">Contrasena:</label>
-            <div class="passwordInput">
-              <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena" required /><br />
-              <button type="button" id="togglePasswordBtn" onclick="togglePassword()">
-                <i class="fa fa-eye" aria-hidden="true"></i>
-              </button>
-            </div>
-            <span id="passwordError" class="error"></span>
-
-            <br />
-            <label for="rol">Rol:</label>
-            <select name="rol" id="rol">
-              <option value="2">Analítica</option>
-              <option value="3">CRM</option>
-              <option value="1">Admin</option>
-            </select>
-          </div>
-
-          <label for="image"> Imagen:</label>
-          <input class="input" type="file" name="image" id="image" required />
-          <div class="ingresarBtn">
-            <button type="submit" class="ingresar-btn">Crear Usuario</button>
-          </div>
-        </form>
-          `
-
           // send mail with defined transport object
           const info = await transporter.sendMail({
 
             from: '"Forgot password" <tracpablo@gmail.com>', // sender address
             to: "a01710778@tec.mx", // list of receivers
             subject: "Intento1", // Subject line
-            html: html2,
+            html: template,
             attachments: [
               {
                 filename: "image.png",
