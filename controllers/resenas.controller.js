@@ -5,6 +5,7 @@ const ejs = require('ejs');
 
 //Definimos las variables para nodemailer
 const transporter = nodemailer.createTransport({
+  service: "Gmail",
   host: "smtp.gmail.com",
   port: 465,
   secure: true,

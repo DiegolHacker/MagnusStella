@@ -26,6 +26,6 @@ const respuestaM = require("../models/respuesta.model");
 //     });
 // };
 
-exports.post_MailResponse = (request, response, next) => {
+exports.post_MailResponse = async (request, response, next) => {
   console.log(request.body);
 };

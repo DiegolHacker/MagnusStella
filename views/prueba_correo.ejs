@@ -117,6 +117,7 @@
             <div>
                 
                 <form action="https://magnusstellacore.laing.mx/respuesta/Mailresponse" method="POST" enctype="multipart/form-data" class="contenido">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
 
                     <img src="cid:unique@nodemailer.com"  height="200" width="100%">
 
@@ -145,12 +146,11 @@
                     </div>
 
                     <h4><b>Título de tu reseña: </b></h4>
-                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         
                         <input type="text" id="title_rev" name="titulo_review" placeholder="Título" class="texto_rev"><br>
                     <h4><b>Reseña: </b></h4>
 
-                    <textarea class="texto_rev" name="descripcion_review" id="description_rev" cols="35" rows="4" placeholder="Escribe aquí tu reseña"></textarea>
+                    <input type="text" class="texto_rev" name="descripcion_review" id="description_rev" cols="35" rows="4" placeholder="Escribe aquí tu reseña">
                     
                     <div id="survey-form">
 
@@ -166,14 +166,14 @@
                                 </select>
                             <% } else if (tipos[i][0].tipo == 2) { %>
                                 <% opciones[i].forEach(opcion => { %>
-                                    <textarea class="texto_rev" name="answer-<%= preguntas[i].idPregunta %>" id="option-<%= opcion.idOpcion %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>"></textarea>
+                                    <input type="text" class="texto_rev" name="answer-<%= preguntas[i].idPregunta %>" id="option-<%= opcion.idOpcion %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>">
                                     <br>
                                 <% }); %>
                             <% } else if ( tipos[i][0].tipo == 3) { %>
                                 <p id="sub_question">Elige una o varias de las siguientes opciones</p>
                                 <% opciones[i].forEach(opcion => { %>
-                                    <input type="checkbox" id="option-<%= opcion.idOpcion %>" name="answer-<%= preguntas[i].idPregunta %>" value="<%= opcion.idOpcion %>">
                                     <label for="option-<%= opcion.idOpcion %>"><%= opcion.descripcion %></label><br>
+                                    <input type="checkbox" id="option-<%= opcion.idOpcion %>" name="answer-<%= preguntas[i].idPregunta %>" value="<%= opcion.idOpcion %>">
                                 <% }); %>
                             <% } %>
                         <% } %>
