@@ -211,7 +211,7 @@ ORDER BY
 
 exports.StarAvgNumber = (marca, categoriaS, productoS, startDate, endDate) => {
   let query = `SELECT avg(Puntaje)
-    FROM review r, venta v, producto
+    FROM review r, venta v, producto p
     WHERE r.fk_review_venta = v.idventa
     AND v.fk_venta_producto = idproducto
 AND fk_idmarca_producto = ? `;
