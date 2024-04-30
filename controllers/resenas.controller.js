@@ -190,7 +190,15 @@ exports.enviar_resenia = async (request, response, next) => {
 exports.post_visibilidad = (request, response, next) => {
   const nvisibilidad = request.body.visibilidad;
   const idrev = request.params.id;
-  Reviews.actualizarvisibilidad(idrev, nvisibilidad); //Toma el estado de la visibilidad del body y el id de la review a modificar del url.
+  Reviews.actualizarvisibilidad(idrev, nvisibilidad, (err, resenas) => {
+    if (err) {
+      console.log(err);
+      return response.status(500).json({ error: "Error al actualizar visibilidad" });
+    }
+    return response.status(200).json({ resenas: resenas });
+  }); //Toma el estado de la visibilidad del body y el id de la review a modificar del url.
+
+  
 };
 
 exports.get_resenas_f = (request, response, next) => {

@@ -20,9 +20,9 @@
         </form>
  
         <% for (var i = 0; i < total; i++) { %>
-            <div class="ques-container">
+            <div class="ques-container" id="ques_<%= idp[i].idPregunta%>"> 
                 <h3><%= preguntas[i].descripcion %><a href="/emails/correos/editar/<%= marca %>/<%= idp[i].idPregunta %>" class="settings" title="Editar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-edit-alt'></i></a>
-                    <a href="#" class="delete" title="Borrar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-trash'></i></a></h3>
+                    <a href="#" class="delete" id="delete-button_<%= idp[i].idPregunta%>" title="Borrar" data-placement="top" data-toggle="tooltip"><i class='bx bxs-trash'></i></a></h3>
             </div>
         <% } %>
 
@@ -92,26 +92,26 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    // Obtener todos los elementos con la clase "delete"
+    // Obtiene todos los botones con la clase delete.
     const deleteButtons = document.querySelectorAll('.delete');
 
-    // Iterar sobre cada botón de borrado
+    // Itera en cada botón.
     deleteButtons.forEach(button => {
-        // Agregar un listener para el evento de clic
-        button.addEventListener('click', function(event) {
-            event.preventDefault(); // Evitar el comportamiento predeterminado del enlace
 
-            // Mostrar una ventana de confirmación
+        // Al hacer click en el botón:
+        button.addEventListener('click', function(event) {
+               
+            event.preventDefault(); // Evitar el comportamiento predeterminado del enlace.
+            // Mostrar ventana de confirmación.
             const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta pregunta?');
 
-            // Si el usuario confirma la eliminación
             if (confirmDelete) {
-                // Obtener el ID de la pregunta desde el atributo "data-id"
-                const preguntaId = this.dataset.id;
-
-                // Llamar a la función delete del modelo con el ID de la pregunta
-                if (preguntaId) {
-                    deletePregunta(preguntaId);
+                // Obtener el ID de la pregunta .
+                const idPregunta = this.id.split("_")[1];  
+                if (idPregunta) {
+                    deletePregunta(idPregunta); //Borra la pregunta en la db.
+                    const pregunta = document.getElementById('ques_' + idPregunta); //Borra la pregunta en el html.
+                    pregunta.remove();
                 }
             }
         });
@@ -119,15 +119,16 @@
 });
 
 // Función para llamar a la función delete del modelo
-async function deletePregunta(id) {
+async function deletePregunta(idP) {
     try {
-        const response = await fetch(`/delete/${id}`, {
-            method: 'DELETE'
+        const response = await fetch(`/emails/delete/${idP}`, { //Manda a llamar un método delete en esta ruta.
+            method: 'DELETE',
+            headers: {
+                    "Content-Type": "application/json",
+                    'X-CSRF-Token': '<%= csrfToken %>' 
+            },
         });
-
         if (response.ok) {
-            // Recargar la página o actualizar la lista de preguntas
-            location.reload();
         } else {
             console.error('Error al eliminar la pregunta:', response.statusText);
         }
@@ -135,6 +136,8 @@ async function deletePregunta(id) {
         console.error('Error al eliminar la pregunta:', error);
     }
 }
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
     const btnEnviarDias = document.getElementById('btn-enviar-dias');

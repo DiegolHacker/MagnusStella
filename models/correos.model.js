@@ -109,20 +109,22 @@ module.exports = class Correos {
     );
   }
 
-  static async delete(id) {
+  static async delete(idPregunta) {
     try {
-      await db.execute("DELETE FROM opciones WHERE fk_opciones_pregunta=?", [
-        id,
-      ]);
-
-      const result = await db.execute(
-        "DELETE FROM pregunta WHERE idPregunta=?",
-        [id]
+      const [result] = await db.execute( //Asigna la marca de la pregunta a la marca NULL1.
+        `UPDATE pregunta 
+        SET fk_pregunta_idmarca = "NULL1"  
+        WHERE idPregunta = ?`,
+        [idPregunta]
       );
 
-      return result;
+      if (result.affectedRows > 0) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
-      console.log("Error eliminando pregunta y opciones:", error);
+      console.error("Error al eliminar la pregunta:", error); //Si no se afecto ninguna columna, se regresa un error.
       throw error;
     }
   }
