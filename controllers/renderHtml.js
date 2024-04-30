@@ -59,9 +59,10 @@ exports.post_editar = (request, response, next) => {
   var password = request.body.password || "";
   var IdRol = request.body.idrol || "";
   var idUser = request.body.uIdusuario || "";
+  var Estado = request.body.estado
   // const correos = require("../app.js/")
 
-  Usuarios.saveUsernameChanges(IdRol, password, correo, idUser)
+  Usuarios.saveUsernameChanges(IdRol, password, correo, idUser, Estado)
     .then(() => {
       console.log("Guardado");
       response.redirect("/usuarios/1/LU1");

@@ -34,13 +34,13 @@
   --backGroundColor: #fbfafa;
   --line-color-1: #2e3d50;
   --boxShadow2: rgba(0, 0, 0, 0.2);
-  --help-card-color: #eaf0f8;
+  --help-card-color: #d2ddeb;
   --disabled-color: #47688a;
   --title-color: #2e3d50;
   --title-color-hover: #557196;
   --delete-color: #c54b61;
   --delete-color-hover: #eb7d91;
-
+  --expand-menu: #c0cfe2;
   /* Transition */
   --tran-02: all 0.0s ease;
   --tran-03: all 0.0s ease;
@@ -89,6 +89,7 @@ body.dark {
   --title-color-hover: #c0d1e7;
   --delete-color: #c54b61;
   --delete-color-hover: #eb7d91;
+  --expand-menu: #c5c5c5;
 }
 
 .side_bar.close {
@@ -185,7 +186,7 @@ header .image-text .header-text {
   transform: translateY(-50%);
   height: 30px;
   width: 30px;
-  background: var(--side-nav);
+  background: var(--expand-menu);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,10 +219,11 @@ header .image-text .header-text {
 }
 
 .side_bar .menu-bar {
-  height: calc(100% - 50px);
+  /* height: calc(100% - 50px); */
+  height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .menu-bar .darkLight-profile {
@@ -354,7 +356,14 @@ nav .nav-bar .logo a {
   font-size: 22px;
   cursor: pointer;
 }
-
+.icono {
+  position: absolute;
+  color: var(--text-color-up);
+  font-size: 22px;
+  cursor: pointer;
+  padding-top: 50px;
+  padding-left: -10px;
+}
 .dark-light i.sun {
   opacity: 0;
   pointer-events: none;
@@ -576,6 +585,9 @@ footer {
 }
 
 .buttons .icon {
+  font-size: 20px;
+}
+.icono {
   font-size: 20px;
 }
 
