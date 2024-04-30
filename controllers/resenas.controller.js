@@ -156,8 +156,6 @@ exports.enviar_resenia = async (request, response, next) => {
 
           });
 
-
-          console.log("Message sent: %s", info.messageId);
           // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
         }
 
@@ -180,6 +178,7 @@ exports.enviar_resenia = async (request, response, next) => {
       idp: idp,
       total_opciones: total_opciones,
       permisos: request.session.permisos || [],
+      
     });
   } catch (error) {
     console.error("Error al cargar las preguntas:", error);
