@@ -1,24 +1,25 @@
-const express = require("express"); 
+const express = require("express");
 const app = express();
-const passport = require('passport');
-require('./passportSetup');
+const passport = require("passport");
+require("./passportSetup");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const session = require('express-session');
+const session = require("express-session");
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin");
   next();
 });
 
-
-app.use(session({
+app.use(
+  session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-}));
+  })
+);
 
 //passportjs para usar google login
 app.use(passport.initialize());
@@ -28,27 +29,26 @@ const path = require("path");
 app.use(express.static(path.join(__dirname, "/public")));
 
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
-const multer = require('multer');
+const multer = require("multer");
 //fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
 const fileStorage = multer.diskStorage({
   destination: (request, file, callback) => {
-      //'public/uploads': Es el directorio del servidor donde se subirán los archivos 
-      callback(null, 'public/uploads');
+    //'public/uploads': Es el directorio del servidor donde se subirán los archivos
+    callback(null, "public/uploads");
   },
   filename: (request, file, callback) => {
-      //aquí configuramos el nombre que queremos que tenga el archivo en el servidor, 
-      //para que no haya problema si se suben 2 archivos con el mismo nombre concatenamos el timestamp
-      callback(null, file.originalname);
+    //aquí configuramos el nombre que queremos que tenga el archivo en el servidor,
+    //para que no haya problema si se suben 2 archivos con el mismo nombre concatenamos el timestamp
+    callback(null, file.originalname);
   },
 });
-app.use(multer({ storage: fileStorage }).single('image'));
+app.use(multer({ storage: fileStorage }).single("image"));
 
 //---------------------------------------------------Nodemailer--------------------------------------------------
-
 
 // const nodemailer = require("nodemailer");
 
@@ -97,9 +97,9 @@ app.use('/api', routesZecore);
 app.use('/respuesta', routesRespuesta)
 
 //PROTECCION CONTRA CROSS-SITE REQUEST FORGERY
-const csrf = require('csurf');
+const csrf = require("csurf");
 const csrfProtection = csrf();
-app.use(csrfProtection); 
+app.use(csrfProtection);
 
 //FIN CSRF
 
@@ -120,14 +120,19 @@ app.use('/graphics', routesGraphics);
 app.use('/ayuda', routesAyuda);
 app.use("/", routesAplicacionResenas);
 
-app.use((request,response,next) => {
-    response.status(404);
-    const marca = request.params.marca;
-    response.render("404", {titulo: 'Error 404', modo: request.getMode, marca:marca || "LU1", ruta: "/graphics/dashboard", permisos: request.session.permisos || [] })
+app.use((request, response, next) => {
+  response.status(404);
+  const marca = request.params.marca;
+  response.render("404", {
+    titulo: "Error 404",
+    modo: request.getMode,
+    marca: marca || "LU1",
+    ruta: "/graphics/dashboard",
+    permisos: request.session.permisos || [],
+  });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Servidor corriendo en puerto: ${PORT}`)
+  console.log(`Servidor corriendo en puerto: ${PORT}`);
 });
-

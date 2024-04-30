@@ -7,10 +7,50 @@
 </head>
 
 <div id="search-autocomplete" class="form-outline" data-mdb-input-init>
-  <input type="search" id="buscar" class="form-control" placeholder="Busca tu producto"/>
-  <button type="button" class="btn btn-primary" data-mdb-ripple-init>
-      <i class="fas fa-search"></i>
-  </button>
+    <div class="cat-search">
+        <button id="open_ModalBtn2" >Filtros</button>
+    
+        <div id="myModal2" class="modal2">
+          <div class="modal-content2">
+            <h2>Filtros</h2>
+            <form action="<%=ruta%>/<%=marca%>" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <div class="input-product">
+                <div class="inputFilter">
+                  <label for="orden">Ordenar por: </label>
+                  <select name="orden">
+                    <option value="ascendente">
+                    Puntaje más bajo
+                  </option>
+                  <option value="descendente">
+                    Puntaje más alto
+                  </option>
+                  </select>
+
+                  
+                </div>
+    
+                <div class="inputFilter">
+                  <label for="startDate">Fecha de inicio</label>
+                  <input type="date" name="startDate" id="dateFilter" />
+                </div>
+    
+                <div class="inputFilter">
+                  <label for="endDate">Fecha final</label>
+                  <input type="date" name="endDate" id="dateFilter" />
+                </div>
+    
+                <button type="submit" class="ingresar-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    
+    <input type="search" id="buscar" class="form-control" placeholder="Busca tu producto"/>
+    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+        <i class="fas fa-search"></i>
+    </button>
 </div>
 
 <div id="respuesta_ajax" class="respuesta_ajax">
@@ -18,7 +58,7 @@
         <% resenas.forEach(function(resena, index) { %>
         <div class="item-container">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <a href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
+            <a id="nombre-resena" href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
             <img src="/images/<%= marca %>/<%= resena.itemcode %>.jpg" class="img_producto">
             <div class="estrellas">
                 <% for (var i = 0; i < 5; i++) { %>
@@ -61,6 +101,9 @@
 </div>
 
 <script>
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"
     
   const accion_asincrona = () => {
       console.log('Buscando...');
@@ -143,8 +186,42 @@
         });
     });
 
+
+let modal2 = document.getElementById("myModal2");
+
+// Get the button that opens the modal
+let btn2 = document.querySelector("#open_ModalBtn2")
+
+// Get the <span> element that closes the modal
+let span2 = document.getElementsByClassName("close")[0];
+
+btn2.onclick = function () {
+    console.log("click");
+    modal2.style.display = "block";
+  };
+
+  span2.onclick = function () {
+    modal2.style.display = "none";
+  };
+
+  // Cuando el usuario hace clic en cualquier lugar fuera del modal, ciérralo
+  window.onclick = function (event) {
+    if (event.target == modal2) {
+      modal2.style.display = "none";
+    }
+  };
+
+  // Cuando el usuario presiona la tecla Escape, cierra el modal
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      modal2.style.display = "none";
+    }
+  });
+
 </script>
 
 
 
-<%- include('includes/footer.ejs') %>
+<%-include('includes/footer.ejs')%>
+
+
