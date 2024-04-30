@@ -171,15 +171,15 @@ module.exports = class Usuarios {
     }
   }
 
-  static saveUsernameChanges(IdRol, Contrasena, Correo, idUsuario) {
+  static saveUsernameChanges(IdRol, Contrasena, Correo, idUsuario, estado) {
     if (Contrasena != "") {
       return bcrypt
         .hash(Contrasena, 12)
         .then((hashedPassword) => {
           Contrasena = hashedPassword;
           return db.execute(
-            "UPDATE usuario SET IDRol = ?, Password = ?, Correo = ? WHERE (idUsuario = ?)",
-            [IdRol, Contrasena, Correo, idUsuario]
+            "UPDATE usuario SET IDRol = ?, Password = ?, Correo = ?, Estado = ? WHERE (idUsuario = ?)",
+            [IdRol, Contrasena, Correo, idUsuario, estado]
           );
         })
         .then(([result]) => {

@@ -102,6 +102,13 @@ module.exports = class Correos {
     );
   }
 
+  static savedias(marca, dias) {
+    return db.execute(
+      "UPDATE marca SET Dias = ? WHERE (idMarca = ?)",
+      [dias, marca]
+    );
+  }
+
   static async delete(id) {
     try {
       await db.execute("DELETE FROM opciones WHERE fk_opciones_pregunta=?", [
