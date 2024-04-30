@@ -140,7 +140,7 @@ exports.enviar_resenia = async (request, response, next) => {
         async function main() {
 
           html2 = `
-                  <form id="registerForm" action="http://localhost:3000/respuesta/Mailresponse" method="POST" enctype="multipart/form-data">
+                  <form id="registerForm" action="https://magnusstellacore.laing.mx/respuesta/Mailresponse" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <div class="credential-input">
             <label for="name">Nombre:</label>
