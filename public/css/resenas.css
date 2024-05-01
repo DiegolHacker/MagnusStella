@@ -34,11 +34,12 @@ body {
   padding-top: 16px;
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background: var(--body-color);
-  align-items: end;
+  align-items: center;
   border-radius: 5px;
   padding: auto right;
+  justify-content: space-between;
 }
 
 .switch-checkbox input {
