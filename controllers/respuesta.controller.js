@@ -31,7 +31,7 @@ exports.post_MailResponse = async (request, response, next) => {
   rating = resp.rate;
   title = resp.titulo_review;
   desc = resp.descripcion_review;
-  idventa = 38;//resp.idVenta;
+  idventa = resp.idVenta;
   obj = new respuestaM()
   idrev = await obj.CreateReview(idventa,desc,title,rating);
   for (const clave in resp){
