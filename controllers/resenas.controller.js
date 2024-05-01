@@ -54,6 +54,7 @@ exports.get_resenas = (request, response, next) => {
       estrellas: resena.puntaje,
       itemcode: resena.idProducto,
       visibilidad: resena.visible,
+      fecha: resena.fecha,
     }));
 
     response.render("resenas", {
@@ -71,12 +72,13 @@ exports.get_resenas = (request, response, next) => {
 exports.get_buscar = (request, response, next) => {
   const marca = request.params.marca;
   const valor_busqueda = request.params.valor_busqueda;
+  const permisos = request.session.permisos || [];
   Reviews.search(valor_busqueda, marca, (err, resenas) => {
     if (err) {
       console.log(err);
       return response.status(500).json({ error: "Error al buscar reseñas" });
     }
-    return response.status(200).json({ resenas: resenas });
+    return response.status(200).json({ resenas: resenas, permisos:permisos });
   });
 };
 
