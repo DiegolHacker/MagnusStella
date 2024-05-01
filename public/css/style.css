@@ -531,11 +531,6 @@ footer {
   align-items: center;
 }
 
-/*Pagina reseñas*/
-.container {
-  margin-top: -250px;
-}
-
 /*Pagina usuario*/
 
 .container-fluid {
@@ -746,12 +741,7 @@ table.table .avatar {
 }
 
 /* review completa */
-.container {
-  margin-top: 40px;
-  background-color: var(--toggle-color);
-  color: var(--text-color_rev);
-  overflow: auto;
-}
+
 
 .contenido {
   padding: 10pt;

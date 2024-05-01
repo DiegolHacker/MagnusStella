@@ -69,7 +69,8 @@ module.exports = class Reviews {
             END, ", ",
             DATE_FORMAT(r.Fecha, '%Y')) AS fecha,
             r.Descripcion AS descripcion_resena,
-            r.idReview AS id_review_resena,
+            r.idReview AS id_resena,
+            r.Visibilidad AS visibilidad,
             pre.Descripcion AS pregunta,
             resp.Descripción AS respuesta,
             p.FK_idMarca_Producto AS marca
