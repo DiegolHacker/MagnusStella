@@ -117,12 +117,13 @@
             <div>
                 
                 <form action="https://magnusstellacore.laing.mx/respuesta/Mailresponse" method="POST" enctype="multipart/form-data" class="contenido">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" name="idVenta" value="<%= idVenta %>">
+                    <input type="hidden" name="marca" value="<%= marca %>">
 
                     <img src="cid:unique@nodemailer.com"  height="200" width="100%">
 
-                    <h4><b>Hola user,</b></h4>
-                    <p id="sub_question">Has comprado recientemente 'producto' <br> ¿Nos cuentas tu experiencia?</p>
+                    <h4><b>Hola <%= nombreCliente %>,</b></h4>
+                    <p id="sub_question">Has comprado recientemente <%= nombreProducto %> <br> ¿Nos cuentas tu experiencia?</p>
 
                     <div class="rating-box">
                         <h5 id="question_text"><b>¿Cuál es su calificación general?</b></h5>
