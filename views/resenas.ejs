@@ -70,27 +70,13 @@
                   <% } %>
               </div>
               <p id="sub_question"><%= resena.resena_descrip %></p> 
-              
-              <% let editable = false %>
-              <% for (let permiso of permisos) { %> 
-                  <% if (permiso.funcion =="editar") { %>
-                      <% editable = true %>
-                  <% } %>
-              <% } %>
-              <% if (editable) { %>
-                  <div class="switch-checkbox">
-                      <p id="fecha"><%= resena.fecha %></p>
-                      <input type="checkbox" id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
-                      <label for="visibilidadCheckbox" class="text"></label> 
-                  </div>
-              <% } %>
-              <% if (!editable) { %>
-                  <div class="switch-checkbox deshabilitado">
-                      <p id="fecha"><%= resena.fecha %></p>
-                      <input type="checkbox" disabled id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
-                      <label for="visibilidadCheckbox" class="text"></label>
-                  </div>
-              <% } %>
+
+                <div class="switch-checkbox deshabilitado">
+                    <p id="fecha"><%= resena.fecha %></p>
+                    <input type="checkbox" disabled id="visibilidadCheckbox_<%= resena.id%>" <% if (resena.visibilidad == 0) { %> checked <% } %> > 
+                    <label for="visibilidadCheckbox" class="text"></label>
+                </div>
+
               
               <body data-marca="<%= marca %>">   
               
@@ -154,41 +140,6 @@
     };
     
     document.getElementById('buscar').onkeyup = accion_asincrona;
-    document.querySelectorAll("[id^='visibilidadCheckbox']").forEach(checkbox => {
-        // Función asociada al cambio de checkbox
-    });
-
-    // Agrega esta línea para acceder a los permisos
-  
-  //   Dentro del event listener de "DOMContentLoaded"
-      document.querySelectorAll("[id^='visibilidadCheckbox']").forEach(checkbox => {
-          checkbox.addEventListener("change", function() {
-            
-              const idReview = this.id.split("_")[1]; // Obtener el ID de la reseña a partir del ID del checkbox 
-              const nuevaVisibilidad = this.checked ? 0 : 1;
-          
-              fetch('/reviews/resenas/visibilidad/' + idReview, { // Hace un post asociado a /visibilidad, actualiza la visibilidad.
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json",
-                      'X-CSRF-Token': '<%= csrfToken %>' 
-                      
-                  },
-                  body: JSON.stringify({ visibilidad: nuevaVisibilidad }),
-              })
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error("Error al actualizar la visibilidad");
-                  }
-  
-              })
-              .catch(error => {
-                  console.error("Error:", error);
-                  this.checked = !this.checked; //Si hay un error, revierte el estado del checkbox.
-              });
-          });
-      });
-  
   
   let modal2 = document.getElementById("myModal2");
   

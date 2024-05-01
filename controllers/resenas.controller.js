@@ -30,7 +30,7 @@ exports.get_resenas_completas = (request, response, next) => {
 
     // Renderiza la vista de la reseña completa y pasa los datos de la reseña
     response.render("resenas_completas", {
-      resenas: resenaCompleta,
+      resena: resenaCompleta,
       titulo: "Reseña Completa",
       marca: marca || "LU1",
       csrfToken: request.csrfToken(),
