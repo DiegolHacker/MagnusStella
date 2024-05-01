@@ -34,14 +34,22 @@ exports.post_MailResponse = async (request, response, next) => {
   idventa = 38;//resp.idVenta;
   obj = new respuestaM()
   idrev = await obj.CreateReview(idventa,desc,title,rating);
-  console.log('IDREVIEW = '+ idrev)
   for (const clave in resp){
-    if (!isNaN(clave)){
-      const idPregunta = parseInt(clave)
-      obj.AddResponse(idrev, resp[clave], idPregunta);
-      console.log(resp[clave])
+    console.log(clave)
+    if (clave.startsWith('answer_')){
+      const idPregunta = parseInt(clave.split('_')[1]);
+      const respuestas = resp[clave];
+
+      if(Array.isArray(resp[clave])){
+        for (const respuesta of respuestas){
+          obj.AddResponse(idrev,respuesta,idPregunta);
+        }
+    }
+    else{
+      obj.AddResponse(idrev,respuestas,idPregunta);
     }
   }
+}
   console.log('FIN')
   response.redirect("/");
   console.log(request.body);
