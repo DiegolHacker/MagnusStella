@@ -115,6 +115,16 @@ body.dark a.delete:link:hover {
   color: var(--delete-color-hover);
 }
 
+body.dark a.delete:visited {
+  text-decoration: none;
+  color: var(--delete-color);
+}
+
+body.dark a.delete:visited:hover {
+  text-decoration: none;
+  color: var(--delete-color-hover);
+}
+
 body.dark a.settings:link {
   text-decoration: none;
   color: var(--highlight);
