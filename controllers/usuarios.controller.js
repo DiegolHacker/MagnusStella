@@ -99,7 +99,7 @@ exports.post_signup = (request, response, next) => {
   const marca = request.params.marca;
   const { name, email, password } = request.body;
   const IdRol = request.body.rol;
-  const image = request.file.filename;
+  const image = request.file?.filename || "default.png";
 
   if (!name || !password || !email) {
     return response.render("signup", {
