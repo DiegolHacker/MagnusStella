@@ -17,7 +17,15 @@ module.exports = class Reviews {
             r.idReview AS idreview, 
             r.Descripcion AS descripcion, 
             r.Titulo AS titulo, 
-            DATE_FORMAT(r.Fecha, '%d %b, %Y') AS fecha, 
+            CONCAT(DATE_FORMAT(r.Fecha, '%d'), " ",
+            CASE
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Jan' THEN 'Ene'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Apr' THEN 'Abr'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Aug' THEN 'Ago'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Dec' THEN 'Dic'
+              ELSE DATE_FORMAT(r.Fecha, '%b') 
+            END, ", ",
+            DATE_FORMAT(r.Fecha, '%Y')) AS fecha,
             r.Puntaje AS puntaje, 
             r.Visibilidad AS visible,
             v.Fk_Venta_Producto AS idProducto
@@ -31,7 +39,6 @@ module.exports = class Reviews {
 	
 		WHERE 
 			  p.FK_idMarca_Producto = ? `;
-
     db.execute(query, [marca])
       .then(([rows]) => {
         callback(null, rows);
@@ -52,7 +59,15 @@ module.exports = class Reviews {
             p.nombre AS nombre_producto,
             r.Puntaje AS estrellas_resena,
             r.Titulo AS titulo_resena,
-            DATE_FORMAT(r.Fecha, '%d %b, %Y') AS fecha, 
+            CONCAT(DATE_FORMAT(r.Fecha, '%d'), " ",
+            CASE
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Jan' THEN 'Ene'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Apr' THEN 'Abr'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Aug' THEN 'Ago'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Dec' THEN 'Dic'
+              ELSE DATE_FORMAT(r.Fecha, '%b') 
+            END, ", ",
+            DATE_FORMAT(r.Fecha, '%Y')) AS fecha,
             r.Descripcion AS descripcion_resena,
             r.idReview AS id_review_resena,
             pre.Descripcion AS pregunta,
@@ -74,7 +89,6 @@ module.exports = class Reviews {
 
         WHERE
             r.idReview = ?`;
-
     db.execute(query, [idReview])
       .then(([rows]) => {
         if (rows.length > 0) {

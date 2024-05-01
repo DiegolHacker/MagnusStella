@@ -1460,3 +1460,7 @@ label {
   border-bottom-right-radius: 0px;
   margin-right: 1.7px;
 }
+
+#fecha_c{
+  text-align: right;
+}
