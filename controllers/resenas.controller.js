@@ -97,6 +97,7 @@ exports.enviar_resenia = async (request, response, next) => {
     const tipos = [];
     const opciones = [];
     const total_opciones = [];
+    console.log(preguntas)
     for (let i = 0; i < total; i++) {
       const tipo = await Correos.emailtipo_pre(idp[i].idPregunta);
       const opcion = await Correos.emailopciones(idp[i].idPregunta);
@@ -105,6 +106,21 @@ exports.enviar_resenia = async (request, response, next) => {
       opciones.push(opcion);
       total_opciones.push(to_opcion);
     }
+
+    console.log("Esto es lo que tiene preguntas")
+    console.log(preguntas)
+    console.log("====================================================================================")
+    console.log("Esto es lo que tiene idp")
+    console.log(idp)
+    console.log("====================================================================================")
+    console.log("Esto es lo que tiene tipos")
+    console.log(tipos)
+    console.log("====================================================================================")
+    console.log("Esto es lo que tiene opciones")
+    console.log(opciones)
+    console.log("====================================================================================")
+    console.log("Esto es lo que tiene total_opciones")
+    console.log(total_opciones)
 
     console.log('Antes de ejs')
     //Renderizamos el template del ejs
