@@ -596,7 +596,7 @@ footer {
   position: relative;
   float: top;
   margin-top: 2px;
-  font-size: 10px;
+  font-size: 10pt;
 }
 
 .table-wrapper {
@@ -1178,7 +1178,7 @@ label {
 }
 
 .cat-btn {
-  background-color: var(--backGroundColor);
+  background-color: var(--help-card-color);
   color: var(--search-text);
   padding: 16px;
   font-size: 16px;
@@ -1248,7 +1248,7 @@ label {
 #openModalBtn-active:hover,
 #openModalBtn:hover {
   background-color: var(--nav-color);
-  color: var(--search-bar);
+  color: #fff;
 }
 
 /* Imagenes */
@@ -1278,7 +1278,7 @@ label {
 #openModalBtn-active {
   outline: none;
   border: none;
-  background-color: var(--backGroundColor);
+  background-color: var(--help-card-color);
   /* background-color: #2e7d32; */
   color: var(--search-text);
   font-size: 16px;
