@@ -22,4 +22,29 @@ module.exports = class Respuesta{
         }
 
     }
+
+    async CreateReview(idv,desc,tit,rat){
+        console.log('Creando una review...')
+        try {
+            const result = await db.execute('insert into review (Fk_Review_Venta, Descripcion, Titulo, Fecha, Puntaje) values (?, ?, ?, NOW(), ?)',
+            [idv,desc,tit,rat]);
+            console.log('Se creo la review');
+            const insertPromise = result[0].insertId;
+            const insertid = await insertPromise;
+            return insertid
+        } catch (error) {
+            console.log('Error al crear review: '+error);
+        }
+    }
+    async AddResponse(idReview, desc, idpregunta){
+        console.log('Insertando respuestas...');
+        try {
+            const result = await db.execute('insert into respuestas (fk_respuestas_review, Descripción, fk_respuestas_pregunta) values (?,?,?)',
+            [idReview,desc,idpregunta]);
+            console.log('Se añadió la respuesta');
+            return result;
+        } catch (error) {
+            console.log('Error al insertar respuesta: '+error);
+        }
+    }
 }

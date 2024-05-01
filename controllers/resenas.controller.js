@@ -159,8 +159,8 @@ exports.enviar_resenia = async (request, response, next) => {
           // send mail with defined transport object
           const info = await transporter.sendMail({
 
-            from: '"Forgot password" <tracpablo@gmail.com>', // sender address
-            to: "tracpablo@gmail.com", // list of receivers
+            from: '"Forgot password" <a01705408@tec.mx>', // sender address
+            to: "a01705408@tec.mx", // list of receivers
             subject: "Intento1", // Subject line
             html: template,
             attachments: [
