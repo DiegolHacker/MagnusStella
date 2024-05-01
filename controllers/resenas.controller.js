@@ -81,7 +81,7 @@ exports.get_buscar = (request, response, next) => {
   });
 };
 
-//---------------------------------------------------------------Enviar Correos -----------------------------
+//---------------------------------------------------------------Enviar Correos ---------------------------------------------------
 
 exports.enviar_resenia = async (request, response, next) => {
   const marca = request.params.marca;

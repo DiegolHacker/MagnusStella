@@ -160,7 +160,7 @@
                             <% if (tipos[i][0].tipo == 1) { %>
                                 <p id="sub_question">Elige una de las siguientes opciones</p>
                                 <% console.log(idp[i].idPregunta) %>
-                                <select name='<%= idp[i].idPregunta %>''>
+                                <select name='answer_<%= idp[i].idPregunta %>''>
                                     <% opciones[i].forEach(opcion => { %>
                                         <% console.log(opcion.idopciones)%>
                                         <option value="<%= opcion.descripcion %>"><%= opcion.descripcion %></option>
@@ -169,14 +169,14 @@
                             <% } else if (tipos[i][0].tipo == 2) { %>
                                 <% opciones[i].forEach(opcion => { %>
                                     <% console.log(opcion.idopciones)%>
-                                    <input type="text" class="texto_rev" name='<%= idp[i].idPregunta %>' id="option-<%= opcion.idopciones %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>">
+                                    <input type="text" class="texto_rev" name='answer_<%= idp[i].idPregunta %>' id="option-<%= opcion.idopciones %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>">
                                     <br>
                                 <% }); %>
                             <% } else if ( tipos[i][0].tipo == 3) { %>
                                 <p id="sub_question">Elige una o varias de las siguientes opciones</p>
                                 <% opciones[i].forEach(opcion => { %>
                                     <% console.log(opcion.idopciones)%>
-                                    <input type="checkbox" id="option-<%= opcion.idopciones %>" name='<%= idp[i].idPregunta %>' value="<%= opcion.descripcion %>">
+                                    <input type="checkbox" id="option-<%= opcion.idopciones %>" name='answer_<%= idp[i].idPregunta %>' value="<%= opcion.descripcion %>">
                                     <label for="option-<%= opcion.idopciones %>"><%= opcion.descripcion %></label><br>                                    
                                 <% }); %>
                             <% } %>
