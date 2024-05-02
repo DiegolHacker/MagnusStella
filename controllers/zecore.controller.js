@@ -10,6 +10,7 @@ exports.validateToken = (req, res, next) => {
   // token ok, seguir
   next();
 };
+
 exports.post_ModifyProduct = (request, response, next) => {
   const MP = request.body;
   const ModifyProduct = new ZecoreProductHelper();
@@ -53,15 +54,15 @@ exports.post_NewProduct = (request, response, next) => {
     });
 };
 
-exports.post_venta = (request, response, next) => {
+exports.post_venta = async (request, response, next) => {
   const data = request.body;
-  const { Cliente, Producto_id, Fecha, SalesON } = data;
-  console.log('sata '+ data);
-  console.log('req '+ request.body)
-  const venta = new ZecoreSaleHelper(Cliente, Producto_id, Fecha, SalesON);
-  console.log(venta);
-  venta
-    .RegistrarVenta()
+  const { Cliente, Nombre, Correo, Producto_id, Fecha, SalesON} = data;
+  const venta = new ZecoreSaleHelper(Cliente,Nombre,Correo, Producto_id, Fecha, SalesON);
+  let x= await venta.FindCliente()
+  if(x === true){
+    await venta.AddCliente();
+  }
+  await venta.RegistrarVenta()
     .then(() => {
       return response.status(200).json({
         message: "Hemos recibido la información",
@@ -73,6 +74,4 @@ exports.post_venta = (request, response, next) => {
         .status(500)
         .json({ message: "Error al recibir la información" });
     });
-
-  //incluir lo de correos
 };

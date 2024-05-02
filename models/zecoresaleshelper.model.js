@@ -1,11 +1,37 @@
 const db = require("../util/database");
 
 module.exports = class ZecoreSalesHelper {
-  constructor(Cliente_nom, Producto_id, Fecha, SalesOrdernum) {
-    this.Cliente_nom = Cliente_nom;
+  constructor(Clienteid,nom,correo, Producto_id, Fecha, SalesOrdernum) {
+    this.Cliente_nom = Clienteid;
+    this.nom = nom;
+    this.correo = correo;
     this.Producto_id = Producto_id;
     this.Fecha = Fecha;
     this.SalesOrdernum = SalesOrdernum;
+  }
+
+  async FindCliente(){
+    try{
+      const result = await db.execute('select idCliente from cliente where idCliente = ?',[this.Cliente_nom]);
+      if(result.length > 0){
+        return true;
+      }else{
+        return false;
+      }
+    } catch (error){
+      console.error('Error al acceder a la base de datos: '+ error);
+    }
+  }
+
+  async AddCliente(){
+    try{
+      const result = await db.execute('insert into cliente (idCliente,nombre,Correo) values (?,?,?)',
+      [this.Cliente_nom,this.nom,this.correo]);
+      console.log("Se agregó el cliente con éxito");
+      return result;
+    } catch (error){
+      console.error('Error al acceder a la base de datos: '+ error);
+    }
   }
 
   async RegistrarVenta() {

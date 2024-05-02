@@ -26,25 +26,37 @@ exports.post_login = (request, response, next) => {
   Usuarios.findByEmail(email)
     .then((user) => {
       if (user) {
-        bcrypt
+          bcrypt
           .compare(password, user.user.contrasena)
           .then((doMatch) => {
             if (doMatch) {
-              Usuarios.getPermisos(email)
-                .then(([permisos, fieldData]) => {
-                  request.session.isLoggedIn = true;
-                  request.session.permisos = permisos;
-                  request.session.user = user;
-                  return request.session.save((err) => {
-                    response.redirect("/");
+              if (user.user.estado == 1) {
+                Usuarios.getPermisos(email)
+                  .then(([permisos, fieldData]) => {
+                    request.session.isLoggedIn = true;
+                    request.session.permisos = permisos;
+                    request.session.user = user;
+                    return request.session.save((err) => {
+                      response.redirect("/");
+                    });
+                  })
+                  .catch((error) => {
+                    console.error("error en permisos");
+                    console.log(error);
                   });
-                })
-                .catch((error) => {
-                  console.log("error en permisos");
-                  console.log(error);
-                });
+              } else {
+                console.error("Usuario Inactivo");
+                response.render("login", { 
+                  error: "Usuario Inactivo",
+                  csrfToken: request.csrfToken(),
+                  });
+              }
             } else {
-              response.redirect("/users/login");
+              console.error("Contraseña inválida", err);
+              response.render("login", {
+                error: "Usuario o contrasena no son validas",
+                csrfToken: request.csrfToken(),
+              });
             }
           })
           .catch((err) => {
@@ -58,13 +70,16 @@ exports.post_login = (request, response, next) => {
       } else {
         console.log("error else");
         response.redirect("/users/login");
-        response.render("login", { error: "Usuario no existe" });
+        response.render("login", {
+          error: "Usuario o contrasena no son validas" ,
+          csrfToken: request.csrfToken(),
+        });
       }
     })
     .catch((err) => {
       console.error("Error during login", err);
       response.render("login", {
-        error: "Usuario no existe",
+        error: "Usuario o contrasena no son validas",
         csrfToken: request.csrfToken(),
       });
     });
