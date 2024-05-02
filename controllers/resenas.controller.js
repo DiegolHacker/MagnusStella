@@ -110,7 +110,6 @@ exports.enviar_resenia = async (
     const tipos = [];
     const opciones = [];
     const total_opciones = [];
-    console.log(preguntas)
     for (let i = 0; i < total; i++) {
       const tipo = await Correos.emailtipo_pre(idp[i].idPregunta);
       const opcion = await Correos.emailopciones(idp[i].idPregunta);
