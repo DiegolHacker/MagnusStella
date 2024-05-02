@@ -45,6 +45,7 @@
   --button-color: #cecece;
   --button-color-hover: #adadad;
   --written-input-color: #f8fafc;
+  --written-input-color-hover: #d4d7da;
   --forms-color:#e9f2fc;
   /* Transition */
   --tran-02: all 0.0s ease;
@@ -99,6 +100,7 @@ body.dark {
   --button-color: #242526;
   --button-color-hover: #414141;
   --written-input-color: #535455;
+  --written-input-color-hover: #76797c;
   --forms-color: #3a3b3c;
 }
 
