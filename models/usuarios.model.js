@@ -190,8 +190,8 @@ module.exports = class Usuarios {
         });
     } else {
       return db.execute(
-        `UPDATE usuario SET IDRol = ?, Correo = ? WHERE (idUsuario = ?) and idUsuario != ${process.env.SUPER_ID}`,
-        [IdRol, Correo, idUsuario]
+        `UPDATE usuario SET IDRol = ?, Correo = ?, Estado = ?, Nombre = ? WHERE (idUsuario = ?) and idUsuario != ${process.env.SUPER_ID}`,
+        [IdRol, Correo, estado, nombre, idUsuario]
       );
     }
   }

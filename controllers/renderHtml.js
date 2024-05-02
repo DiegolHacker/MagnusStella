@@ -60,7 +60,6 @@ exports.post_editar = (request, response, next) => {
 
   Usuarios.saveUsernameChanges(IdRol, password, correo, idUser, Nombre, Estado)
     .then(() => {
-      console.log("Guardado");
       response.redirect("/usuarios/1/LU1");
     })
     .catch((err) => {
