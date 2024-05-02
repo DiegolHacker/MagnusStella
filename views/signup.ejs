@@ -1,11 +1,11 @@
 <%-include('includes/navigation.ejs')%>
   <head>
-    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/forms.css">
   </head>
   
-<div class="signup-box box">
-    <div class="signup-title title">
-      <h5>Ingresa la informacion del nuevo usuario</h5>
+<div class="signup-box box box-box">
+    <div class="title-container">
+      <h5 class="title">Registrar usuario:</h5>
     </div>
 
     <% if(typeof error !=='undefined' ){ %>
@@ -19,13 +19,13 @@
           <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <div class="credential-input">
             <label for="name">Nombre:</label>
-            <input type="text" name="name" id="username" placeholder="Ingresa tu nombre" required /><br />
+            <input class="text-input" type="text" name="name" id="username" placeholder="Ingresa tu nombre" required /><br><br>
             <label for="email">Correo electronico:</label>
-            <input type="email" name="email" id="email" placeholder="Ingresa tu correo electronico" required /><br />
+            <input class="text-input" type="email" name="email" id="email" placeholder="Ingresa tu correo electronico" required /><br><br>
             
-            <label for="password">Contrasena:</label>
+            <label for="password">Contraseña:</label>
             <div class="passwordInput">
-              <input type="password" name="password" id="password" placeholder="Ingresa tu contrasena" required /><br />
+              <input class="text-input" type="password" name="password" id="password" placeholder="Ingresa tu contrasena" required />
               <button type="button" id="togglePasswordBtn" onclick="togglePassword()">
                 <i class="fa fa-eye" aria-hidden="true"></i>
               </button>
@@ -34,17 +34,18 @@
 
             <br />
             <label for="rol">Rol:</label>
-            <select name="rol" id="rol">
+            <select class="type-select" name="rol" id="rol">
               <option value="2">Analítica</option>
               <option value="3">CRM</option>
               <option value="1">Admin</option>
             </select>
-          </div>
+          </div><br>
 
-          <label for="image"> Imagen:</label>
-          <input class="input" type="file" name="image" id="image"/>
-          <div class="ingresarBtn">
-            <button type="submit" class="ingresar-btn">Crear Usuario</button>
+          <label for="image"> Imagen:</label><br>
+          <input class="input image-input" type="file" name="image" id="image"/>
+          <div class="button-container">
+            <button type="submit" class="save-button">Crear Usuario</button><br>
+            <a class="cancel-button" href="/usuarios/1/<%= marca %>">Cancelar</a>
           </div>
         </form>
   </div>

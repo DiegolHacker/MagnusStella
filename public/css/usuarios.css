@@ -8,7 +8,7 @@
 
 .delete:hover {
     color: var(--delete-color-hover);
-    background-color: var(--button-color-hover);
+    background-color: var(--toggle-color);
 }
 
 a.settings{

@@ -138,7 +138,7 @@
 
   const eliminar = (id, currentPage, marca) => {
 
-    const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta pregunta?');
+    const confirmDelete = confirm('¿Estás seguro de que quieres eliminar a este usuario?');
     if (confirmDelete) {
       const csrf = document.getElementById("_csrf").value;    
       fetch("/usuarios/delete", {
