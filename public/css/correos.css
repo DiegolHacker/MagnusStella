@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 35%;
+  overflow:auto;
 }
 
 .preview-html {
@@ -30,6 +31,10 @@ body {
 .submit-button-container {
   margin: 20px 0 20px 0;
   width: 100%;
+}
+
+.contenido{
+  min-width: 700px;
 }
 
 .submit-button button {
@@ -74,23 +79,24 @@ a.delete:hover {
 }
 
 #dias {
-  width: 4em;
+  width: 6em;
+  font-size: 12pt;
+  background-color: var(--help-card-color);
+  color: var(--search-text);
   border: none;
-  border-bottom-left-radius: 11pt;
-  border-top-left-radius: 11pt;
+  border-radius: 10pt;
 }
 
-#hora {
-  width: 8em;
-  border: none;
-  border-bottom-left-radius: 11pt;
-  border-top-left-radius: 11pt;
+#btn-enviar-dias {
+  background-color: var(--highlight);
+  font-size: 12pt;
+  border: solid 0px;
+  border-radius: 10pt;
+  color: #fff;
 }
-#subir {
-  width: 4em;
-  border: none;
-  border-bottom-right-radius: 11pt;
-  border-top-right-radius: 11pt;
+
+#btn-enviar-dias:hover {
+  background-color: var(--highlight2);
 }
 
 a.add-ques-button{
@@ -147,4 +153,9 @@ body.dark a.settings:visited:hover {
 
 .contenido{
   min-width: 600px;
+}
+
+.blankspace{
+  min-height: 2em;
+  width: 100%;
 }
