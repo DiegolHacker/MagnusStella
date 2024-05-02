@@ -1411,7 +1411,7 @@ label {
   height: 55%;
   flex-direction: column;
   display: flex;
-  justify-content: end;
+  justify-content: center;
 
   /* right: 0; */
 }
