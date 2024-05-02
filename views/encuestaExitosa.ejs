@@ -1,87 +1,72 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmación de envío</title>
+    <title>Encuesta repetida</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 40px;
-            background: #f7f7f7;
-        }
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-        .container {
+        body {
+            font-family: "Poppins", sans-serif;
             display: flex;
             align-items: center;
+            justify-content: center;
             flex-direction: column;
-            background: #fff;
+            height: 97vh;
+            background-color: #eeee;
+        }
+
+        .tarjeta {
+            margin-top: 3%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f5f5;
+            width: 60%;
+            height: 40%;
             border-radius: 5px;
-            padding: 20px;
-            margin: auto;
-            height: 100%;
-            width: 50%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .header {
-            color: #333;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .footer {
-            font-size: 16px;
-            color: #777;
-            margin-top: 30px;
+        #text2 {
+            font-size: 15px;
+            align-items: center;
+            justify-content: center;
         }
 
         .logos img {
             width: 60px;
-            /* Ancho fijo para todas las imágenes */
             height: 70px;
-            /* Alto fijo para todas las imágenes */
             object-fit: contain;
-            /* Asegura que el contenido de la imagen se escale correctamente dentro del espacio asignado */
             margin: 10px;
             cursor: pointer;
             border: 0;
-            /* Elimina cualquier borde por defecto */
             display: inline-block;
-            /* Asegura que las imágenes se alineen correctamente */
         }
     </style>
 </head>
 
 <body>
+    <img src="/logos/Logo_Zebrands_Nregro.png" alt="LogoZebrands">
+    <div class="tarjeta">
+        <h2>Gracias por tu feedback!</h2>
+        <p>Tu opinion nos ayuda a mejorar dia a dia</p>
 
-    <div class="container">
-        <div class="header">
-            ¡Tu respuesta ha sido enviada! 
-        </div>
-
-        <div class="footer">
-            Tu opinion es muy importante para nosotros <br>
-            <br>
-            No olvides checar nuestras paginas
-        </div>
-
+        <p id="text2">Checa nuestras paginas para ver mas increibles productos</p>
         <div class="logos">
             <a href="https://luuna.mx/" target="_blank"><img
                     src="https://zeb-main-bucket.b-cdn.net/catalog-website/luuna.mx/group-186ad7c.svg" alt="Luuna"></a>
-            <a href="https://mappa.mx/?utm_source=google&utm_medium=cpc&utm_campaign=S_Conversion_Branding_Mappa&gclid=Cj0KCQjwntCVBhDdARIsAMEwACkhAIZ99vx38UfQjZoX77GHtXbCiXMxOHTmEUJIXVb6tGWZy_VTFzkaAhuuEALw_wcB" target="_blank"><img
+            <a href="https://mappa.mx/?utm_source=google&utm_medium=cpc&utm_campaign=S_Conversion_Branding_Mappa&gclid=Cj0KCQjwntCVBhDdARIsAMEwACkhAIZ99vx38UfQjZoX77GHtXbCiXMxOHTmEUJIXVb6tGWZy_VTFzkaAhuuEALw_wcB"
+                target="_blank"><img
                     src="https://zeb-main-bucket.b-cdn.net/catalog-website/mappa.mx/mappa-logotipo_mesa-de-trabajo-1-4-.png"
                     alt="Mappa"></a>
             <a href="https://nooz.mx/" target="_blank"><img
                     src="https://zeb-main-bucket.b-cdn.net/catalog-website/nooz.mx/nooz-header-logo.png" alt="Nooz"></a>
         </div>
-
-
     </div>
-
 </body>
 
 </html>
