@@ -1,7 +1,7 @@
 const Reviews = require("../models/resenas.model");
 const Correos = require("../models/correos.model");
 const nodemailer = require("nodemailer");
-const ejs = require('ejs');
+const ejs = require("ejs");
 
 //Definimos las variables para nodemailer
 const transporter = nodemailer.createTransport({
@@ -10,11 +10,10 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "tracpablo@gmail.com",
-    pass: "gjlu ultc ppfm srbq",
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_KEY,
   },
 });
-
 
 exports.get_resenas_completas = (request, response, next) => {
   const marca = request.params.marca;
@@ -83,13 +82,25 @@ exports.get_buscar = (request, response, next) => {
 
 //---------------------------------------------------------------Enviar Correos ---------------------------------------------------
 
-exports.enviar_resenia = async (request, response, next) => {
-  const marca = request.params.marca;
-  const csrfToken = request.csrfToken();
-  console.log(csrfToken);
+exports.enviar_resenia = async (
+  marcaS,
+  nombreProducto,
+  nombreCliente,
+  idVenta,
+  mail
+) => {
+  const marca = marcaS;
+  let marcaNombre = "";
+
+  if (marcaS === "LU1") {
+    marcaNombre = "Luuna";
+  } else if (marcaS === "NO1") {
+    marcaNombre = "Nooz";
+  } else {
+    marcaNombre = "Mappa";
+  }
 
   try {
-
     //Recuperamos los valores para el template de resenias
     const total = await Correos.emailpreguntas(marca); // Espera a que se resuelva la promesa
 
@@ -122,81 +133,60 @@ exports.enviar_resenia = async (request, response, next) => {
     console.log("Esto es lo que tiene total_opciones")
     console.log(total_opciones)
 
-    console.log('Antes de ejs')
     //Renderizamos el template del ejs
-    ejs.renderFile('views/prueba_correo.ejs',{
-      preguntas: preguntas,
-      titulo: "Correos",
-      marca: marca || "LU1",
-      ruta: "/reviews/resenas/enviar_resenia/LU1",
-      csrfToken: request.csrfToken(),
-      idp: idp,
-      total: total,
-      tipos: tipos,
-      opciones: opciones,
-      idp: idp,
-      total_opciones: total_opciones,
-      permisos: request.session.permisos || [],
-      attachments: [
-        {
-          filename: "image.png",
-          path: `./public/images/${marca}.png`,
-          cid: "unique@nodemailer.com", //same cid value as in the html img src
-        },
-      ],
+    ejs.renderFile(
+      "views/prueba_correo.ejs",
+      {
+        preguntas: preguntas,
+        nombreProducto: nombreProducto,
+        nombreCliente: nombreCliente,
+        idVenta: idVenta,
+        titulo: "Correos",
+        marca: marca,
+        ruta: "/reviews/resenas/enviar_resenia/LU1",
+        idp: idp,
+        total: total,
+        tipos: tipos,
+        opciones: opciones,
+        idp: idp,
+        total_opciones: total_opciones,
+        attachments: [
+          {
+            filename: "image.png",
+            path: `./public/images/${marca}.png`,
+            cid: "unique@nodemailer.com", //same cid value as in the html img src
+          },
+        ],
+      },
+      function (err, template) {
+        if (err) {
+          console.log("Error: ", err);
+        } else {
+          //Usamos main para enviar los correos
+          async function main() {
+            // send mail with defined transport object
+            const info = await transporter.sendMail({
+              from: `Nos encantaria tu opinion sobre ${marcaNombre} <magnusstellacore@gmail.com>`, // sender address
+              to: "tracpablo@gmail.com", // list of receivers //va a ser cambiado por mail
+              subject: `Hola ${nombreCliente} nos interesa tu opinion acerca de ${nombreProducto} `, // Subject line
+              html: template,
+              attachments: [
+                {
+                  filename: "image.png",
+                  path: `./public/images/${marca}.png`,
+                  cid: "unique@nodemailer.com", //same cid value as in the html img src
+                },
+              ],
+            });
 
-    }, function(err, template){
-      if (err) {
-        console.log('Error: ', err)
+            // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+          }
 
-      } else {
-
-        console.log('Dentro de ejs')
-
-        //Usamos main para enviar los correos
-        async function main() {
-
-          // send mail with defined transport object
-          const info = await transporter.sendMail({
-
-            from: '"Forgot password" <a01705408@tec.mx>', // sender address
-            to: "a01705408@tec.mx", // list of receivers
-            subject: "Intento1", // Subject line
-            html: template,
-            attachments: [
-              {
-                filename: "image.png",
-                path: `./public/images/${marca}.png`,
-                cid: "unique@nodemailer.com", //same cid value as in the html img src
-              },
-            ],
-
-          });
-
-          // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+          //Mandamos a crear el correo y si falla nos manda el error
+          main().catch(console.error);
         }
-
-        //Mandamos a crear el correo y si falla nos manda el error
-        main().catch(console.error);
       }
-    })
-
-    // Ahora renderiza con los datos obtenidos
-    response.render("prueba_correo", {
-      preguntas: preguntas,
-      titulo: "Correos",
-      marca: marca || "LU1",
-      ruta: "/reviews/resenas/enviar_resenia/LU1",
-      csrfToken: request.csrfToken(),
-      idp: idp,
-      total: total,
-      tipos: tipos,
-      opciones: opciones,
-      idp: idp,
-      total_opciones: total_opciones,
-      permisos: request.session.permisos || [],
-
-    });
+    );
   } catch (error) {
     console.error("Error al cargar las preguntas:", error);
     response.status(500).send("Error interno del servidor");
@@ -209,12 +199,12 @@ exports.post_visibilidad = (request, response, next) => {
   Reviews.actualizarvisibilidad(idrev, nvisibilidad, (err, resenas) => {
     if (err) {
       console.log(err);
-      return response.status(500).json({ error: "Error al actualizar visibilidad" });
+      return response
+        .status(500)
+        .json({ error: "Error al actualizar visibilidad" });
     }
     return response.status(200).json({ resenas: resenas });
   }); //Toma el estado de la visibilidad del body y el id de la review a modificar del url.
-
-  
 };
 
 exports.get_resenas_f = (request, response, next) => {
@@ -224,7 +214,6 @@ exports.get_resenas_f = (request, response, next) => {
   let startDate = request.body.startDate || "*";
   let endDate = request.body.endDate || "*";
   Reviews.fetch_f(marca, orden, startDate, endDate, (err, resenasList) => {
-    
     const resenas = resenasList.map((resena) => ({
       id: resena.idreview,
       title: resena.titulo,
