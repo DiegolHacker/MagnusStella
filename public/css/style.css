@@ -6,7 +6,7 @@
   padding: 7px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  transition: all 0.05s ease;
+  transition: all 0.0s ease;
 }
 
 :root {
@@ -27,6 +27,7 @@
   --hover-color: #3f526b;
   --highlight: #557196;
   --highlight2: #668bbb;
+  --highlight3: #87a9d6;
   --divBackground: #f1f2f2;
   --boxShadow: rgba(24, 23, 23, 0.884);
   --image1Display: none;
@@ -34,13 +35,16 @@
   --backGroundColor: #fbfafa;
   --line-color-1: #2e3d50;
   --boxShadow2: rgba(0, 0, 0, 0.2);
-  --help-card-color: #eaf0f8;
+  --help-card-color: #d2ddeb;
   --disabled-color: #47688a;
   --title-color: #2e3d50;
   --title-color-hover: #557196;
   --delete-color: #c54b61;
   --delete-color-hover: #eb7d91;
-
+  --expand-menu: #c0cfe2;
+  --button-color: #cecece;
+  --button-color-hover: #adadad;
+  --written-input-color: #e9f2fc;
   /* Transition */
   --tran-02: all 0.0s ease;
   --tran-03: all 0.0s ease;
@@ -76,6 +80,7 @@ body.dark {
   --hover-color: #3a3b3c;
   --highlight: #557196;
   --highlight2: #668bbb;
+  --highlight3: #87a9d6;
   --divBackground: #848484;
   --boxShadow: #ffffffc0;
   --image1Display: inline;
@@ -89,6 +94,10 @@ body.dark {
   --title-color-hover: #c0d1e7;
   --delete-color: #c54b61;
   --delete-color-hover: #eb7d91;
+  --expand-menu: #c5c5c5;
+  --button-color: #242526;
+  --button-color-hover: #414141;
+  --written-input-color: #535455;
 }
 
 .side_bar.close {
@@ -185,7 +194,7 @@ header .image-text .header-text {
   transform: translateY(-50%);
   height: 30px;
   width: 30px;
-  background: var(--side-nav);
+  background: var(--expand-menu);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,10 +227,11 @@ header .image-text .header-text {
 }
 
 .side_bar .menu-bar {
-  height: calc(100% - 50px);
+  /* height: calc(100% - 50px); */
+  height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .menu-bar .darkLight-profile {
@@ -354,7 +364,14 @@ nav .nav-bar .logo a {
   font-size: 22px;
   cursor: pointer;
 }
-
+.icono {
+  position: absolute;
+  color: var(--text-color-up);
+  font-size: 22px;
+  cursor: pointer;
+  padding-top: 50px;
+  padding-left: -10px;
+}
 .dark-light i.sun {
   opacity: 0;
   pointer-events: none;
@@ -522,11 +539,6 @@ footer {
   align-items: center;
 }
 
-/*Pagina reseñas*/
-.container {
-  margin-top: -250px;
-}
-
 /*Pagina usuario*/
 
 .container-fluid {
@@ -578,6 +590,9 @@ footer {
 .buttons .icon {
   font-size: 20px;
 }
+.icono {
+  font-size: 20px;
+}
 
 .table-title .btn:hover,
 .table-title .btn:focus {
@@ -589,7 +604,7 @@ footer {
   position: relative;
   float: top;
   margin-top: 2px;
-  font-size: 10px;
+  font-size: 10pt;
 }
 
 .table-wrapper {
@@ -734,12 +749,7 @@ table.table .avatar {
 }
 
 /* review completa */
-.container {
-  margin-top: 40px;
-  background-color: var(--toggle-color);
-  color: var(--text-color_rev);
-  overflow: auto;
-}
+
 
 .contenido {
   padding: 10pt;
@@ -873,11 +883,10 @@ table.table .avatar {
 }
 
 .item-container {
-  width: 280px;
+  width: 290px;
   min-width: 250px;
   /* Ajusta el ancho según tus necesidades */
   margin: 10px;
-  padding: 10px;
   border: 6px solid var(--edit-color);
   border-radius: 5px;
   border-style: double;
@@ -1177,7 +1186,7 @@ label {
 }
 
 .cat-btn {
-  background-color: var(--backGroundColor);
+  background-color: var(--help-card-color);
   color: var(--search-text);
   padding: 16px;
   font-size: 16px;
@@ -1247,7 +1256,7 @@ label {
 #openModalBtn-active:hover,
 #openModalBtn:hover {
   background-color: var(--nav-color);
-  color: var(--search-bar);
+  color: #fff;
 }
 
 /* Imagenes */
@@ -1267,9 +1276,7 @@ label {
   display: var(--image2Display);
 }
 
-.box-box {
-  width: 65%;
-}
+
 
 /* Modal para los filtros de pagina de graficas */
 
@@ -1277,7 +1284,7 @@ label {
 #openModalBtn-active {
   outline: none;
   border: none;
-  background-color: var(--backGroundColor);
+  background-color: var(--help-card-color);
   /* background-color: #2e7d32; */
   color: var(--search-text);
   font-size: 16px;
@@ -1448,4 +1455,8 @@ label {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
   margin-right: 1.7px;
+}
+
+#fecha_c{
+  text-align: right;
 }

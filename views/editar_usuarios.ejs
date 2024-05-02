@@ -1,4 +1,7 @@
 <%- include('includes/navigation.ejs')%>
+
+<link rel="stylesheet" href="/css/signup.css" />
+
   <% for (let usuario of usuarios) { %>
     <div class="signup-box box">
       <div class="signup-title title">
@@ -31,8 +34,18 @@
 
         <div class="credential-input">
           <label class="label" for="idrol">IDRol: </label>
-          <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.IDRol%>" name="idrol"
-            id="idrol" type="text" required />
+          <select name="idrol" id="idrol">
+            <option value="1">Administrador</option>
+            <option value="2">Analítica</option>
+            <option value="3">CRM</option>
+          </select>
+        </div>
+        <div class="credential-input">
+          <label class="label" for="estado">Estado: </label>
+          <select name="estado" id="estado">
+            <option value="1">Activo</option>
+            <option value="0">Inactivo</option>
+          </select>
         </div>
         <div class="ingresarBtn">
           <input type="submit" value=" Guardar " class="ingresar-btn" />

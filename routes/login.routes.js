@@ -23,7 +23,7 @@ router.post("/validate-password", (req, res) => {
     res.json({
       valid: false,
       message:
-        "La contrasena tiene que tener al menos 10 caracteres, al menos una letra mayuscula y miniscula, un numero y un simbolo especial(@$!%*?&).",
+        "La contrasena tiene que tener al menos 10 caracteres, al menos una letra mayuscula y miniscula, un numero y uno de los siguientes simbolos especiales (@$!%*?&).",
     });
   }
 });

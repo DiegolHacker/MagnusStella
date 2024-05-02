@@ -47,10 +47,6 @@ a.delete:hover {
 }
 
 .ques-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
   margin-bottom: 20px;
   margin-top: 5px;
   border-radius: 10px;
@@ -74,7 +70,7 @@ a.delete:hover {
 .ques-container {
   border-radius: 1em;
   width: 100%;
-  background-color: var(--backGroundColor);
+  background-color: var(--help-card-color);
 }
 
 #dias {
@@ -119,6 +115,16 @@ body.dark a.delete:link:hover {
   color: var(--delete-color-hover);
 }
 
+body.dark a.delete:visited {
+  text-decoration: none;
+  color: var(--delete-color);
+}
+
+body.dark a.delete:visited:hover {
+  text-decoration: none;
+  color: var(--delete-color-hover);
+}
+
 body.dark a.settings:link {
   text-decoration: none;
   color: var(--highlight);
@@ -137,4 +143,8 @@ body.dark a.settings:visited {
 body.dark a.settings:visited:hover {
   text-decoration: none;
   color: var(--highlight2);
+}
+
+.contenido{
+  min-width: 600px;
 }

@@ -1,8 +1,12 @@
 <%- include('includes/navigation.ejs') %>
 
-<div class="signup-box box">
+<head>
+  <link rel="stylesheet" href="/css/editar_preguntas.css">
+</head>
+
+<div class="box-box box">
   <div class="signup-title title">
-    <h5>Ingresa la informacion de la nueva pregunta</h5>
+    <h5>Ingresa la información de la nueva pregunta:</h5>
   </div>
 
   <% if (typeof error !== 'undefined') { %>
@@ -19,23 +23,22 @@
     <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
     <div class="credential-input">
       <label for="question">Pregunta:</label>
-      <input
-        type="text"
-        name="question"
-        id="question"
-        placeholder="Ingresa la pregunta"
-      /><br />
+      <input class="input text-input" type="text" name="question" id="question" placeholder="Ingresa la pregunta"/>
+      <br><br>
       <label for="tipo">Tipo de pregunta:</label>
-      <select name="tipo" id="tipo">
-        <option value="1">Cerrada (una respuesta)</option>
+      <select name="tipo" id="tipo" class="type-select">
         <option value="2">Abierta</option>
+        <option value="1">Cerrada (una respuesta)</option>
         <option value="3">Checkbox (multiples respuestas)</option>
-      </select>
-      <div id="opciones-container"></div>
-      <button id="button_opcion" type="button">Añadir Opción</button>
-      <div class="ingresarBtn">
-        <button type="submit" class="ingresar-btn">Guardar pregunta</button>
-                <a href="/emails/correos/<%= marca %>">Cancelar</a>
+      </select><br><br>
+      <div class="options-container">
+        <div id="opciones-container">   
+        </div>
+        <button id="button_opcion" class="add-option-button" type="button">Añadir Opción +</button>
+      </div><br>
+      <div class="button-container">
+        <button type="submit" class="save-button">Guardar pregunta</button><br>
+        <a class="cancel-button" href="/emails/correos/<%= marca %>">Cancelar</a>
       </div>
     </div>
   </form>
@@ -43,6 +46,24 @@
 
 <%- include('includes/footer.ejs') %>
 <script>
+  //función para agregar nuevo campo de entrada
+  // function agregarCampoInput() {
+  //   var container = document.getElementById("opciones-container");
+  //   var button = document.getElementById("button_opcion");
+  //   var counter = container.querySelectorAll("input").length + 1;
+
+  //   var newInput = document.createElement("input");
+  //   newInput.name = "op_" + counter;
+  //   newInput.id = "op_" + counter;
+  //   newInput.type = "text";
+  //   newInput.classList.add("input");
+  //   container.insertBefore(newInput, button);
+  // }
+
+  // document.getElementById("button_opcion").addEventListener("click", function () {
+  //   agregarCampoInput();
+  // });
+
   document.addEventListener("DOMContentLoaded", function () {
     var tipoSelect = document.getElementById("tipo");
     var opcionesContainer = document.getElementById("opciones-container");
@@ -59,13 +80,14 @@
           var input = document.createElement("input");
           input.setAttribute("type", "text");
           input.setAttribute("name", "op_" + (existingOptions.length + 1));
-          input.setAttribute("class", "input");
+          input.setAttribute("class", "input option-input");
           input.setAttribute(
             "placeholder",
             "Opción " + (existingOptions.length + 1)
           );
           newOptionInput.appendChild(input);
           var deleteButton = document.createElement("button");
+          deleteButton.setAttribute("class", "delete-button");
           deleteButton.innerHTML = "<i class='bx bx-trash icon'></i>";
           deleteButton.addEventListener("click", function () {
             opcionesContainer.removeChild(newOptionInput);
@@ -82,13 +104,14 @@
           var input = document.createElement("input");
           input.setAttribute("type", "text");
           input.setAttribute("name", "op_" + (existingOptions.length + 1));
-          input.setAttribute("class", "input");
+          input.setAttribute("class", "input option-input");
           input.setAttribute(
             "placeholder",
             "Placeholder " + (existingOptions.length + 1)
           );
           newOptionInput.appendChild(input);
           var deleteButton = document.createElement("button");
+          deleteButton.setAttribute("class", "delete-button");
           deleteButton.innerHTML = "<i class='bx bx-trash icon'></i>";
           deleteButton.addEventListener("click", function () {
             opcionesContainer.removeChild(newOptionInput);

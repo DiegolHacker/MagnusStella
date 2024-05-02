@@ -127,7 +127,6 @@ exports.get_correos_crear = async (request, response, next) => {
     response.status(500).send("Error interno del servidor");
   }
 };
-
 exports.post_crear_correos = (request, response, next) => {
   const marca = request.params.marca;
   const { question, tipo } = request.body;
@@ -150,8 +149,7 @@ exports.post_crear_correos = (request, response, next) => {
   }
 
   const pregunta = new Correos(question, tipo, opciones, marca);
-  pregunta
-    .save()
+  pregunta.save()
     .then(() => {
       response.redirect("/emails/correos/" + marca);
     })
@@ -161,6 +159,29 @@ exports.post_crear_correos = (request, response, next) => {
     });
 };
 
-exports.post_dias = (request, response, next) => {
-  
+exports.borrar_pregunta = async (request, response, next) => {
+  const idPregunta = request.params.pregunta_id;  //Toma el id de la pregunta de la ruta.
+  try {
+    await Correos.delete(idPregunta);
+  } catch (error) {
+    console.log("Error al borrar:", error);
+    response.status(500).send("Error interno del servidor");
+  }
+
 }
+
+exports.post_dias = (request, response, next) => {
+  const marca = request.params.marca;
+  const { dias } = request.body; 
+  
+  Correos.savedias(marca, dias)
+    .then(() => {
+      response.redirect("/emails/correos/" + marca);
+    })
+    .catch((err) => {
+      console.log("Error al hacer el signup:", err);
+      response.redirect("/emails/correos/" + marca);
+    });
+};
+
+
