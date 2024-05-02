@@ -117,11 +117,13 @@
             <div>
                 
                 <form action="https://magnusstellacore.laing.mx/respuesta/Mailresponse" method="POST" enctype="multipart/form-data" class="contenido">
+                    <input type="hidden" name="idVenta" value="<%= idVenta %>">
+                    <input type="hidden" name="marca" value="<%= marca %>">
 
                     <img src="cid:unique@nodemailer.com"  height="200" width="100%">
 
-                    <h4><b>Hola user,</b></h4>
-                    <p id="sub_question">Has comprado recientemente 'producto' <br> ¿Nos cuentas tu experiencia?</p>
+                    <h4><b>Hola <%= nombreCliente %>,</b></h4>
+                    <p id="sub_question">Has comprado recientemente <%= nombreProducto %> <br> ¿Nos cuentas tu experiencia?</p>
 
                     <div class="rating-box">
                         <h5 id="question_text"><b>¿Cuál es su calificación general?</b></h5>
@@ -145,12 +147,11 @@
                     </div>
 
                     <h4><b>Título de tu reseña: </b></h4>
-                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         
                         <input type="text" id="title_rev" name="titulo_review" placeholder="Título" class="texto_rev"><br>
                     <h4><b>Reseña: </b></h4>
 
-                    <textarea class="texto_rev" name="descripcion_review" id="description_rev" cols="35" rows="4" placeholder="Escribe aquí tu reseña"></textarea>
+                    <input type="text" class="texto_rev" name="descripcion_review" id="description_rev" cols="35" rows="4" placeholder="Escribe aquí tu reseña">
                     
                     <div id="survey-form">
 
@@ -159,21 +160,25 @@
                             <h4><b><%= preguntas[i].descripcion %></b></h4>
                             <% if (tipos[i][0].tipo == 1) { %>
                                 <p id="sub_question">Elige una de las siguientes opciones</p>
-                                <select name="answer-<%= preguntas[i].idPregunta %>">
+                                <% console.log(idp[i].idPregunta) %>
+                                <select name='answer_<%= idp[i].idPregunta %>''>
                                     <% opciones[i].forEach(opcion => { %>
-                                        <option value="<%= opcion.idOpcion %>"><%= opcion.descripcion %></option>
+                                        <% console.log(opcion.idopciones)%>
+                                        <option value="<%= opcion.descripcion %>"><%= opcion.descripcion %></option>
                                     <% }); %>
                                 </select>
                             <% } else if (tipos[i][0].tipo == 2) { %>
                                 <% opciones[i].forEach(opcion => { %>
-                                    <textarea class="texto_rev" name="answer-<%= preguntas[i].idPregunta %>" id="option-<%= opcion.idOpcion %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>"></textarea>
+                                    <% console.log(opcion.idopciones)%>
+                                    <input type="text" class="texto_rev" name='answer_<%= idp[i].idPregunta %>' id="option-<%= opcion.idopciones %>" cols="35" rows="3" placeholder="<%= opcion.descripcion %>">
                                     <br>
                                 <% }); %>
                             <% } else if ( tipos[i][0].tipo == 3) { %>
                                 <p id="sub_question">Elige una o varias de las siguientes opciones</p>
                                 <% opciones[i].forEach(opcion => { %>
-                                    <input type="checkbox" id="option-<%= opcion.idOpcion %>" name="answer-<%= preguntas[i].idPregunta %>" value="<%= opcion.idOpcion %>">
-                                    <label for="option-<%= opcion.idOpcion %>"><%= opcion.descripcion %></label><br>
+                                    <% console.log(opcion.idopciones)%>
+                                    <input type="checkbox" id="option-<%= opcion.idopciones %>" name='answer_<%= idp[i].idPregunta %>' value="<%= opcion.descripcion %>">
+                                    <label for="option-<%= opcion.idopciones %>"><%= opcion.descripcion %></label><br>                                    
                                 <% }); %>
                             <% } %>
                         <% } %>

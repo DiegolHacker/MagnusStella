@@ -33,6 +33,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
+const cron = require("./CRON_job/cronJob.controller");
+
 const multer = require("multer");
 //fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
 const fileStorage = multer.diskStorage({
@@ -84,17 +86,12 @@ app.use(multer({ storage: fileStorage }).single("image"));
 
 //---------------------------------------------------Fin Nodemailer--------------------------------------------------
 
-
-
-
-
-
-const routesZecore = require('./routes/zecore.routes')
-const routesRespuesta = require('./routes/respuesta.routes')
+const routesZecore = require("./routes/zecore.routes");
+const routesRespuesta = require("./routes/respuesta.routes");
 
 // Define las rutas más específicas primero
-app.use('/api', routesZecore);
-app.use('/respuesta', routesRespuesta)
+app.use("/api", routesZecore);
+app.use("/respuesta", routesRespuesta);
 
 //PROTECCION CONTRA CROSS-SITE REQUEST FORGERY
 const csrf = require("csurf");
@@ -104,20 +101,20 @@ app.use(csrfProtection);
 //FIN CSRF
 
 const routesAplicacionResenas = require("./routes/routes1.routes"); // Cambiar el nombre de el archivo de rutas a algo más substancial
-const routesLogin = require('./routes/login.routes');
-const routesReview = require('./routes/resenas.routes');
-const routesCorreos = require('./routes/correos.routes');
-const routesGraphics = require('./routes/grafica.routes');
-const routesAyuda = require('./routes/ayuda.routes');
+const routesLogin = require("./routes/login.routes");
+const routesReview = require("./routes/resenas.routes");
+const routesCorreos = require("./routes/correos.routes");
+const routesGraphics = require("./routes/grafica.routes");
+const routesAyuda = require("./routes/ayuda.routes");
 const { read } = require("fs");
 
+cron.start();
 
-
-app.use('/users', routesLogin);
-app.use('/reviews', routesReview);
-app.use('/emails', routesCorreos);
-app.use('/graphics', routesGraphics);
-app.use('/ayuda', routesAyuda);
+app.use("/users", routesLogin);
+app.use("/reviews", routesReview);
+app.use("/emails", routesCorreos);
+app.use("/graphics", routesGraphics);
+app.use("/ayuda", routesAyuda);
 app.use("/", routesAplicacionResenas);
 
 app.use((request, response, next) => {
