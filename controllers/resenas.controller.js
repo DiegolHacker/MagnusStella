@@ -15,29 +15,55 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-exports.get_resenas_completas = (request, response, next) => {
-  const marca = request.params.marca;
-  const idReview = request.params.id; // Obtiene el ID de la reseña de los parámetros de la solicitud
-  // Llama al método fetchCompleto del modelo para obtener los datos de la reseña completa
-  Reviews.fetchCompleto(idReview, (err, resenaCompleta) => {
-    if (err) {
-      return response.status(500).send("Error fetching complete review");
+exports.get_resenas_completas = async (request, response, next) => {
+  try {
+    const marca = request.params.marca;
+    const idReview = request.params.id; 
+    const total_p = await Reviews.reviewtotalpreguntas(idReview); // Espera a que se resuelva la promesa
+    const id_p = await Reviews.reviewpreguntaid(idReview);
+  
+    const respuestas = [];
+    const total_respuestas = [];
+    const preguntas = [];
+
+    for (let i = 0; i < total_p; i++) {
+      const respuesta = await Reviews.reviewrespuestas(idReview, id_p[i].fk_respuestas_pregunta);
+      const total_r = await Reviews.reviewtotalrespuestas(idReview, id_p[i].fk_respuestas_pregunta);
+      const pregunta = await Reviews.pregunta_descrip(id_p[i].fk_respuestas_pregunta);
+      respuestas.push(respuesta);
+      total_respuestas.push(total_r);
+      preguntas.push(pregunta);
     }
 
-    if (!resenaCompleta) {
-      return response.status(404).send("Reseña no encontrada");
-    }
+    // Obtiene el ID de la reseña de los parámetros de la solicitud
+    // Llama al método fetchCompleto del modelo para obtener los datos de la reseña completa
+    Reviews.fetchCompleto(idReview, (err, resenaCompleta) => {
+      if (err) {
+        return response.status(500).send("Error fetching complete review");
+      }
 
-    // Renderiza la vista de la reseña completa y pasa los datos de la reseña
-    response.render("resenas_completas", {
-      resena: resenaCompleta,
-      titulo: "Reseña Completa",
-      marca: marca || "LU1",
-      csrfToken: request.csrfToken(),
-      ruta: "/reviews/resenas/completas/:marca/:id",
-      permisos: request.session.permisos || [],
+      if (!resenaCompleta) {
+        return response.status(404).send("Reseña no encontrada");
+      }
+
+      // Renderiza la vista de la reseña completa y pasa los datos de la reseña
+      response.render("resenas_completas", {
+        resena: resenaCompleta,
+        titulo: "Reseña Completa",
+        marca: marca || "LU1",
+        csrfToken: request.csrfToken(),
+        ruta: "/reviews/resenas/completas/:marca/:id",
+        permisos: request.session.permisos || [],
+        total_p: total_p,
+        total_respuestas: total_respuestas,
+        respuestas: respuestas,
+        preguntas: preguntas,
+      });
     });
-  });
+  } catch (error) {
+    console.error("Error al obtener las preguntas:", error);
+    response.status(500).send("Error interno del servidor");
+  }
 };
 
 exports.get_resenas = (request, response, next) => {
@@ -208,6 +234,7 @@ exports.get_resenas_f = (request, response, next) => {
       estrellas: resena.puntaje,
       itemcode: resena.idProducto,
       visibilidad: resena.visible,
+      fecha: resena.fecha,
     }));
 
     response.render("resenas", {
