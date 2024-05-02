@@ -6,14 +6,14 @@
 
 <div class="correos-container">
     <div class="editor-de-preguntas">
-        <h2>Configuración</h2>
+        <h2>Configuración</h2><div class="blankspace"></div>
 
     <form id="form-dias">
       <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
       <label for="dias">Días a los que se envía la encuesta:</label>
-      <input type="number" id="dias" name="dias" min="3" max="60" value="<%= dias %>" />
-      <button type="button" id="btn-enviar-dias" class="subir boton">Enviar</button>
-    </form>
+      <input type="number" id="dias" name="dias" min="0" max="365" value="<%= dias %>" />&emsp;
+      <button type="button" id="btn-enviar-dias" class="subir boton">Guardar</button>
+    </form><div class="blankspace"></div>
         
  
         <% for (var i = 0; i < total; i++) { %>

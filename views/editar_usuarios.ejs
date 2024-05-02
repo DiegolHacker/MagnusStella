@@ -20,8 +20,8 @@
             name="nombre" id="nombre" type="text" required /> <br><br>
 
           <label class="label" for="correo">Correo: </label>
-          <input class="input text-input" type="text" placeholder="Text input" value="<%= usuario.Correo%>"
-            name="correo" id="correo" type="text" required /> <br><br>
+          <input class="input text-input" type="email" placeholder="Text input" value="<%= usuario.Correo%>"
+            name="correo" id="correo" type="email" required /> <br><br>
 
           <label class="label" for="password">Password: </label>
 
@@ -49,7 +49,7 @@
           </select><br><br>
         </div>
         <div class="button-container">
-          <input type="submit" value=" Guardar " class="save-button" /><br>
+          <input type="submit" value=" Guardar " class="save-button" />&emsp;
           <a href="/usuarios/1/<%= marca %>" class="cancel-button">Cancelar</a>
         </div>
       </form>
