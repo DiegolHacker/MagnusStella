@@ -59,7 +59,8 @@ exports.post_venta = async (request, response, next) => {
   const { Cliente, Nombre, Correo, Producto_id, Fecha, SalesON} = data;
   const venta = new ZecoreSaleHelper(Cliente,Nombre,Correo, Producto_id, Fecha, SalesON);
   let x= await venta.FindCliente()
-  if(x === true){
+  console.log(x)
+  if(x === false){
     await venta.AddCliente();
   }
   await venta.RegistrarVenta()

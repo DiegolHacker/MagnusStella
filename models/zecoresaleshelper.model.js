@@ -13,7 +13,8 @@ module.exports = class ZecoreSalesHelper {
   async FindCliente(){
     try{
       const result = await db.execute('select idCliente from cliente where idCliente = ?',[this.Cliente_nom]);
-      if(result.length > 0){
+      console.log('Resultado Find: '+ result)
+      if(result[0].length > 0){
         return true;
       }else{
         return false;
