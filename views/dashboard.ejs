@@ -72,6 +72,15 @@ encuestasEnviadas, ruta: ruta, }) %>
       <h1><%= categoria %></h1>
     </div>
     <% } %>
+
+    <% if(producto !=='*' ) { %>
+      <div class="cat-tittle">
+        <h1>
+          <%= producto %>
+        </h1>
+      </div>
+      <% } %>
+    
   </div>
 
   <div class="top-graficas">
