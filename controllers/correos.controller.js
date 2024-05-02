@@ -101,7 +101,6 @@ exports.post_editar_correos = async (request, response, next) => {
     for (let i = 0; i < opciones.length; i++) {
       await Correos.saveEmailChanges(opciones[i], idOpciones[i]);
     }
-    console.log(marca);
     console.log("Guardado exitosamente");
     response.redirect("/emails/correos/" + marca);
   } catch (error) {

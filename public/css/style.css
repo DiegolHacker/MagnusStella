@@ -75,7 +75,7 @@ body.dark {
   --sidebar-color: #242526;
   --primary-color: #ccc;
   --side-nav: #ccc;
-  --primary-color-light: #3a3b3c;
+  --primary-color-light: #707072;
   --edit-color: #ccc;
   --toggle-color: #727171c2;
   --text-color_rev: #ccc;
@@ -520,9 +520,11 @@ body.dark a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 0 105px;
+  margin: 20px 0 0 105pt;
   height: 100%;
 }
+
+
 
 .main-content-increase {
   margin: 20px 0 0 205px;

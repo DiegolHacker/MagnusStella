@@ -27,7 +27,6 @@ module.exports = class Usuarios {
       .then((hashedPassword) => {
         userData.Contrasena = hashedPassword;
         const values = Object.values(userData);
-        // console.log(values)
         return db.execute(
           "INSERT INTO usuario (IdRol,Nombre,Password,Correo,Imagen,Estado) VALUES (?,?,?,?,?,?)",
           values
@@ -190,7 +189,6 @@ module.exports = class Usuarios {
           throw err;
         });
     } else {
-      console.log("Sin modificar contraseña");
       return db.execute(
         `UPDATE usuario SET IDRol = ?, Correo = ? WHERE (idUsuario = ?) and idUsuario != ${process.env.SUPER_ID}`,
         [IdRol, Correo, idUsuario]

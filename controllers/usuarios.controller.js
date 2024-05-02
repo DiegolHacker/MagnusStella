@@ -60,7 +60,6 @@ exports.post_login = (request, response, next) => {
             }
           })
           .catch((err) => {
-            console.log("error .catch");
             console.error("Error during login despues de bycompare", err);
             response.render("login", {
               error: "Usuario o contrasena no son validas",
@@ -68,7 +67,6 @@ exports.post_login = (request, response, next) => {
             });
           });
       } else {
-        console.log("error else");
         response.redirect("/users/login");
         response.render("login", {
           error: "Usuario o contrasena no son validas" ,
