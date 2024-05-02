@@ -40,7 +40,7 @@ const multer = require("multer");
 const fileStorage = multer.diskStorage({
   destination: (request, file, callback) => {
     //'public/uploads': Es el directorio del servidor donde se subirán los archivos
-    callback(null, "public/uploads");
+    callback(null, "public/uploads/usuarios");
   },
   filename: (request, file, callback) => {
     //aquí configuramos el nombre que queremos que tenga el archivo en el servidor,
