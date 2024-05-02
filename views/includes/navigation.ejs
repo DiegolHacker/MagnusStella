@@ -108,9 +108,15 @@
       <div class="menu-bar">
         <div class="menu">
           <ul class="menu-links">
-            
+            <% let ver = false%>
+            <% let editar = false%>
+            <% let administrar = false%>
             <% for (let funcion of permisos) { %> 
-              <% if (funcion.funcion =="ver") { %>
+                    <% if (funcion.funcion == "ver"){ ver = true } %>
+                    <% if (funcion.funcion == "editar"){ editar = true } %>
+                    <% if (funcion.funcion == "administracion"){ administrar = true } %>
+            <% } %>
+              <% if (ver == true) { %>
               <li class="nav-link">
                 <a href="/graphics/dashboard/<%=marca%>">
                   <i class="bx bx-line-chart icon"></i>
@@ -123,14 +129,16 @@
                   <span class="text nav-text">Reseñas</span>
                 </a>
               </li>
-              <% } %> <% if (funcion.funcion == "editar") { %>
+              <% } %>
+              <% if (editar == true) { %>
               <li class="nav-link">
                 <a href="/emails/correos/<%=marca%>">
                   <i class="bx bx-envelope icon"></i>
                   <span class="text nav-text">Correos</span>
                 </a>
               </li>
-              <% } %> <% if (funcion.funcion == "administracion") { %>
+              <% } %> 
+              <% if (administrar == true) { %>
               <li class="nav-link">
                 <a href="/usuarios/1/<%= marca %>">
                   <i class="bx bxs-user-plus icon"></i>
@@ -138,7 +146,7 @@
                 </a>
               </li>
               <% } %> 
-            <% } %>
+
 
           </ul>
 

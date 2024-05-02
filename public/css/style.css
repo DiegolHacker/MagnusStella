@@ -6,7 +6,7 @@
   padding: 7px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  transition: all 0.05s ease;
+  transition: all 0.0s ease;
 }
 
 :root {
@@ -27,6 +27,7 @@
   --hover-color: #3f526b;
   --highlight: #557196;
   --highlight2: #668bbb;
+  --highlight3: #87a9d6;
   --divBackground: #f1f2f2;
   --boxShadow: rgba(24, 23, 23, 0.884);
   --image1Display: none;
@@ -43,6 +44,7 @@
   --expand-menu: #c0cfe2;
   --button-color: #cecece;
   --button-color-hover: #adadad;
+  --written-input-color: #e9f2fc;
   /* Transition */
   --tran-02: all 0.0s ease;
   --tran-03: all 0.0s ease;
@@ -78,6 +80,7 @@ body.dark {
   --hover-color: #3a3b3c;
   --highlight: #557196;
   --highlight2: #668bbb;
+  --highlight3: #87a9d6;
   --divBackground: #848484;
   --boxShadow: #ffffffc0;
   --image1Display: inline;
@@ -94,6 +97,7 @@ body.dark {
   --expand-menu: #c5c5c5;
   --button-color: #242526;
   --button-color-hover: #414141;
+  --written-input-color: #535455;
 }
 
 .side_bar.close {
@@ -1272,9 +1276,7 @@ label {
   display: var(--image2Display);
 }
 
-.box-box {
-  width: 65%;
-}
+
 
 /* Modal para los filtros de pagina de graficas */
 
