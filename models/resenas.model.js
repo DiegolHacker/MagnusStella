@@ -109,7 +109,15 @@ module.exports = class Reviews {
                 r.idReview AS idreview, 
                 r.Descripcion AS descripcion, 
                 r.Titulo AS titulo, 
-                DATE_FORMAT(r.Fecha, '%d %b, %Y') AS fecha, 
+                CONCAT(DATE_FORMAT(r.Fecha, '%d'), " ",
+                CASE
+                  WHEN DATE_FORMAT(r.Fecha, '%b') = 'Jan' THEN 'Ene'
+                  WHEN DATE_FORMAT(r.Fecha, '%b') = 'Apr' THEN 'Abr'
+                  WHEN DATE_FORMAT(r.Fecha, '%b') = 'Aug' THEN 'Ago'
+                  WHEN DATE_FORMAT(r.Fecha, '%b') = 'Dec' THEN 'Dic'
+                  ELSE DATE_FORMAT(r.Fecha, '%b') 
+                END, ", ",
+                DATE_FORMAT(r.Fecha, '%Y')) AS fecha,
                 r.Puntaje AS puntaje, 
                 r.Visibilidad AS visible,
                 v.Fk_Venta_Producto AS idProducto
@@ -164,7 +172,15 @@ module.exports = class Reviews {
             r.idReview AS idreview, 
             r.Descripcion AS descripcion, 
             r.Titulo AS titulo, 
-            DATE_FORMAT(r.Fecha, '%d %b, %Y') AS fecha, 
+            CONCAT(DATE_FORMAT(r.Fecha, '%d'), " ",
+            CASE
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Jan' THEN 'Ene'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Apr' THEN 'Abr'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Aug' THEN 'Ago'
+              WHEN DATE_FORMAT(r.Fecha, '%b') = 'Dec' THEN 'Dic'
+              ELSE DATE_FORMAT(r.Fecha, '%b') 
+            END, ", ",
+            DATE_FORMAT(r.Fecha, '%Y')) AS fecha,
             r.Puntaje AS puntaje, 
             r.Visibilidad AS visible,
             v.Fk_Venta_Producto AS idProducto
@@ -208,4 +224,51 @@ module.exports = class Reviews {
         callback(err, []);
       });
   }
+
+  static async reviewtotalrespuestas(idreview, pregunta) {
+    const query =
+      "SELECT COUNT(Idrespuestas) as count FROM respuestas WHERE fk_respuestas_review = ? AND fk_respuestas_pregunta = ?";
+    const [rows] = await db.execute(query, [idreview, pregunta]);
+    return rows[0].count;
+  }
+
+  static async reviewtotalpreguntas(idreview) {
+    const query =
+      `SELECT  COUNT(DISTINCT fk_respuestas_pregunta)  as count 
+       FROM respuestas
+       WHERE fk_respuestas_review = ? `;
+    const [rows] = await db.execute(query, [idreview]); // Usamos await para esperar la ejecución de la consulta
+    return rows[0].count;
+  }
+
+  static async reviewpreguntaid(id_r) {
+    const query = `
+        SELECT fk_respuestas_pregunta
+        FROM respuestas
+        WHERE fk_respuestas_review = ?`;
+
+        const [rows] = await db.execute(query, [id_r]); // Usamos await para esperar la ejecución de la consulta
+        return rows;
+  }  
+  static async pregunta_descrip(idp) {
+    const query = `
+        SELECT Descripcion
+        FROM pregunta
+        WHERE idPregunta = ? `;
+
+        const [rows] = await db.execute(query, [idp]); // Usamos await para esperar la ejecución de la consulta
+        return rows.map(row => row['Descripcion']);
+  }  
+  static async reviewrespuestas(idreview, pregunta) {
+    const query = `
+        SELECT Descripción
+        FROM respuestas
+        WHERE fk_respuestas_review = ? AND fk_respuestas_pregunta = ?`;
+
+        const [rows] = await db.execute(query, [idreview, pregunta]); // Usamos await para esperar la ejecución de la consulta
+        return rows.map(row => row['Descripción']);
+  }  
 };
+
+
+

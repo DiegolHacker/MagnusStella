@@ -58,8 +58,9 @@
           <% resenas.forEach(function(resena, index) { %>
           <div class="item-container">
               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-              <a id="nombre-resena" href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"><%= resena.itemcode %> <%= resena.title %></a>
+              <a id="nombre-resena" href="/reviews/resenas_completas/<%= marca %>/<%= resena.id%>"> <%= resena.title %></a>
               <img src="/images/<%= marca %>/<%= resena.itemcode%>.jpg" class="img_producto">
+              <p id="item" style="font-weight: bold;"><%= resena.itemcode %></p>
               <div class="estrellas">
                   <% for (var i = 0; i < 5; i++) { %>
                       <% if (i < resena.estrellas) { %>
@@ -69,6 +70,7 @@
                       <% } %>
                   <% } %>
               </div>
+              
               <p id="sub_question"><%= resena.resena_descrip %></p> 
 
                 <div class="switch-checkbox deshabilitado">
@@ -115,15 +117,23 @@
                         return `
                         <div class="item-container">
                             <a href="/reviews/resenas_completas/<%= marca %>/${resena.idreview}">
-                                ${resena.idProducto} ${resena.titulo}
+                                ${resena.titulo}
                             </a>
                             <img src="/images/<%= marca %>/${resena.idProducto}.jpg" class="img_producto">
+                            <p id="item" style="font-weight: bold;">${resena.idProducto} </p>
                             <div class="estrellas">
                                 ${Array.from({ length: 5 }, (_, index) => {
                                     return index < resena.puntaje ? '<i class="bx bxs-star" id="stars_y"></i>' : '<i class="bx bx-star" id="stars_g"></i>';
                                 }).join('')}
                             </div>
                             <p id="sub_question">${resena.descripcion}</p> 
+                                        
+                            <div class="switch-checkbox deshabilitado">
+                                <p id="fecha">${resena.fecha}</p>
+                                <input type="checkbox" disabled id="visibilidadCheckbox_<%= resenas.idreview %>" <% if (resenas.visibilidad == 0) { %> checked <% } %> >
+
+                                <label for="visibilidadCheckbox" class="text"></label>
+                            </div>
                             
                         </div>
                     `;

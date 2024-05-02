@@ -50,8 +50,13 @@
     <h4><b><%= resena.titulo_resena %></b></h4>
     <p id="sub_question"><%= resena.descripcion_resena %></p>
     <h5><br />Preguntas</h5>
-    <h4><b><%= resena.pregunta %></b></h4>
-    <p id="sub_question"><%= resena.respuesta %></p>
+    <% for (var i = 0; i < total_p; i++) { %>
+      <br>
+      <h4><b><%= preguntas[i] %></b></h4>
+      <% respuestas[i].forEach(respuesta => { %>
+        <p id="sub_question"><%= respuestas[i] %></p>
+      <% }); %>
+  <% } %>
   </div>
 </div>
 <%- include('includes/footer.ejs') %>
