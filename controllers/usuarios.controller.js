@@ -100,7 +100,7 @@ exports.get_signup = (request, response, next) => {
   response.render("signup", {
     titulo: "Anadir Usuarios",
     marca: marca || "LU1",
-    ruta: "users/signup",
+    ruta: "/users/signup",
     csrfToken: request.csrfToken(),
     permisos: request.session.permisos || [],
   });
