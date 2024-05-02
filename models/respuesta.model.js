@@ -1,4 +1,5 @@
 const db = require('../util/database');
+let errorInsert = 1 ;
 
 module.exports = class Respuesta{
     constructor(idReview, Descripcion, idpregunta){
@@ -34,6 +35,8 @@ module.exports = class Respuesta{
             return insertid
         } catch (error) {
             console.log('Error al crear review: '+error);
+            errorInsert = 'error';
+            return errorInsert
         }
     }
     async AddResponse(idReview, desc, idpregunta){
