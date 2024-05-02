@@ -60,7 +60,6 @@ exports.post_login = (request, response, next) => {
             }
           })
           .catch((err) => {
-            console.log("error .catch");
             console.error("Error during login despues de bycompare", err);
             response.render("login", {
               error: "Usuario o contrasena no son validas",
@@ -68,7 +67,6 @@ exports.post_login = (request, response, next) => {
             });
           });
       } else {
-        console.log("error else");
         response.redirect("/users/login");
         response.render("login", {
           error: "Usuario o contrasena no son validas" ,
@@ -102,7 +100,7 @@ exports.get_signup = (request, response, next) => {
   response.render("signup", {
     titulo: "Anadir Usuarios",
     marca: marca || "LU1",
-    ruta: "users/signup",
+    ruta: "/users/signup",
     csrfToken: request.csrfToken(),
     permisos: request.session.permisos || [],
   });
