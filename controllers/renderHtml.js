@@ -7,7 +7,6 @@ exports.post_marca = (request, response, next) => {
 exports.get_usuarios = (request, response, next) => {
   const marca = request.params.marca;
   const pag = parseInt(request.params.pag) || 1; // Asegúrate de que 'pag' sea un número
-  console.log("dentro de usuarios");
 
   Usuarios.fetchPag(pag)
     .then((result) => {
@@ -32,7 +31,6 @@ exports.get_usuarios = (request, response, next) => {
 };
 
 exports.get_editar = (request, response, next) => {
-  console.log("Ruta get_editar");
 
   const marca = request.params.marca;
 
@@ -53,8 +51,6 @@ exports.get_editar = (request, response, next) => {
 };
 
 exports.post_editar = (request, response, next) => {
-  console.log("/editar");
-
   var correo = request.body.correo || "";
   var password = request.body.password || "";
   var IdRol = request.body.idrol || "";
@@ -102,11 +98,9 @@ exports.post_delete = (request, response, next) => {
 
 exports.get_registroUsuarios = (request, response, next) => {
   const marca = request.params.marca;
-  console.log("dentro registro");
 
   Usuarios.getRegistros()
     .then(([usuarios, fieldData]) => {
-      console.log(usuarios.length);
       response.render("registroUsuarios", {
         usuarios: usuarios,
         titulo: "Usuarios",

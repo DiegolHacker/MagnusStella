@@ -1,6 +1,8 @@
 <%- include('includes/navigation.ejs') %>
+<head>
+  <link rel="stylesheet" href="/css/usuarios.css">
+</head>
 
-<link rel="stylesheet" href="/ccs/usuarios-resenia.css" />
 <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
 
 <div class="container-fluid">
@@ -136,157 +138,152 @@
 
   const eliminar = (id, currentPage, marca) => {
 
-    const csrf = document.getElementById("_csrf").value;    
-
-    console.log("ELiminando");
-    fetch("/usuarios/delete", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "csrf-token": csrf,
-      },
-      body: JSON.stringify({ id: id, currentPage: currentPage, marca: marca}),
-    })
-      .then((result) => {
-        console.log("Algo");
-        return result.json(); //Regresa otra promesa
+    const confirmDelete = confirm('¿Estás seguro de que quieres eliminar esta pregunta?');
+    if (confirmDelete) {
+      const csrf = document.getElementById("_csrf").value;    
+      fetch("/usuarios/delete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "csrf-token": csrf,
+        },
+        body: JSON.stringify({ id: id, currentPage: currentPage, marca: marca}),
       })
-      .then((data) => {
-        console.log(data);
-        console.log("Dentro de Algo");
+        .then((result) => {
+          return result.json(); //Regresa otra promesa
+        })
+        .then((data) => {
 
-        html = ``
-        html += `
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>Id#</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Rol</th>
-              <th>Estado</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-
-          <tbody>
-        `;
-        
-        for (let usuario of data.usuarios) {
+          html = ``
           html += `
-            <tr>
-                <td>${usuario.idUsuario}</td>
-                <td>
-                  <a href="#"
-                    ><img
-                      src="/uploads/usuarios/${usuario.Imagen}"
-                      class="avatar"
-                      alt="Avatar del usuario"
-                    />
-                    ${usuario.Nombre}</a
-                  >
-                </td>
-                <td>${usuario.Correo}</td>
-                <td>${usuario.IDRol}</td>
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Id#</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+
+            <tbody>
           `;
-            
-          if (usuario.Estado ==="0") {
-            html += `<td><span class="status text-warning">&bull;</span>Inactivo</td>`;
-          } else {
-            html += `<td><span class="status text-success">&bull;</span>Activo</td>`;
+          
+          for (let usuario of data.usuarios) {
+            html += `
+              <tr>
+                  <td>${usuario.idUsuario}</td>
+                  <td>
+                    <a href="#"
+                      ><img
+                        src="/uploads/usuarios/${usuario.Imagen}"
+                        class="avatar"
+                        alt="Avatar del usuario"
+                      />
+                      ${usuario.Nombre}</a
+                    >
+                  </td>
+                  <td>${usuario.Correo}</td>
+                  <td>${usuario.IDRol}</td>
+            `;
+              
+            if (usuario.Estado ==="0") {
+              html += `<td><span class="status text-warning">&bull;</span>Inactivo</td>`;
+            } else {
+              html += `<td><span class="status text-success">&bull;</span>Activo</td>`;
+            }
+
+            html += `
+              <td>
+                <a
+                  class="settings"
+                  title="Editar"
+                  data-placement="top"
+                  data-toggle="tooltip"
+                  href="/usuarios/editar/${usuario.idUsuario}/${marca}"
+                  ><i class="bx bxs-edit-alt"></i
+                ></a>
+                <button
+                onclick="eliminar(${usuario.idUsuario}, ${data.currentPage}, '${data.marca}')"
+                  href="#"
+                  class="delete"
+                  title="Borrar"
+                  data-placement="top"
+                  data-toggle="tooltip"
+                >
+                  <i class="bx bx-trash"></i>
+                </button>
+              </td>
+            </tr>
+            `;
+                
+          };
+
+          html += `
+            </tbody>
+              </table>
+
+              <div class="clearfix">
+                <div class="hint-text">
+                  Mostrando <b>${data.pageSize * (data.currentPage - 1) + 1}</b> a
+                  <b>${Math.min(data.pageSize * data.currentPage, data.totalUsers)}</b> de
+                  <b>${data.totalUsers}</b> resultados
+                </div>
+                <ul class="pagination">
+          `;
+
+          if(data.currentPage > 1) {
+            html += `
+              <li class="page-item">
+                  <a
+                    href="/usuarios/${data.currentPage - 1}/${data.marca}"
+                    class="page-link"
+                    >Anterior</a>
+              </li>
+            `;
+
+          } 
+
+          for(let i = 1; i <= data.totalPages; i++) {
+            html += `
+              <li class="page-item ${i === data.currentPage ? 'active' : ''}">
+                <a href="/usuarios/${i}/${data.marca}" class="page-link">${i}</a>
+              </li>
+            `;
+          }
+
+          if(data.currentPage < data.totalPages) {
+            html += `
+              <li class="page-item">
+                <a
+                  href="/usuarios/${data.currentPage + 1}/${data.marca}"
+                  class="page-link"
+                  >Siguiente</a
+                >
+              </li>
+            `;
           }
 
           html += `
-            <td>
-              <a
-                class="settings"
-                title="Editar"
-                data-placement="top"
-                data-toggle="tooltip"
-                href="/usuarios/editar/${usuario.idUsuario}/${marca}"
-                ><i class="bx bxs-edit-alt"></i
-              ></a>
-              <button
-              onclick="eliminar(${usuario.idUsuario}, ${data.currentPage}, '${data.marca}')"
-                href="#"
-                class="delete"
-                title="Borrar"
-                data-placement="top"
-                data-toggle="tooltip"
-              >
-                <i class="bx bx-trash"></i>
-              </button>
-            </td>
-          </tr>
-          `;
-              
-        };
-
-        html += `
-          </tbody>
-            </table>
-
-            <div class="clearfix">
-              <div class="hint-text">
-                Mostrando <b>${data.pageSize * (data.currentPage - 1) + 1}</b> a
-                <b>${Math.min(data.pageSize * data.currentPage, data.totalUsers)}</b> de
-                <b>${data.totalUsers}</b> resultados
-              </div>
-              <ul class="pagination">
-        `;
-
-        if(data.currentPage > 1) {
-          html += `
-            <li class="page-item">
-                <a
-                  href="/usuarios/${data.currentPage - 1}/${data.marca}"
-                  class="page-link"
-                  >Anterior</a>
-            </li>
-          `;
-
-        } 
-
-        for(let i = 1; i <= data.totalPages; i++) {
-          html += `
-            <li class="page-item ${i === data.currentPage ? 'active' : ''}">
-              <a href="/usuarios/${i}/${data.marca}" class="page-link">${i}</a>
-            </li>
-          `;
-        }
-
-        if(data.currentPage < data.totalPages) {
-          html += `
-            <li class="page-item">
-              <a
-                href="/usuarios/${data.currentPage + 1}/${data.marca}"
-                class="page-link"
-                >Siguiente</a
-              >
-            </li>
-          `;
-        }
-
-        html += `
-            </ul>
+              </ul>
+            </div>
           </div>
-        </div>
-        `;
+          `;
 
-        console.log(html)
+          //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+          document.getElementById('respuesta_ajax').innerHTML = html;
 
-        //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
-        document.getElementById('respuesta_ajax').innerHTML = html;
-
-        document.getElementById('notificacion').innerHTML = 
-        `<div class="notification is-info">
-            <button class="delete"></button>
-            La construcción fue eliminada. 
-        </div>`;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          document.getElementById('notificacion').innerHTML = 
+          `<div class="notification is-info">
+              <button class="delete"></button>
+          </div>`;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      }
   };
 </script>
 

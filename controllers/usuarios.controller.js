@@ -34,7 +34,6 @@ exports.post_login = (request, response, next) => {
                 .then(([permisos, fieldData]) => {
                   request.session.isLoggedIn = true;
                   request.session.permisos = permisos;
-                  console.log(request.session.permisos);
                   request.session.user = user;
                   return request.session.save((err) => {
                     response.redirect("/");
@@ -95,7 +94,6 @@ exports.get_signup = (request, response, next) => {
 };
 
 exports.post_signup = (request, response, next) => {
-  console.log(request.body);
   const marca = request.params.marca;
   const { name, email, password } = request.body;
   const IdRol = request.body.rol;
@@ -111,7 +109,6 @@ exports.post_signup = (request, response, next) => {
   }
 
   const usuarios = new Usuarios(name, email, password, image, IdRol);
-  console.log(usuarios);
   usuarios
     .save()
     .then(() => {

@@ -41,6 +41,8 @@
   --delete-color: #c54b61;
   --delete-color-hover: #eb7d91;
   --expand-menu: #c0cfe2;
+  --button-color: #cecece;
+  --button-color-hover: #adadad;
   /* Transition */
   --tran-02: all 0.0s ease;
   --tran-03: all 0.0s ease;
@@ -90,6 +92,8 @@ body.dark {
   --delete-color: #c54b61;
   --delete-color-hover: #eb7d91;
   --expand-menu: #c5c5c5;
+  --button-color: #242526;
+  --button-color-hover: #414141;
 }
 
 .side_bar.close {
