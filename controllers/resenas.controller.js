@@ -118,21 +118,6 @@ exports.enviar_resenia = async (
       total_opciones.push(to_opcion);
     }
 
-    console.log("Esto es lo que tiene preguntas")
-    console.log(preguntas)
-    console.log("====================================================================================")
-    console.log("Esto es lo que tiene idp")
-    console.log(idp)
-    console.log("====================================================================================")
-    console.log("Esto es lo que tiene tipos")
-    console.log(tipos)
-    console.log("====================================================================================")
-    console.log("Esto es lo que tiene opciones")
-    console.log(opciones)
-    console.log("====================================================================================")
-    console.log("Esto es lo que tiene total_opciones")
-    console.log(total_opciones)
-
     //Renderizamos el template del ejs
     ejs.renderFile(
       "views/prueba_correo.ejs",
