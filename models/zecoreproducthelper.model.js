@@ -1,14 +1,7 @@
 const db = require("../util/database");
 
 module.exports = class ZecoreProductHelper {
-  constructor(
-    idProducto,
-    marcaProducto,
-    Nombre,
-    Imagen,
-    Descripcion,
-    categoria
-  ) {
+  constructor(idProducto,marcaProducto,Nombre,Imagen,Descripcion,categoria) {
     this.idProducto = idProducto;
     this.marcaProducto = marcaProducto;
     this.Nombre = Nombre;

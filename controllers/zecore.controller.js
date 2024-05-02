@@ -56,6 +56,8 @@ exports.post_NewProduct = (request, response, next) => {
 exports.post_venta = (request, response, next) => {
   const data = request.body;
   const { Cliente, Producto_id, Fecha, SalesON } = data;
+  console.log('sata '+ data);
+  console.log('req '+ request.body)
   const venta = new ZecoreSaleHelper(Cliente, Producto_id, Fecha, SalesON);
   console.log(venta);
   venta
