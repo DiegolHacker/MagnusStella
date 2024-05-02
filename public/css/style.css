@@ -44,7 +44,8 @@
   --expand-menu: #c0cfe2;
   --button-color: #cecece;
   --button-color-hover: #adadad;
-  --written-input-color: #e9f2fc;
+  --written-input-color: #f8fafc;
+  --forms-color:#e9f2fc;
   /* Transition */
   --tran-02: all 0.0s ease;
   --tran-03: all 0.0s ease;
@@ -98,6 +99,7 @@ body.dark {
   --button-color: #242526;
   --button-color-hover: #414141;
   --written-input-color: #535455;
+  --forms-color: #3a3b3c;
 }
 
 .side_bar.close {
@@ -1416,46 +1418,6 @@ label {
   /* right: 0; */
 }
 /* boton del ojito para vista de creacion de usuario y edicion de usuario */
-
-#togglePasswordBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 33.5px;
-  margin-top: 10px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border: none;
-  background-color: #f6f1f1;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 1.5px 1px rgba(0, 0, 0, 0.1),
-    1.5px 0px 1px rgba(0, 0, 0, 0.1);
-
-  transition: box-shadow 0.2s ease;
-}
-
-#togglePasswordBtn:hover {
-  box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.2),
-    inset 0px 0.5px 1px rgba(0, 0, 0, 0.2),
-    inset 0.5px 0px 1px rgba(0, 0, 0, 0.2);
-}
-
-.passwordInput {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 90%;
-}
-
-#password {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  margin-right: 1.7px;
-}
 
 #fecha_c{
   text-align: right;
