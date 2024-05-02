@@ -1,55 +1,56 @@
 <%- include('includes/navigation.ejs')%>
-
-<link rel="stylesheet" href="/css/signup.css" />
+<head>
+  <link rel="stylesheet" href="/css/forms.css">
+</head>
 
   <% for (let usuario of usuarios) { %>
-    <div class="signup-box box">
+    <div class="box box-box">
       <div class="signup-title title">
-        <h4>Nombre de usuario: <%= usuario.Nombre%>
-        </h4>
+        <h5>Editar usuario:</h5> 
       </div>
+      
       <form id="editUserForm" action="/usuarios/editar/<%= usuario.idUsuario %>" method="POST">
         <input type="hidden" name="uIdusuario" value="<%= usuario.idUsuario %>" />
         <input type="hidden" name="uPassword" value="<%= usuario.Password %>" />
         <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
         <div class="credential-input">
-          <label class="label" for="correo">Correo: </label>
-          <input class="input is-success" type="text" placeholder="Text input" value="<%= usuario.Correo%>"
-            name="correo" id="correo" type="text" required />
-        </div>
 
-        <div class="credential-input">
+          <label class="label" for="nombre">Nombre: </label>
+          <input class="input text-input" type="text" placeholder="Text input" value="<%= usuario.Nombre%>"
+            name="nombre" id="nombre" type="text" required /> <br><br>
+
+          <label class="label" for="correo">Correo: </label>
+          <input class="input text-input" type="text" placeholder="Text input" value="<%= usuario.Correo%>"
+            name="correo" id="correo" type="text" required /> <br><br>
+
           <label class="label" for="password">Password: </label>
 
           <div class="passwordInput">
-            <input class="input is-success" type="password" placeholder="Text input" value="" name="password" id="password"
+            <input class="input text-input" type="password" placeholder="Text input" value="" name="password" id="password"
               type="text" />
             <button type="button" id="togglePasswordBtn" onclick="togglePassword()">
               <i class="fa fa-eye" aria-hidden="true"></i>
             </button>
           </div>
 
-          <span id="passwordError" class="error"></span>
-        </div>
+          <span id="passwordError" class="error"></span> <br>
 
-        <div class="credential-input">
-          <label class="label" for="idrol">IDRol: </label>
-          <select name="idrol" id="idrol">
+          <label class="label" for="idrol">Rol: </label>
+          <select name="idrol" class="type-select" id="idrol">
             <option value="1">Administrador</option>
             <option value="2">Analítica</option>
             <option value="3">CRM</option>
-          </select>
-        </div>
-        <div class="credential-input">
+          </select><br><br>
+
           <label class="label" for="estado">Estado: </label>
-          <select name="estado" id="estado">
+          <select name="estado" class="type-select" id="estado">
             <option value="1">Activo</option>
             <option value="0">Inactivo</option>
-          </select>
+          </select><br><br>
         </div>
-        <div class="ingresarBtn">
-          <input type="submit" value=" Guardar " class="ingresar-btn" />
-          <a href="/usuarios/1/<%= marca %>">Cancelar</a>
+        <div class="button-container">
+          <input type="submit" value=" Guardar " class="save-button" /><br>
+          <a href="/usuarios/1/<%= marca %>" class="cancel-button">Cancelar</a>
         </div>
       </form>
     </div>

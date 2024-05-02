@@ -32,7 +32,7 @@
 
 .text-input{
     width: 100%;
-    background-color: var(--written-input-color);
+    background-color: var(--written-input-color) !important;
     color: var(--search-text);
     border: solid 0px;
     border-radius: 10pt;
@@ -95,7 +95,7 @@ a.cancel-button:visited:hover{
 }
 
 .type-select{
-    width: 100%;
+    width: 70%;
     background-color: var(--written-input-color);
     color: var(--search-text);
     border: solid 0px;
@@ -166,8 +166,6 @@ transition: box-shadow 0.2s ease;
 }
 
 #togglePasswordBtn:hover {
-box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.2),
-    inset 0px 0.5px 1px rgba(0, 0, 0, 0.2),
-    inset 0.5px 0px 1px rgba(0, 0, 0, 0.2);
+    background-color: var(--written-input-color-hover);
 }
   
