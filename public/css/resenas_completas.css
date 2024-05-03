@@ -2,6 +2,10 @@
   margin-top: -250px;
 }
 
+body {
+  padding-bottom: 0%;
+}
+
 .container {
   margin-top: 40px;
   background-color: var(--toggle-color);
