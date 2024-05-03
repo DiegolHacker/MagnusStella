@@ -24,7 +24,9 @@ exports.post_ModifyProduct = (request, response, next) => {
       let errorMessage;
       if (error.message.startsWith("Unknown column")){
         errorMessage = "Parece haber un error de sintáxis en la columna a editar, favor de verificarlo. Si tiene dudas, acceda al documento 'Manual de uso Zecore'."
-      }else{
+      }else if (error.message.startsWith("Bind parameters must not contain undefined")){
+        errorMessage = "Asegúrese de capturar todos los parámetros necesarios para la modificación";}
+      else{
         errorMessage = error.message
       }
       console.log("Error al recibir la información: " + errorMessage);
@@ -86,7 +88,9 @@ exports.post_venta = async (request, response, next) => {
       let errorMessage;
       if (error.message.startsWith("Cannot add or update a child row")){
         errorMessage = "Uso inapropiado de llaves foráneas, asegúrese de que el producto esté disponible en la base de datos"
-      }else{
+      }else if (error.message.startsWith("Bind parameters must not contain undefined")){
+        errorMessage = "Asegúrese de capturar todos los parámetros necesarios para la modificación";}
+      else{
         errorMessage = error.message
       }
       console.log("Error al recibir la información " + errorMessage);
