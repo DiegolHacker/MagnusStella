@@ -2,7 +2,7 @@ const cron = require("node-cron");
 const model = require("./cronJob.model");
 const controller = require("../controllers/resenas.controller");
 
-module.exports = cron.schedule("0/4 * * * *", () => {
+module.exports = cron.schedule("0 15 * * *", () => {
   model
     .getVentasTime()
     .then(([mailInfo, fieldData]) => {
