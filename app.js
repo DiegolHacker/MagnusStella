@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const passport = require("passport");
 require("./passportSetup");
+const isAuth = require("./util/is-auth");
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -81,7 +82,7 @@ app.use("/graphics", routesGraphics);
 app.use("/ayuda", routesAyuda);
 app.use("/", routesAplicacionResenas);
 
-app.use((request, response, next) => {
+app.use(isAuth,(request, response, next) => {
   response.status(404);
   const marca = request.params.marca;
   response.render("404", {
