@@ -179,7 +179,7 @@ exports.enviar_resenia = async (
             // send mail with defined transport object
             const info = await transporter.sendMail({
               from: `Nos encantaria tu opinion sobre ${marcaNombre} <magnusstellacore@gmail.com>`, // sender address
-              to: "isaacpanesso9@gmail.com", // list of receivers //va a ser cambiado por mail
+              to: mail, // list of receivers //va a ser cambiado por mail
               subject: `Hola ${nombreCliente} nos interesa tu opinion acerca de ${nombreProducto} `, // Subject line
               html: template,
               attachments: [
