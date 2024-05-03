@@ -13,6 +13,7 @@ module.exports = class ZecoreProductHelper {
   async RegistrarProducto() {
     console.log("Registrando Producto...");
     try {
+      console.log(this.idProducto,this.marcaProducto,this.Nombre,this.Imagen,this.Descripcion,this.categoria)
       const result = await db.execute(
         "insert into producto(idProducto, FK_idMarca_producto, Nombre, Imagen, Descripcion, Categoria) values(?,?,?,?,?,?)",
         [
@@ -21,13 +22,15 @@ module.exports = class ZecoreProductHelper {
           this.Nombre,
           this.Imagen,
           this.Descripcion,
-          this.categoria,
+          this.categoria
         ]
       );
       console.log("Información guardada con éxito");
+      console.log(result)
       return result;
     } catch (error) {
       console.error("Error en el guardado de datos: ", error);
+      throw error;
     }
   }
 
@@ -42,6 +45,7 @@ module.exports = class ZecoreProductHelper {
       return result;
     } catch (error) {
       console.error("Error en la modificación de datos: ", error);
+      throw error;
     }
   }
 };

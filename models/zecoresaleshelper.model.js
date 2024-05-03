@@ -13,13 +13,15 @@ module.exports = class ZecoreSalesHelper {
   async FindCliente(){
     try{
       const result = await db.execute('select idCliente from cliente where idCliente = ?',[this.Cliente_nom]);
-      if(result.length > 0){
+      console.log('Resultado Find: '+ result)
+      if(result[0].length > 0){
         return true;
       }else{
         return false;
       }
     } catch (error){
       console.error('Error al acceder a la base de datos: '+ error);
+      throw error;
     }
   }
 
@@ -31,6 +33,7 @@ module.exports = class ZecoreSalesHelper {
       return result;
     } catch (error){
       console.error('Error al acceder a la base de datos: '+ error);
+      throw error;
     }
   }
 
@@ -45,6 +48,7 @@ module.exports = class ZecoreSalesHelper {
       return result;
     } catch (error) {
       console.error("Error en el guardado de datos: ", error);
+      throw error;
     }
   }
 };

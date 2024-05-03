@@ -266,7 +266,7 @@ module.exports = class Reviews {
         WHERE fk_respuestas_review = ? AND fk_respuestas_pregunta = ?`;
 
         const [rows] = await db.execute(query, [idreview, pregunta]); // Usamos await para esperar la ejecución de la consulta
-        return rows.map(row => row['Descripción']);
+        return rows;
   }  
 };
 
