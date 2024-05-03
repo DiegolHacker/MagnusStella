@@ -54,11 +54,11 @@ exports.post_editar = (request, response, next) => {
   var password = request.body.password || "";
   var IdRol = request.body.idrol || "";
   var idUser = request.body.uIdusuario || "";
-  var nombre = request.body.nombre || "";
-  var Estado = request.body.estado
+  var Nombre = request.body.nombre;
+  var Estado = request.body.estado;
   // const correos = require("../app.js/")
 
-  Usuarios.saveUsernameChanges(IdRol, password, correo, idUser, nombre, Estado)
+  Usuarios.saveUsernameChanges(IdRol, password, correo, idUser, Nombre, Estado)
     .then(() => {
       console.log("Guardado");
       response.redirect("/usuarios/1/LU1");
