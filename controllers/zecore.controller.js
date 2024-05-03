@@ -21,23 +21,29 @@ exports.post_ModifyProduct = (request, response, next) => {
         .json({ message: "Hemos recibido la información" });
     })
     .catch((error) => {
-      console.log("Error al recibir la información: " + error);
+      let errorMessage;
+      if (error.message.startsWith("Unknown column")){
+        errorMessage = "Parece haber un error de sintáxis en la columna a editar, favor de verificarlo. Si tiene dudas, acceda al documento 'Manual de uso Zecore'."
+      }else{
+        errorMessage = error.message
+      }
+      console.log("Error al recibir la información: " + errorMessage);
       return response
         .status(500)
-        .json({ message: "Error al recibir la información: " + error });
+        .json({ message: "Error al recibir la información: " + errorMessage });
     });
 };
 
 exports.post_NewProduct = (request, response, next) => {
   const data = request.body;
-  const { idProducto, marcaProducto, Nombre, Image, Descripcion, categoria } =
+  const { idProducto, marcaProducto, nombre, imagen, descripcion, categoria } =
     data;
   const NEWproduct = new ZecoreProductHelper(
     idProducto,
     marcaProducto,
-    Nombre,
-    Image,
-    Descripcion,
+    nombre,
+    imagen,
+    descripcion,
     categoria
   );
   NEWproduct.RegistrarProducto()
@@ -47,10 +53,18 @@ exports.post_NewProduct = (request, response, next) => {
         .json({ message: "Hemos recibido la información" });
     })
     .catch((error) => {
-      console.log("Error al recibir la información " + error);
+      let errorMessage;
+      if (error.message.startsWith("Bind parameters must not contain undefined")){
+        errorMessage = "Asegúrese de capturar todos los parámetros necesarios para la creación del producto. Para más información consulte 'Manual de uso - Zecore'."
+      }else if (error.message.startsWith("Cannot add or update a child row")){
+        errorMessage = "Asegúrese de mandar correctamente el id de la marca. Si necesita ayuda, acceda al recurso 'Manual de uso - Zecore'.";
+      }else{
+        errorMessage = error.message
+      }
+      console.log("Error al recibir la información: " + errorMessage);
       return response
         .status(500)
-        .json({ message: "Error al recibir la información " + error });
+        .json({ message: "Error al recibir la información: " + errorMessage });
     });
 };
 
@@ -59,7 +73,6 @@ exports.post_venta = async (request, response, next) => {
   const { Cliente, Nombre, Correo, Producto_id, Fecha, SalesON} = data;
   const venta = new ZecoreSaleHelper(Cliente,Nombre,Correo, Producto_id, Fecha, SalesON);
   let x= await venta.FindCliente()
-  console.log(x)
   if(x === false){
     await venta.AddCliente();
   }
@@ -70,9 +83,15 @@ exports.post_venta = async (request, response, next) => {
       });
     })
     .catch((error) => {
-      console.log("Error al recibir la información " + error);
+      let errorMessage;
+      if (error.message.startsWith("Cannot add or update a child row")){
+        errorMessage = "Uso inapropiado de llaves foráneas, asegúrese de que el producto esté disponible en la base de datos"
+      }else{
+        errorMessage = error.message
+      }
+      console.log("Error al recibir la información " + errorMessage);
       return response
         .status(500)
-        .json({ message: "Error al recibir la información" });
+        .json({ message: "Error al recibir la información: " + errorMessage});
     });
 };
