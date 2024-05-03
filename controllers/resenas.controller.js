@@ -34,8 +34,8 @@ exports.get_resenas_completas = async (request, response, next) => {
       total_respuestas.push(total_r);
       preguntas.push(pregunta);
     }
-    console.log(respuestas);
-    // Obtiene el ID de la reseña de los parámetros de la solicitud
+    
+    
     // Llama al método fetchCompleto del modelo para obtener los datos de la reseña completa
     Reviews.fetchCompleto(idReview, (err, resenaCompleta) => {
       if (err) {
