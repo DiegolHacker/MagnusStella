@@ -3,6 +3,7 @@
 -- Host: 127.0.0.1    Database: magnusstella
 -- ------------------------------------------------------
 -- Server version	8.2.0
+USE magnusstella
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

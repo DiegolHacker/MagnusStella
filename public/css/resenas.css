@@ -26,9 +26,6 @@ body {
     padding: 0;
 }
 
-.btn:hover {
-  background-color: var(--hover-color);
-}
 
 .switch-checkbox {
   padding-top: 16px;
