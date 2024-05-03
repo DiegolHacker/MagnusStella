@@ -9,6 +9,9 @@ exports.post_MailResponse = async (request, response, next) => {
   idventa = resp.idVenta;
   obj = new respuestaM()
   idrev = await obj.CreateReview(idventa,desc,title,rating);
+
+  console.log(request.body)
+  console.log(resp);
   
   if(isNaN(idrev)){
     response.redirect("/respuesta/RespuestaDuplicada")
