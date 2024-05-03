@@ -52,7 +52,7 @@ exports.get_resenas_completas = async (request, response, next) => {
         titulo: "Reseña Completa",
         marca: marca || "LU1",
         csrfToken: request.csrfToken(),
-        ruta: "/reviews/resenas/completas/:marca/:id",
+        ruta: "/reviews/resenas",
         permisos: request.session.permisos || [],
         total_p: total_p,
         total_respuestas: total_respuestas,
@@ -179,7 +179,7 @@ exports.enviar_resenia = async (
             // send mail with defined transport object
             const info = await transporter.sendMail({
               from: `Nos encantaria tu opinion sobre ${marcaNombre} <magnusstellacore@gmail.com>`, // sender address
-              to: "tracpablo@gmail.com", // list of receivers //va a ser cambiado por mail
+              to: "isaacpanesso9@gmail.com", // list of receivers //va a ser cambiado por mail
               subject: `Hola ${nombreCliente} nos interesa tu opinion acerca de ${nombreProducto} `, // Subject line
               html: template,
               attachments: [
