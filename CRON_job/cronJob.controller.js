@@ -9,12 +9,6 @@ module.exports = cron.schedule("0/4 * * * *", () => {
       console.log(mailInfo);
       if (mailInfo.length > 0) {
         console.log("Sending emails...");
-
-        function delay(ms) {
-          return new Promise((resolve) => setTimeout(resolve, ms));
-        }
-
-        (async () => {
           for (let info of mailInfo) {
             controller.enviar_resenia(
               info.idMarca,
@@ -23,11 +17,8 @@ module.exports = cron.schedule("0/4 * * * *", () => {
               info.idVenta,
               info.mail
             );
-
-            await delay(2000);
-          }
           console.log("Emails sent!");
-        })();
+        };
       } else {
         console.log("No hay correos por enviar hoy");
       }
