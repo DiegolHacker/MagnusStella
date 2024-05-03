@@ -52,7 +52,7 @@ const creaGraficaLinea = (grapN, x, y, titulo) => {
 const meses = promedioMes.map((dato) => dato.mes);
 const promedio = promedioMes.map((dato) => dato.promedio);
 const graph1 = document.getElementById("promedioxMes");
-const titulo = "Promedio de puntaje por mes";
+const titulo = "Promedio de puntaje";
 
 creaGraficaLinea(graph1, meses, promedio, titulo);
 
@@ -79,7 +79,7 @@ const myChart = new Chart(ctx, {
 const enviadaMeses = respuestasEnviadas.map((dato) => dato.mes);
 const enviadas = respuestasEnviadas.map((dato) => dato.enviadas);
 const graph2 = document.getElementById("respuestaEnviada");
-const titulo2 = "Encuestas enviadas por mes";
+const titulo2 = "Encuestas enviadas";
 
 creaGraficaLinea(graph2, enviadaMeses, enviadas, titulo2, lineColor1);
 
