@@ -214,5 +214,5 @@ module.exports = class Usuarios {
     return db.execute(`
         SELECT * FROM historialusuarios
         `);
-  }
+  };
 };

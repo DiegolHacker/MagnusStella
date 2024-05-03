@@ -83,8 +83,6 @@ exports.post_login = (request, response, next) => {
     });
 };
 
-//contra Hola123
-//pruebaauth02@gmail.com
 
 exports.get_logout = (request, response, next) => {
   request.session.destroy(() => {
