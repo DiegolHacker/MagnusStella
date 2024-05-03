@@ -72,7 +72,7 @@ const routesGraphics = require("./routes/grafica.routes");
 const routesAyuda = require("./routes/ayuda.routes");
 const { read } = require("fs");
 
-//cron.start();
+cron.start();
 
 app.use("/users", routesLogin);
 app.use("/reviews", routesReview);
